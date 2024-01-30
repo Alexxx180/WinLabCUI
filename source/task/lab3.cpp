@@ -27,17 +27,11 @@ void StdLocaleSwitch() {
 }
 
 char Program() {
-    Loop2 arguments;
-    do {
-        arguments = Input();
-    }
-    while (Preprocess(&arguments));
-   
-    std::vector<Answer> results = Process(&arguments);
+    Period task = Input();
 
-    Output(results);
+    Answer result = Process(&task);
 
-    return Await(OutputControl, ESC);
+    return Output(&result);
 }
 
 int main(int argc, char **argv)
@@ -49,7 +43,7 @@ int main(int argc, char **argv)
 
     char code = Header();
     if (code == ENTER)
-        code = Program();
+        code = Await(OutputControl, ENTER);
     code = Footer();
 
     return OK;

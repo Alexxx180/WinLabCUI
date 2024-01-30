@@ -1,4 +1,4 @@
-#include "task/structure/process.h"
+#include "task/structure/process/task2.h"
 
 #include <math.h>
 
@@ -53,8 +53,9 @@ dostime CalculateTime(void (*realization)(void)) {
     return result;
 }
 
-Task2 Process2(short count) {
-    precision = count;
+Task2 Process2(Period* task) {
+    precision = task->precision.Y;
+    x = task->x;
     Task2 result;
 
     result.legacy = CalculateTime(ArctgLegacy);
@@ -67,6 +68,3 @@ Task2 Process2(short count) {
     result.result.Z = calculation;
     return result;
 }
-
-    //Pen::ink().status.SetDivisions(count)->Show();
-    //Pen::ink().status.ProgressData(++i);

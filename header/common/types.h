@@ -57,20 +57,6 @@ struct Stapler {
     }
 };
 
-struct Loop { short start, step, end; };
-struct Loop2 {
-    Loop X, Y;
-    unsigned int count;
-
-    Vector2i Size() {
-        Vector2i size;
-        size.X = static_cast<int>((X.end - X.start) / X.step) + 1;
-        size.Y = static_cast<int>((Y.end - Y.start) / Y.step) + 1;
-        count = size.X * size.Y;
-        return size;
-    }
-};
-
 struct Period {
     Vector2s precision;
     double x;
@@ -90,4 +76,10 @@ struct Task2 {
         return result;
     }
 };
+
+struct Answer {
+    double X;
+    Task2 F;
+};
+
 #endif
