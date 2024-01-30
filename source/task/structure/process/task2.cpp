@@ -10,19 +10,8 @@
 
 #include <dos.h>
 
-short precision, sign = 1;
+short precision;
 double calculation, x;
-
-double FuncX(short n) {
-    short axis = (++sign >= 3) ? 1 : -1;
-    return (n >= precision) ? sqrt(8)
-        : sqrt(8 + axis * FuncX(n + 1));
-}
-
-double Process1(unsigned short input) {
-    precision = input;
-    return FuncX(0);
-}
 
 double ArctgFormula(short n) {
 
@@ -78,7 +67,6 @@ Task2 Process2(short count) {
     result.result.Z = calculation;
     return result;
 }
-
 
     //Pen::ink().status.SetDivisions(count)->Show();
     //Pen::ink().status.ProgressData(++i);

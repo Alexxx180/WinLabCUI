@@ -12,21 +12,24 @@
 #include "output/format/pen.h"
 
 Verifier<float>* floating = new Verifier<float>();
+Verifier<short>* numeric = new Verifier<short>();
 
 short field;
 
-void InputFloat(Boundary<float>* current, std::string name) {
-    floating->Bounds(current);
+template<typename TYPE>
+void InputParameter(Verifier<TYPE>* limit, std::string name) {
+    std::wstring parameter = texts[name];
 
     Pen::ink().screen->Line();
-    Pen::ink().Quote(name)->Text(L" ");
-    floating->Edges()->View();
-    Pen::ink().screen->Page(field);
-    Pen::ink().Input(floating)->screen->Page(field - 1);
+    Pen::ink().Text(L" ", parameter);
 
-    std::wstring parameter = texts[name];
+    limit->Edges()->View();
+
+    Pen::ink().screen->Page(field);
+    Pen::ink().Input(limit)->screen->Page(field - 1);
+
     Pen::ink().screen->Clear()->Move();
-    Pen::ink().Text(floating->result, L" = ", parameter);
+    Pen::ink().Text(limit->result, L" = ", parameter);
 }
 
 Loop InputLoop(const Boundary<float> *const initial, std::string name[3]) {
@@ -63,28 +66,33 @@ Loop2 Input() {
 
     floating->status.Server(FOOT)->Signal(signal);
 
-    field = 1;
+    field = 4;
 
     Pen::ink().Target(MAIN);
     Pen::ink().screen->Form(0)->Page(field - 1)->Span(4)->Size(2)->Line(0);
 
-    Pen::ink().Quote("input_header")->screen->Line();
-    Pen::ink().Quote("input_message")->screen->Span(1);
+    Pen::ink().Quote("input_header")->screen->Line()->Span(1);
 
-    const Boundary<float> bounds(-99.9f, 99.9f);
+    const Boundary<short> precision(0, 10);
 
-    std::string name[3] = { 
-        "input_x_step", "input_x_start", "input_x_end"
-    };
+    numeric->Bounds(precision);
+
+    std::wstring parameter = "input_x_recursion";
+
+    Pen::ink().Quote(parameter)->Text(L" ");
+    numeric->Edges()->View();
+    Pen::ink().screen->Page(field);
+    Pen::ink().Input(numeric)->screen->Page(field - 1);
+
+    Pen::ink().screen->Clear()->Move();
+    Pen::ink().Text(numeric->result, L" = ", parameter);
+
+    const Boundary<float> value(-10.0f, 1.0f);
 
     result.X = InputLoop(&bounds, name);
 
     field += 3;
     Pen::ink().screen->Page(field - 1)->Line(1);
-
-    name[0] = "input_y_step";
-    name[1] = "input_y_start";
-    name[2] = "input_y_end";
 
     result.Y = InputLoop(&bounds, name);
     return result;

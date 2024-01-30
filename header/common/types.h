@@ -12,9 +12,12 @@ struct Frame {
     wchar_t cross;
 };
 
+struct Vector2s { short X, Y; };
 struct Vector2u { unsigned int X, Y; };
 
 struct Vector2i { int X, Y; };
+
+struct Vector3d { double X, Y, Z; };
 
 struct Range {
     COORD P1, P2;
@@ -68,23 +71,23 @@ struct Loop2 {
     }
 };
 
-class Answer {
-private:
-    float m_z;
-
-public:
-    float X, Y;
-    float* Z = NULL;
-
-    void Input(short x, short y) {
-        X = 0.1f * x;
-        Y = 0.1f * y;
-    }
-
-    void Set(float z) {
-        m_z = z;
-        Z = &m_z;
-    }
+struct Period {
+    Vector2s precision;
+    double x;
 };
 
+struct Task2 {
+    Vector3d result;
+    dostime legacy, recursive, iterative;
+
+    static dostime Diff(dostime before, dostime after) {
+        dostime result = {
+            after.hour - before.hour,
+            after.minute - before.minute,
+            after.second - before.second,
+            after.hsecond - before.hsecond
+        };
+        return result;
+    }
+};
 #endif
