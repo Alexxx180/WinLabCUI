@@ -8,9 +8,7 @@
 #include "screen/interaction.h"
 #include "output/format/pen.h"
 
-#include <dos.h>
-
-short precision;
+short accuracy;
 double calculation, x;
 
 double ArctgFormula(short n) {
@@ -24,14 +22,14 @@ double ArctgFormula(short n) {
 void ArctgIterative() {
     double result = 0;
 
-    for (short n = 0; n < precision; n++)
+    for (short n = 0; n < accuracy; n++)
         result += ArctgFormula(n);
 
     calculation = result;
 }
 
 double ArctgRecursiveIteration(short n) {
-    return (n >= precision) ? ArctgFormula(n)
+    return (n >= accuracy) ? ArctgFormula(n)
         : ArctgRecursiveIteration(n + 1) + ArctgFormula(n);
 }
 
@@ -43,28 +41,18 @@ void ArctgLegacy() {
     calculation = atan(x);
 }
 
-dostime CalculateTime(void (*realization)(void)) {
-    dostime before, after, result;
-    _dos_gettime(&before);
-    realization();
-    _dos_gettime(&after);
-
-    result = Task2::Diff(before, after);
-    return result;
-}
-
 Task2 Process2(Period* task) {
-    precision = task->precision.Y;
+    accuracy = task->precision.Y;
     x = task->x;
     Task2 result;
 
-    result.legacy = CalculateTime(ArctgLegacy);
+    result.legacy = result.CalculateTime(ArctgLegacy);
     result.result.X = calculation;
 
-    result.recursive = CalculateTime(ArctgRecursive);
+    result.recursive = result.CalculateTime(ArctgRecursive);
     result.result.Y = calculation;
 
-    result.iterative = CalculateTime(ArctgIterative);
+    result.iterative = result.CalculateTime(ArctgIterative);
     result.result.Z = calculation;
     return result;
 }

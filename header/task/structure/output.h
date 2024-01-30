@@ -3,7 +3,7 @@
 
 #include "common/types.h"
 
-void OutputHeader(Answer task);
-void Output(Answer task);
+void OutputHeader(Answer* task);
+char Output(Answer* task);
 
 #endif

@@ -52,22 +52,22 @@ Period Input() {
 
     Pen::ink().Quote("input_header")->screen->Line()->Span(1);
 
-    const Boundary<short> precision(0, 10);
-    const Boundary<float> value(-10.0f, 1.0f);
+    Boundary<short> precision(0, 10);
+    Boundary<float> value(-10.0f, 1.0f);
 
-    numeric->Bounds(precision);
-    floating->Bounds(value);
+    numeric->Bounds(&precision);
+    floating->Bounds(&value);
 
-    InputParameter(&numeric, "input_x_recursion");
+    InputParameter(numeric, "input_x_recursion");
     result.precision.X = numeric->result;
 
     Pen::ink().screen->Line();
     Pen::ink().Quote("input_f_algorithms");
 
-    InputParameter(&floating, "input_f_argument");
+    InputParameter(floating, "input_f_argument");
     result.x = floating->result;
 
-    InputParameter(&numeric, "input_f_precision");
+    InputParameter(numeric, "input_f_precision");
     result.precision.Y = numeric->result;
 
     return result;

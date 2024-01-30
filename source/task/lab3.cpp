@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
     char code = Header();
     if (code == ENTER)
-        code = Await(OutputControl, ENTER);
+        code = Await(Program, ENTER);
     code = Footer();
 
     return OK;

@@ -1,8 +1,10 @@
+#ifndef HEADER_COMMON_TYPES
+#define HEADER_COMMON_TYPES
+
 #include <windows.h>
 #include <string>
 
-#ifndef HEADER_COMMON_TYPES
-#define HEADER_COMMON_TYPES
+#include <ctime>
 
 struct Edges { wchar_t left, center, right; };
 struct Angles { wchar_t left, right; };
@@ -62,18 +64,43 @@ struct Period {
     double x;
 };
 
+struct TimeMeasure {
+    unsigned char hour; /* hours (0-23)*/
+    unsigned char minute; /* minutes (0-59)*/
+    unsigned char second; /* seconds (0-59) */
+
+    void Print() {
+        wprintf(L"%i:%02i:%02i", hour, minute, second);
+    }
+};
+
 struct Task2 {
     Vector3d result;
-    dostime legacy, recursive, iterative;
+    TimeMeasure legacy, recursive, iterative;
 
-    static dostime Diff(dostime before, dostime after) {
-        dostime result = {
-            after.hour - before.hour,
-            after.minute - before.minute,
-            after.second - before.second,
-            after.hsecond - before.hsecond
-        };
+    TimeMeasure Diff(std::tm* x, std::tm* y) {
+        unsigned char sec, min, hour;
+
+        hour = static_cast<unsigned char>(y->tm_hour - x->tm_hour);
+        min = static_cast<unsigned char>(y->tm_min - x->tm_min);
+        sec = static_cast<unsigned char>(y->tm_sec - x->tm_sec);
+
+        TimeMeasure result = { hour, min, sec };
         return result;
+    }
+
+    TimeMeasure CalculateTime(void (*realization)(void)) {
+        std::time_t current;
+
+        current = std::time(0);
+        std::tm* before = std::localtime(&current);
+
+        realization();
+
+        current = std::time(0);
+        std::tm* after = std::localtime(&current);
+
+        return Diff(before, after);
     }
 };
 
