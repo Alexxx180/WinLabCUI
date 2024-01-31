@@ -9,14 +9,12 @@
 #include "common/types.h"
 #include "output/format/pen.h"
 
-void FootMarkdown(Range* content) {
-    Range status = *content;
+void FootMarkdown(Range* status, short y) {
+    status->P1.Y = y + 1;
+    status->P2.Y = status.P1.Y + 3;
 
-    status.P1.Y = content->P2.Y + 1;
-    status.P2.Y = status.P1.Y + 3;
-
-    short x1 = status.P1.X, y1 = status.P1.Y + 1;
-    short x2 = status.P2.X, y2 = status.P2.Y - 1;
+    short x1 = status->P1.X, y1 = status->P1.Y + 1;
+    short x2 = status->P2.X, y2 = status->P2.Y - 1;
     short margin = 3;
 
     std::vector<COORD> alert = {
@@ -31,7 +29,7 @@ void FootMarkdown(Range* content) {
 
     std::vector<std::vector<COORD>> messages = { alert, controls };
 
-    Grid foot(&status.SwapXY());
+    Grid foot(&status->SwapXY());
     Booker footer(messages);
 
     Pen::ink().Append(foot, footer);

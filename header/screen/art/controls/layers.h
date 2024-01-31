@@ -4,7 +4,8 @@
 
 enum {
     MAIN,
-    FOOT
+    FOOT,
+    MENU
 };
 
 #endif

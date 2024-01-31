@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "common/types.h"
+
 unsigned short i;
 
 void initDbgVars(int argc, char **argv)
@@ -22,3 +24,5 @@ void setDbgVar(char **argv) {
 // Debug Variables
 bool page_character_results = false;
 int page_listing = 1;
+
+Vector2s efficiency;

@@ -14,6 +14,7 @@ void Resize() {
     Range content = { { 2,  2 }, { 78, 20 } };
 
     MainMarkdown(&content);
-    FootMarkdown(&content);
+    FootMarkdown(&content, content.P2.Y);
+    MenuMarkdown(&content, content.P2.Y);
     Pen::ink().Target(MAIN);
 }
