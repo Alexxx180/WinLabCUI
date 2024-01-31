@@ -39,6 +39,7 @@ void OutputHeader(Answer* task) {
 }
 
 char Output(Answer* task) {
+    Pen::ink().Redraw();
     OutputHeader(task);
     Pen::ink().Target(FOOT);
     Pen::ink().Quote("status_exit");

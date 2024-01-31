@@ -31,15 +31,15 @@ template<typename TYPE>
 void InputParameter(Verifier<TYPE>* limit, std::string name) {
     std::wstring parameter = texts[name];
 
-    Pen::ink().screen->Line();
+    Pen::ink().screen->Line()->Move();
     Pen::ink().Text(L" ", parameter);
 
     limit->Edges()->View();
 
     Pen::ink().screen->Page(field);
-    Pen::ink().Input(limit)->screen->Page(0);
+    Pen::ink().Input(limit)->screen->Page(0)->Move();
 
-    Pen::ink().screen->Clear()->Move();
+    Pen::ink().screen->Span(field)->Clear()->Move()->Span(1)->Move();
     Pen::ink().Text(limit->result, L" = ", parameter);
 }
 
@@ -47,13 +47,14 @@ Period Input() {
     Period result;
     field = 4;
 
+    SetStatusSignal();
     Pen::ink().Target(MAIN);
-    Pen::ink().screen->Form(0)->Page(field - 1)->Span(4)->Size(2)->Line(0);
+    Pen::ink().screen->Form(0)->Page(0)->Span(4)->Size(2)->Line(0);
 
-    Pen::ink().Quote("input_header")->screen->Line()->Span(1);
+    Pen::ink().Quote("input_header")->screen->Span(1);
 
     Boundary<short> precision(0, 10);
-    Boundary<float> value(-10.0f, 1.0f);
+    Boundary<float> value(-1.0f, 0.9f);
 
     numeric->Bounds(&precision);
     floating->Bounds(&value);
