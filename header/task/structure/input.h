@@ -6,11 +6,13 @@
 #include "common/types.h"
 #include "input/boundary.h"
 #include "input/feedback/verifier.h"
-;
-extern Verifier<float>* floating;
 
-void InputFloat(std::string name);
-Loop InputLoop(const Boundary<float> *const initial, std::string name[3]);
-Loop2 Input();
+extern Verifier<float>* floating;
+extern Verifier<short>* numeric;
+
+void SetStatusSignal(); 
+template<typename TYPE>
+void InputParameter(Verifier<TYPE>* limit, std::string name);
+Period Input();
 
 #endif

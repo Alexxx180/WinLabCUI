@@ -1,8 +1,10 @@
+#ifndef HEADER_COMMON_TYPES
+#define HEADER_COMMON_TYPES
+
 #include <windows.h>
 #include <string>
 
-#ifndef HEADER_COMMON_TYPES
-#define HEADER_COMMON_TYPES
+#include <ctime>
 
 struct Edges { wchar_t left, center, right; };
 struct Angles { wchar_t left, right; };
@@ -12,9 +14,12 @@ struct Frame {
     wchar_t cross;
 };
 
+struct Vector2s { short X, Y; };
 struct Vector2u { unsigned int X, Y; };
 
 struct Vector2i { int X, Y; };
+
+struct Vector3d { double X, Y, Z; };
 
 struct Range {
     COORD P1, P2;
@@ -54,37 +59,54 @@ struct Stapler {
     }
 };
 
-struct Loop { short start, step, end; };
-struct Loop2 {
-    Loop X, Y;
-    unsigned int count;
+struct Period {
+    Vector2s precision;
+    double x;
+};
 
-    Vector2i Size() {
-        Vector2i size;
-        size.X = static_cast<int>((X.end - X.start) / X.step) + 1;
-        size.Y = static_cast<int>((Y.end - Y.start) / Y.step) + 1;
-        count = size.X * size.Y;
-        return size;
+struct TimeMeasure {
+    unsigned char hour; /* hours (0-23)*/
+    unsigned char minute; /* minutes (0-59)*/
+    unsigned char second; /* seconds (0-59) */
+
+    void Print() {
+        wprintf(L"%i:%02i:%02i", hour, minute, second);
     }
 };
 
-class Answer {
-private:
-    float m_z;
+struct Task2 {
+    Vector3d result;
+    TimeMeasure legacy, recursive, iterative;
 
-public:
-    float X, Y;
-    float* Z = NULL;
+    TimeMeasure Diff(std::tm* x, std::tm* y) {
+        unsigned char sec, min, hour;
 
-    void Input(short x, short y) {
-        X = 0.1f * x;
-        Y = 0.1f * y;
+        hour = static_cast<unsigned char>(y->tm_hour - x->tm_hour);
+        min = static_cast<unsigned char>(y->tm_min - x->tm_min);
+        sec = static_cast<unsigned char>(y->tm_sec - x->tm_sec);
+
+        TimeMeasure result = { hour, min, sec };
+        return result;
     }
 
-    void Set(float z) {
-        m_z = z;
-        Z = &m_z;
+    TimeMeasure CalculateTime(void (*realization)(void)) {
+        std::time_t current;
+
+        current = std::time(0);
+        std::tm* before = std::localtime(&current);
+
+        realization();
+
+        current = std::time(0);
+        std::tm* after = std::localtime(&current);
+
+        return Diff(before, after);
     }
+};
+
+struct Answer {
+    double X;
+    Task2 F;
 };
 
 #endif

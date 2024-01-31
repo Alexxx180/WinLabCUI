@@ -19,7 +19,7 @@ void BigO(Vector2i* size, unsigned int count) {
 }
 
 
-bool Preprocess(Loop2* laps) {
+/*bool Preprocess(Loop2* laps) {
     Vector2i size = laps->Size();
     unsigned int count = laps->count;
 
@@ -34,4 +34,4 @@ bool Preprocess(Loop2* laps) {
 
     Pen::ink().Target(FOOT)->Quote("status_exit")->Target(MAIN);
     return Select(ESC, ENTER) == ESC;
-}
+}*/
