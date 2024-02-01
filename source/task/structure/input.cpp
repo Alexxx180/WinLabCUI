@@ -13,7 +13,6 @@
 
 short field;
 
-Verifier<float>* floating = new Verifier<float>();
 Verifier<short>* numeric = new Verifier<short>();
 
 void SetStatusSignal() {
@@ -23,21 +22,12 @@ void SetStatusSignal() {
 
     Pen::ink().Redraw()->Target(FOOT)->Quote("status_forward");
 
-    floating->status.Server(FOOT)->Signal(signal);
     numeric->status.Server(FOOT)->Signal(signal);
 }
 
-template<typename TYPE>
-void InputParameter(Verifier<TYPE>* limit, std::string name) {
-    std::wstring parameter = texts[name];
-
+void InputParameterName(std::wstring) {
     Pen::ink().screen->Line()->Move();
     Pen::ink().Text(L" ", parameter);
-
-    limit->Edges()->View();
-
-    Pen::ink().screen->Span(field)->Clear()->Move()->Span(1)->Move();
-    Pen::ink().Text(limit->result, L" = ", parameter);
 }
 
 template<typename TYPE>
@@ -49,7 +39,19 @@ void InputParameterValue(Verifier<TYPE>* limit) {
 void InputParameterFeedback(std::wstring) {
     Pen::ink().screen->Page(0)->Move()->Span(field);
     Pen::ink().screen->Clear()->Move()->Span(1);
-    Pen::ink().Text(parameter);
+    Pen::ink().Text(L" = ", parameter);
+}
+
+template<typename TYPE>
+void InputParameter(Verifier<TYPE>* limit, std::string name) {
+    std::wstring parameter = texts[name];
+
+    InputParameterName(parameter);
+
+    limit->Edges()->View();
+
+    InputParameterFeedback(parameter);
+    Pen::ink().Text(limit->result);
 }
 
 template<typename TYPE>
@@ -89,46 +91,87 @@ void NavigateMenuOption(short direction) {
         current_menu_option = next;
 }
 
-std::vector<short> ArrayInputLoop(short size) {
+void ManualArrayInput() {
+    InputParameterValue(numeric);
+}
+
+void RandomArrayInput() {
+    Boundary<short>* limits = numberic->Edges();
+
+    short size = limits->start + limits.end + 1;
+
+    numeric->result = rand() % size + limits->start;
+}
+
+short (*array_input)(void);
+
+std::vector<short> ArrayInputLoop() {
     std::vector<short> result(size);
     Boundary<short> limits(-99, 99);
 
     numeric->SetBounds(limits);
 
-    std::wstring parameter = texts["input_array_elements"];
+    InputParameterName(texts["input_array_elements"]);
 
-    for (short i = 0; i < size; i++) {
-        Pen::ink().screen->Line()->Move();
-        Pen::ink().Text(L" ", parameter);
+    numeric->Edges->View();
 
-        numeric->Edges()->View();
+    short i = 0;
 
-        InputArrayParameter(numeric, "input_f_precision");
+    while (i < size) {
+        array_input();
         result.push_back(numeric->result);
+
+        Pen::ink().screen.Span(1)->Page(field + 1);
+        Pen::ink().screen->Move()->Clear();
+        Pen::ink().Text(size, L" / ", ++i);
     }
 
-    return ;
+    return result;
+}
+
+void QueryArray() {
+    original = ArrayInputLoop();
+    sorted = original;
+
+    Pen::ink().array.Show();
+    Pen::ink().screen.Span(1)->Form(4)->Size(2);
+    Pen::ink().Quote("output_source_array");
+    Pen::ink().screen.Line();
+    Pen::ink().Quote("output_sorted_array");
+
+    while () {
+        Pen::ink().screen.Line(-1);
+        Pen::ink().Quote("input_results");
+        Pen::ink().Text(pages.Y, L" / ", pages.X);
+        Pen::ink().screen.Page(1)->Line(0);
+        while (max_size) {
+            Pen::ink().screen.Line(0);
+            Pen::ink().FText(L"%4i", original[i]);
+            Pen::ink().screen.Line(1);
+            Pen::ink().FText(L"%4i", sorted[i]);
+        }
+    }
 }
 
 std::vector<char> menu_input_keys = {
     ESC, ENTER, KEY_DOWN, KEY_UP
 };
 
-void {
-    switch () {
+void SelectOption() {
+    switch (current_menu_option) {
         case -1:
+            QueryArray();
             break;
         default:
+
             break;
     }
 }
 
 void ArrayMenuLoop() {
     char code = Select(menu_input_keys);
-    Navigate
-    if (code) {
+    NavigateMenuOption(code == KEY_UP ? -1 : 1);
 
-    }
 
     switch () {
 
