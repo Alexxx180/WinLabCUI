@@ -25,47 +25,6 @@ void SetStatusSignal() {
     numeric->status.Server(FOOT)->Signal(signal);
 }
 
-void InputParameterName(std::wstring) {
-    Pen::ink().screen->Line()->Move();
-    Pen::ink().Text(L" ", parameter);
-}
-
-template<typename TYPE>
-void InputParameterValue(Verifier<TYPE>* limit) {
-    Pen::ink().screen->Page(field);
-    Pen::ink().Input(limit);
-}
-
-void InputParameterFeedback(std::wstring) {
-    Pen::ink().screen->Page(0)->Move()->Span(field);
-    Pen::ink().screen->Clear()->Move()->Span(1);
-    Pen::ink().Text(L" = ", parameter);
-}
-
-template<typename TYPE>
-void InputParameter(Verifier<TYPE>* limit, std::string name) {
-    std::wstring parameter = texts[name];
-
-    InputParameterName(parameter);
-
-    limit->Edges()->View();
-
-    InputParameterFeedback(parameter);
-    Pen::ink().Text(limit->result);
-}
-
-template<typename TYPE>
-void InputArrayParameter(Verifier<TYPE>* limit, std::string name) {
-    std::wstring parameter = texts[name];
-
-    limit->Edges()->View();
-
-    Pen::ink().screen->Page(field);
-    Pen::ink().Input(limit)
-
-
-}
-
 std::vector<std::vector<std::string>> menu_options = {
     {
         "menu_sort_array_insertions",
@@ -85,114 +44,96 @@ std::vector<std::vector<std::string>> menu_options = {
 
 Boundary<short> main_menu(0, 1), array_menu(-1, menu_options.size() - 1);
 
-void NavigateMenuOption(short direction) {
+void NavigateMenuOption(Boundary<short> menu, short direction) {
     short next = current_menu_option + direction;
-    if (array_menu.Verify(next))
+    if (menu.Verify(next))
         current_menu_option = next;
 }
 
-void ManualArrayInput() {
-    InputParameterValue(numeric);
-}
-
-void RandomArrayInput() {
-    Boundary<short>* limits = numberic->Edges();
-
-    short size = limits->start + limits.end + 1;
-
-    numeric->result = rand() % size + limits->start;
-}
-
-short (*array_input)(void);
-
-std::vector<short> ArrayInputLoop() {
-    std::vector<short> result(size);
-    Boundary<short> limits(-99, 99);
-
-    numeric->SetBounds(limits);
-
-    InputParameterName(texts["input_array_elements"]);
-
-    numeric->Edges->View();
-
-    short i = 0;
-
-    while (i < size) {
-        array_input();
-        result.push_back(numeric->result);
-
-        Pen::ink().screen.Span(1)->Page(field + 1);
-        Pen::ink().screen->Move()->Clear();
-        Pen::ink().Text(size, L" / ", ++i);
-    }
-
-    return result;
-}
-
-void QueryArray() {
-    original = ArrayInputLoop();
-    sorted = original;
-
-    Pen::ink().array.Show();
-    Pen::ink().screen.Span(1)->Form(4)->Size(2);
-    Pen::ink().Quote("output_source_array");
-    Pen::ink().screen.Line();
-    Pen::ink().Quote("output_sorted_array");
-
-    while () {
-        Pen::ink().screen.Line(-1);
-        Pen::ink().Quote("input_results");
-        Pen::ink().Text(pages.Y, L" / ", pages.X);
-        Pen::ink().screen.Page(1)->Line(0);
-        while (max_size) {
-            Pen::ink().screen.Line(0);
-            Pen::ink().FText(L"%4i", original[i]);
-            Pen::ink().screen.Line(1);
-            Pen::ink().FText(L"%4i", sorted[i]);
-        }
-    }
-}
-
 std::vector<char> menu_input_keys = {
-    ESC, ENTER, KEY_DOWN, KEY_UP
+    ESC, ENTER, KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT
 };
 
-void SelectOption() {
+void SelectArrayOption() {
     switch (current_menu_option) {
-        case -1:
-            QueryArray();
-            break;
+        case -1: QueryArray(); break;
         default:
-
+            array_options[current_menu_option].Next();
             break;
     }
 }
 
-void ArrayMenuLoop() {
+char ArrayMenuLoop() {
     char code = Select(menu_input_keys);
-    NavigateMenuOption(code == KEY_UP ? -1 : 1);
 
+    switch (code) {
+        case ENTER: SelectArrayOption(); break;
+        case KEY_UP: NavigateMenuOption(array_menu, -1); break;
+        case KEY_DOWN: NavigateMenuOption(array_menu, 1); break;
+        case KEY_LEFT:
+            array_options[current_menu_option].Prev();
+            break;
+        case KEY_RIGHT:
+            array_options[current_menu_option].Next();
+            break;
+        default: break;
+    };
 
-    switch () {
+    return code;
+}
 
+bool SelectMenuOption() {
+    bool is_exit = false;
+
+    switch (current_menu_option) {
+        case 0:
+            current_menu_option = -1;
+            Await(ArrayMenuLoop(), ESC);
+            break;
+        case 1:
+            is_exit = Select(ESC, ENTER) == ENTER;
+            break;
+        default:
+            array_options[current_menu_option].Next();
+            break;
     }
 
-    
+    return is_exit;
+}
+
+bool MenuLoop() {
+    char code = Select(menu_input_keys);
+    bool is_exit = false;
+
+    switch (code) {
+        case ENTER: is_exit = SelectMenuOption(); break;
+        case KEY_LEFT:
+            NavigateMenuOption(main_menu, -1);
+            break;
+        case KEY_RIGHT:
+            NavigateMenuOption(main_menu, 1);
+            break;
+        default: break;
+    };
+
+    return is_exit;
+}
+
+void InputHeader() {
+    SetStatusSignal();
+    Pen::ink().Target(MAIN);
+    Pen::ink().screen->Form(0)->Page(0)->Span(4)->Size(2)->Line(0);
+    Pen::ink().Quote("input_header")->screen->Span(1);
 }
 
 void Input() {
     field = 4;
 
-    SetStatusSignal();
-    Pen::ink().Target(MAIN);
-    Pen::ink().screen->Form(0)->Page(0)->Span(4)->Size(2)->Line(0);
-
-    Pen::ink().Quote("input_header")->screen->Span(1);
+    InputHeader();
 
     Boundary<short> precision(1, 20);
     numeric->Bounds(&precision);
 
-
-
+    Await(ArrayMenuLoop);
 }
 

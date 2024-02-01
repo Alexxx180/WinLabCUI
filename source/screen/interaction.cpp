@@ -57,3 +57,8 @@ char Await(char (*program)(), char target) {
 
     return code;
 }
+
+void Await(bool (*program)()) {
+    bool exit;
+    do { exit = program(); } while (!exit);
+}
