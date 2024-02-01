@@ -18,9 +18,17 @@
 
 class Pen {
 private:
-    Pen() { }
+    Pen() { SetSignals(); }
+
     std::vector<Grid> Out = {};
     std::vector<Booker> Canvas = {};
+
+    Pen* (Pen::*m_write)(std::string);
+
+    void SetSignals() {
+        m_write = static_cast<Pen* (Pen::*)(std::string)>(&Quote);
+    }
+
 public:
     static Pen& ink() {
         static Pen instance;
@@ -30,9 +38,14 @@ public:
     Bar status;
     Booker* screen;
     Grid* back;
+    Grid array;
 
     void Reset() {
         system(CLEAN_COMMAND);
+    }
+
+    Pen* (Pen::*)(std::string) Feedback() {
+        return m_write;
     }
 
     Pen* Redraw() {
@@ -102,6 +115,7 @@ public:
         Text(args...);
         std::wcout << t;
     }
+
 };
 
 #endif

@@ -1,3 +1,19 @@
+#include "task/structure/input.h"
+
+#include <vector>
+#include <string>
+#include <cstdlib>
+
+#include "input/boundary.h"
+#include "input/feedback/verifier.h"
+#include "common/texts/common.h"
+#include "output/format/pen.h"
+#include "task/structure/input/parameters.h"
+#include "task/structure/markdown/debug.h"
+
+Verifier<short>* numeric = new Verifier<short>();
+std::vector<short> original, sorted;
+
 void ManualArrayInput() {
     InputParameterValue(numeric);
 }
@@ -24,13 +40,15 @@ std::vector<short> ArrayInputLoop(short size) {
 
     numeric->Edges->View();
 
-    short i = 0;
+    short i = 0, option = array_options[1]
+
+    input_array = array_input[option];
 
     while (i < size) {
-        array_input[current_array_input]();
+        input_array();
         result.push_back(numeric->result);
 
-        Pen::ink().screen.Span(1)->Page(field + 1);
+        Pen::ink().screen->Span(1)->Page(field + 1);
         Pen::ink().screen->Move()->Clear();
         Pen::ink().Text(size, L" / ", ++i);
     }
@@ -48,7 +66,7 @@ void QueryArray() {
     sorted = original;
 
     Pen::ink().array.Show();
-    Pen::ink().screen.Span(1)->Form(4)->Size(2);
+    Pen::ink().screen.Span(1)->Form(1)->Size(2);
     Pen::ink().Quote("output_source_array");
     Pen::ink().screen.Line();
     Pen::ink().Quote("output_sorted_array");

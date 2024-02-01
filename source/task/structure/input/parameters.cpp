@@ -1,12 +1,8 @@
 #include "task/structure/input.h"
 
-#include <math.h>
 #include <string>
 
-#include "input/boundary.h"
 #include "input/feedback/verifier.h"
-#include "screen/art/controls/layers.h"
-#include "screen/interaction.h"
 #include "common/types.h"
 #include "common/texts/common.h"
 #include "output/format/pen.h"

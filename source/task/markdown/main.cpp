@@ -25,13 +25,13 @@ void MainMarkdown(Range* content) {
 
     y = content->P1.Y + 1;
 
+    short y2 = content->P2.Y - margin - 1;
+    short array_y = y2 - 1;
+
     std::vector<COORD> table = {
-        { x1 + margin, y },
-        { x2 * 1 / 3 - margin, y },
-        { x2 * 1 / 3 + margin, y },
-        { x2 * 2 / 3 - margin, y },
-        { x2 * 2 / 3 + margin, y },
-        { x2 - 1, y }
+        { x1 + margin + 2, array_y },
+        { x2 * 2 / 6, array_y },
+        { x2 - margin - 1, array_y }
     };
 
     std::vector<std::vector<COORD>> contents = { input, table };
@@ -39,18 +39,25 @@ void MainMarkdown(Range* content) {
     Grid main(&content->SwapXY());
     Booker body(contents);
 
-    short y2 = content->P2.Y - margin - 1;
-
     Range bar_size = {
         { x1 + margin, y2 },
         { x2 - x1 - margin, 2 }
     };
+
+    Range output_placement = {
+        { x1 + margin, array_y - 1 },
+        { x2 - x1 - margin, y2 + 3 }
+    };
+
+    Grid array_output(output_placement);
 
     Frame bar_edges = {
         { 95, 46, 8254 },
         { 124, 39, 124 },
         { 32, 32 }, { 32, 32 }, 32
     };
+
+    Pen::ink().array = array_output;
 
     Pen::ink().status.SetSize(&bar_size)->SetSymbols(&bar_edges);
     Pen::ink().status.Orientation(false);
