@@ -8,36 +8,46 @@
 
 #include "common/types.h"
 #include "screen/art/drawing.h"
+#include "screen/matrix/types/point.h"
+#include "screen/matrix/types/range.h"
 
 class Booker {
 private:
-    std::vector<std::vector<COORD>> m_basis;
+    std::vector<std::vector<Point>> m_basis;
 
 protected:
-    COORD m_cursor;
+    Point m_cursor;
     Range m_page;
 
-    COORD* Current() {
-        return &m_basis.at(m_page.P1.Y).at(m_page.P1.X);
+    Point* Current() {
+        unsigned char form, page;
+        form = m_page.P1.Y;
+        page = m_page.P1.X;
+
+        return &m_basis.at(form).at(page);
     }
 
     short BasisDiff() {
-        short span = m_page.P1.X + m_page.P2.X;
-        short next = m_basis.at(m_page.P1.Y).at(span).X;
-        return next - Current()->X;
+        unsigned char form, page, previous, next;
+        form = m_page.P1.Y;
+        page = m_page.P1.X
+        previous = m_basis.at(form).at(page).X
+
+        page += m_page.P2.X;
+        next = m_basis.at(form).at(page).X;
+        return next - previous;
     }
 
     void PageCheck(short limit) {
-        if (limit >= m_basis.at(m_page.P1.Y).size())
+        unsigned char form = m_page.P1.Y;
+        if (limit >= m_basis.at(form).size())
             throw std::overflow_error("Span > max columns!");
     }
 
 public:
-    const COORD& Cursor() { 
-        return m_cursor;
-    }
+    const Point& Cursor() { return m_cursor; }
 
-    Booker(std::vector<std::vector<COORD>> basis) {
+    Booker(std::vector<std::vector<Point>> basis) {
         m_cursor = basis.at(0).at(0);
         m_basis = basis;
         Form(0)->Span(0)->Page(0)->Size(0);
@@ -92,18 +102,20 @@ public:
         return this;
     }
 
-    Booker* Clear() {
-        Clean(&m_cursor, BasisDiff());
-        return this;
-    }
-
     Booker* Move() {
         MoveCursor(&m_cursor);
         return this;
     }
 
+    Booker* Clear() {
+        Move();
+        Clean(BasisDiff());
+        return this;
+    }
+
     Booker* Decoration() {
-        Field(&m_cursor, BasisDiff());
+        Move();
+        Field(BasisDiff());
         return this;
     }
 };

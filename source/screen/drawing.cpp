@@ -1,4 +1,7 @@
-﻿#include "screen/art/drawing.h"
+﻿#ifndef SCREEN_ART_DRAWING
+#define SCREEN_ART_DRAWING
+
+#include "screen/art/drawing.h"
 
 #include <stdio.h>
 #include <conio.h>
@@ -6,30 +9,35 @@
 
 #include <string>
 
-void MoveCursor(COORD* cursor) {
-    HANDLE handleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(handleOutput, *cursor);
+COORD native_windows_cursor;
+
+void HLine(Point* cursor, short next) { cursor->X = next; }
+void VLine(Point* cursor, short next) { cursor->Y = next; }
+
+void MoveCursor(Point* cursor) {
+    native_windows_cursor.X = cursor->X;
+    native_windows_cursor.Y = cursor->Y;
+
+    HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(output, *native_windows_cursor);
 }
 
-void Draw(COORD* cursor, wchar_t character) {
+void Draw(Point* cursor, wchar_t character) {
     MoveCursor(cursor);
     _putwch(character);
 }
 
-void Clean(COORD* cursor, short precision) {
+void Clean(Point* cursor, short precision) {
     MoveCursor(cursor);
     while (--precision > 0) _putwch(L' ');
 }
 
-void Write(COORD* text, std::wstring* message) {
-    MoveCursor(text);
+void Write(Point* cursor, std::wstring* message) {
+    MoveCursor(cursor);
     _putws(message->c_str());
 }
 
-void HLine(COORD* cursor, short next) { cursor->X = next; }
-void VLine(COORD* cursor, short next) { cursor->Y = next; }
-
-void Field(COORD* space, short size) {
+void Field(COORD* space, const short size) {
     Clean(space, size);
 
     COORD field = *space;
@@ -37,10 +45,13 @@ void Field(COORD* space, short size) {
     Draw(&field, L'|');
     field.Y++;
 
-    for (short i = 0; i < size; i++) {
+    short i = size;
+    while (--i > 0) {
         field.X++;
         Draw(&field, L'‾'); 
     }
 
     MoveCursor(space);
 }
+
+#endif

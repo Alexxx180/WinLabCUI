@@ -12,8 +12,9 @@
 #include "common/texts/common.h"
 #include "output/booker.h"
 #include "input/typer.h"
+
+#include "screen/art/layers.h"
 #include "screen/art/controls/grid.h"
-#include "screen/art/controls/layers.h"
 #include "screen/art/controls/bar.h"
 
 class Pen {
@@ -26,7 +27,8 @@ private:
     Pen* (Pen::*m_write)(std::string);
 
     void SetSignals() {
-        m_write = static_cast<Pen* (Pen::*)(std::string)>(&Quote);
+        m_write = Quote;
+        //m_write = static_cast<Pen* (Pen::*)(std::string)>(&Quote);
     }
 
 public:
@@ -64,12 +66,6 @@ public:
         return this;
     }
 
-    Pen* PrintSize() {
-        wprintf(L"Canvas: %i", static_cast<int>(Canvas.size()));
-        wprintf(L"; Out: %i", static_cast<int>(Out.size()));
-        return this;
-    }
-
     Pen* Target(short current) {
         screen = &Canvas[current];
         back = &Out[current];
@@ -83,11 +79,6 @@ public:
             field->TypeInput();
         }
         while (!field->IsVerified());
-        return this;
-    }
-
-    Pen* Clear() {
-        screen->Clear();
         return this;
     }
 
@@ -115,7 +106,6 @@ public:
         Text(args...);
         std::wcout << t;
     }
-
 };
 
 #endif

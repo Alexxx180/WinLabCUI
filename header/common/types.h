@@ -6,13 +6,7 @@
 
 #include <ctime>
 
-struct Edges { wchar_t left, center, right; };
-struct Angles { wchar_t left, right; };
-struct Frame {
-    Edges horizontal, vertical;
-    Angles top, bottom;
-    wchar_t cross;
-};
+
 
 struct Vector2s { short X, Y; };
 struct Vector2u { unsigned int X, Y; };

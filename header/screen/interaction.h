@@ -9,13 +9,12 @@
 
 #define MAX_BUFFER 5
 
+#include <vector>
 #include "input/boundary.h"
 
 static Boundary<int> result_limits(0, 536870911);
 static const short ACTUAL_MAX = MAX_BUFFER + 2;
 
-#include <vector>
-;
 char Select(char cancel, char ok);
 char Select(std::vector<char> targets);
 char Next();

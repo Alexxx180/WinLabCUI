@@ -9,7 +9,7 @@
 
 class MenuItem {
     private:
-        void (*m_command)() = NULL, (*m_back)() = NULL;
+        void (*m_command)() = NULL;
         std::vector<MenuItem>* m_items = NULL;
         Vector2c m_orientation, m_position;
         unsigned char m_selection;
@@ -74,14 +74,14 @@ class MenuItem {
             m_position = *position;
         }
 
-        MenuItem* SetItems() {
-            m_command = Expand;
-            m_items = new std::vector<MenuItem>();
+        MenuItem* SetOrientation(bool vertical) {
+            m_orientation = vertical ? { 0, 1 } : { 1, 0 };
             return this;
         }
 
-        MenuItem* SetOrientation(bool vertical) {
-            m_orientation = vertical ? { 0, 1 } : { 1, 0 };
+        MenuItem* SetItems() {
+            m_command = Expand;
+            m_items = new std::vector<MenuItem>();
             return this;
         }
 
@@ -90,7 +90,7 @@ class MenuItem {
             return this;
         }
 
-        MenuItem* SetParameters(Option* parameters) {
+        MenuItem* SetValues(Option* parameters) {
             values = parameters;
             values->BindCaption(&m_caption);
             m_command = SelectValue;
