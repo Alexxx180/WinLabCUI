@@ -1,31 +1,30 @@
 #ifndef SCREEN_ART_BOX
 #define SCREEN_ART_BOX
 
-#include "windows.h"
-
 #include <vector>
 
-#include "common/types.h"
 #include "screen/art/drawing.h"
+#include "screen/art/types/stapler.h"
+#include "screen/matrix/types/point.h"
+#include "screen/matrix/types/range.h"
 
 class Box {
 private:
-    std::vector<short> m_vertices;
+    std::vector<unsigned char> m_vertices;
 
-    void Line(COORD* cursor, void (*pins)(COORD*, short), wchar_t symbol) {
-        short i = -1;
-        short count = m_vertices.size();
+    void Line(Point* cursor, void (*pins)(Point*, unsigned char), wchar_t symbol) {
+        unsigned char i = -1, count = m_vertices.size();
 
         while (++i < count) {
             pins(cursor, m_vertices[i]);
-            Draw(cursor, symbol);
+            MoveCursor(cursor);
+            Draw(symbol);
         }
     }
 
     void Surround(Stapler* gun) {
-        COORD cursor;
-        short i = bounds.P1.X;
-        short count = bounds.P1.Y;
+        Point cursor;
+        unsigned char i = bounds.P1.X, count = bounds.P1.Y;
 
         gun->progress(&cursor, i);
         Line(&cursor, gun->pins, line.left);
@@ -43,8 +42,15 @@ public:
     Edges line;
     Range bounds;
 
-    const std::vector<short>& Vertices() {
-        return m_vertices;
+    const std::vector<unsigned char>& Vertices() { return m_vertices; }
+
+    unsigned char Count() { return m_vertices.size(); }
+
+    unsigned char Rib(const unsigned char current) {
+        unsigned char next, previous;
+        next = m_vertices[current + 1];
+        previous = m_vertices[current] - 1;
+        return next - previous;
     }
 
     void Lines(Stapler* gun) {
@@ -52,17 +58,9 @@ public:
             Surround(gun);
     }
 
-    short Count() {
-        return m_vertices.size();
-    }
-
-    short Rib(const short current) {
-        short next = m_vertices[current + 1];
-        return next - m_vertices[current] - 1;
-    }
-
     Box* Set(const float proportion) {
-        short middle = static_cast<short>(bounds.P2.Y * proportion);
+        float location = bounds.P2.Y * proportion;
+        unsigned char middle = static_cast<unsigned char>(location);
         m_vertices.clear();
         m_vertices.push_back(bounds.P2.X);
         m_vertices.push_back(middle);
@@ -70,15 +68,21 @@ public:
         return this;
     }
 
-    Box* Set(const short count) {
-        short column, i;
+    Box* Set(const unsigned char count) {
+        float location;
+        unsigned char column, i = -1;
 
         m_vertices.clear();
         m_vertices.push_back(bounds.P2.X);
-        for (i = 1; i < count; i++) {
-            column = static_cast<short>(bounds.P2.Y * i / count);
+
+        while (++i < count) {
+            location = bounds.P2.Y * i / count;
+
+            column = static_cast<unsigned char>(location);
+
             m_vertices.push_back(column);
         }
+
         m_vertices.push_back(bounds.P2.Y);
         return this;
     }

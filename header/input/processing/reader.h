@@ -1,14 +1,12 @@
-#include "screen/interaction.h"
+#ifndef SCREEN_INTERACTION_READER
+#define SCREEN_INTERACTION_READER
 
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
-#include <assert.h>
 
+#include "screen/interaction.h"
 #include "common/texts/errors.h"
-
-#ifndef SCREEN_INTERACTION_READER
-#define SCREEN_INTERACTION_READER
 
 class Reader {
 private:
@@ -26,9 +24,10 @@ public:
         bool isOverflow = m_buffer[m_length - 1] != '\n';
 
         if (isOverflow) {
+            wchar_t* text = errors["overflow"].c_str();
             wscanf_s(L"%*[^\n]");
             wscanf_s(L"%*c");
-            fwprintf(stderr, errors["overflow"].c_str(), MAX_BUFFER);
+            fwprintf(stderr, text, MAX_BUFFER);
         }
 
         return isOverflow;
@@ -38,15 +37,15 @@ public:
         m_buffer[--m_length] = '\0';
 
         bool isEmpty = m_length <= 0;
-        if (isEmpty)
-            fwprintf(stderr, L"%s\n", errors["empty_string"].c_str());
+        if (isEmpty) {
+            wchar_t* text = errors["empty_string"].c_str();
+            fwprintf(stderr, L"%s\n", text);
+        }
 
         return isEmpty;
     }
 
-    void SetBuffer(wchar_t buffer[ACTUAL_MAX]) {
-        m_buffer = buffer;
-    }
+    void SetBuffer(wchar_t buffer[ACTUAL_MAX]) { m_buffer = buffer; }
 };
 
 #endif

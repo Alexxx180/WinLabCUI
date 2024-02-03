@@ -1,10 +1,12 @@
 #ifndef FORMS_INPUT_VALIDATOR
 #define FORMS_INPUT_VALIDATOR
 
+#include <assert.h>
+
 #include "input/processing/converter.h"
 #include "input/processing/reader.h"
 #include "screen/interaction.h"
-;
+
 template<typename TYPE>
 class Validator {
 private:
@@ -19,9 +21,7 @@ public:
         m_processor.SetBuffer(m_buffer);
     }
 
-    void SetResult(TYPE* result) {
-        m_result = result;
-    }
+    void SetResult(TYPE* result) { m_result = result; }
 
     short Validate()
     {

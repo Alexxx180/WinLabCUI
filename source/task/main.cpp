@@ -1,4 +1,4 @@
-﻿#include "task/lab3.h"
+﻿#include "task/main.h"
 
 #include <windows.h>
 #include <stdio.h>

@@ -53,29 +53,4 @@ static std::map<std::string, std::wstring> texts = {
     { "misc_negation", L" \u043d\u0435" }
 };
 
-/*= {
-    { "program_header", L"Программа" },
-    { "program_name", L"Проходимость шкафа" },
-    { "program_description", L"Пройдет ли прямоугольный шкаф в дверь лаборатории" },
-    { "program_finished", L"Завершила свою работу" },
-    { "input_header_1", L"Введите" },
-    { "input_header_2", L"Введены" },
-    { "input_message", L"координаты приземления [0..3000]" },
-    { "input_argument_1", L"по оси OX - " },
-    { "input_argument_2", L"по оси ОY - " },
-    { "input_argument_3", L"радиус площадки [0.1..10.0] - " },
-    { "input_assert", L"-----> Вы ввели: %lf\n" },
-    { "status_error", L"Ошибка ввода данных! ESC - отмена\n" },
-    { "status_forward", L"ENTER - далее" },
-    { "status_repeat", L"ESC - повтор, ENTER - далее" },
-    { "status_exit", L"ESC - выход, ENTER - далее" },
-    { "status_anykey", L"Нажмите любую клавишу" },
-    { "error_overflow", L"Ошибка: не вводите больше символов чем %d.\n" },
-    { "error_empty", L"Ошибка: введена пустая строка.\n" },
-    { "error_char", L"Ошибка: некорректный символ.\n" },
-    { "answer_1", L"Шкаф" },
-    { "answer_2", L" пройдет в дверь лаборатории" },
-    { "misc_negation", L" не" }
-};*/
-
 #endif

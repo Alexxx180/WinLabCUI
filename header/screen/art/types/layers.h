@@ -1,5 +1,5 @@
-#ifndef SCREEN_ART_CONTROLS_LAYERS
-#define SCREEN_ART_CONTROLS_LAYERS
+#ifndef SCREEN_ART_TYPES_LAYERS
+#define SCREEN_ART_TYPES_LAYERS
 
 // Responsible for screen ordering
 enum {

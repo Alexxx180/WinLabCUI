@@ -39,13 +39,9 @@ char Select(char cancel, char ok) {
     return code;
 }
 
-char Next() {
-    return _getch();
-}
+char Next() { return _getch(); }
 
-char Next(char target) {
-    return Await(Next, target);
-}
+char Next(char target) { return Await(Next, target); }
 
 char Await(char (*program)(), char target) {
     char code;

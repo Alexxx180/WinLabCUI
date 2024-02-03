@@ -5,22 +5,21 @@
 
 #include <string>
 
-#include "common/types.h"
-;
+#include "screen/art/types/frame.h"
+
 static Frame form_edges = {
     { 9568, 9552, 9571 },
     { 9574, 9553, 9577 },
     { 9556, 9559 },
-    { 9562, 9565 },
-    9580
+    { 9562, 9565 }, 9580
 };
 
-void MoveCursor(COORD* cursor);
-void Draw(COORD* cursor, wchar_t character);
-void Clean(COORD* cursor, short precision);
-void Write(COORD* text, std::wstring* message);
-void HLine(COORD* cursor, short next);
-void VLine(COORD* cursor, short next);
-void Field(COORD* space, short size);
+void MoveCursor(Point* cursor);
+void Draw(wchar_t character);
+void Clean(short precision);
+void Write(std::wstring* message);
+void HLine(Point* cursor, short next);
+void VLine(Point* cursor, short next);
+void Field(Point* space, short size);
 
 #endif

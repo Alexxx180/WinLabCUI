@@ -1,21 +1,18 @@
 #ifndef CLEAN_COMMAND
 #define CLEAN_COMMAND "cls"
 
-#include <windows.h>
-
 #include <iostream>
-#include <tuple>
 #include <vector>
 
-#include "screen/art/drawing.h"
-#include "screen/interaction.h"
-#include "common/texts/common.h"
-#include "output/booker.h"
-#include "input/typer.h"
+#include <cstdlib>
 
+#include "common/texts/common.h"
+#include "input/typer.h"
+#include "screen/art/drawing.h"
 #include "screen/art/layers.h"
 #include "screen/art/controls/grid.h"
 #include "screen/art/controls/bar.h"
+#include "screen/matrix/booker.h"
 
 class Pen {
 private:
@@ -42,13 +39,9 @@ public:
     Grid* back;
     Grid array;
 
-    void Reset() {
-        system(CLEAN_COMMAND);
-    }
+    void Reset() { system(CLEAN_COMMAND); }
 
-    Pen* (Pen::*)(std::string) Feedback() {
-        return m_write;
-    }
+    Pen* (Pen::*)(std::string) Feedback() { return m_write; }
 
     Pen* Redraw() {
         Reset();

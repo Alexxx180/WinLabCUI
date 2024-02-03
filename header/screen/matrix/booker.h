@@ -1,15 +1,11 @@
-#ifndef OUTPUT_BOOKER
-#define OUTPUT_BOOKER
-
-#include "windows.h"
+#ifndef SCREEN_MATRIX_BOOKER
+#define SCREEN_MATRIX_BOOKER
 
 #include <vector>
 #include <iostream>
 
-#include "common/types.h"
 #include "screen/art/drawing.h"
 #include "screen/matrix/types/point.h"
-#include "screen/matrix/types/range.h"
 
 class Booker {
 private:
@@ -17,30 +13,30 @@ private:
 
 protected:
     Point m_cursor;
-    Range m_page;
+    Book m_book;
 
     Point* Current() {
         unsigned char form, page;
-        form = m_page.P1.Y;
-        page = m_page.P1.X;
-
+        form = m_book.Form;
+        page = m_book.Page;
         return &m_basis.at(form).at(page);
     }
 
     short BasisDiff() {
         unsigned char form, page, previous, next;
-        form = m_page.P1.Y;
-        page = m_page.P1.X
+        form = m_book.Form;
+
+        page = m_book.Page;
         previous = m_basis.at(form).at(page).X
 
-        page += m_page.P2.X;
+        page += m_book.Span;
         next = m_basis.at(form).at(page).X;
+
         return next - previous;
     }
 
-    void PageCheck(short limit) {
-        unsigned char form = m_page.P1.Y;
-        if (limit >= m_basis.at(form).size())
+    void PageCheck(unsigned char limit) {
+        if (limit >= m_basis.at(m_book.Form).size())
             throw std::overflow_error("Span > max columns!");
     }
 
@@ -53,52 +49,50 @@ public:
         Form(0)->Span(0)->Page(0)->Size(0);
     }
 
-    Booker* Form(short buffer) {
+    Booker* Form(unsigned char buffer) {
         if (buffer >= m_basis.size())
             throw std::overflow_error("Selected form not found");
         else
-            m_page.P1.Y = buffer;
+            m_book.Form = buffer;
         return this;
     }
 
-    Booker* Span(short columns) {
-        PageCheck(m_page.P1.Y + columns);
-        m_page.P2.X = columns;
+    Booker* Span(unsigned char columns) {
+        PageCheck(m_book.Page + columns);
+        m_book.Span = columns;
         return this;
     }
 
-    Booker* Size(short padding) {
-        m_page.P2.Y = padding;
+    Booker* Page(unsigned char next) {
+        m_book.Page = next;
+        PageCheck(m_book.Span);
+        m_cursor.X = Current()->X;
         return this;
     }
 
     Booker* Page() {
-        m_page.P1.X += 1;
-        PageCheck(m_page.P2.X);
-        m_cursor.X = Current()->X;
+        Page(m_book.Page + 1);
         return this;
     }
 
-    Booker* Page(short next) {
-        m_page.P1.X = next;
-        PageCheck(m_page.P2.X);
-        m_cursor.X = Current()->X;
+    Booker* Size(unsigned char padding) {
+        m_page.Line = padding;
         return this;
     }
 
     Booker* Line() {
-        m_cursor.Y += m_page.P2.Y;
+        m_cursor.Y += m_page.Line;
         return this;
     }
 
     Booker* Up() {
-        m_cursor.Y -= m_page.P2.Y;
+        m_cursor.Y -= m_page.Line;
         return this;
     }
 
-    Booker* Line(short skip) {
+    Booker* Line(char skip) {
         m_cursor.Y = Current()->Y;
-        m_cursor.Y += m_page.P2.Y * skip;
+        m_cursor.Y += m_page.Line * skip;
         return this;
     }
 
@@ -116,6 +110,7 @@ public:
     Booker* Decoration() {
         Move();
         Field(BasisDiff());
+        Move();
         return this;
     }
 };

@@ -1,5 +1,5 @@
-#ifndef SCREEN_ART_MATRIX_TYPES
-#define SCREEN_ART_MATRIX_TYPES
+#ifndef SCREEN_ART_TYPES_FRAME
+#define SCREEN_ART_TYPES_FRAME
 
 struct Edges {
     wchar_t left, center, right;

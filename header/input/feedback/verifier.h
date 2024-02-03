@@ -27,13 +27,13 @@ public:
     Notifier status;
     const TYPE& result = m_result;
 
-    Boundary<TYPE> *const Edges() {
-        return &m_edges;
-    }
+    Verifier() { m_input.SetResult(&m_result); }
 
-    bool IsVerified() {
-        return m_verified;
-    }
+    Boundary<TYPE> *const Edges() { return &m_edges; }
+
+    bool IsVerified() { return m_verified; }
+
+    void Bounds(Boundary<TYPE>* edges) { m_edges = *edges; }
 
     void TypeInput() {
         m_verified = false;
@@ -49,14 +49,6 @@ public:
         }
 
         m_verified = true;
-    }
-
-    void Bounds(Boundary<TYPE>* edges) {
-        m_edges = *edges;
-    }
-
-    Verifier() {
-        m_input.SetResult(&m_result);
     }
 };
 

@@ -5,38 +5,50 @@
 
 #include "screen/art/controls/box.h"
 #include "screen/art/drawing.h"
-#include "common/types.h"
+#include "screen/art/types/frame.h"
+#include "screen/matrix/types/range.h"
+#include "screen/matrix/types/point.h"
 
-#include <conio.h>
-
-class Grid {
+class Grid : public Panel {
 private:
+    Range m_sizes;
 
     void Crosses() {
-        COORD cursor;
+        Point cursor, cells;
 
-        const std::vector<short>& y = Rows.Vertices();
-        const std::vector<short>& x = Columns.Vertices();
+        const std::vector<unsigned char>& y = Rows.Vertices();
+        const std::vector<unsigned char>& x = Columns.Vertices();
 
         short r = 0, c = 0;
-        short rcount = y.size() - 1, ccount = x.size() - 1;
+        cells = { y.size() - 1, x.size() - 1 };
 
-        while (++r < rcount) {
+        while (++r < cells.X) {
 
-            while (++c < ccount) {
+            while (++c < cells.Y) {
                 cursor.Y = y.at(r);
                 cursor.X = x.at(c);
-                Draw(&cursor, form_edges.cross);
+                MoveCursor(&cursor);
+                Draw(form_edges.cross);
             }
 
         }
     }
+
+protected:
+    unsigned char BasePoint() { return m_sizes.P1.X; }
+
+    Point TopAnchor() { return { m_sizes.P1.Y, m_sizes.P2.X }; }
+    Point BottomAnchor() { return { m_sizes.P2.Y, m_sizes.P1.X }; }
+
+    Angles TopAngles() { return form_edges.top; };
+    Angles BottomAngles() { return form_edges.bottom; };
 
 public:
     Box Rows;
     Box Columns;
 
     Grid(Range* sizes) {
+        m_sizes = *sizes;
         Rows.bounds = *sizes;
         Columns.bounds = sizes->Swap();
         
@@ -56,18 +68,7 @@ public:
         Columns.Lines(&m_gun);
 
         Crosses();
-
-        COORD cursor = { Rows.bounds.P1.X , Rows.bounds.P2.X };
-        Draw(&cursor, form_edges.top.left);
-
-        HLine(&cursor, Rows.bounds.P1.Y);
-        Draw(&cursor, form_edges.top.right);
-
-        VLine(&cursor, Rows.bounds.P2.Y);
-        Draw(&cursor, form_edges.bottom.right);
-
-        HLine(&cursor, Rows.bounds.P1.X);
-        Draw(&cursor, form_edges.bottom.left);
+        DrawAngles();
         return this;
     }
 };
