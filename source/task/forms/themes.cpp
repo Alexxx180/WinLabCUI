@@ -1,10 +1,8 @@
 ﻿#include "screen/themes.h"
 
-#include "screen/art/controls/layers.h"
+#include "screen/art/types/layers.h"
 #include "screen/interaction.h"
-#include "output/format/pen.h"
-
-#include <conio.h>
+#include "screen/matrix/pen.h"
 
 void ProgramName() {
     Pen::ink().Reset();

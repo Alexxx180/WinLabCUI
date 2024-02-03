@@ -1,14 +1,9 @@
-#ifndef SCREEN_ART_BAR
-#define SCREEN_ART_BAR
-
-#include <vector>
+#ifndef SCREEN_ART_CONTROLS_BAR_DIVISIONS
+#define SCREEN_ART_CONTROLS_BAR_DIVISIONS
 
 #include "screen/art/drawing.h"
-#include "common/types.h"
-#include "input/boundary.h"
-
-#include "screen/art/controls/bar/percentage.h"
-#include "screen/art/controls/bar/types/borders.h"
+#include "screen/art/controls/bar/types/corners.h"
+#include "screen/art/types/stapler.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 
@@ -17,8 +12,7 @@ private:
     Range* m_placement;
     Point* m_cursor;
 
-    unsigned short* m_percents;
-    unsigned short m_step, m_i;
+    unsigned short m_percents, m_step, m_i;
     unsigned int m_count;
 
     Borders m_horizontal, m_vertical;
@@ -55,14 +49,14 @@ public:
         return this;
     }
 
-    Divisions* SetSymbols(Corners* symbols) {
-        m_horizontal = symbols->Horizontal;
-        m_vertical = symbols->Vertical;
+    Divisions* SetPercents(unsigned short* percents) {
+        m_percents = percents;
         return this;
     }
 
-    Divisions* SetPercents(unsigned short* percents) {
-        m_percents = percents;
+    Divisions* SetSymbols(Corners* symbols) {
+        m_horizontal = symbols->Horizontal;
+        m_vertical = symbols->Vertical;
         return this;
     }
 

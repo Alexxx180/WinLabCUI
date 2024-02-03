@@ -1,13 +1,12 @@
-#include "task/markdown/foot.h"
-
-#include "windows.h"
+#include "task/forms/markdown/foot.h"
 
 #include <vector>
 
 #include "screen/art/controls/grid.h"
-#include "output/booker.h"
-#include "common/types.h"
-#include "output/format/pen.h"
+#include "screen/matrix/booker.h"
+#include "screen/matrix/pen.h"
+#include "screen/matrix/types/point.h"
+#include "screen/matrix/types/range.h"
 
 void FootMarkdown(Range* status, short y) {
     status->P1.Y = y + 1;
@@ -17,17 +16,17 @@ void FootMarkdown(Range* status, short y) {
     short x2 = status->P2.X, y2 = status->P2.Y - 1;
     short margin = 3;
 
-    std::vector<COORD> alert = {
+    std::vector<Point> alert = {
         { x1 + margin, y2 },
         { x2 - margin, y2 }
     };
-    std::vector<COORD> controls = {
+    std::vector<Point> controls = {
         { x1 + margin, y1 },
         { x2 * 1 / 3 + margin, y1 },
         { x2 * 2 / 3 + margin, y1 }
     };
 
-    std::vector<std::vector<COORD>> messages = { alert, controls };
+    std::vector<std::vector<Point>> messages = { alert, controls };
 
     Grid foot(&status->SwapXY());
     Booker footer(messages);

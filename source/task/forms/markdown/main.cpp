@@ -1,20 +1,19 @@
-#include "task/markdown/main.h"
-
-#include "windows.h"
+#include "task/forms/markdown/main.h"
 
 #include <vector>
 
-#include "screen/art/controls/grid.h"
-#include "output/booker.h"
 #include "screen/interaction.h"
-#include "common/types.h"
-#include "output/format/pen.h"
+#include "screen/art/controls/grid.h"
+#include "screen/matrix/booker.h"
+#include "screen/matrix/pen.h"
+#include "screen/matrix/types/point.h"
+#include "screen/matrix/types/range.h"
 
 void MainMarkdown(Range* content) {
     short x1 = content->P1.X, x2 = content->P2.X;
     short y = content->P1.Y + 3, margin = 3;
 
-    std::vector<COORD> input = {
+    std::vector<Point> input = {
         { x1 + margin, y },
         { x2 / 2 - MAX_BUFFER, y },
         { x2 / 2, y },
@@ -28,13 +27,13 @@ void MainMarkdown(Range* content) {
     short y2 = content->P2.Y - margin - 1;
     short array_y = y2 - 1;
 
-    std::vector<COORD> table = {
+    std::vector<Point> table = {
         { x1 + margin + 2, array_y },
         { x2 * 2 / 6, array_y },
         { x2 - margin - 1, array_y }
     };
 
-    std::vector<std::vector<COORD>> contents = { input, table };
+    std::vector<std::vector<Point>> contents = { input, table };
 
     Grid main(&content->SwapXY());
     Booker body(contents);

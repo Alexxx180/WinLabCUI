@@ -22,8 +22,6 @@ void SetStatusSignal() {
 }
 
 void InputHeader() {
-
-
     Pen::ink().Redraw()
     Pen::ink().Target(FOOT)->Quote("status_forward");
     SetStatusSignal();

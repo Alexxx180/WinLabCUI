@@ -1,60 +1,26 @@
-#ifndef SCREEN_ART_BAR
-#define SCREEN_ART_BAR
+#ifndef SCREEN_ART_CONTROLS_BAR
+#define SCREEN_ART_CONTROLS_BAR
 
-#include <vector>
-
-#include "screen/art/drawing.h"
-#include "common/types.h"
-#include "input/boundary.h"
-
+#include "screen/art/types/stapler.h"
 #include "screen/art/controls/bar/percentage.h"
-
-#include <conio.h>
+#include "screen/art/controls/bar/progress.h"
+#include "screen/art/controls/bar/types/corners.h"
+#include "screen/matrix/types/point.h"
+#include "screen/matrix/types/range.h"
 
 class Bar {
 private:
     const Percentage m_percentage;
     const Progress m_progress;
 
-    COORD m_cursor, m_slider, m_optimization = { 0, -1 };
-    unsigned char m_step;
-    float m_count;
-    bool m_orientation;
+    Range placement;
+    Point m_cursor;
 
     Corners m_symbols;
     Stapler m_gun;
 
-    void Drawing(wchar_t symbol) {
-        MoveCursor(&m_cursor);
-        Draw(symbol);
-    }
-
-    void Slide(short position) {
-        m_gun.progress(&m_cursor, position);
-    }
-
-    void Extend(short position) {
-        m_gun.pins(&m_cursor, position);
-    }
-
-    // Depends on sliding methods
-    void DrawEdges(Edges* edges, Range* target) {
-        short i = target->P1.X;
-        short size = target->SumX();
-
-        short start = target->P1.Y;
-        short end = target->SumY();
-
-        while (++i < size) {
-            Slide(i);
-
-            Extend(start);
-            Drawing(edges->left);
-
-            Extend(end);
-            Drawing(edges->right);
-        }
-    }
+    unsigned char* m_position;
+    bool m_orientation;
 
     void SetOrientation() {
         if (m_orientation) {
@@ -78,57 +44,51 @@ protected:
     Angles BottomAngles() { return m_symbols.Bottom; }
 
 public:
-    Range placement;
+    const Divisions Line;
+
+    Bar() {
+        Line.SetPercents(m_percentage.Count())->SetCursor(&m_cursor);
+
+        m_percentage.SetCursor(&m_cursor)->SetStapler(&m_gun);
+        m_percentage.MemoryPosition(&m_position);
+
+        m_progress.SetCursor(&m_cursor)->SetStapler(&m_gun);
+        m_progress.MemoryPosition(&m_position);
+    }
 
     Bar* SetSize(Range* sizes) {
         placement = *sizes;
+        Line.SetSize(&placement);
+        m_progress.SetSize(&placement);
         return this;
     }
 
     Bar* SetSymbols(Corners* symbols) {
         m_symbols = *symbols;
+        Line.SetSymbols(symbols);
         return this;
     }
 
-    // Sets the dependencies
     Bar* Orientation(bool vertical) {
         m_orientation = vertical;
         return this;
     }
 
-    Bar* SetDivisions(unsigned int count) {
-        m_optimization.X = static_cast<short>(count / m_percentage.X);
-        m_step = m_optimization.X - 1;
-        m_count = count;
-        return this;
-    }
-
     Bar* Show() {
-        m_gun.Set(HLine, VLine);
-        DrawEdges(&m_symbols.horizontal, &placement);
-
-        Range reverse = placement.SwapSizes();
-
-        m_gun.Set(VLine, HLine);
-        DrawEdges(&m_symbols.vertical, &reverse);
-
+        Line.Draw();
         DrawAngles();
         SetOrientation();
         return this;
     }
 
     Bar* Progress(float basis) {
-        m_progress.Update(basis);
-        m_progress.MoveProgress();
+        m_progress.Update(basis)->MoveProgress();
         m_percentage.Update(basis, m_progress.Get());
         return this;
     }
 
     Bar* ProgressData(float value) {
-        if (++m_step < m_optimization.X)
-            return this;
-
-        if (m_step > 0) m_step = 0;
+        if (Line.Idle()) return this;
 
         float basis = value / m_count;
         return Progress(basis);

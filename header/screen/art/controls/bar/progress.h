@@ -1,13 +1,22 @@
 #ifndef SCREEN_ART_CONTROLS_BAR_PROGRESS
 #define SCREEN_ART_CONTROLS_BAR_PROGRESS
 
+#include "screen/art/drawing.h"
+#include "screen/art/types/stapler.h"
+#include "screen/art/controls/bar/types/corners.h"
+#include "screen/matrix/types/point.h"
+#include "screen/matrix/types/range.h"
+
 class Progress {
     private:
         Point* m_cursor;
         Range* m_placement;
+
         unsigned char* m_position;
         unsigned char m_glare, m_slider;
+
         Separator m_separator;
+        Stapler* m_gun;
 
         // Orientation independent
         void FillBar(char symbol) {
@@ -34,27 +43,44 @@ class Progress {
 
         // Orientation dependent
         void MoveCarriage(unsigned char position, wchar_t symbol) {
-            Slide(position);
+            m_gun->progress(m_cursor, position);
             FillBar(symbol);
         }
 
     public:
         short Get() { return m_slider; }
 
-        void MemoryPosition(unsigned char* memory) {
-            m_position = memory;
-        }
-
         void SetSeparator(Separator* separator) {
             m_separator = *separator;
         }
 
-        void Update(float basis) {
+        Progress* SetCursor(Point* cursor) {
+            m_cursor = cursor;
+            return this;
+        }
+
+        Progress* SetSize(Range* placement) {
+            m_placement = placement;
+            return this;
+        }
+
+        Progress* SetStapler(Stapler* gun) {
+            m_gun = gun;
+            return this;
+        }
+
+        Progress* MemoryPosition(unsigned char* memory) {
+            m_position = memory;
+            return this;
+        }
+
+        Progress* Update(float basis) {
             short start = m_placement->P1.X;
             short end = m_placement->P2.X;
 
             float location = start + basis * end;
             m_slider = static_cast<short>(location);
+            return this;
         }
 
         void MoveProgress() {
