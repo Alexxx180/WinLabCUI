@@ -4,25 +4,21 @@
 #include <string>
 #include <cstdlib>
 
+#include "common/texts/common.h"
 #include "input/boundary.h"
 #include "input/feedback/verifier.h"
-#include "common/texts/common.h"
-#include "output/format/pen.h"
+#include "screen/matrix/pen.h"
 #include "task/structure/input/parameters.h"
 #include "task/structure/markdown/debug.h"
+#include "task/structure/menu/array.h"
+#include "task/structure/output/sort.h"
 
-std::vector<short> original, sorted;
-
-MenuItem array_menu;
-
-void ManualArrayInput() {
-    InputParameterValue(numeric);
-}
+void ManualArrayInput() { InputParameterValue(numeric); }
 
 void RandomArrayInput() {
-    Boundary<short>* limits = numberic->Edges();
+    Boundary<short>* limits = numeric->Edges();
 
-    short size = limits->start + limits.end + 1;
+    short size = limits->start + limits->end + 1;
 
     numeric->result = rand() % size + limits->start;
 }
@@ -41,7 +37,8 @@ std::vector<short> ArrayInputLoop(short size) {
 
     numeric->Edges->View();
 
-    short i = 0, option = array_options[1]
+    short i = 0;
+    short option = array_menu[0][2].values.SelectedIndex();
 
     input_array = array_input[option];
 
@@ -69,46 +66,22 @@ void QueryArray() {
     Pen::ink().array.Show();
     Pen::ink().screen.Span(1)->Form(1)->Size(2);
     Pen::ink().Quote("output_source_array");
+
     Pen::ink().screen.Line();
     Pen::ink().Quote("output_sorted_array");
-
+    OutputArraySort();
 }
 
 void InputHeader() {
-    Pen::ink().Redraw()
     Pen::ink().Target(FOOT)->Quote("status_forward");
-    SetStatusSignal();
     Pen::ink().Target(MAIN);
     Pen::ink().screen->Form(0)->Page(0)->Span(4)->Size(2)->Line(0);
     Pen::ink().Quote("input_header")->screen->Span(1);
 }
 
-void InputArrayHeader() {
+void StartArraySort() {
     InputHeader();
 
     Boundary<short> precision(1, 20);
     numeric->Bounds(&precision);
-}
-
-void ArrayMenu() {
-    MenuItem result, sort, input, type;
-
-    std::vector<std::vector<string>> options = GetMenuOptions();
-
-    result.SetCaption("menu_array_sort");
-    result.SetCommand(StartArraySort);
-
-    sort(new Option()->Values(options[0])->Current(0));
-    input(new Option()->Values(options[1])->Current(0));
-    type(new Option()->Values(options[2])->Current(0));
-
-    MenuItem array, exit;
-    array.SetCaption("menu_tasks");
-    array.SetItems()->SetOrientation(false)
-    array.Add(result)->Add(sort)->Add(input)->Add(type);
-
-    exit.SetCaption("menu_exit")->SetExit();
-
-    array_menu.SetItems()->SetOrientation(true);
-    array_menu.Add(array)->Add(exit);
 }

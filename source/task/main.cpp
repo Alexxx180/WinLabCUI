@@ -27,11 +27,16 @@ void StdLocaleSwitch() {
     _setmode(_fileno(stderr), _O_U16TEXT);   
 }
 
+void SetInput() {
+    numeric->status.Defaults();
+}
+
 int main(int argc, char **argv)
 {
     initDbgVars(argc, argv);
 
     StdLocaleSwitch();
+    SetInput();
     Resize();
 
     char code = Header();

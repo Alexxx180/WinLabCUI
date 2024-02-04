@@ -2,7 +2,9 @@
 #define INPUT_FEEDBACK_NOTIFIER
 
 #include <string>
+
 #include "screen/matrix/pen.h"
+#include "screen/art/types/layers.h"
 
 class Notifier {
 private:
@@ -22,6 +24,11 @@ public:
 
     Notifier* Signal(Pen* (Pen::*signal)(std::string)) {
         m_signal = signal;
+        return this;
+    }
+
+    void Defaults() {
+        Server(FOOT)->Signal(Pen::ink().Feedback());
         return this;
     }
 };

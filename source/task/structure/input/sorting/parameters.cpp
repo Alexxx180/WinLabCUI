@@ -2,10 +2,9 @@
 
 #include <string>
 
-#include "input/feedback/verifier.h"
-#include "common/types.h"
 #include "common/texts/common.h"
-#include "output/format/pen.h"
+#include "input/feedback/verifier.h"
+#include "screen/matrix/pen.h"
 
 void InputParameterName(std::wstring) {
     Pen::ink().screen->Line()->Move();
