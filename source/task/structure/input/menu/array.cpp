@@ -1,34 +1,54 @@
 #include "task/structure/input/menu/array.h"
 
-#include "screen/interaction.h"
-#include "task/structure/markdown/debug.h"
-#include "task/structure/input/array.h"
-#include "task/structure/input/menu/navigation.h"
+#include <vector>
+#include <string>
 
-void SelectArrayOption() {
-    switch (current_menu_option) {
-        case -1: QueryArray(); break;
-        default:
-            array_options[current_menu_option].Next();
-            break;
-    }
+#include "screen/art/controls/menu/menu.h"
+#include "screen/art/controls/menu/menuitem.h"
+#include "screen/art/controls/menu/option.h"
+#include "task/structure/input/sorting/array.h"
+
+Menu array_menu;
+
+void ArrayMenu() {
+    MenuItem result, sort, input, type;
+
+    std::vector<std::vector<string>> options = ArrayMenuOptions();
+
+    result.SetCaption("menu_array_sort");
+    result.SetCommand(StartArraySort);
+
+    sort.SetValues(new Option()->Values(options[0])->Current(0));
+    input.SetValues(new Option()->Values(options[1])->Current(0));
+    type.SetValues(new Option()->Values(options[2])->Current(0));
+
+    MenuItem array, exit;
+
+    array.SetCaption("menu_tasks");
+    array.SetItems()->SetOrientation(false)
+    array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);
+
+    exit.SetCaption("menu_exit")->SetExit();
+
+    array_menu.SetItems()->SetOrientation(true);
+    array_menu.Add(&array)->Add(&exit);
 }
 
-char ArrayMenuLoop() {
-    char code = Select(menu_input_keys);
-
-    switch (code) {
-        case ENTER: SelectArrayOption(); break;
-        case KEY_UP: NavigateMenuOption(array_menu, -1); break;
-        case KEY_DOWN: NavigateMenuOption(array_menu, 1); break;
-        case KEY_LEFT:
-            array_options[current_menu_option].Prev();
-            break;
-        case KEY_RIGHT:
-            array_options[current_menu_option].Next();
-            break;
-        default: break;
+std::vector<std::vector<string>> ArrayMenuOptions() {
+    return {
+        {
+            "menu_sort_array_insertions",
+            "menu_sort_array_selection",
+            "menu_sort_array_hoar",
+            "menu_sort_array_hoar_no_recursion"
+        },
+        {
+            "menu_array_generation_random",
+            "menu_array_generation_manual"
+        },
+        {
+            "menu_array_type_numbers",
+            "menu_array_type_strings"
+        },
     };
-
-    return code;
 }
