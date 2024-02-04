@@ -31,39 +31,30 @@ void OutputStatus() {
     Pen::ink().Quote("status_page_end")->screen->Page(0)->Span(1);
 }
 
-void OutputArray() {
+void OutputArrayRow(std::vector<short>& array, Table* table) {
     const wchar_t* numbers = L"%4i";
-    short item, x, y;
-    bool end, over;
+    unsigned int index;
+    short item;   
 
-    x = lines.X, y = lines.Y;
-    end = x < records.Y;
-    over = y < records.X;
+    while (table->Over && table->End) {
+        index = table->GetLines()->Absolute;
+        item = array.at(index);
+
+        Pen::ink().FText(numbers, item);
+        table->Iterate();
+    }   
+}
+
+void OutputArray(Table* table) {
+    Page backup = *(table->GetLines());
 
     Pen::ink().screen->Line(0);
-    while (over && end) {
-        item = original.at(y);
-        Pen::ink().FText(numbers, item);
+    OutputArrayRow(original, table);
 
-        end = ++x < records.Y;
-        over = ++y < records.X;
-    }
-
-    x = lines.X, y = lines.Y;
-    end = x < records.Y;
-    over = y < records.X;
+    table.SetLines(backup);
 
     Pen::ink().screen->Line(1);
-    while (over && end) {
-        item = sorted.at(y);
-        Pen::ink().FText(numbers, item);
-
-        end = ++x < records.Y;
-        over = ++y < records.X;
-    }
-
-    lines.X = x;
-    lines.Y = y;
+    OutputArrayRow(sorted, table);
 }
 
 void PagesPrint() {

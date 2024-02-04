@@ -118,6 +118,6 @@ class Menu {
 
             return m_item.Code;
         }
-}
+};
 
 #endif

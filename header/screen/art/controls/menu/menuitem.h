@@ -80,6 +80,6 @@ class MenuItem : public Menu {
             Pen::ink().screen->Line(m_position.Y);
             Pen::ink().screen->Move();
         }
-}
+};
 
 #endif

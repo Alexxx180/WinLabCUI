@@ -60,7 +60,7 @@ class Option {
 
             return code;
         }
-}
+};
 
 #endif
 
