@@ -19,48 +19,8 @@ void NumericSwap(std::vector<short>& memory, int p1, int p2) {
     }
 }
 
-//void
 
-void QuickSortRecursive(std::vector<short>& memory, HoarSort* hoar) {
-    int i = hoar->First, j = hoar->Last;
-    int x = memory[(i + j) / 2];
 
-    while (memory[i] < x) i++;
-    while (memory[j] > x) j--;
-
-    for (;i <= j; i++, j--) {
-        while (memory[i] < x) i++;
-        while (memory[j] > x) j--;
- 
-        NumericSwap(memory, i, j); //?
-    }
-
-    return 
- 
-    if (i < hoar.Last)
-        QuickSortRecursive(memory, { i, hoar.Last });
-
-    if (hoar.First < j)
-        QuickSortRecursive(memory, { hoar.First, j });
-} //0 / n - 1
-
-HoarSort QuickSortIteration(std::vector<short>& memory, HoarSort* hoar) {
-    int i = hoar.First, j = hoar.Last;
-    int x = memory[(i + j) / 2];
-
-    while (memory[i] < x) i++;
-    while (memory[j] > x) j--;
-
-    for (;i <= j; i++, j--) {
-        while (memory[i] < x) i++;
-        while (memory[j] > x) j--;
- 
-        NumericSwap(memory, i, j); //?
-    }
-
-    HoarSort current = { i, j };
-    return 
-}
 
 void InsertionsSort(std::vector<short>& memory) {
     int i, j, size = memory.size();
