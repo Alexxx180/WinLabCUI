@@ -17,7 +17,7 @@ void SetStatusSignal() {
     numeric->status.Server(FOOT)->Signal(Pen::ink().Feedback());
 }
 
-MenuItem main_menu;
+Menu main_menu;
 
 void DetermineExit() {
     Pen::ink().Target(FOOT)->Quote("status_menu_navigation");
@@ -41,12 +41,12 @@ void MainMenu() {
 
     MenuItem tasks, exit;
     tasks.SetItems()->SetOrientation(false);
-    tasks.Add(task1)->Add(task2);
+    tasks.Add(&task1)->Add(&task2);
     tasks.SetCaption("menu_tasks");
 
     exit.SetExit()->SetCaption("menu_exit");
 
     main_menu.SetItems()->SetOrientation(true);
-    main_menu.Add(tasks)->Add(exit);
+    main_menu.Add(&tasks)->Add(&exit);
     
 }

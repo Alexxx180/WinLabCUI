@@ -5,39 +5,21 @@
 #include "task/structure/input/menu/array.h"
 #include "screen/interaction.h"
 
-bool SelectMenuOption() {
-    bool is_exit = false;
+Menu main_menu;
 
-    switch (current_menu_option) {
-        case 0:
-            current_menu_option = -1;
-            Await(ArrayMenuLoop(), ESC);
-            break;
-        case 1:
-            is_exit = Select(ESC, ENTER) == ENTER;
-            break;
-        default:
-            array_options[current_menu_option].Next();
-            break;
-    }
+void MainMenu() {
+    MenuItem task1, task2;
+    task1.SetCommand(ArraySort)->SetCaption("menu_array_sort");
+    task2.SetCommand(Individual)->SetCaption("menu_individual");
 
-    return is_exit;
-}
+    MenuItem tasks, exit;
+    tasks.SetItems()->SetOrientation(false);
+    tasks.Add(&task1)->Add(&task2);
+    tasks.SetCaption("menu_tasks");
 
-bool MenuLoop() {
-    char code = Select(menu_input_keys);
-    bool is_exit = false;
+    exit.SetExit()->SetCaption("menu_exit");
 
-    switch (code) {
-        case ENTER: is_exit = SelectMenuOption(); break;
-        case KEY_LEFT:
-            NavigateMenuOption(main_menu, -1);
-            break;
-        case KEY_RIGHT:
-            NavigateMenuOption(main_menu, 1);
-            break;
-        default: break;
-    };
-
-    return is_exit;
+    main_menu.SetItems()->SetOrientation(true);
+    main_menu.Add(&tasks)->Add(&exit);
+    
 }
