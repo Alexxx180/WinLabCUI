@@ -13,8 +13,10 @@ class Option {
 
         void Iterate(short axis) {
             short next = m_selection + axis;
-            if (edges.Verify(next))
-                SetCurrent(next);
+            if (edges.Verify(next)) {
+                Current(next);
+                *m_caption = m_values[m_selection];
+            }
         }
 
         void Previous() { Iterate(-1); }
@@ -23,18 +25,20 @@ class Option {
     public:
         short SelectedIndex() { return m_selection; }
 
-        void SetCurrent(short next) {
+        Option* Current(short next) {
             m_selection = next;
-            *m_caption = m_values[m_selection];
+            return this;
         }
 
-        void SetCaption(std::string* caption) {
-            m_caption = caption;
-        }
-
-        void SetValues(std::vector<std::string> values) {
+        Option* Values(std::vector<std::string> values) {
             m_values = values;
             edges.Set(0, m_values.size() - 1);
+            return this;
+        }
+
+        void BindCaption(std::string* caption) {
+            m_caption = caption;
+            *m_caption = m_values[m_selection];
         }
 
         char Select() {

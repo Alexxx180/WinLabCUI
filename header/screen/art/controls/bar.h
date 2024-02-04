@@ -8,7 +8,7 @@
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 
-class Bar {
+class Bar : public Panel {
 private:
     const Percentage m_percentage;
     const Progress m_progress;

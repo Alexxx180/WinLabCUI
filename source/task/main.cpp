@@ -27,14 +27,6 @@ void StdLocaleSwitch() {
     _setmode(_fileno(stderr), _O_U16TEXT);   
 }
 
-char Program() {
-    Period task = Input();
-
-    Answer result = Process(&task);
-
-    return Output(&result);
-}
-
 int main(int argc, char **argv)
 {
     initDbgVars(argc, argv);
@@ -44,7 +36,7 @@ int main(int argc, char **argv)
 
     char code = Header();
     if (code == ENTER)
-        code = Await(Program, ENTER);
+        code = Await(Input, ENTER);
     code = Footer();
 
     return OK;

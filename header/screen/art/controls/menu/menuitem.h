@@ -2,20 +2,24 @@
 #define SCREEN_ART_CONTROLS_MENU
 
 #include <vector>
-
-#include <windows.h>
+#include <string>
 
 #include "common/types.h"
+
+static std::vector<char> menu_input_keys = {
+    ESC, ENTER, KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT
+};
 
 class MenuItem {
     private:
         void (*m_command)() = NULL;
         std::vector<MenuItem>* m_items = NULL;
         Vector2c m_orientation, m_position;
+        char m_code;
         unsigned char m_selection;
         std::string m_caption;
 
-        void SetSelection(short next) {
+        void SetSelection(unsigned char next) {
             m_selection = next;
             m_items[m_selection].Focus();
         }
@@ -34,14 +38,14 @@ class MenuItem {
                 m_items[size].Focus();
                 m_items[size].Draw();
             }
-            Await(m_items[0].Query, ESC);
+            Await(m_items[m_selection].Query, ESC);
             Minimize();
             Focus();
         }
 
-        COORD GetOffset() {
-            short size = m_items.size();
-            COORD offset = {
+        Point GetOffset() {
+            unsigned char size = m_items.size();
+            Point offset = {
                 m_position.X + m_orientation.X,
                 m_position.Y + m_orientation.Y + size
             };
@@ -64,13 +68,17 @@ class MenuItem {
             Await(values.Select, ESC);
         }
 
+        void ExitTheMenu() {
+            m_code = ESC; 
+        }
+
     public:
         Option* values = NULL;
 
         MenuItem& at(short item) { return m_items.at(item); }
         MenuItem& operator[](short item) { return m_items[item]; }
 
-        void SetPosition(COORD* position) {
+        void SetPosition(Point* position) {
             m_position = *position;
         }
 
@@ -90,6 +98,11 @@ class MenuItem {
             return this;
         }
 
+        MenuItem* SetExit() {
+            m_command = ExitTheMenu;
+            return this;
+        }
+
         MenuItem* SetValues(Option* parameters) {
             values = parameters;
             values->BindCaption(&m_caption);
@@ -98,7 +111,7 @@ class MenuItem {
         }
 
         MenuItem* Add(MenuItem* item) {
-            COORD offset = GetOffset;
+            Point offset = GetOffset;
             item.SetPosition(&offset);
             m_items->push_back(*item);
             return this;
