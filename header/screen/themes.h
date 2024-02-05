@@ -1,2 +1,0 @@
-﻿char Header();
-char Footer();

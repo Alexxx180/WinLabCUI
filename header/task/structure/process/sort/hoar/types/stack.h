@@ -1,11 +1,13 @@
-#ifndef TASK_TYPES_HOAR
-#define TASK_TYPES_HOAR 512
+#ifndef TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK
+#ifndef TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK 512
 
 #include "common/types.h"
 
 struct HoarStack {
     Vector2l part;
-    long Position, Left[TASK_TYPES_HOAR], Right[TASK_TYPES_HOAR];
+    long Position;
+    long Left[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
+    long Right[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
 
     long PivotIndex() { return (part.X + part.Y) >> 1; }
     bool IsSmallerOneLeft() { return part.X < part.Y; }

@@ -1,11 +1,10 @@
 #ifndef SCREEN_DRAWING
 #define SCREEN_DRAWING
 
-#include <windows.h>
-
 #include <string>
 
 #include "screen/art/types/frame.h"
+#include "screen/matrix/types/point.h"
 
 static Frame form_edges = {
     { 9568, 9552, 9571 },

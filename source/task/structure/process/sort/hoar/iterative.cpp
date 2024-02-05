@@ -1,8 +1,10 @@
+#include "task/structure/process/sort/hoar/iterative.h"
+
 #include <vector>
 
-#include "task/types/hoar.h"
+#include "task/structure/process/sort/hoar/types/stack.h"
 
-void QuickSortIterative(std::vector<short> memory) {
+void QuickSortIterative(std::vector<short>& memory) {
     long i, j, middle, pivot;
 
     HoarStack stack;
