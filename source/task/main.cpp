@@ -40,8 +40,7 @@ int main(int argc, char **argv)
     Resize();
 
     char code = Header();
-    if (code == ENTER)
-        code = Await(Input, ENTER);
+    if (code == ENTER) Input();
     code = Footer();
 
     return OK;

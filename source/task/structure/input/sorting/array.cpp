@@ -7,31 +7,24 @@
 #include "common/texts/common.h"
 #include "input/boundary.h"
 #include "input/feedback/verifier.h"
-#include "screen/matrix/pen.h"
-#include "task/structure/input/parameters.h"
+#include "task/structure/input/common/data.h"
+#include "task/structure/input/sorting/parameters.h"
 #include "task/structure/markdown/debug.h"
 #include "task/structure/menu/array.h"
 #include "task/structure/output/sort.h"
+#include "task/forms/debug.h"
+#include "screen/matrix/pen.h"
 
 void ManualArrayInput() { InputParameterValue(numeric); }
 
-void RandomArrayInput() {
-    Boundary<short>* limits = numeric->Edges();
-
-    short size = limits->start + limits->end + 1;
-
-    numeric->result = rand() % size + limits->start;
-}
-
 void (*array_input)(void)[2] = {
-    RandomArrayInput, ManualArrayInput
+    randomc.Standard, ManualArrayInput
 };
 
 std::vector<short> ArrayInputLoop(short size) {
-    Boundary<short> limits(-99, 99);
     std::vector<short> result(size);
 
-    numeric->SetBounds(&limits);
+    numeric->SetBounds(&randomc.limits);
 
     InputParameterName(texts["input_array_elements"]);
 
@@ -46,13 +39,18 @@ std::vector<short> ArrayInputLoop(short size) {
         input_array();
         result.push_back(numeric->result);
 
-        Pen::ink().screen->Span(1)->Page(field + 1);
+        Pen::ink().screen->Span(1)->Page(3);
         Pen::ink().screen->Move()->Clear();
         Pen::ink().Text(size, L" / ", ++i);
     }
 
     return result;
 }
+
+void (*array_sort)(std::vector<short>&)[4] = {
+    HoarRecursive, QuickSortIterative,
+    InsertionsSort, SelectionSort
+};
 
 void QueryArray() {
     Boundary<short> limits(1, 20);
@@ -61,7 +59,9 @@ void QueryArray() {
     short size = numeric->result;
 
     original = ArrayInputLoop(size);
-    sorted = original;
+    short option = array_menu[0][1].values.SelectedIndex();
+
+    sorted = array_sort[option](original);
 
     Pen::ink().array.Show();
     Pen::ink().screen.Span(1)->Form(1)->Size(2);

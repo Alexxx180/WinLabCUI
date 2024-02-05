@@ -20,7 +20,7 @@ void OutputArrayRow(std::vector<short>& array, Table* table) {
         item = array.at(index);
 
         Pen::ink().FText(numbers, item);
-        table->Iterate();
+        table->Scroll();
     }   
 }
 
