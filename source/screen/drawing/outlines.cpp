@@ -6,7 +6,7 @@
 void Field(Point* space, const short size) {
     Point field = *space;
     field.X--;
-    MoveCursor(field);
+    MoveCursor(&field);
     Draw(L'|');
     field.Y++;
 

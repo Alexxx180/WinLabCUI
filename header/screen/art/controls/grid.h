@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "screen/art/controls/box.h"
+#include "screen/art/controls/panel.h"
 #include "screen/art/drawing.h"
 #include "screen/art/types/frame.h"
 #include "screen/matrix/types/range.h"
@@ -20,7 +21,10 @@ private:
         const std::vector<unsigned char>& x = Columns.Vertices();
 
         short r = 0, c = 0;
-        cells = { y.size() - 1, x.size() - 1 };
+        cells = {
+            static_cast<unsigned char>(y.size() - 1),
+            static_cast<unsigned char>(x.size() - 1)
+        };
 
         while (++r < cells.X) {
 

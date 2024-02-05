@@ -19,13 +19,13 @@ void MoveCursor(Point* cursor) {
     native_windows_cursor.Y = cursor->Y;
 
     HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(output, *native_windows_cursor);
+    SetConsoleCursorPosition(output, native_windows_cursor);
 }
 
 // Common abstraction code
 
-void HLine(Point* cursor, short next) { cursor->X = next; }
-void VLine(Point* cursor, short next) { cursor->Y = next; }
+void HLine(Point* cursor, unsigned char next) { cursor->X = next; }
+void VLine(Point* cursor, unsigned char next) { cursor->Y = next; }
 
 void Draw(wchar_t character) {
     _putwch(character);

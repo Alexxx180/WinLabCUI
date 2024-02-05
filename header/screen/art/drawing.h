@@ -17,8 +17,8 @@ void MoveCursor(Point* cursor);
 void Draw(wchar_t character);
 void Clean(short precision);
 void Write(std::wstring* message);
-void HLine(Point* cursor, short next);
-void VLine(Point* cursor, short next);
+void HLine(Point* cursor, unsigned char next);
+void VLine(Point* cursor, unsigned char next);
 void Field(Point* space, short size);
 
 #endif
