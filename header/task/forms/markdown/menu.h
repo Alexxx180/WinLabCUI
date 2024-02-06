@@ -1,3 +1,3 @@
-#include "screen/matrix/types/range.h"
+#include "screen/matrix/markdown.h"
 
-void MenuMarkdown(Range* menu, short y2);
+void MenuMarkdown(Markdown* m);
