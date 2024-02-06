@@ -3,37 +3,41 @@
 
 #include <vector>
 
+#include "screen/matrix/pen.h"
+#include "screen/matrix/booker.h"
 #include "screen/matrix/types/range.h"
 #include "screen/matrix/types/point.h"
+#include "screen/art/controls/grid.h"
 
 class Markdown {
     private:
         std::vector<std::vector<Point>> m_forms;
         std::vector<Point> m_pages;
         Range m_origin, m_current;
-        Point m_booker, m_next;
+        Point m_booker;
+        Point* m_next;
 
     public:
-
-    Markdown* Reset() {
-        m_markdown.clear();
-        m_forms.clear();
-        return this;
-    }
 
     Markdown* Screen() {
         Grid borders(m_current);
         Booker content(m_forms);
         Pen::ink().Append(borders, content);
+        m_forms.clear();
         return this;
     }
 
     Markdown* Form() {
         m_forms.push_back(m_pages);
+        m_pages.clear();
     }
 
     Markdown* Page() {
         m_pages.push_back(m_booker);
+    }
+
+    Markdown* Base(Range origin) {
+        m_origin = origin;
     }
 
     Markdown* Origin() {
@@ -54,22 +58,22 @@ class Markdown {
     }
 
     Markdown* P1() {
-        m_next = m_current.P1;
+        m_next = &m_current.P1;
         return this;
     }
 
     Markdown* P2() {
-        m_next = m_current.P2;
+        m_next = &m_current.P2;
         return this;
     }
 
     Markdown* PinX() {
-        m_booker.X = m_next.X;
+        m_booker.X = m_next->X;
         return this;
     }
 
     Markdown* PinY() {
-        m_booker.Y = m_next.Y;
+        m_booker.Y = m_next->Y;
         return this;
     }
 

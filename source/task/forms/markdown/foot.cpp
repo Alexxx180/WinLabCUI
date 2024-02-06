@@ -1,38 +1,21 @@
 #include "task/forms/markdown/foot.h"
 
-#include <vector>
-
-#include "screen/art/controls/grid.h"
-#include "screen/matrix/booker.h"
-#include "screen/matrix/pen.h"
+#include "screen/matrix/markdown.h"
 #include "screen/matrix/types/point.h"
-#include "screen/matrix/types/range.h"
-#include "task/forms/markdown/foot/status.h"
 
-void Form(Range* form, std::vector<std::vector<Point>> markdown) {
-    Grid borders(form);
-    Booker content(markdown);
-    Pen::ink().Append(borders, content);
+void FootMarkdown(Markdown* m) {
+    unsigned char p = 3;
+    float third = 1 / 3;
+
+    Point offset = { 1, 3 };
+    m->ShiftY(offset);
+    // Alert panel
+    m->P2()->PinY()->MarginY(-1)->P1()->PinX()->Page();
+    m->P2()->PinX()->MarginX(-p)->Page()->Form();
+    // Table controls
+    m->P1()->PinY()->PinX()->Page();
+    m->P2()->PinX()->RatioX(third)->MarginX(p)->Page();
+    m->P2()->PinX()->RatioX(third * 2)->MarginX(p)->Page()
+    m->Form()->Screen();
 }
 
-void FootMarkdown(Range* status, short y) {
-    Markdown screens;
-
-    screens.
-
-
-
-
-    status->P1.Y += status->P2.Y + 1;
-    status->P2.Y = status->P1.Y + 3;
-
-    Point p1 = status->P1, p2 = status->P2;
-
-    std::vector<Point> alert, table;
-    alert = StatusAlert(p1.X, p2);
-    table = StatusTable(p1, p2.X);
-
-    std::vector<std::vector<Point>> messages = { alert, table };
-
-    Form(&status->SwapXY(), messages);
-}

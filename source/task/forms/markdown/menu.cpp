@@ -1,30 +1,17 @@
 #include "task/forms/markdown/menu.h"
 
-#include <vector>
-
-#include "screen/art/controls/grid.h"
-#include "screen/matrix/booker.h"
-#include "screen/matrix/pen.h"
+#include "screen/matrix/markdown.h"
 #include "screen/matrix/types/point.h"
-#include "screen/matrix/types/range.h"
 
-void MenuMarkdown(Range* menu, short y2) {
-    menu.P1.Y = y2 + 1;
-    menu.P2.Y = menu.P1.Y + 3;
+void MenuMarkdown(Markdown* m) {
+    unsigned char p = 3;
+    float third = 1 / 3;
 
-    short x = menu.P2.X, y = menu.P1.Y + 1;
-    short margin = 3;
-
-    std::vector<Point> controls = {
-        { menu.P1.X + margin, y },
-        { x * 1 / 3 + margin, y },
-        { x - margin, y }
-    };
-
-    std::vector<std::vector<Point>> items = { controls };
-
-    Grid panel(&status.SwapXY());
-    Booker options(items);
-
-    Pen::ink().Append(panel, options);
+    Point offset = { 1, 2 };
+    m->ShiftY(offset);
+    // Menu panel
+    m->P1()->PinY()->MarginY(1);
+    m->P1()->PinX()->MarginX(p)->Page();
+    m->P2()->PinX()->RatioX(third)->MarginX(p)->Page();
+    m->P2()->PinX()->MarginX(-p)->Page()->Form()->Screen();
 }

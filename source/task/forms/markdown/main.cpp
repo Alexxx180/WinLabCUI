@@ -1,65 +1,31 @@
 #include "task/forms/markdown/main.h"
 
-#include <vector>
-
 #include "screen/interaction.h"
-#include "screen/art/controls/grid.h"
-#include "screen/matrix/booker.h"
-#include "screen/matrix/pen.h"
-#include "screen/matrix/types/point.h"
+#include "screen/matrix/markdown.h"
 #include "screen/matrix/types/range.h"
+#include "task/forms/markdown/main/table.h"
+#include "task/forms/markdown/main/bar.h"
 
-void MainMarkdown(Range* content) {
-    short x1 = content->P1.X, x2 = content->P2.X;
-    short y = content->P1.Y + 3, margin = 3;
+void MainMarkdown(Markdown* m, Range* content) {
+    unsigned char p = 3, i = MAX_BUFFER;
+    float half = 0.5f, third = 1 / 3;
 
-    std::vector<Point> input = {
-        { x1 + margin, y },
-        { x2 / 2 - MAX_BUFFER, y },
-        { x2 / 2, y },
-        { x2 / 2 + margin, y },
-        { x2 - MAX_BUFFER - margin, y },
-        { x2 - margin, y }
-    };
+    TableMarkdown(content);
+    BarMarkdown(content);
 
-    y = content->P1.Y + 1;
-
-    short y2 = content->P2.Y - margin - 1;
-    short array_y = y2 - 1;
-
-    std::vector<Point> table = {
-        { x1 + margin + 2, array_y },
-        { x2 * 2 / 6, array_y },
-        { x2 - margin - 1, array_y }
-    };
-
-    std::vector<std::vector<Point>> contents = { input, table };
-
-    Grid main(&content->SwapXY());
-    Booker body(contents);
-
-    Range bar_size = {
-        { x1 + margin, y2 },
-        { x2 - x1 - margin, 2 }
-    };
-
-    Range output_placement = {
-        { x1 + margin, array_y - 1 },
-        { x2 - x1 - margin, y2 + 3 }
-    };
-
-    Grid array_output(output_placement);
-
-    Frame bar_edges = {
-        { 95, 46, 8254 },
-        { 124, 39, 124 },
-        { 32, 32 }, { 32, 32 }, 32
-    };
-
-    Pen::ink().array = array_output;
-
-    Pen::ink().status.SetSize(&bar_size)->SetSymbols(&bar_edges);
-    Pen::ink().status.Orientation(false);
-
-    Pen::ink().Append(main, body);
+    m->Base(content)->Origin();
+    // Main panel
+    m->P1()->PinY()->MarginY(p)->PinX()->MarginX(p)->Page();
+    m->P2()->PinX()->RatioX(half)->MarginX(-i)->Page();
+    m->P2()->PinX()->RatioX(half)->Page();
+    m->P2()->PinX()->RatioX(half)->MarginX(p)->Page();
+    m->P2()->PinX()->MarginX(-i)->MarginX(-p)->Page();
+    m->P2()->PinX()->MarginX(-p)->Page();
+    m->Form();
+    // Table frame
+    m->P2()->PinY()->MarginY(-p)->MarginY(-1);
+    m->P1()->PinX()->MarginX(p)->MarginX(2)->Page();
+    m->P2()->PinX()->RatioX(third)->Page();
+    m->P2()->PinX()->MarginX(-p)->MarginX(-1)->Page();
+    m->Form()->Screen();
 }
