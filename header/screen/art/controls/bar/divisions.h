@@ -49,7 +49,7 @@ public:
         return this;
     }
 
-    Divisions* SetPercents(unsigned short* percents) {
+    Divisions* SetPercents(unsigned short percents) {
         m_percents = percents;
         return this;
     }
@@ -60,17 +60,17 @@ public:
         return this;
     }
 
-    void Draw() {
-        m_gun->Set(HLine, VLine);
-        DrawEdges(&m_horizontal, m_placement);
+    void Show() {
+        m_gun.Set(HLine, VLine);
+        DrawBorders(&m_horizontal, m_placement);
 
         Range reverse = m_placement->SwapSizes();
 
-        m_gun->Set(VLine, HLine);
-        DrawEdges(&m_vertical, &reverse);
+        m_gun.Set(VLine, HLine);
+        DrawBorders(&m_vertical, &reverse);
     }
 
-    void SetStep(unsigned int count) {
+    Divisions* SetStep(unsigned int count) {
         m_count = count;
 
         float proportion = m_count / m_percents;
@@ -79,6 +79,8 @@ public:
 
         return this;
     }
+
+    float Divide(float current) { return current / m_count; }
 
     bool Idle() {
         bool idle = ++m_i < m_step;

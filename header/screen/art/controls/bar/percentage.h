@@ -8,7 +8,7 @@
 
 class Percentage {
 private:
-    const Percents m_percentage(100.0f);
+    Percents m_percentage;
 
     unsigned char m_offset;
     unsigned char* m_position;
@@ -40,9 +40,11 @@ private:
     }
 
 public:
+    Percentage() { m_percentage.Calculate(100.0f); }
+
     unsigned short Count() { return m_percentage.Count; }
 
-    void SetOffset(short offset) { m_offset = offset; }
+    void SetOffset(unsigned char offset) { m_offset = offset; }
 
     Percentage* MemoryPosition(unsigned char* memory) {
         m_position = memory;

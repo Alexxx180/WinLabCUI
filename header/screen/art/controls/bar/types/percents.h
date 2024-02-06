@@ -11,11 +11,13 @@ struct Percents {
     unsigned short Count;
     float Max;
     
-    void Percents(float max) {
+    void Calculate(float max) {
         Max = max;
         Count = static_cast<unsigned short>(max * 10);
-        Width = std::to_string(Count).length + 3;
+
+        std::string percentage = std::to_string(Count);
+        Width = percentage.length() + 3;
     }
-}
+};
 
 #endif

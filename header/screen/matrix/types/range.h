@@ -13,9 +13,7 @@ struct Range {
         };
     }
 
-    Range Swap() {
-        return { this->P2, this->P1 };
-    };
+    Range Swap() { return { this->P2, this->P1 }; };
 
     Range SwapSizes() {
         return {
@@ -24,8 +22,8 @@ struct Range {
         };
     }
 
-    short SumX() { return this->P1.X + this->P2.X; }
-    short SumY() { return this->P1.Y + this->P2.Y; }
+    unsigned char SumX() { return this->P1.X + this->P2.X; }
+    unsigned char SumY() { return this->P1.Y + this->P2.Y; }
 };
 
 #endif
