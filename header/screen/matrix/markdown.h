@@ -20,7 +20,7 @@ class Markdown {
     public:
 
     Markdown* Screen() {
-        Grid borders(m_current);
+        Grid borders(&m_current);
         Booker content(m_forms);
         Pen::ink().Append(borders, content);
         m_forms.clear();
