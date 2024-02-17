@@ -6,12 +6,11 @@
 
 #include "screen/art/drawing.h"
 #include "screen/matrix/types/point.h"
+#include "screen/matrix/types/book.h"
 
 class Booker {
 private:
     std::vector<std::vector<Point>> m_basis;
-
-protected:
     Point m_cursor;
     Book m_book;
 
@@ -27,7 +26,7 @@ protected:
         form = m_book.Form;
 
         page = m_book.Page;
-        previous = m_basis.at(form).at(page).X
+        previous = m_basis.at(form).at(page).X;
 
         page += m_book.Span;
         next = m_basis.at(form).at(page).X;
@@ -76,23 +75,23 @@ public:
     }
 
     Booker* Size(unsigned char padding) {
-        m_page.Line = padding;
+        m_book.Line = padding;
         return this;
     }
 
     Booker* Line() {
-        m_cursor.Y += m_page.Line;
+        m_cursor.Y += m_book.Line;
         return this;
     }
 
     Booker* Up() {
-        m_cursor.Y -= m_page.Line;
+        m_cursor.Y -= m_book.Line;
         return this;
     }
 
     Booker* Line(char skip) {
         m_cursor.Y = Current()->Y;
-        m_cursor.Y += m_page.Line * skip;
+        m_cursor.Y += m_book.Line * skip;
         return this;
     }
 
@@ -109,7 +108,7 @@ public:
 
     Booker* Decoration() {
         Move();
-        Field(BasisDiff());
+        Field(&m_cursor, BasisDiff());
         Move();
         return this;
     }

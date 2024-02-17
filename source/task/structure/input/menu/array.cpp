@@ -6,7 +6,7 @@
 #include "screen/art/controls/menu/menu.h"
 #include "screen/art/controls/menu/menuitem.h"
 #include "screen/art/controls/menu/option.h"
-#include "task/structure/input/sorting/array.h"
+#include "task/structure/input/array/sorted.h"
 
 Menu array_menu;
 

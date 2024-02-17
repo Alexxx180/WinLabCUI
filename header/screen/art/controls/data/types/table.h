@@ -19,7 +19,7 @@ class Table {
             Over = m_lines.Absolute < m_records.Absolute;
         }
 
-        void Iterate() {
+        void Scroll() {
             m_lines.Iterate();
             Update();
         }

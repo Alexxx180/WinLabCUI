@@ -2,6 +2,7 @@
 
 #include "screen/interaction.h"
 #include "screen/matrix/pen.h"
+#include "screen/art/controls/menu/menu.h"
 #include "task/structure/input/menu/main.h"
 #include "task/structure/input/menu/array.h"
 #include "task/structure/input/menu/individual.h"

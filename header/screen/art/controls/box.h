@@ -13,7 +13,7 @@ private:
     std::vector<unsigned char> m_vertices;
 
     void Line(Point* cursor, void (*pins)(Point*, unsigned char), wchar_t symbol) {
-        unsigned char i = -1, count = m_vertices.size();
+        short i = -1, count = m_vertices.size();
 
         while (++i < count) {
             pins(cursor, m_vertices[i]);
@@ -58,7 +58,7 @@ public:
             Surround(gun);
     }
 
-    Box* Set(const float proportion) {
+    Box* Split(const float proportion) {
         float location = bounds.P2.Y * proportion;
         unsigned char middle = static_cast<unsigned char>(location);
         m_vertices.clear();

@@ -1,3 +1,3 @@
-#include "common/types.h"
+#include "screen/matrix/markdown.h"
 
-void FootMarkdown(struct Range* content);
+void FootMarkdown(Markdown* m);

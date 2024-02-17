@@ -1,4 +1,4 @@
-#include "task/structure/input.h"
+#include "task/structure/input/common/parameters.h"
 
 #include <string>
 

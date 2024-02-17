@@ -5,13 +5,14 @@
 #include "screen/art/controls/bar/percentage.h"
 #include "screen/art/controls/bar/progress.h"
 #include "screen/art/controls/bar/types/corners.h"
+#include "screen/art/controls/bar/divisions.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 
 class Bar : public Panel {
 private:
-    const Percentage m_percentage;
-    const Progress m_progress;
+    Percentage m_percentage;
+    Progress m_progress;
 
     Range placement;
     Point m_cursor;
@@ -19,7 +20,7 @@ private:
     Corners m_symbols;
     Stapler m_gun;
 
-    unsigned char* m_position;
+    unsigned char m_position;
     bool m_orientation;
 
     void SetOrientation() {
@@ -44,7 +45,7 @@ protected:
     Angles BottomAngles() { return m_symbols.Bottom; }
 
 public:
-    const Divisions Line;
+    Divisions Line;
 
     Bar() {
         Line.SetPercents(m_percentage.Count())->SetCursor(&m_cursor);
@@ -75,7 +76,7 @@ public:
     }
 
     Bar* Show() {
-        Line.Draw();
+        Line.Show();
         DrawAngles();
         SetOrientation();
         return this;
@@ -90,7 +91,7 @@ public:
     Bar* ProgressData(float value) {
         if (Line.Idle()) return this;
 
-        float basis = value / m_count;
+        float basis = Line.Divide(value);
         return Progress(basis);
     }
 };

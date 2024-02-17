@@ -1,35 +1,21 @@
 #include "task/forms/markdown/foot.h"
 
-#include <vector>
-
-#include "screen/art/controls/grid.h"
-#include "screen/matrix/booker.h"
-#include "screen/matrix/pen.h"
+#include "screen/matrix/markdown.h"
 #include "screen/matrix/types/point.h"
-#include "screen/matrix/types/range.h"
 
-void FootMarkdown(Range* status, short y) {
-    status->P1.Y = y + 1;
-    status->P2.Y = status.P1.Y + 3;
+void FootMarkdown(Markdown* m) {
+    unsigned char p = 3;
+    float third = 1 / 3;
 
-    short x1 = status->P1.X, y1 = status->P1.Y + 1;
-    short x2 = status->P2.X, y2 = status->P2.Y - 1;
-    short margin = 3;
-
-    std::vector<Point> alert = {
-        { x1 + margin, y2 },
-        { x2 - margin, y2 }
-    };
-    std::vector<Point> controls = {
-        { x1 + margin, y1 },
-        { x2 * 1 / 3 + margin, y1 },
-        { x2 * 2 / 3 + margin, y1 }
-    };
-
-    std::vector<std::vector<Point>> messages = { alert, controls };
-
-    Grid foot(&status->SwapXY());
-    Booker footer(messages);
-
-    Pen::ink().Append(foot, footer);
+    Point offset = { 1, 3 };
+    m->ShiftY(offset);
+    // Alert panel
+    m->P2()->PinY()->MarginY(-1)->P1()->PinX()->Page();
+    m->P2()->PinX()->MarginX(-p)->Page()->Form();
+    // Table controls
+    m->P1()->PinY()->PinX()->Page();
+    m->P2()->PinX()->RatioX(third)->MarginX(p)->Page();
+    m->P2()->PinX()->RatioX(third * 2)->MarginX(p)->Page()
+    m->Form()->Screen();
 }
+

@@ -9,24 +9,26 @@
 #include "common/texts/common.h"
 #include "input/typer.h"
 #include "screen/art/drawing.h"
-#include "screen/art/layers.h"
+#include "screen/art/types/layers.h"
 #include "screen/art/controls/grid.h"
 #include "screen/art/controls/bar.h"
 #include "screen/matrix/booker.h"
 
 class Pen {
 private:
-    Pen() { SetSignals(); }
 
-    std::vector<Grid> Out = {};
-    std::vector<Booker> Canvas = {};
+    std::vector<Grid> Out;
+    std::vector<Booker> Canvas;
 
-    Pen* (Pen::*m_write)(std::string);
+    typedef Pen* (Pen::*quoteptr)(std::string);
 
-    void SetSignals() {
-        m_write = Quote;
+//    void SetSignals() {
+  //      m_write = Quote;
         //m_write = static_cast<Pen* (Pen::*)(std::string)>(&Quote);
-    }
+    //}
+    //
+protected:
+    Pen() { }
 
 public:
     static Pen& ink() {
@@ -37,11 +39,11 @@ public:
     Bar status;
     Booker* screen;
     Grid* back;
-    Grid array;
+    Grid* array;
 
     void Reset() { system(CLEAN_COMMAND); }
 
-    Pen* (Pen::*)(std::string) Feedback() { return m_write; }
+    quoteptr Feedback() { return &Pen::Quote; }
 
     Pen* Redraw() {
         Reset();

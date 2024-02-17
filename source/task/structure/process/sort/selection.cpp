@@ -1,3 +1,5 @@
+#include "task/structure/process/sort/selection.h"
+
 #include <vector>
 
 #include "task/structure/process/sort/swap.h"
