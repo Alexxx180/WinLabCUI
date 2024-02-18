@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "task/structure/process/sort/hoar/types/stack.h"
+#include "task/structure/process/sort/swap.h"
 
 void QuickSortIterative(std::vector<short>& memory) {
     long i, j, middle, pivot;
@@ -14,7 +15,7 @@ void QuickSortIterative(std::vector<short>& memory) {
         stack.UpdateBounds();
  
         do {
-            middle = PivotIndex();
+            middle = stack.PivotIndex();
             pivot = memory[middle];
             i = stack.part.X;
             j = stack.part.Y;

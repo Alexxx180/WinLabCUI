@@ -11,15 +11,11 @@
 #include <vector>
 
 #include "screen/interaction.h"
-#include "screen/themes.h"
-#include "task/structure/input.h"
-#include "task/structure/output.h"
-#include "task/structure/process/preprocess.h"
-#include "task/structure/process.h"
-#include "task/markdown/debug.h"
-#include "task/markdown.h"
+#include "task/forms/themes.h"
+#include "task/forms/debug.h"
+#include "task/forms/markdown.h"
+#include "task/structure/input/tasks.h"
 #include "common/codes.h"
-#include "common/types.h"
 
 void StdLocaleSwitch() {
     _setmode(_fileno(stdout), _O_U16TEXT);
@@ -31,7 +27,7 @@ void SetInput() {
     numeric->status.Defaults();
 }
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     initDbgVars(argc, argv);
 

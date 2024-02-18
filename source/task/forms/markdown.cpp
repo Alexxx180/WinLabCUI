@@ -5,7 +5,7 @@
 #include "screen/matrix/markdown.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
-#include "task/forms/markdown/main.h"
+#include "task/forms/markdown/content.h"
 #include "task/forms/markdown/foot.h"
 #include "task/forms/markdown/menu.h"
 

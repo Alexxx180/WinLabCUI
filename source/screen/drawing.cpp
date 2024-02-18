@@ -31,7 +31,7 @@ void Draw(wchar_t character) {
     _putwch(character);
 }
 
-void Clean(char precision) {
+void Clean(short precision) {
     while (--precision > 0) _putwch(L' ');
 }
 

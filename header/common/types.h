@@ -3,6 +3,7 @@
 
 struct Vector2s { short X, Y; };
 struct Vector2i { int X, Y; };
+struct Vector2l { long X, Y; };
 
 struct Vector2c { unsigned char X, Y; };
 struct Vector2u { unsigned int X, Y; };

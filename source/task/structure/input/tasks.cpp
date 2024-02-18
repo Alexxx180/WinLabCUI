@@ -3,9 +3,9 @@
 #include "screen/interaction.h"
 #include "screen/matrix/pen.h"
 #include "screen/art/controls/menu/menu.h"
-#include "task/structure/input/menu/main.h"
+#include "task/structure/input/menu/entrance.h"
 #include "task/structure/input/menu/array.h"
-#include "task/structure/input/menu/individual.h"
+#include "task/structure/input/menu/extra.h"
 
 char DetermineExit(Menu* menu) {
     Pen::ink().Target(FOOT)->Quote("status_menu_navigation");

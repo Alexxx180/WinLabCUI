@@ -1,5 +1,5 @@
 #ifndef TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK
-#ifndef TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK 512
+#define TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK 512
 
 #include "common/types.h"
 
@@ -42,7 +42,6 @@ struct HoarStack {
         }
         part.Y = iteration;
     }
-
 };
 
 #endif

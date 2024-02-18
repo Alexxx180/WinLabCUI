@@ -3,4 +3,4 @@
 void StdLocaleSwitch();
 void SetInput();
 char Program();
-int main();
+int main(int argc, char** argv);

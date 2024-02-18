@@ -40,7 +40,7 @@ class DataGrid {
             if (page_character_results)
                 table.Length();
             else {
-                Pen::ink().Text(caption);
+                Pen::ink().Quote("status_pages");
                 table.Pages.Length();
             }
 

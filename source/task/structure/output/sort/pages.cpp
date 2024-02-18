@@ -30,7 +30,7 @@ void OutputArray(Table* table) {
     Pen::ink().screen->Line(0);
     OutputArrayRow(original, table);
 
-    table.SetLines(backup);
+    table->SetLines(&backup);
 
     Pen::ink().screen->Line(1);
     OutputArrayRow(sorted, table);

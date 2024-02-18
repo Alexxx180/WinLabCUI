@@ -1,20 +1,28 @@
 #include "task/structure/output/sort.h"
 
-#include "screen/art/controls/layers.h"
+#include "screen/art/types/layers.h"
+#include "screen/art/controls/data/types/page.h"
+#include "screen/art/controls/data/datagrid.h"
 #include "screen/interaction.h"
 #include "screen/matrix/pen.h"
+#include "task/structure/output/sort/pages.h"
 
 void OutputArraySort() {
     unsigned char lines;
 
-    Pen::ink().array->Rows.Set(0.5f);
-    Pen::ink().array->Columns.Set(0.22f);
+    DataGrid model;
+
+    Pen::ink().array.Rows.Split(0.5f);
+    Pen::ink().array.Columns.Split(0.22f);
     Pen::ink().array.Show();
 
     lines = Pen::ink().back->Columns.Rib(1);
     
-    Page records = { original.size(), lines };
-    model.table.SetRecords(records);
+    Page records;
+    records.Relative = lines;
+    records.Absolute = original.size();
+
+    model.table.SetRecords(&records);
 
     Pen::ink().Target(FOOT);
     model.OutputControls();
@@ -22,7 +30,8 @@ void OutputArraySort() {
     Pen::ink().Target(MAIN);
     model.PagesPrint();
 
-    Await(model.Query, ESC);
+    char (DataGrid::*query)() = &DataGrid::Query;
+    Await(&model, query, ESC);
 
     Pen::ink().Redraw();
     Pen::ink().Target(FOOT);
