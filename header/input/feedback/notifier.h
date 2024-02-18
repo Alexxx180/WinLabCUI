@@ -9,7 +9,7 @@
 class Notifier {
 private:
     short m_server;
-    Pen* (Pen::*m_signal)(std::string) = NULL;
+    Pen::quoteptr m_signal;
 
 public:
     void Notify(std::string message) {
@@ -22,14 +22,13 @@ public:
         return this;
     }
 
-    Notifier* Signal(Pen* (Pen::*signal)(std::string)) {
+    Notifier* Signal(Pen::quoteptr signal) {
         m_signal = signal;
         return this;
     }
 
     void Defaults() {
         Server(FOOT)->Signal(Pen::ink().Feedback());
-        return this;
     }
 };
 

@@ -16,21 +16,15 @@
 
 class Pen {
 private:
-
     std::vector<Grid> Out;
     std::vector<Booker> Canvas;
 
-    typedef Pen* (Pen::*quoteptr)(std::string);
-
-//    void SetSignals() {
-  //      m_write = Quote;
-        //m_write = static_cast<Pen* (Pen::*)(std::string)>(&Quote);
-    //}
-    //
 protected:
     Pen() { }
 
 public:
+    typedef Pen* (Pen::*quoteptr)(std::string);
+
     static Pen& ink() {
         static Pen instance;
         return instance;
@@ -39,7 +33,8 @@ public:
     Bar status;
     Booker* screen;
     Grid* back;
-    Grid* array;
+
+    Grid array;
 
     void Reset() { system(CLEAN_COMMAND); }
 

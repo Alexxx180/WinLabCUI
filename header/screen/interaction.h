@@ -25,6 +25,8 @@ char Select(std::vector<char> targets);
 char Next();
 char Next(char target);
 char Await(char (*program)(), char target);
+template<class TYPE>
+char Await(TYPE* instance, char (TYPE::*program)(), char target);
 void Await(bool (*program)());
 
 #endif

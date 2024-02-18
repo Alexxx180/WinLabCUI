@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <conio.h>
-#include <string.h>
+#include <string>
 
 #include "screen/interaction.h"
 #include "common/texts/errors.h"
@@ -27,8 +27,8 @@ public:
 
         if (isInvalid)
         {
-            wchar_t* text = errors["invalid_character"].c_str();
-            fwprintf(stderr, L"%s\n", text);
+            std::wstring text = errors["invalid_character"];
+            fwprintf(stderr, L"%s\n", text.c_str());
             fwprintf(stderr, L"\t%s\n", m_buffer);
             MarkCharacter();
         }
@@ -44,16 +44,12 @@ public:
     void Convert(TYPE* value) { }
 
     template <>
-    void Convert(short* value)
-    {
+    void Convert(short* value) {
         *value = wcstol(m_buffer, &m_end, system);
     }
 
     template <>
-    void Convert(float* value)
-    {
-        *value = wcstof(m_buffer, &m_end);
-    }
+    void Convert(float* value) { *value = wcstof(m_buffer, &m_end); }
 };
 
 #endif

@@ -6,8 +6,8 @@
 
 void ProgramName() {
     Pen::ink().Reset();
-    Pen::ink().Target(FOOT).screen->Show();
-    Pen::ink().Target(MAIN).screen->Show();
+    Pen::ink().Target(FOOT)->back->Show();
+    Pen::ink().Target(MAIN)->back->Show();
     Pen::ink().screen->Form(0)->Page(0)->Line(0)->Size(3);
     Pen::ink().Quote("program_header")->screen->Line();
     Pen::ink().Quote("program_name")->screen->Line();

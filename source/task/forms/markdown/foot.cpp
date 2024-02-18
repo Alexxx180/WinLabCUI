@@ -15,7 +15,7 @@ void FootMarkdown(Markdown* m) {
     // Table controls
     m->P1()->PinY()->PinX()->Page();
     m->P2()->PinX()->RatioX(third)->MarginX(p)->Page();
-    m->P2()->PinX()->RatioX(third * 2)->MarginX(p)->Page()
+    m->P2()->PinX()->RatioX(third * 2)->MarginX(p)->Page();
     m->Form()->Screen();
 }
 

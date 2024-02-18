@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 
-class Option {
+#include "screen/art/controls/menu/navigation.h"
+
+class Option : public Navigation {
     private:
         std::string* m_caption;
         std::vector<std::string> m_values;
@@ -19,8 +21,10 @@ class Option {
             }
         }
 
+    protected:
         void Previous() { Iterate(-1); }
         void Next() { Iterate(1); }
+        void Action() { Next(); }
 
     public:
         short SelectedIndex() { return m_selection; }
@@ -40,27 +44,6 @@ class Option {
             m_caption = caption;
             *m_caption = m_values[m_selection];
         }
-
-        char Select() {
-            char code = Select(menu_input_keys);
-
-            switch (code) {
-                case ENTER:
-                case KEY_DOWN:
-                case KEY_RIGHT:
-                    Next();
-                    break;
-                case KEY_UP:
-                case KEY_LEFT:
-                    Previous();
-                    break;
-                default:
-                    break;
-            }
-
-            return code;
-        }
 };
 
 #endif
-

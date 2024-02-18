@@ -6,7 +6,7 @@
 
 #include "common/texts/common.h"
 #include "task/structure/input/common/data.h"
-#include "task/structure/input/sorting/parameters.h"
+#include "task/structure/input/menu/array.h"
 #include "task/structure/markdown/debug.h"
 #include "task/structure/menu/array.h"
 #include "task/forms/debug.h"

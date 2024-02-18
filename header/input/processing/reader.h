@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <conio.h>
-#include <string.h>
+#include <string>
 
 #include "screen/interaction.h"
 #include "common/texts/errors.h"
@@ -24,10 +24,10 @@ public:
         bool isOverflow = m_buffer[m_length - 1] != '\n';
 
         if (isOverflow) {
-            wchar_t* text = errors["overflow"].c_str();
+            std::wstring text = errors["overflow"];
             wscanf_s(L"%*[^\n]");
             wscanf_s(L"%*c");
-            fwprintf(stderr, text, MAX_BUFFER);
+            fwprintf(stderr, text.c_str(), MAX_BUFFER);
         }
 
         return isOverflow;
@@ -38,8 +38,8 @@ public:
 
         bool isEmpty = m_length <= 0;
         if (isEmpty) {
-            wchar_t* text = errors["empty_string"].c_str();
-            fwprintf(stderr, L"%s\n", text);
+            std::wstring text = errors["empty_string"];
+            fwprintf(stderr, L"%s\n", text.c_str());
         }
 
         return isEmpty;

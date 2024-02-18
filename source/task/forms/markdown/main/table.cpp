@@ -14,6 +14,6 @@ void TableMarkdown(Range* content) {
     placement.P1.Y = placement.P2.Y - margin - 2;
     placement.P2.Y += 3;
 
-    Grid output(placement);
+    Grid output(&placement);
     Pen::ink().array = output;
 }

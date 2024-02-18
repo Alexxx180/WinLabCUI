@@ -36,8 +36,8 @@ class Markdown {
         m_pages.push_back(m_booker);
     }
 
-    Markdown* Base(Range origin) {
-        m_origin = origin;
+    Markdown* Base(Range* origin) {
+        m_origin = *origin;
     }
 
     Markdown* Origin() {

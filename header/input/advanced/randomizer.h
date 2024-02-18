@@ -1,8 +1,10 @@
+#ifndef INPUT_ADVANCED_RANDOMIZER
+#define INPUT_ADVANCED_RANDOMIZER
+
 #include "input/boundary.h"
 
 template <typename TYPE>
-struct Randomizer<TYPE> {
-
+struct Randomizer {
     Boundary<TYPE> limits;
 
     Randomizer() { }
@@ -17,5 +19,6 @@ struct Randomizer<TYPE> {
 
         return rand() % size + start;
     }
+};
 
-}
+#endif

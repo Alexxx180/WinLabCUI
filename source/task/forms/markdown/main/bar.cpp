@@ -4,6 +4,7 @@
 #include "screen/matrix/pen.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
+#include "screen/art/controls/bar/types/corners.h"
 
 void BarMarkdown(Range* content) {
     unsigned char margin = 3;
@@ -15,9 +16,12 @@ void BarMarkdown(Range* content) {
     size.P1.Y = size.P2.Y - margin - 1;
     size.P2.Y = 2;
 
-    Frame edges = {
-        { 95, 46, 8254 }, { 124, 39, 124 },
-        { 32, 32 }, { 32, 32 }, 32
+    wchar_t pipe = 448, underscore = 818;
+    Angles blank = { 32, 32 };
+
+    Corners edges = {
+        { underscore, 39 }, { pipe, 46 }, { pipe, pipe },
+        { underscore, 8254 }, blank, blank
     };
 
     Pen::ink().status.SetSize(&size);

@@ -51,6 +51,8 @@ public:
     Box Rows;
     Box Columns;
 
+    Grid() { }
+
     Grid(Range* sizes) {
         m_sizes = *sizes;
         Rows.bounds = *sizes;

@@ -1,3 +1,3 @@
-#include "screen/matrix/markdown.h"
+#include "screen/matrix/types/range.h"
 
-void BarMarkdown(Markdown* m);
+void BarMarkdown(Range* content);
