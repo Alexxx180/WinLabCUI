@@ -6,9 +6,11 @@
 #include "input/feedback/verifier.h"
 #include "screen/matrix/pen.h"
 
-void InputParameterName(std::wstring) {
+char field = 3;
+
+void InputParameterName(std::wstring name) {
     Pen::ink().screen->Line()->Move();
-    Pen::ink().Text(L" ", parameter);
+    Pen::ink().Text(L" ", name);
 }
 
 template<typename TYPE>
@@ -17,7 +19,7 @@ void InputParameterValue(Verifier<TYPE>* limit) {
     Pen::ink().Input(limit);
 }
 
-void InputParameterFeedback(std::wstring) {
+void InputParameterFeedback(std::wstring parameter) {
     Pen::ink().screen->Page(0)->Move()->Span(field);
     Pen::ink().screen->Clear()->Move()->Span(1);
     Pen::ink().Text(L" = ", parameter);

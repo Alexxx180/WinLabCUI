@@ -1,6 +1,6 @@
 #include "task/structure/output/sort/common.h"
 
-#include "screen/art/controls/layers.h"
+#include "screen/art/types/layers.h"
 #include "screen/matrix/pen.h"
 
 void OutputCommonHeader() {
@@ -11,9 +11,9 @@ void OutputCommonHeader() {
 }
 
 void OutputArraySortHead() {
-    Pen::ink().screen.Span(1)->Form(1)->Size(2);
+    Pen::ink().screen->Span(1)->Form(1)->Size(2);
     Pen::ink().Quote("output_source_array");
 
-    Pen::ink().screen.Line();
+    Pen::ink().screen->Line();
     Pen::ink().Quote("output_sorted_array");
 }

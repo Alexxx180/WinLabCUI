@@ -3,11 +3,18 @@
 
 #include "task/forms/debug.h"
 
-struct Page {
+class Page {
+private:
     const unsigned char Top = 0;
 
+public:
     unsigned char Relative;
     unsigned int Absolute;
+
+    void Set(Page* page) {
+        this->Relative = page->Relative;
+        this->Absolute = page->Absolute;
+    }
 
     void Iterate() {
         Relative += page_listing;

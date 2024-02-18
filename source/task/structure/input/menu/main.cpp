@@ -14,12 +14,12 @@ void MainMenu() {
 
     MenuItem tasks, exit;
 
-    tasks.SetItems()->SetOrientation(false);
+    tasks.SetItems()->SetDirection(false);
     tasks.Add(&task1)->Add(&task2);
     tasks.SetCaption("menu_tasks");
 
     exit.SetExit()->SetCaption("menu_exit");
 
-    main_menu.SetItems()->SetOrientation(false);
+    main_menu.SetItems()->SetDirection(false);
     main_menu.Add(&tasks)->Add(&exit);
 }

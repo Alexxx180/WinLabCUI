@@ -1,8 +1,8 @@
-#include "task/structure/input/menu/array.h"
+#include "task/structure/input/menu/individual.h"
 
 #include "screen/art/controls/menu/menu.h"
 #include "screen/art/controls/menu/menuitem.h"
-#include "task/structure/input/individual/task.h"
+#include "task/structure/process/individual.h"
 
 Menu individual_menu;
 
@@ -14,6 +14,6 @@ void IndividualMenu() {
 
     exit.SetCaption("menu_exit")->SetExit();
 
-    array_menu.SetItems()->SetOrientation(false);
-    array_menu.Add(&array)->Add(&exit);
+    individual_menu.SetItems()->SetDirection(false);
+    individual_menu.Add(&result)->Add(&exit);
 }

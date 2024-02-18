@@ -5,18 +5,18 @@
 
 #include "common/texts/common.h"
 #include "input/boundary.h"
-#include "task/structure/input/sorting/parameters.h"
-#include "task/structure/markdown/debug.h"
-#include "task/structure/menu/array.h"
+#include "task/forms/debug.h"
+#include "task/structure/input/menu/array.h"
 #include "task/structure/input/array/original.h"
 #include "task/structure/process/sort/insertions.h"
 #include "task/structure/process/sort/selection.h"
 #include "task/structure/process/sort/hoar/iterative.h"
 #include "task/structure/process/sort/hoar/recursive.h"
 #include "task/structure/output/sort/common.h"
+#include "task/structure/output/sort/pages.h"
 #include "task/structure/output/sort.h"
 
-void (*array_sort)(std::vector<short>&)[4] = {
+void (*array_sort[4])(std::vector<short>&) = {
     HoarRecursive, QuickSortIterative,
     InsertionsSort, SelectionSort
 };
@@ -24,16 +24,14 @@ void (*array_sort)(std::vector<short>&)[4] = {
 void StartArraySort() {
     OutputCommonHeader();
 
-    Boundary<short> limits(1, 20);
+    Boundary<char> limits(1, 20);
     numeric->Bounds(&limits);
 
-    short size = numeric->result;
-
+    char size = numeric->result;
     original = ArrayInputLoop(size);
     sorted = original;
 
-    short option = array_menu[0][1].values.SelectedIndex();
-
+    short option = array_menu[0][1].GetValue();
     array_sort[option](sorted);
 
     OutputArraySortHead();

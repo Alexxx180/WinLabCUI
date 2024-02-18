@@ -7,8 +7,7 @@
 
 class Table {
     private:
-        Page m_lines;
-        Page m_records;
+        Page m_lines, m_records;
 
     public:
         Scroll Pages;
@@ -25,14 +24,14 @@ class Table {
         }
 
         void SetRecords(Page* records) {
-            m_records = *records;
+            m_records.Set(records);
             Pages.Bottom = m_records.Split();
         }
 
-        Page* GetLines() { return *m_lines; }
+        Page* GetLines() { return &m_lines; }
 
         void SetLines(Page* lines) {
-            m_lines = *lines;
+            m_lines.Set(lines);
             Update();
         }
 

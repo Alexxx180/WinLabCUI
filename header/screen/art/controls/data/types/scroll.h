@@ -2,6 +2,7 @@
 #define SCREEN_ART_CONTROLS_DATA_TYPES_SCROLL
 
 #include "task/forms/debug.h"
+#include "screen/matrix/pen.h"
 
 struct Scroll {
     const unsigned char Top = 1;

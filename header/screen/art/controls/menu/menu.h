@@ -1,5 +1,5 @@
-#define SCREEN_ART_CONTROLS_MENU
-#define SCREEN_ART_CONTROLS_MENU
+#ifndef SCREEN_ART_CONTROLS_MENU_MENU
+#define SCREEN_ART_CONTROLS_MENU_MENU
 
 #include <vector>
 #include "screen/matrix/types/point.h"
@@ -11,32 +11,36 @@ class Menu : public MenuItem {
             Point offset = m_item.Position;
 
             if (m_item.Direction.X > 0)
-                offset.X += m_items.size();
+                offset.X += m_items->size();
             else
-                offset.Y += m_items.size();
+                offset.Y += m_items->size();
 
             return offset;
         }
 
     public:
+        Menu* Expand() {
+            MenuItem::Expand();
+            return this;
+        }
+
         Menu* SetDirection(bool vertical) {
-            Base::SetDirection(vertical);
+            MenuItem::SetDirection(vertical);
             return this;
         }
 
         Menu* SetItems() {
-            m_command = Expand;
-            m_items = new std::vector<MenuItem>();
+            MenuItem::SetItems();
             return this;
         }
 
         Menu* SetExit() {
-            Base::SetExit();
+            MenuItem::SetExit();
             return this;
         }
 
         Menu* Add(MenuItem* item) {
-            Base::Add(item);
+            MenuItem::Add(item);
             return this;
         }
 };

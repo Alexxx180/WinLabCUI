@@ -26,4 +26,4 @@ void setDbgVar(char **argv) {
 bool page_character_results = false;
 int page_listing = 1;
 
-Verifier<short>* numeric = new Verifier<short>();
+Verifier<char>* numeric = new Verifier<char>();

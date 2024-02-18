@@ -13,28 +13,28 @@ Menu array_menu;
 void ArrayMenu() {
     MenuItem result, sort, input, type;
 
-    std::vector<std::vector<string>> options = ArrayMenuOptions();
+    std::vector<std::vector<std::string>> options = ArrayMenuOptions();
 
     result.SetCaption("menu_array_sort");
     result.SetCommand(StartArraySort);
 
-    sort.SetValues(new Option()->Values(options[0])->Current(0));
-    input.SetValues(new Option()->Values(options[1])->Current(0));
-    type.SetValues(new Option()->Values(options[2])->Current(0));
+    sort.SetValues((new Option())->Values(options[0])->Current(0));
+    input.SetValues((new Option())->Values(options[1])->Current(0));
+    type.SetValues((new Option())->Values(options[2])->Current(0));
 
     MenuItem array, exit;
 
     array.SetCaption("menu_tasks");
-    array.SetItems()->SetOrientation(false)
+    array.SetItems()->SetDirection(false);
     array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);
 
     exit.SetCaption("menu_exit")->SetExit();
 
-    array_menu.SetItems()->SetOrientation(true);
+    array_menu.SetItems()->SetDirection(true);
     array_menu.Add(&array)->Add(&exit);
 }
 
-std::vector<std::vector<string>> ArrayMenuOptions() {
+std::vector<std::vector<std::string>> ArrayMenuOptions() {
     return {
         {
             "menu_sort_array_insertions",

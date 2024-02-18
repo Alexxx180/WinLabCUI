@@ -5,5 +5,5 @@
 
 extern Menu array_menu;
 
-void ArrayMenu()
-std::vector<std::vector<string>> ArrayMenuOptions();
+void ArrayMenu();
+std::vector<std::vector<std::string>> ArrayMenuOptions();

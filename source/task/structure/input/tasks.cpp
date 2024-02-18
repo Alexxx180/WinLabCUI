@@ -10,7 +10,10 @@
 char DetermineExit(Menu* menu) {
     Pen::ink().Target(FOOT)->Quote("status_menu_navigation");
     Pen::ink().Target(MENU);
-    Await(menu.Query, ESC);
+
+    char (Menu::*query)() = &Menu::Query;
+    Await(menu, query, ESC);
+
     Pen::ink().Target(FOOT)->Quote("status_exit");
     return Select(ESC, ENTER);
 }

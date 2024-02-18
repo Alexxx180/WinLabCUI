@@ -3,10 +3,13 @@
 #include "input/boundary.h"
 #include "input/advanced/randomizer.h"
 
-Randomizer<char> randomc(new Boundary<char>(-99, 99));
+Boundary<char> RandomLimits() {
+    Boundary<char> limits(-99, 99);
+    return limits;
+}
+
+Randomizer<char> randomc = { RandomLimits() };
 
 void FillArray(char size, char* array) {
-    char i = N;
-    while (--i > 0)
-        array[i] = randomc.Standard();
+    while (--size > 0) array[size] = randomc.Standard();
 }

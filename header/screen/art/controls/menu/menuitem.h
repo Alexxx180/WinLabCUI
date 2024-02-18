@@ -71,7 +71,6 @@ class MenuItem : public Navigation {
         void ExitTheMenu() { m_item.Code = ESC; }
 
     public:
-
         MenuItem& at(short item) { return m_items->at(item); }
         MenuItem& operator[](short item) { return at(item); }
 
