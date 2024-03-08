@@ -30,9 +30,9 @@ void SetInput() {
 int main(int argc, char** argv)
 {
     initDbgVars(argc, argv);
-
     StdLocaleSwitch();
     SetInput();
+
     Resize();
 
     char code = Header();

@@ -28,10 +28,12 @@ class Panel {
             cursor.X = BasePoint();
 
             anchor = TopAnchor();
+			//wprintf(L"TOP: %i, %i", anchor.X, anchor.Y);
             AnglePattern(&cursor, &anchor, TopAngles());
 
             anchor = BottomAnchor();
-            AnglePattern(&cursor, &anchor, BottomAngles());
+			//wprintf(L"BOT: %i, %i", anchor.X, anchor.Y);
+            AnglePattern(&cursor, &anchor, BottomAngles().Swap());
         }
 };
 

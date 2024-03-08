@@ -6,12 +6,7 @@
 #include "screen/art/types/frame.h"
 #include "screen/matrix/types/point.h"
 
-static Frame form_edges = {
-    { 9568, 9552, 9571 },
-    { 9574, 9553, 9577 },
-    { 9556, 9559 },
-    { 9562, 9565 }, 9580
-};
+static Frame form_edges = InitFormEdges();
 
 void MoveCursor(Point* cursor);
 void Draw(wchar_t character);

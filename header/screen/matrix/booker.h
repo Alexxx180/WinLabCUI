@@ -37,6 +37,7 @@ private:
     void PageCheck(unsigned char limit) {
         if (limit >= m_basis.at(m_book.Form).size())
             throw std::overflow_error("Span > max columns!");
+
     }
 
 public:
@@ -45,7 +46,7 @@ public:
     Booker(std::vector<std::vector<Point>> basis) {
         m_cursor = basis.at(0).at(0);
         m_basis = basis;
-        Form(0)->Span(0)->Page(0)->Size(0);
+        m_book = { 0, 0, 0, 0 };
     }
 
     Booker* Form(unsigned char buffer) {

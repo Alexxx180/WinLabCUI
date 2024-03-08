@@ -41,7 +41,7 @@ private:
 protected:
     unsigned char BasePoint() { return m_sizes.P1.X; }
 
-    Point TopAnchor() { return { m_sizes.P1.Y, m_sizes.P2.X }; }
+    Point TopAnchor() { return { m_sizes.P2.X, m_sizes.P1.Y }; }
     Point BottomAnchor() { return { m_sizes.P2.Y, m_sizes.P1.X }; }
 
     Angles TopAngles() { return form_edges.top; };

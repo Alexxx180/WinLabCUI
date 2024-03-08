@@ -13,13 +13,13 @@ class Markdown {
     private:
         std::vector<std::vector<Point>> m_forms;
         std::vector<Point> m_pages;
-        Range m_origin, m_current;
+        Range m_origin, m_frame;
         Point m_booker;
         Point* m_next;
 
     public:
         Markdown* Screen() {
-            Grid borders(&m_current);
+            Grid borders(&m_frame.SwapXY());
             Booker content(m_forms);
             Pen::ink().Append(borders, content);
             m_forms.clear();
@@ -43,29 +43,29 @@ class Markdown {
         }
 
         Markdown* Origin() {
-            m_current = m_origin;
+            m_frame = m_origin;
             return this;
         }
 
         Markdown* ShiftX(Point offset) {
-            m_current.P1.X = m_current.P2.X + offset.X;
-            m_current.P2.X = m_current.P1.X + offset.Y;
+            m_frame.P1.X = m_frame.P2.X + offset.X;
+            m_frame.P2.X = m_frame.P1.X + offset.Y;
             return this;
         }
 
         Markdown* ShiftY(Point offset) {
-            m_current.P1.Y = m_current.P2.Y + offset.X;
-            m_current.P2.Y = m_current.P1.Y + offset.Y;
+            m_frame.P1.Y = m_frame.P2.Y + offset.X;
+            m_frame.P2.Y = m_frame.P1.Y + offset.Y;
             return this;
         }
 
         Markdown* P1() {
-            m_next = &m_current.P1;
+            m_next = &m_frame.P1;
             return this;
         }
 
         Markdown* P2() {
-            m_next = &m_current.P2;
+            m_next = &m_frame.P2;
             return this;
         }
 
@@ -90,7 +90,7 @@ class Markdown {
         }
 
         Markdown* MarginX(unsigned char margin) {
-            m_booker.X *= margin;
+            m_booker.X += margin;
             return this;
         }
 

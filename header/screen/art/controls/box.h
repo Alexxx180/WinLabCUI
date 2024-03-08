@@ -17,8 +17,9 @@ private:
 
         while (++i < count) {
             pins(cursor, m_vertices[i]);
+			//wprintf(L"Cursor: %i, %i \n", cursor->X, cursor->Y);
             MoveCursor(cursor);
-            Draw(symbol);
+			Draw(symbol);
         }
     }
 
@@ -36,6 +37,7 @@ private:
 
         gun->progress(&cursor, i);
         Line(&cursor, gun->pins, line.right);
+		//wprintf(L"Cursor: %i, %i \n", cursor->X, cursor->Y);
     }
 
 public:
