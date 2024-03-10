@@ -37,6 +37,7 @@ class MenuItem : public Navigation {
             short size = m_items->size();
 			while(--size >= 0)
                 at(size).Focus()->Draw();
+			at(0).Focus();
 		}
 
         char Expand() {
@@ -67,15 +68,10 @@ class MenuItem : public Navigation {
         char ExitTheMenu() { return ESC; }
 
     public:
-		short End() {
-			return m_limits.end;
-		}
         MenuItem& at(short item) { return m_items->at(item); }
         MenuItem& operator[](short item) { return at(item); }
 
-        short GetValue() {
-            return m_values->SelectedIndex();
-        }
+        short GetValue() { return m_values->SelectedIndex(); }
 
         char Command() {
 			char code;

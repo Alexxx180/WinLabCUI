@@ -20,15 +20,17 @@ void AbsoluteInterval() {
 
     FillArray(N, A); FillArray(N, B); FillArray(N, C);
 
-    Pen::ink().Text("D1 = 0, ")->Text("D2 = ");
-    Pen::ink().Text(randomc.limits.end);
-    Pen::ink().screen->Line();
+	Pen::ink().Quote("individual_source_data");
+	Pen::ink().Text(": N = ")->Text(N);
+    Pen::ink().Text(", D1 = 0, D2 = ");
+    Pen::ink().FText(L"%i", randomc.limits.end);
 
+	Pen::ink().screen->Line();
     OutputIndividualArray(name[0], N, A);
     OutputIndividualArray(name[1], N, B);
     OutputIndividualArray(name[2], N, C);
 
-    while (--i > 0) {
+    while (--i >= 0) {
         max[0] += A[i];
         max[1] += B[i];
         max[2] += C[i];
@@ -37,24 +39,29 @@ void AbsoluteInterval() {
     for (char c = 1; c < 3; c++)
         if (max[current] < max[c]) current = c;
 
+	Pen::ink().screen->Line();
     OutputArrayIntervalSum(name[current], max[current]);
 }
 
 void NumberOfMaxElement() {
     char T = 15;
-    OutputMaxArrayElementStart(T);
+    OutputMaxArrayElementStart(N, T);
 
     FillArray(N, A);
 
     for (char i = 0; i < N; i++)
         if (A[i] > T) T = A[i];
 
+	Pen::ink().screen->Line();
     OutputIndividualArray(L"A", N, A);
     OutputMaxArrayElement(T);
 }
 
 void StartIndividual() {
+	Pen::ink().Target(MAIN);
+	Pen::ink().screen->Page(0)->Size(1)->Line(0)->Move();
     Pen::ink().Quote("individual_arrays");
     AbsoluteInterval();
     NumberOfMaxElement();
+	Pen::ink().Target(MENU)->screen->Move();
 }

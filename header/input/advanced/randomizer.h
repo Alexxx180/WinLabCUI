@@ -1,6 +1,7 @@
 #ifndef INPUT_ADVANCED_RANDOMIZER
 #define INPUT_ADVANCED_RANDOMIZER
 
+#include <cstdlib>
 #include "input/boundary.h"
 
 template <typename TYPE>
@@ -14,9 +15,8 @@ struct Randomizer {
     }
 
     TYPE Standard() {
-        TYPE start = limits.start;
-        long size = limits.start + limits.end + 1;
-
+		TYPE start = limits.start;
+		long size = static_cast<long>(abs(start) + limits.end + 1);
         return rand() % size + start;
     }
 };

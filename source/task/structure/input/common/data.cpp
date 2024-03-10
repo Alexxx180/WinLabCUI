@@ -11,5 +11,5 @@ Boundary<char> RandomLimits() {
 Randomizer<char> randomc = { RandomLimits() };
 
 void FillArray(char size, char* array) {
-    while (--size > 0) array[size] = randomc.Standard();
+    while (--size >= 0) array[size] = randomc.Standard();
 }
