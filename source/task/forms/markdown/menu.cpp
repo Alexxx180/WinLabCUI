@@ -4,14 +4,14 @@
 #include "screen/matrix/types/point.h"
 
 void MenuMarkdown(Markdown* m) {
-    unsigned char p = 3;
-    float third = 1 / 3;
+    unsigned char margin = 3;
 
-    Point offset = { 1, 2 };
-    m->ShiftY(offset);
+    Point panelOffset = { 1, 2 };
+    m->ShiftY(panelOffset);
     // Menu panel
     m->P1()->PinY()->MarginY(1);
-    m->P1()->PinX()->MarginX(p)->Page();
-    m->P2()->PinX()->RatioX(third)->MarginX(p)->Page();
-    m->P2()->PinX()->MarginX(-p)->Page()->Form()->Screen();
+    m->P1()->PinX()->MarginX(margin)->Page();
+    m->P2()->PinX()->RatioX(0.25)->Page();
+    m->P2()->PinX()->MarginX(-margin)->Page();
+	m->Form()->Screen();
 }

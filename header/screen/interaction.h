@@ -7,10 +7,10 @@
 #define END 79
 #define HOME 71
 
-#define KEY_LEFT 37
-#define KEY_UP 38
-#define KEY_RIGHT 39
-#define KEY_DOWN 40
+#define KEY_LEFT 75
+#define KEY_UP 72
+#define KEY_RIGHT 77
+#define KEY_DOWN 80
 
 #define MAX_BUFFER 5
 

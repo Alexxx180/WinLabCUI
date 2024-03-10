@@ -43,6 +43,11 @@ char Next() { return _getch(); }
 
 char Next(char target) { return Await(Next, target); }
 
+void Await(bool (*program)()) {
+    bool exit;
+    do { exit = program(); } while (!exit);
+}
+
 char Await(char (*program)(), char target) {
     char code;
     
@@ -52,10 +57,4 @@ char Await(char (*program)(), char target) {
     while (code != target);
 
     return code;
-}
-
-
-void Await(bool (*program)()) {
-    bool exit;
-    do { exit = program(); } while (!exit);
 }

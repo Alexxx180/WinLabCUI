@@ -7,39 +7,33 @@
 #include "task/structure/input/menu/array.h"
 #include "task/structure/input/menu/extra.h"
 
-char DetermineExit(Menu* menu) {
+Menu* current_menu = NULL;
+
+char DetermineExit() {
     Pen::ink().Target(FOOT)->Quote("status_menu_navigation");
-    Pen::ink().Target(MENU);
+    Pen::ink().Target(MENU)->screen->Move();
 
     char (Menu::*query)() = &Menu::Query;
-    Await(menu, query, ESC);
+    Await(current_menu, query, ESC);
 
-    Pen::ink().Target(FOOT)->Quote("status_exit");
+    Pen::ink().Target(FOOT)->Quote("status_confirm_exit");
     return Select(ESC, ENTER);
 }
 
-char MainMenuLoop() { return DetermineExit(&main_menu); }
-
-char ArrayMenuLoop() { return DetermineExit(&array_menu); }
-
-char IndividualMenuLoop() {
-    return DetermineExit(&individual_menu);
+void MenuLoop(Menu* menu) {
+	Pen::ink().Redraw();
+	Pen::ink().Target(MENU)->screen->Move();
+	current_menu = menu;
+    current_menu->Expand();
+    Await(DetermineExit, ENTER);
 }
 
-void ArraySort() {
-    Pen::ink().Redraw();
-    array_menu.Expand();
-    Await(ArrayMenuLoop, ENTER);
-}
+void ArraySort() { MenuLoop(&array_menu); }
+void Individual() { MenuLoop(&individual_menu); }
+void Input() { MenuLoop(&main_menu); }
 
-void Individual() {
-    Pen::ink().Redraw();
-    individual_menu.Expand();
-    Await(IndividualMenuLoop, ENTER);
-}
-
-void Input() {
-    Pen::ink().Redraw();
-    main_menu.Expand();
-    Await(MainMenuLoop, ENTER);
+void MenuInit() {
+	MainMenu();
+	ArrayMenu();
+	IndividualMenu();
 }

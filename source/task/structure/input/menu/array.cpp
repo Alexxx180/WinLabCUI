@@ -6,11 +6,13 @@
 #include "screen/art/controls/menu/menu.h"
 #include "screen/art/controls/menu/menuitem.h"
 #include "screen/art/controls/menu/option.h"
+#include "screen/matrix/types/point.h"
 #include "task/structure/input/array/sorted.h"
 
 Menu array_menu;
 
 void ArrayMenu() {
+	Point position = { 0, 0 };
     MenuItem result, sort, input, type;
 
     std::vector<std::vector<std::string>> options = ArrayMenuOptions();
@@ -31,7 +33,7 @@ void ArrayMenu() {
     exit.SetCaption("menu_exit")->SetExit();
 
     array_menu.SetItems()->SetDirection(true);
-    array_menu.Add(&array)->Add(&exit);
+    array_menu.Add(&array)->Add(&exit)->Index(position);
 }
 
 std::vector<std::vector<std::string>> ArrayMenuOptions() {

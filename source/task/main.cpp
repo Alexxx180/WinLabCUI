@@ -20,7 +20,7 @@
 void StdLocaleSwitch() {
     _setmode(_fileno(stdout), _O_U16TEXT);
     _setmode(_fileno(stdin),  _O_U16TEXT);
-    _setmode(_fileno(stderr), _O_U16TEXT);   
+    _setmode(_fileno(stderr), _O_U16TEXT);
 }
 
 void SetInput() {
@@ -34,6 +34,7 @@ int main(int argc, char** argv)
     SetInput();
 
     Resize();
+	MenuInit();
 
     char code = Header();
     if (code == ENTER) Input();

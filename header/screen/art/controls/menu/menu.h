@@ -7,20 +7,16 @@
 
 class Menu : public MenuItem {
     private:
-        Point GetOffset() {
-            Point offset = m_item.Position;
-
+        void ApplyOffset(unsigned char offset) {
             if (m_item.Direction.X > 0)
-                offset.X += m_items->size();
+                m_item.Position.X += offset;
             else
-                offset.Y += m_items->size();
-
-            return offset;
+                m_item.Position.Y += offset;
         }
 
     public:
         Menu* Expand() {
-            MenuItem::Expand();
+			DrawItems();
             return this;
         }
 
@@ -40,9 +36,22 @@ class Menu : public MenuItem {
         }
 
         Menu* Add(MenuItem* item) {
-            MenuItem::Add(item);
+            m_items->push_back(*item);
+            m_limits.end = m_items->size() - 1;
             return this;
         }
+
+		void Index(Point position) {
+			SetPosition(&position);
+			m_item.Index = 0;
+
+			if (m_items == NULL) return;
+
+			for (unsigned char i = 0; i < m_items->size(); i++) {
+	            at(i).Index(position);
+				ApplyDirection(&position);
+			}
+		}
 };
 
 #endif

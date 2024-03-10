@@ -9,31 +9,22 @@
 #include "screen/interaction.h"
 #include "screen/art/controls/menu/option.h"
 #include "screen/art/controls/menu/navigation.h"
-#include "screen/art/controls/menu/types/selector.h"
 
 class MenuItem : public Navigation {
     private:
         std::string m_caption;
         Option* m_values = NULL;
         void (*m_command)() = NULL;
-        void (MenuItem::*m_internal)() = NULL;
+        char (MenuItem::*m_internal)() = NULL;
 
-        Point GetOffset() {
-            Point offset = m_item.Position;
-            offset.X += m_item.Direction.X;
-            offset.Y += m_item.Direction.Y;
-            offset.Y += m_items->size();
-            return offset;
-        }
-
-        void ValueSelection() {
+        char ValueSelection() {
             char (Option::*query)() = &Option::Query;
             Await(m_values, query, ESC);
+			return ENTER;
         }
 
     protected:
         std::vector<MenuItem>* m_items = NULL;
-        Selector m_item;
         Boundary<short> m_limits = { 0, 0 };
 
         void Minimize() {
@@ -42,21 +33,27 @@ class MenuItem : public Navigation {
                 at(size).Focus()->Clear();
         }
 
-        void Expand() {
+		void DrawItems() {
             short size = m_items->size();
-            while (--size > 0)
+			while(--size >= 0)
                 at(size).Focus()->Draw();
+		}
 
+        char Expand() {
+			DrawItems();
             char (MenuItem::*query)() = &MenuItem::Query;
+
             MenuItem current = at(m_item.Index);
 
             Await(&current, query, ESC);
             Minimize();
             Focus();
+			return ENTER;
         }
 
         void SetSelection(short next) {
-            if (m_limits.Verify(next)) {
+			//wprintf(L"%i", next);
+            if (!m_limits.Verify(next)) {
                 m_item.Index = next; 
                 at(next).Focus();
             }
@@ -66,9 +63,9 @@ class MenuItem : public Navigation {
 
         void Previous() { SetSelection(m_item.Index - 1); }
 
-        void Action() { at(m_item.Index).Command(); }
+        char Action() { return at(m_item.Index).Command(); }
 
-        void ExitTheMenu() { m_item.Code = ESC; }
+        char ExitTheMenu() { return ESC; }
 
     public:
         MenuItem& at(short item) { return m_items->at(item); }
@@ -78,16 +75,38 @@ class MenuItem : public Navigation {
             return m_values->SelectedIndex();
         }
 
-        void Command() {
-            if (m_command != NULL)
+        char Command() {
+			char code;
+            if (m_command != NULL) {
                 m_command();
-            else
-                ((this)->*(m_internal))();
+				code = ENTER;
+			} else {
+                code = ((this)->*(m_internal))();
+			}
+			return code;
         }
 
         void SetPosition(Point* position) {
             m_item.Position = *position;
         }
+
+		void ApplyDirection(Point* position) {
+			position->X += m_item.Direction.X;
+			position->Y += m_item.Direction.Y;
+		}
+
+		void Index(Point position) {
+			SetPosition(&position);
+			ApplyDirection(&position);
+			m_item.Index = 0;
+
+			if (m_items == NULL) return;
+
+			for (unsigned char i = 0; i < m_items->size(); i++) {
+	            at(i).Index(position);
+				position.Y += 1;
+			}
+		}
 
         MenuItem* SetDirection(bool vertical) {
             if (vertical)
@@ -114,11 +133,7 @@ class MenuItem : public Navigation {
         }
 
         MenuItem* Add(MenuItem* item) {
-            Point offset = GetOffset();
-
-            item->SetPosition(&offset);
             m_items->push_back(*item);
-
             m_limits.end = m_items->size() - 1;
             return this;
         }

@@ -24,7 +24,7 @@ class Option : public Navigation {
     protected:
         void Previous() { Iterate(-1); }
         void Next() { Iterate(1); }
-        void Action() { Next(); }
+        char Action() { Next(); return ENTER; }
 
     public:
         short SelectedIndex() { return m_selection; }
