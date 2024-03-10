@@ -27,12 +27,12 @@ void ArrayMenu() {
     MenuItem array, exit;
 
     array.SetCaption("menu_array");
-    array.SetItems()->SetDirection(false);
+    array.SetItems()->SetDirection(true);
     array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);
 
     exit.SetCaption("menu_exit")->SetExit();
 
-    array_menu.SetItems()->SetDirection(true);
+    array_menu.SetItems()->SetDirection(false);
     array_menu.Add(&array)->Add(&exit)->Index(position);
 }
 

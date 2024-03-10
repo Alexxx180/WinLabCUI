@@ -11,7 +11,7 @@ void MenuMarkdown(Markdown* m) {
     // Menu panel
     m->P1()->PinY()->MarginY(1);
     m->P1()->PinX()->MarginX(margin)->Page();
-    m->P2()->PinX()->RatioX(0.25)->Page();
+    m->P2()->PinX()->RatioX(0.33)->Page();
     m->P2()->PinX()->MarginX(-margin)->Page();
 	m->Form()->Screen();
 }

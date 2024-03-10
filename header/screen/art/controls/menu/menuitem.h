@@ -146,6 +146,7 @@ class MenuItem : public Navigation {
 
             m_values = parameters;
             m_values->BindCaption(&m_caption);
+			//m_values->BindMenuItem(this);
             return this;
         }
 

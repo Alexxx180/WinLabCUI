@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 
+#include "screen/art/controls/menu/menuitem.h"
 #include "screen/art/controls/menu/navigation.h"
 
 class Option : public Navigation {
     private:
+		//MenuItem* m_menu = NULL;
         std::string* m_caption;
         std::vector<std::string> m_values;
         Boundary<short> edges;
@@ -15,9 +17,11 @@ class Option : public Navigation {
 
         void Iterate(short axis) {
             short next = m_selection + axis;
-            if (edges.Verify(next)) {
+            if (!edges.Verify(next)) {
                 Current(next);
                 *m_caption = m_values[m_selection];
+				Pen::ink().screen->Clear();
+				Pen::ink().Quote(*m_caption);
             }
         }
 
@@ -39,6 +43,8 @@ class Option : public Navigation {
             edges.Set(0, m_values.size() - 1);
             return this;
         }
+
+		//void BindMenuItem(MenuItem* item) { m_menu = item; }
 
         void BindCaption(std::string* caption) {
             m_caption = caption;
