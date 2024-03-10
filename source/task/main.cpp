@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "screen/interaction.h"
+#include "screen/art/drawing.h"
 #include "task/forms/themes.h"
 #include "task/forms/debug.h"
 #include "task/forms/markdown.h"
@@ -32,6 +33,8 @@ int main(int argc, char** argv)
     initDbgVars(argc, argv);
     StdLocaleSwitch();
     SetInput();
+	SetOutput();
+	SetCursorShape(BLOCK);
 
     Resize();
 	MenuInit();

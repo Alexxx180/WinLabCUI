@@ -11,7 +11,7 @@ void IndividualMenu() {
 	Point position = { 0, 0 };
     MenuItem result, exit;
 
-    result.SetCaption("menu_individual_start");
+    result.SetCaption("menu_calculate");
     result.SetCommand(StartIndividual);
 
     exit.SetCaption("menu_exit")->SetExit();

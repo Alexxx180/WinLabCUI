@@ -11,15 +11,27 @@
 // Windows system dependency
 
 #include <windows.h>
+#include <iostream>
 
+HANDLE output;
 COORD native_windows_cursor;
+
+void SetOutput() { output = GetStdHandle(STD_OUTPUT_HANDLE); }
 
 void MoveCursor(Point* cursor) {
     native_windows_cursor.X = cursor->X;
     native_windows_cursor.Y = cursor->Y;
-
-    HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleCursorPosition(output, native_windows_cursor);
+}
+
+void SetCursorShape(CursorShape shape) {
+	unsigned char cursor = static_cast<unsigned char>(shape);
+
+	DWORD dwMode;
+	GetConsoleMode(output, &dwMode);
+	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+	SetConsoleMode(output, dwMode);
+	std::wcout << L"\x1b[" << cursor << "\x20q";
 }
 
 // Common abstraction code

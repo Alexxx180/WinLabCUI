@@ -26,7 +26,7 @@ void ArrayMenu() {
 
     MenuItem array, exit;
 
-    array.SetCaption("menu_tasks");
+    array.SetCaption("menu_array");
     array.SetItems()->SetDirection(false);
     array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);
 
