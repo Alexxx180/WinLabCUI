@@ -6,14 +6,6 @@
 #include "screen/art/controls/menu/menuitem.h"
 
 class Menu : public MenuItem {
-    private:
-        void ApplyOffset(unsigned char offset) {
-            if (m_item.Direction.X > 0)
-                m_item.Position.X += offset;
-            else
-                m_item.Position.Y += offset;
-        }
-
     public:
         Menu* Expand() {
 			DrawItems();
@@ -36,8 +28,7 @@ class Menu : public MenuItem {
         }
 
         Menu* Add(MenuItem* item) {
-            m_items->push_back(*item);
-            m_limits.end = m_items->size() - 1;
+			MenuItem::Add(item);
             return this;
         }
 

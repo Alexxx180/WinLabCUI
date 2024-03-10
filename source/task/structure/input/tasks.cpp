@@ -36,4 +36,5 @@ void MenuInit() {
 	MainMenu();
 	ArrayMenu();
 	IndividualMenu();
+	Pen::ink().Target(MENU)->screen->Size(1)->Span(1);
 }

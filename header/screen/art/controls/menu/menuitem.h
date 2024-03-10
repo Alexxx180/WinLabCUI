@@ -29,7 +29,7 @@ class MenuItem : public Navigation {
 
         void Minimize() {
             short size = m_items->size();
-            while (--size > 0)
+            while (--size >= 0)
                 at(size).Focus()->Clear();
         }
 
@@ -43,9 +43,7 @@ class MenuItem : public Navigation {
 			DrawItems();
             char (MenuItem::*query)() = &MenuItem::Query;
 
-            MenuItem current = at(m_item.Index);
-
-            Await(&current, query, ESC);
+            Await(this, query, ESC);
             Minimize();
             Focus();
 			return ENTER;
@@ -54,6 +52,7 @@ class MenuItem : public Navigation {
         void SetSelection(short next) {
 			//wprintf(L"%i", next);
             if (!m_limits.Verify(next)) {
+				//wprintf(L"%i / %i", next, m_limits.end);
                 m_item.Index = next; 
                 at(next).Focus();
             }
@@ -68,6 +67,9 @@ class MenuItem : public Navigation {
         char ExitTheMenu() { return ESC; }
 
     public:
+		short End() {
+			return m_limits.end;
+		}
         MenuItem& at(short item) { return m_items->at(item); }
         MenuItem& operator[](short item) { return at(item); }
 
@@ -152,7 +154,9 @@ class MenuItem : public Navigation {
         }
 
         MenuItem* Draw() {
-            Pen::ink().Quote(m_caption);
+			//Point pos = m_item.Position;
+			//wprintf(L"D: %i, %i", pos.X, pos.Y);
+			Pen::ink().Quote(m_caption);
             return this;
         }
 
