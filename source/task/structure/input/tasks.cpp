@@ -25,7 +25,9 @@ void MenuLoop(Menu* menu, char (*determine)()) {
 	Pen::ink().Redraw();
 	Pen::ink().Target(MENU)->screen->Move();
     menu->Expand();
+	wprintf(L"SOFT-EXIT");
     Await(determine, ENTER);
+	wprintf(L"EXIT");
 	Pen::ink().Reset();
 	exit(OK);
 }

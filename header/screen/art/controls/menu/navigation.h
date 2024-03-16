@@ -13,22 +13,19 @@ static std::vector<char> menu_input_keys = {
 
 class Navigation {
     protected:
-        Selector m_item;
         virtual char Action() = 0;
         virtual void Previous() = 0;
         virtual void Next() = 0;
 
     public:
-		void Navigate(char code) { m_item.Code = code; }
-
         char Query() {
-            Navigate(Select(menu_input_keys));
+            char code = Select(menu_input_keys);
 			//wprintf(L"Code: %i", code);
 
-            switch (m_item.Code) {
+            switch (code) {
                 case ENTER:
 					//wprintf(L"B: %i", m_code);
-                    m_item.Code = Action();
+                    code = Action();
 					//wprintf(L"A: %i", m_code);
                     break;
                 case KEY_UP:
@@ -45,7 +42,7 @@ class Navigation {
                     break;
             }
 
-            return m_item.Code;
+            return code;
         }
 };
 

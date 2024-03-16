@@ -5,7 +5,8 @@
 
 #include "screen/art/controls/menu/menu.h"
 #include "screen/art/controls/menu/menuitem.h"
-#include "screen/art/controls/menu/option.h"
+#include "screen/art/controls/menu/content/option.h"
+#include "screen/art/controls/menu/content/label.h"
 #include "screen/matrix/types/point.h"
 #include "task/structure/input/array/sorted.h"
 
@@ -17,20 +18,20 @@ void ArrayMenu() {
 
     std::vector<std::vector<std::string>> options = ArrayMenuOptions();
 
-    result.SetCaption("menu_array_sort");
+    result.SetCaption(std::move(new Label("menu_array_sort")));
     result.SetCommand(StartArraySort);
 
-    sort.SetValues((new Option())->Values(options[0])->Current(0));
-    input.SetValues((new Option())->Values(options[1])->Current(0));
-    type.SetValues((new Option())->Values(options[2])->Current(0));
+    sort.SetValues(std::move((new Option())->Values(options[0])));
+    input.SetValues(std::move((new Option())->Values(options[1])));
+    type.SetValues(std::move((new Option())->Values(options[2])));
 
     MenuItem array, exit;
 
-    array.SetCaption("menu_array");
+    array.SetCaption(std::move(new Label("menu_array")));
     array.SetItems()->SetDirection(true);
     array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);
 
-    exit.SetCaption("menu_exit")->SetExit();
+    exit.SetCaption(std::move(new Label("menu_exit")))->SetExit();
 
     array_menu.SetItems()->SetDirection(false);
     array_menu.Add(&array)->Add(&exit)->Index(position);

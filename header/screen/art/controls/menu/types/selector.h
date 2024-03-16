@@ -6,7 +6,6 @@
 struct Selector {
     Point Position, Direction;
     unsigned char Index;
-    char Code;
 };
 
 #endif

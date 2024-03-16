@@ -2,6 +2,7 @@ SHELL := powershell.exe
 .SHELLFLAGS := -NoProfile -Command
 
 compiler = cl
+cflags = /EHsc /Zi
 target = target.exe
 output = artifacts/
 header = header
@@ -13,7 +14,7 @@ rebuild : clean build
 .ONESHELL:
 build :
 	$(eval result = $(shell $(command)))
-	$(compiler) /Fo$(output) /Fe:$(target) $(result) /I $(header) /EHsc /Zi
+	$(compiler) $(cflags) /Fo$(output) /Fe:$(target) $(result) /I $(header)
 
 clean : 
 	@Write-Output "Cleaning build directory"

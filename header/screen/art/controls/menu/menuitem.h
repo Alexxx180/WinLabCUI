@@ -2,35 +2,54 @@
 #define SCREEN_ART_CONTROLS_MENU_MENUITEM
 
 #include <string>
+#include <memory>
 
 #include "input/boundary.h"
 #include "screen/matrix/pen.h"
 #include "screen/matrix/types/point.h"
 #include "screen/interaction.h"
-#include "screen/art/controls/menu/option.h"
+
+
+struct Field;
+
+#include "screen/art/controls/menu/content/field.h"
+#include "screen/art/controls/menu/content/option.h"
+#include "screen/art/controls/menu/content/label.h"
 #include "screen/art/controls/menu/navigation.h"
+
 
 class MenuItem : public Navigation {
     private:
-        std::string m_caption;
-        Option* m_values = NULL;
+		//std::shared_ptr<Field> m_caption(nullptr);
+		Field* m_caption = NULL;
         void (*m_command)() = NULL;
         char (MenuItem::*m_internal)() = NULL;
 
         char ValueSelection() {
-            char (Option::*query)() = &Option::Query;
-            Await(m_values, query, ESC);
+            char (Field::*query)() = &Field::Query;
+            Await(m_caption, query, ESC);
+			wprintf(L"SELECTED");
 			return ENTER;
         }
 
     protected:
+        Selector m_item;
         std::vector<MenuItem>* m_items = NULL;
         Boundary<short> m_limits = { 0, 0 };
 
         void Minimize() {
             short size = m_items->size();
-            while (--size >= 0)
-                at(size).Focus()->Clear();
+            while (--size >= 0) {
+				MenuItem& item = at(size);
+				Point pos = item.GetPos();
+				//wprintf(L"%i, ", size);
+                //item.Focus();
+				Pen::ink().screen->Page(pos.X);
+	            Pen::ink().screen->Line(pos.Y);
+		        //Pen::ink().screen->Move(); // PROBLEM HERE
+				wprintf(L"%i, %i", pos.X, pos.Y);
+				//item.Clear();
+			}
         }
 
 		void DrawItems() {
@@ -47,6 +66,7 @@ class MenuItem : public Navigation {
             Await(this, query, ESC);
             Minimize();
             Focus();
+			wprintf(L"S");
 			return ENTER;
         }
 
@@ -68,10 +88,12 @@ class MenuItem : public Navigation {
         char ExitTheMenu() { return ESC; }
 
     public:
+		Point GetPos() { return m_item.Position; }
+
         MenuItem& at(short item) { return m_items->at(item); }
         MenuItem& operator[](short item) { return at(item); }
 
-        short GetValue() { return m_values->SelectedIndex(); }
+        short GetValue() { return m_caption->SelectedIndex(); }
 
         char Command() {
 			char code;
@@ -136,24 +158,21 @@ class MenuItem : public Navigation {
             return this;
         }
 
-        MenuItem* SetCaption(std::string caption) {
+        MenuItem* SetCaption(std::unique_ptr<Label> caption) {
             m_caption = caption;
             return this;
         }
 
-        MenuItem* SetValues(Option* parameters) {
+        MenuItem* SetValues(std::unique_ptr<Option> parameters) {
             m_internal = &MenuItem::ValueSelection;
-
-            m_values = parameters;
-            m_values->BindCaption(&m_caption);
-			//m_values->BindMenuItem(this);
+            m_caption = parameters;
             return this;
         }
 
         MenuItem* Draw() {
 			//Point pos = m_item.Position;
 			//wprintf(L"D: %i, %i", pos.X, pos.Y);
-			Pen::ink().Quote(m_caption);
+			m_caption->Draw();
             return this;
         }
 
