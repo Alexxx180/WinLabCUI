@@ -16,9 +16,10 @@
 
 #include <vector>
 #include "input/boundary.h"
+#include "common/types.h"
 
 static Boundary<int> result_limits(0, 536870911);
-static const unsigned char ACTUAL_MAX = MAX_BUFFER + 2;
+static const byte ACTUAL_MAX = MAX_BUFFER + 2;
 
 char Select(char cancel, char ok);
 char Select(std::vector<char> targets);
@@ -30,7 +31,10 @@ void Await(bool (*program)());
 template<class TYPE>
 char Await(TYPE* instance, char (TYPE::*program)(), char target) {
     char code;
-    do { code = ((instance)->*(program))(); } while (code != target);
+    do {
+        code = ((instance)->*(program))();
+    }
+    while (code != target);
     return code;
 }
 

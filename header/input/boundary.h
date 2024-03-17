@@ -1,7 +1,7 @@
-#include <iostream>
+#ifndef INPUT_BOUNDARY
+#define INPUT_BOUNDARY
 
-#ifndef FORMS_INPUT_BOUNDARY
-#define FORMS_INPUT_BOUNDARY
+#include <iostream>
 
 template<typename TYPE>
 struct Boundary {

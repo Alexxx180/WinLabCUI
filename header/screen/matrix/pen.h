@@ -4,9 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include <cstdlib>
-
-#include "common/texts/common.h"
 #include "input/typer.h"
 #include "screen/art/drawing.h"
 #include "screen/art/types/layers.h"
@@ -25,59 +22,21 @@ protected:
 public:
     typedef Pen* (Pen::*quoteptr)(std::string);
 
-    static Pen& ink() {
-        static Pen instance;
-        return instance;
-    }
+    quoteptr Feedback();
+    static const Pen& ink();
 
     Bar status;
     Booker* screen;
     Grid* back;
-
     Grid array;
 
-    void Reset() { system(CLEAN_COMMAND); }
-
-    quoteptr Feedback() { return &Pen::Quote; }
-
-    Pen* Redraw() {
-        Reset();
-        std::vector<Grid>::iterator panel = Out.begin();
-        while (panel != Out.end()) {
-            panel->Show();
-            panel++;
-        }
-        return this;
-    }
-
-    Pen* Append(Grid panel, Booker layer) {
-        Out.push_back(panel);
-        Canvas.push_back(layer);
-        return this;
-    }
-
-    Pen* Target(short current) {
-        screen = &Canvas[current];
-        back = &Out[current];
-        return this;
-    }
-
-    Pen* Input(Typer* field) {
-        do {
-            Target(MAIN);
-            screen->Decoration();
-            field->TypeInput();
-        }
-        while (!field->IsVerified());
-        return this;
-    }
-
-    Pen* Quote(std::string name) {
-        screen->Clear()->Move();
-        std::wcout << texts[name];
-        return this;
-    }
-
+    void Reset();
+    Pen* Redraw();
+    Pen* Append(Grid panel, Booker layer);
+    Pen* Target(short current);
+    Pen* Input(Typer* field);
+    Pen* Quote(std::string name);
+    
     template<typename TYPE>
     Pen* FText(const wchar_t* format, TYPE argument) {
         wprintf(format, argument);
@@ -90,11 +49,10 @@ public:
         return this;
     }
 
-    // Note: method will output arguments in reverse order
     template<typename T, typename... Args>
-    void Text(T t, Args... args) {
-        Text(args...);
+    void Texts(T t, Args... args) {
         std::wcout << t;
+        Texts(args...);
     }
 };
 

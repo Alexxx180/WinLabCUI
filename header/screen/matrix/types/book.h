@@ -1,8 +1,7 @@
 #ifndef SCREEN_MATRIX_TYPES_BOOK
 #define SCREEN_MATRIX_TYPES_BOOK
 
-struct Book {
-    unsigned char Form, Line, Page, Span;
-};
+#include "common/types.h"
+struct Book { byte Form, Line, Page, Span };
 
 #endif

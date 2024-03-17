@@ -2,13 +2,11 @@
 #define SCREEN_ART_TYPES_STAPLER
 
 struct Stapler {
-    void (*progress)(Point*, unsigned char);
-    void (*pins)(Point*, unsigned char);
+    void (*progress)(Point*, byte);
+    void (*pins)(Point*, byte);
 
-    void Set(
-        void (*line)(Point*, unsigned char),
-        void (*points)(Point*, unsigned char)
-    ) {
+    void Set(void (*line)(Point*, byte),
+            void (*points)(Point*, byte)) {
         progress = line;
         pins = points;
     }

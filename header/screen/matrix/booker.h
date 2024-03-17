@@ -2,117 +2,45 @@
 #define SCREEN_MATRIX_BOOKER
 
 #include <vector>
-#include <iostream>
 
-#include "screen/art/drawing.h"
+#include "common/types.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/book.h"
 
 class Booker {
-private:
-    std::vector<std::vector<Point>> m_basis;
-    Point m_cursor;
-    Book m_book;
+    private:
+        std::vector<std::vector<Point>> m_basis;
+        Point m_cursor;
+        Book m_book;
 
-    Point* Current() {
-        unsigned char form, page;
-        form = m_book.Form;
-        page = m_book.Page;
-        return &m_basis.at(form).at(page);
-    }
+        Point* NextPoint(byte span);
+        Point* Current();
+        void PagesEnd(byte limit);
 
-    short BasisDiff() {
-        unsigned char form, page, previous, next;
-        form = m_book.Form;
+    protected:
+        static const wchar_t pipe_horizontal = L'|';
+        static const wchar_t pipe_vertical = L'‾';
 
-        page = m_book.Page;
-        previous = m_basis.at(form).at(page).X;
+        short BasisDiff();
+        Booker* Field(Point space, short size);
+        Booker* SkipLine(char lines, char direction);
+        Booker* BookMark(char skip, char direction);
 
-        page += m_book.Span;
-        next = m_basis.at(form).at(page).X;
-
-        return next - previous;
-    }
-
-    void PageCheck(unsigned char limit) {
-        if (limit >= m_basis.at(m_book.Form).size())
-            throw std::overflow_error("Span > max columns!");
-
-    }
-
-public:
-    const Point& Cursor() { return m_cursor; }
-
-    Booker(std::vector<std::vector<Point>> basis) {
-        m_cursor = basis.at(0).at(0);
-        m_basis = basis;
-        m_book = { 0, 0, 0, 0 };
-    }
-
-    Booker* Form(unsigned char buffer) {
-        if (buffer >= m_basis.size())
-            throw std::overflow_error("Selected form not found");
-        else
-            m_book.Form = buffer;
-        return this;
-    }
-
-    Booker* Span(unsigned char columns) {
-        PageCheck(m_book.Page + columns);
-        m_book.Span = columns;
-        return this;
-    }
-
-    Booker* Page(unsigned char next) {
-        m_book.Page = next;
-        PageCheck(m_book.Span);
-        m_cursor.X = Current()->X;
-        return this;
-    }
-
-    Booker* Page() {
-        Page(m_book.Page + 1);
-        return this;
-    }
-
-    Booker* Size(unsigned char padding) {
-        m_book.Line = padding;
-        return this;
-    }
-
-    Booker* Line() {
-        m_cursor.Y += m_book.Line;
-        return this;
-    }
-
-    Booker* Up() {
-        m_cursor.Y -= m_book.Line;
-        return this;
-    }
-
-    Booker* Line(char skip) {
-        m_cursor.Y = Current()->Y;
-        m_cursor.Y += m_book.Line * skip;
-        return this;
-    }
-
-    Booker* Move() {
-        MoveCursor(&m_cursor);
-        return this;
-    }
-
-    Booker* Clear() {
-        Move();
-        Clean(BasisDiff());
-        return this;
-    }
-
-    Booker* Decoration() {
-        Move();
-        Field(&m_cursor, BasisDiff());
-        Move();
-        return this;
-    }
+    public:
+        const Point& Cursor();
+        Booker(std::vector<std::vector<Point>> basis);
+        Booker* Form(byte buffer);
+        Booker* Span(byte columns);
+        Booker* Page(byte next);
+        Booker* Page();
+        Booker* Size(byte padding);
+        Booker* Line();
+        Booker* Up();
+        Booker* Line(char skip);
+        Booker* Up(char skip);
+        Booker* Move();
+        Booker* Clear();
+        Booker* Decoration();
 };
 
 #endif

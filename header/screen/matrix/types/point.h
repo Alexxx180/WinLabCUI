@@ -1,13 +1,16 @@
 #ifndef SCREEN_MATRIX_TYPES
 #define SCREEN_MATRIX_TYPES
 
+#include "common/types.h"
+
 struct Point {
-    unsigned char X, Y;
+    byte X, Y;
 
     void Swap() {
-        unsigned char placeholder = X;
+        byte T;
+        T = X;
         X = Y;
-        Y = placeholder;
+        Y = T;
     }
 };
 

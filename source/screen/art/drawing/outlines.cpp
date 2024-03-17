@@ -3,17 +3,15 @@
 #include "screen/art/drawing.h"
 #include "screen/matrix/types/point.h"
 
-void Field(Point* space, const short size) {
-    Point field = *space;
-    field.X--;
-    MoveCursor(&field);
+void Field(Point space, short size) {
+    space.X--;
+    MoveCursor(&space);
     Draw(L'|');
-    field.Y++;
+    space.Y++;
 
-    short i = size;
-    while (--i >= 0) {
-        field.X++;
-        MoveCursor(&field);
+    while (--size >= 0) {
+        space.X++;
+        MoveCursor(&space);
         Draw(L'‾'); 
     }
 }

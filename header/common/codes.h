@@ -1,7 +1,7 @@
-#ifndef OK
-#define OK 0
-#endif
+#ifndef CODES
+#define CODES 2
 
-#ifndef FAILED
+#define OK 0
 #define FAILED 1
+
 #endif

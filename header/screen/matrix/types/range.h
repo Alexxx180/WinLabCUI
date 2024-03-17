@@ -22,8 +22,8 @@ struct Range {
         };
     }
 
-    unsigned char SumX() { return this->P1.X + this->P2.X; }
-    unsigned char SumY() { return this->P1.Y + this->P2.Y; }
+    byte SumX() { return this->P1.X + this->P2.X; }
+    byte SumY() { return this->P1.Y + this->P2.Y; }
 };
 
 #endif
