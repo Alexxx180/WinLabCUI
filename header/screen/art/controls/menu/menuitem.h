@@ -8,15 +8,10 @@
 #include "screen/matrix/pen.h"
 #include "screen/matrix/types/point.h"
 #include "screen/interaction.h"
-
-
-struct Field;
-
 #include "screen/art/controls/menu/content/field.h"
 #include "screen/art/controls/menu/content/option.h"
 #include "screen/art/controls/menu/content/label.h"
 #include "screen/art/controls/menu/navigation.h"
-
 
 class MenuItem : public Navigation {
     private:
@@ -25,169 +20,40 @@ class MenuItem : public Navigation {
         void (*m_command)() = NULL;
         char (MenuItem::*m_internal)() = NULL;
 
-        char ValueSelection() {
-            char (Field::*query)() = &Field::Query;
-            Await(m_caption, query, ESC);
-			wprintf(L"SELECTED");
-			return ENTER;
-        }
+        char ValueSelection();
 
     protected:
         Selector m_item;
         std::vector<MenuItem>* m_items = NULL;
         Boundary<short> m_limits = { 0, 0 };
 
-        void Minimize() {
-            short size = m_items->size();
-            while (--size >= 0) {
-				MenuItem& item = at(size);
-				Point pos = item.GetPos();
-				//wprintf(L"%i, ", size);
-                //item.Focus();
-				Pen::ink().screen->Page(pos.X);
-	            Pen::ink().screen->Line(pos.Y);
-		        //Pen::ink().screen->Move(); // PROBLEM HERE
-				wprintf(L"%i, %i", pos.X, pos.Y);
-				//item.Clear();
-			}
-        }
-
-		void DrawItems() {
-            short size = m_items->size();
-			while(--size >= 0)
-                at(size).Focus()->Draw();
-			at(0).Focus();
-		}
-
-        char Expand() {
-			DrawItems();
-            char (MenuItem::*query)() = &MenuItem::Query;
-
-            Await(this, query, ESC);
-            Minimize();
-            Focus();
-			wprintf(L"S");
-			return ENTER;
-        }
-
-        void SetSelection(short next) {
-			//wprintf(L"%i", next);
-            if (!m_limits.Verify(next)) {
-				//wprintf(L"%i / %i", next, m_limits.end);
-                m_item.Index = next; 
-                at(next).Focus();
-            }
-        }
-
-        void Next() { SetSelection(m_item.Index + 1); }
-
-        void Previous() { SetSelection(m_item.Index - 1); }
-
-        char Action() { return at(m_item.Index).Command(); }
-
-        char ExitTheMenu() { return ESC; }
+        void Minimize();
+		void DrawItems();
+        char Expand();
+        void SetSelection(short next);
+        void Next();
+        void Previous();
+        char Action();
+        char ExitTheMenu();
 
     public:
-		Point GetPos() { return m_item.Position; }
-
-        MenuItem& at(short item) { return m_items->at(item); }
-        MenuItem& operator[](short item) { return at(item); }
-
-        short GetValue() { return m_caption->SelectedIndex(); }
-
-        char Command() {
-			char code;
-            if (m_command != NULL) {
-                m_command();
-				code = ENTER;
-			} else {
-                code = ((this)->*(m_internal))();
-			}
-			return code;
-        }
-
-        void SetPosition(Point* position) {
-            m_item.Position = *position;
-        }
-
-		void ApplyDirection(Point* position) {
-			position->X += m_item.Direction.X;
-			position->Y += m_item.Direction.Y;
-		}
-
-		void Index(Point position) {
-			SetPosition(&position);
-			ApplyDirection(&position);
-			m_item.Index = 0;
-
-			if (m_items == NULL) return;
-
-			for (unsigned char i = 0; i < m_items->size(); i++) {
-	            at(i).Index(position);
-				position.Y += 1;
-			}
-		}
-
-        MenuItem* SetDirection(bool vertical) {
-            if (vertical)
-                m_item.Direction = { 0, 1 };
-            else
-                m_item.Direction = { 1, 0 };
-            return this;
-        }
-
-        MenuItem* SetItems() {
-            m_internal = &MenuItem::Expand;
-            m_items = new std::vector<MenuItem>();
-            return this;
-        }
-
-        MenuItem* SetCommand(void (*command)()) {
-            m_command = command;
-            return this;
-        }
-
-        MenuItem* SetExit() {
-            m_internal = &MenuItem::ExitTheMenu;
-            return this;
-        }
-
-        MenuItem* Add(MenuItem* item) {
-            m_items->push_back(*item);
-            m_limits.end = m_items->size() - 1;
-            return this;
-        }
-
-        MenuItem* SetCaption(std::unique_ptr<Label> caption) {
-            m_caption = caption;
-            return this;
-        }
-
-        MenuItem* SetValues(std::unique_ptr<Option> parameters) {
-            m_internal = &MenuItem::ValueSelection;
-            m_caption = parameters;
-            return this;
-        }
-
-        MenuItem* Draw() {
-			//Point pos = m_item.Position;
-			//wprintf(L"D: %i, %i", pos.X, pos.Y);
-			m_caption->Draw();
-            return this;
-        }
-
-        MenuItem* Clear() {
-            Pen::ink().screen->Clear()->Move();
-            return this;
-        }
-
-        MenuItem* Focus() {
-            Point pos = m_item.Position;
-            Pen::ink().screen->Page(pos.X);
-            Pen::ink().screen->Line(pos.Y);
-            Pen::ink().screen->Move();
-            return this;
-        }
+		Point GetPos();
+        MenuItem& at(short item);
+        short GetValue();
+        char Command();
+        void SetPosition(Point* position);
+		void ApplyDirection(Point* position);
+		void Index(Point position);
+        MenuItem* SetDirection(bool vertical);
+        MenuItem* SetCommand(void (*command)());
+        MenuItem* SetExit();
+        MenuItem* Add(MenuItem* item);
+        MenuItem* SetCaption(std::unique_ptr<Label> caption);
+        MenuItem* SetValues(std::unique_ptr<Option> parameters);
+        void Choice();
+        void Draw();
+        MenuItem* Clear();
+        MenuItem* Focus();
 };
 
 #endif

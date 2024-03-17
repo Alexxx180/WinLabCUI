@@ -1,23 +1,46 @@
+# recursive file search
+rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
+
 SHELL := powershell.exe
 .SHELLFLAGS := -NoProfile -Command
+CMD=powershell -NoProfile -Command
 
-compiler = cl
-cflags = /EHsc /Zi
-target = target.exe
-output = artifacts/
-header = header
+CC=cl
+LINK=link
+SYSTEM=CONSOLE
 
-command := powershell "(Get-ChildItem source -Include *.c, *.cpp -Recurse | Resolve-Path -Relative) -join ' '"
+EXE=target.exe
 
-rebuild : clean build
+BUILD=build
+SRC=source
+OBJ=artifacts
+BIN=bin
+
+CLOG=compile.log
+LLOG=link.log
+
+CFILES=$(call rwildcard,$(SRC),*.cpp) # search for *.cpp files
+OFILES=$(CFILES:.cpp=.obj) # object file names 
+LSOBJ := $(CMD) "(ls $(OBJ) -Recurse -Include *.obj | Resolve-Path -Relative) -join ' '"
+
+DELOBJ=del $$PSItem.FullName -Recurse
 
 .ONESHELL:
-build :
-	$(eval result = $(shell $(command)))
-	$(compiler) $(cflags) /Fo$(output) /Fe:$(target) $(result) /I $(header)
+%.obj : %.cpp
+	$(eval folder=$(subst $(SRC),$(OBJ),$(@D)))
+	$(eval result=$(folder)/$(@F))
+	@$(CMD) "if (-not (Test-Path $(folder))) { mkdir $(folder) > $(BUILD)/$(CLOG) }"
+	@$(CC) /EHsc /I header /nologo /Fo$(result) /c $<
 
-clean : 
-	@Write-Output "Cleaning build directory"
-	Remove-Item "$(output)*.obj"
-	@Write-Output "Cleaning executables"
-	Remove-Item "*.exe"
+compile : $(OFILES)
+link :
+	$(eval objects=$(shell $(LSOBJ)))
+	@$(CMD) "if (-not (Test-Path $(BIN))) { mkdir $(BIN) > $(BUILD)/$(LLOG) }"
+	$(LINK) $(objects) /nologo /OUT:$(BIN)/$(EXE) /SUBSYSTEM:$(SYSTEM)
+
+build : compile link
+clean :
+	$(CMD) "del $(OBJ) -Recurse"
+	$(CMD) "del $(BIN) -Recurse"
+
+rebuild : clean build
