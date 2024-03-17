@@ -25,7 +25,7 @@ std::vector<short> ArrayInputLoop(short size) {
 
     numeric->Edges()->View();
 
-    short i = 0, option = array_menu[0][2].GetValue();
+    short i = 0, option = array_menu.at(0).at(2).Choice();
 
     while (i < size) {
         array_input[option]();

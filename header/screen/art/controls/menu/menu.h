@@ -7,9 +7,8 @@
 class Menu : public MenuItem {
     public:
         Menu* Expand();
-        Menu* SetDirection(bool vertical);
+        Menu* Vertical(bool direction);
         Menu* SetItems();
-        Menu* SetExit();
         Menu* Add(MenuItem* item);
 		void Index(Point position);
 };

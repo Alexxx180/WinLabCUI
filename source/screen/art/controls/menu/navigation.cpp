@@ -1,9 +1,9 @@
 #include "screen/art/controls/menu/navigation.h"
 
-char Navigation :: Action() { return -1 }
+char Navigation :: Action() { return -1; }
 void Navigation :: Previous() {}
 void Navigation :: Next() {}
-short Navigation :: Choice() { return -1 }
+short Navigation :: Choice() { return -1; }
 
 char Navigation :: Query() {
     char code = Select(menu_input_keys);

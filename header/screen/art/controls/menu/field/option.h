@@ -21,6 +21,7 @@ class Option : public Navigation {
     public:
 		void Draw();
         short Choice();
+        char Query();
         Option* Current(short next);
         Option* Values(std::vector<std::string> values);
 };

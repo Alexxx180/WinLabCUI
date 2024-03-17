@@ -5,53 +5,45 @@
 
 #include "screen/art/controls/menu/menu.h"
 #include "screen/art/controls/menu/menuitem.h"
-#include "screen/art/controls/menu/content/option.h"
-#include "screen/art/controls/menu/content/label.h"
-#include "screen/matrix/types/point.h"
+#include "screen/art/controls/menu/field/option.h"
+#include "screen/art/controls/menu/field/label.h"
 #include "task/structure/input/array/sorted.h"
 
 Menu array_menu;
 
 void ArrayMenu() {
-	Point position = { 0, 0 };
+    MenuItem array, exit;
     MenuItem result, sort, input, type;
 
-    std::vector<std::vector<std::string>> options = ArrayMenuOptions();
+    std::string caption = "menu_array_sort";
+    result.SetCommand(new Label(caption), StartArraySort);
+    sort.SetField(new Option(ArraySortParams()));
+    input.SetField(new Option(ArrayInputParams()));
+    type.SetField(new Option(ArrayTypeParams()));
 
-    result.SetCaption(std::move(new Label("menu_array_sort")));
-    result.SetCommand(StartArraySort);
-
-    sort.SetValues(std::move((new Option())->Values(options[0])));
-    input.SetValues(std::move((new Option())->Values(options[1])));
-    type.SetValues(std::move((new Option())->Values(options[2])));
-
-    MenuItem array, exit;
-
-    array.SetCaption(std::move(new Label("menu_array")));
-    array.SetItems()->SetDirection(true);
+    array.SetItems(new Label("menu_array"))->Vertical(true);
     array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);
 
-    exit.SetCaption(std::move(new Label("menu_exit")))->SetExit();
+    exit.SetExit(new Label("menu_exit"));
 
-    array_menu.SetItems()->SetDirection(false);
-    array_menu.Add(&array)->Add(&exit)->Index(position);
+    array_menu.SetItems()->Add(&array)->Add(&exit);
+    array_menu.Index({ 0, 0 });
 }
 
-std::vector<std::vector<std::string>> ArrayMenuOptions() {
+std::vector<std::string> ArraySortParams() {
     return {
-        {
-            "menu_sort_array_insertions",
-            "menu_sort_array_selection",
-            "menu_sort_array_hoar",
-            "menu_sort_array_hoar_no_recursion"
-        },
-        {
-            "menu_array_generation_random",
-            "menu_array_generation_manual"
-        },
-        {
-            "menu_array_type_numbers",
-            "menu_array_type_strings"
-        },
+        "menu_sort_array_insertions", "menu_sort_array_selection",
+        "menu_sort_array_hoar", "menu_sort_array_hoar_no_recursion"
+    };
+}
+std::vector<std::string> ArrayInputParams() {
+    return {
+        "menu_array_generation_random",
+        "menu_array_generation_manual"
+    };
+}
+std::vector<std::string> ArrayTypeParams() {
+    return {
+        "menu_array_type_numbers", "menu_array_type_strings"
     };
 }

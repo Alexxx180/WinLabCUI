@@ -6,4 +6,6 @@
 extern Menu array_menu;
 
 void ArrayMenu();
-std::vector<std::vector<std::string>> ArrayMenuOptions();
+std::vector<std::string> ArraySortParams();
+std::vector<std::string> ArrayInputParams();
+std::vector<std::string> ArrayTypeParams();

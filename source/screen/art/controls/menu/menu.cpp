@@ -5,18 +5,14 @@ Menu* Menu :: Expand() {
     return this;
 }
 
-Menu* Menu :: SetDirection(bool vertical) {
-    MenuItem::SetDirection(vertical);
+Menu* Menu :: Vertical(bool direction) {
+    MenuItem::Vertical(direction);
     return this;
 }
 
 Menu* Menu :: SetItems() {
-    MenuItem::SetItems();
-    return this;
-}
-
-Menu* Menu :: SetExit() {
-    MenuItem::SetExit();
+    m_items = new std::vector<MenuItem>();
+    m_internal = &MenuItem::Expand;
     return this;
 }
 

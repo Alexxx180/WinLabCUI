@@ -8,15 +8,15 @@
 #include "screen/matrix/pen.h"
 #include "screen/matrix/types/point.h"
 #include "screen/interaction.h"
-#include "screen/art/controls/menu/content/field.h"
 #include "screen/art/controls/menu/content/option.h"
 #include "screen/art/controls/menu/content/label.h"
 #include "screen/art/controls/menu/navigation.h"
+#include "screen/art/controls/menu/types/selector.h"
 
 class MenuItem : public Navigation {
     private:
 		//std::shared_ptr<Field> m_caption(nullptr);
-		Field* m_caption = NULL;
+		Navigation* m_caption = NULL;
         void (*m_command)() = NULL;
         char (MenuItem::*m_internal)() = NULL;
 
@@ -39,18 +39,17 @@ class MenuItem : public Navigation {
     public:
 		Point GetPos();
         MenuItem& at(short item);
-        short GetValue();
         char Command();
         void SetPosition(Point* position);
 		void ApplyDirection(Point* position);
 		void Index(Point position);
-        MenuItem* SetDirection(bool vertical);
-        MenuItem* SetCommand(void (*command)());
-        MenuItem* SetExit();
+        MenuItem* Vertical(bool direction);
+        MenuItem* SetCommand(Label* caption, void (*command)());
+        MenuItem* SetItems(Label* caption);
+        MenuItem* SetExit(Label* caption);
         MenuItem* Add(MenuItem* item);
-        MenuItem* SetCaption(std::unique_ptr<Label> caption);
-        MenuItem* SetValues(std::unique_ptr<Option> parameters);
-        void Choice();
+        MenuItem* SetField(Navigation* parameters);
+        short Choice();
         void Draw();
         MenuItem* Clear();
         MenuItem* Focus();

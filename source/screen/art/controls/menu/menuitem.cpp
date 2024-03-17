@@ -1,5 +1,12 @@
+#include "screen/art/controls/menu/menuitem.h"
+
+void MenuItem :: InnerField(Navigation* parameters, char (MenuItem::*command)()) {
+    m_internal = command;
+    m_caption = parameters;
+}
+
 char MenuItem :: ValueSelection() {
-    char (Field::*query)() = &Field::Query;
+    char (Navigation::*query)() = &Navigation::Query;
     Await(m_caption, query, ESC);
 	wprintf(L"SELECTED");
 	return ENTER;
@@ -38,7 +45,7 @@ char MenuItem :: Expand() {
 	return ENTER;
 }
 
-void SetSelection(short next) {
+void MenuItem :: SetSelection(short next) {
 	//wprintf(L"%i", next);
     if (!m_limits.Verify(next)) {
 		//wprintf(L"%i / %i", next, m_limits.end);
@@ -63,7 +70,7 @@ char MenuItem :: ExitTheMenu() {
     return ESC;
 }
 
-Point MenItem :: GetPos() {
+Point MenuItem :: GetPos() {
     return m_item.Position;
 }
 
@@ -71,8 +78,8 @@ MenuItem& MenuItem :: at(short item) {
     return m_items->at(item);
 }
 
-short MenuItem :: GetValue() {
-    return m_caption->SelectedIndex();
+short MenuItem :: Choice() {
+    return m_caption->Choice();
 }
 
 char MenuItem :: Command() {
@@ -108,27 +115,28 @@ void MenuItem :: Index(Point position) {
 	}
 }
 
-MenuItem* MenuItem :: SetDirection(bool vertical) {
-    if (vertical)
+MenuItem* MenuItem :: Vertical(bool direction) {
+    if (direction)
         m_item.Direction = { 0, 1 };
     else
         m_item.Direction = { 1, 0 };
     return this;
 }
 
-MenuItem* MenuItem :: SetItems() {
-    m_internal = &MenuItem::Expand;
+MenuItem* MenuItem :: SetItems(Label* caption) {
     m_items = new std::vector<MenuItem>();
+    InnerField(caption, &MenuItem::Expand);
     return this;
 }
 
-MenuItem* MenuItem :: SetCommand(void (*command)()) {
+MenuItem* MenuItem :: SetCommand(Label* caption, void (*command)()) {
+    InnerField(caption, NULL);
     m_command = command;
     return this;
 }
 
-MenuItem* MenuItem :: SetExit() {
-    m_internal = &MenuItem::ExitTheMenu;
+MenuItem* MenuItem :: SetExit(Label* caption) {
+    InnerField(caption, &MenuItem::ExitTheMenu);
     return this;
 }
 
@@ -138,22 +146,15 @@ MenuItem* MenuItem :: Add(MenuItem* item) {
     return this;
 }
 
-MenuItem* MenuItem :: SetCaption(std::unique_ptr<Label> caption) {
-    m_caption = caption;
+MenuItem* MenuItem :: SetField(Navigation* parameters) {
+    InnerField(parameters, &MenuItem::ValueSelection);
     return this;
 }
 
-MenuItem* MenuItem :: SetValues(std::unique_ptr<Option> parameters) {
-    m_internal = &MenuItem::ValueSelection;
-    m_caption = parameters;
-    return this;
-}
-
-MenuItem* MenuItem :: Draw() {
+void MenuItem :: Draw() {
 	//Point pos = m_item.Position;
 	//wprintf(L"D: %i, %i", pos.X, pos.Y);
 	m_caption->Draw();
-    return this;
 }
 
 MenuItem* MenuItem :: Clear() {
@@ -167,4 +168,31 @@ MenuItem* MenuItem :: Focus() {
     Pen::ink().screen->Line(pos.Y);
     Pen::ink().screen->Move();
     return this;
+}
+
+char MenuItem :: Query() {
+    char code = Select(menu_input_keys);
+	//wprintf(L"Code: %i", code);
+
+    switch (code) {
+        case ENTER:
+            //wprintf(L"B: %i", m_code);
+            code = Action();
+	        //wprintf(L"A: %i", m_code);
+            break;
+        case KEY_UP:
+        case KEY_LEFT:
+        	//wprintf(L"LEFT");
+            Previous();
+            break;
+        case KEY_DOWN:
+        case KEY_RIGHT:
+    	    //wprintf(L"RIGHT");
+            Next();
+            break;
+        default:
+            break;
+    }
+
+    return code;
 }

@@ -3,26 +3,22 @@
 #include "screen/art/controls/menu/menu.h"
 #include "screen/art/controls/menu/menuitem.h"
 #include "screen/art/controls/menu/content/label.h"
-#include "screen/matrix/types/point.h"
 #include "task/structure/input/tasks.h"
 
 Menu main_menu;
 
 void MainMenu() {
-	Point position = { 0, 0 };
+    MenuItem tasks, exit;
     MenuItem task1, task2;
 
-    task1.SetCommand(ArraySort)->SetCaption(std::move(new Label("menu_array_sort")));
-    task2.SetCommand(Individual)->SetCaption(std::move(new Label("menu_individual")));
+    task1.SetCommand(new Label("menu_array_sort"), ArraySort);
+    task2.SetCommand(new Label("menu_individual"), Individual);
 
-    MenuItem tasks, exit;
-
-    tasks.SetItems()->SetDirection(true);
+    tasks.SetItems(new Label("menu_header"))->Vertical(true);
     tasks.Add(&task1)->Add(&task2);
-    tasks.SetCaption(std::move(new Label("menu_header")));
 
-    exit.SetExit()->SetCaption(std::move(new Label("menu_exit")));
+    exit.SetExit(new Label("menu_exit"));
 
-    main_menu.SetItems()->SetDirection(false);
-    main_menu.Add(&tasks)->Add(&exit)->Index(position);
+    main_menu.SetItems()->Add(&tasks)->Add(&exit);
+    main_menu.Index({ 0, 0 });
 }

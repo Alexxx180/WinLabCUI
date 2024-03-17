@@ -4,7 +4,7 @@
 #include "screen/matrix/types/point.h"
 
 struct Selector {
-    Point Position, Direction;
+    Point Position, Direction = { 1, 0 };
     unsigned char Index;
 };
 
