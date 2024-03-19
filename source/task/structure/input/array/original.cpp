@@ -4,19 +4,22 @@
 #include <string>
 #include <cstdlib>
 
+#include "common/types.h"
 #include "common/texts/common.h"
 #include "task/structure/input/common/data.h"
 #include "task/structure/input/common/parameters.h"
-#include "task/structure/input/menu/array.h"
+#include "task/structure/input/array/common.h"
 #include "task/forms/debug.h"
 #include "screen/matrix/pen.h"
 
 void ManualArrayInput() { InputParameterValue(numeric); }
 void RandomArrayInput() { randomc.Standard(); }
-
-void (*array_input[2])(void) = { RandomArrayInput, ManualArrayInput };
+void (*array_input[2])(void) = {
+    RandomArrayInput, ManualArrayInput
+};
 
 std::vector<short> ArrayInputLoop(short size) {
+    
     std::vector<short> result(size);
 
     numeric->Bounds(&randomc.limits);
@@ -25,7 +28,7 @@ std::vector<short> ArrayInputLoop(short size) {
 
     numeric->Edges()->View();
 
-    short i = 0, option = array_menu.at(0).at(2).Choice();
+    byte i = 0, option = ArrayOptions().at(2).Choice();
 
     while (i < size) {
         array_input[option]();

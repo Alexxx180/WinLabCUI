@@ -1,3 +1,3 @@
 #include "screen/matrix/types/range.h"
 
-void TableMarkdown(Range* content);
+void TableGrid(Range* content);

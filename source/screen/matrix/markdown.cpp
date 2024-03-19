@@ -43,7 +43,7 @@ Markdown* Markdown :: Top() {
     return this;
 }
 
-Markdown* Markdown :: Bottom() {
+Markdown* Markdown :: Bot() {
     m_next = &m_frame.P2;
     return this;
 }
@@ -53,7 +53,7 @@ Markdown* Markdown :: Pin(byte flow) {
     return this;
 }
 
-Markdown* Markdown :: Ratio(byte flow, float relation) {
+Markdown* Markdown :: Relate(byte flow, float relation) {
     m_positions[flow].Extend(&m_booker, &m_next);
     return this;
 }

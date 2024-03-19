@@ -6,7 +6,7 @@
 #include "common/types.h"
 #include "input/feedback/verifier.h"
 
-unsigned short i;
+byte i;
 
 void initDbgVars(int argc, char **argv)
 {

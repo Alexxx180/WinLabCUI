@@ -31,7 +31,7 @@ void StartArraySort() {
     original = ArrayInputLoop(size);
     sorted = original;
 
-    short option = array_menu.at(0).at(1).Choice();
+    short option = ArrayOptions().at(1).Choice();
     array_sort[option](sorted);
 
     OutputArraySortHead();

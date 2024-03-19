@@ -1,0 +1,17 @@
+#ifndef SCREEN_INTERACTION_CONTROLLER_KEYBOARD
+#define SCREEN_INTERACTION_CONTROLLER_KEYBOARD
+
+#define ENTER 13
+
+#define ESC 27
+#define PAGE_UP 73
+#define PAGE_DOWN 81
+#define END 79
+#define HOME 71
+
+#define KEY_LEFT 75
+#define KEY_UP 72
+#define KEY_RIGHT 77
+#define KEY_DOWN 80
+
+#endif

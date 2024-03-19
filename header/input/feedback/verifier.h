@@ -1,12 +1,12 @@
-#ifndef FORM_INPUT_VERIFIER
-#define FORM_INPUT_VERIFIER
+#ifndef INPUT_FEEDBACK_VERIFIER
+#define INPUT_FEEDBACK_VERIFIER
 
 #include <string>
 
+#include "input/feedback/typer.h"
 #include "input/feedback/notifier.h"
 #include "input/feedback/validator.h"
-#include "input/boundary.h"
-#include "input/typer.h"
+#include "input/limiting/boundary.h"
 
 template<class TYPE>
 class Verifier : public Typer {

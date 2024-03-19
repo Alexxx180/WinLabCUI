@@ -1,3 +1,3 @@
 #include "screen/matrix/markdown.h"
 
-void MenuMarkdown(Markdown* m);
+void MenuPanel(Markdown* m);

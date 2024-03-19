@@ -2,11 +2,12 @@
 
 #include <string>
 
+#include "common/types.h"
 #include "common/texts/common.h"
 #include "input/feedback/verifier.h"
 #include "screen/matrix/pen.h"
 
-char field = 3;
+byte field = 3;
 
 void InputParameterName(std::wstring name) {
     Pen::ink().screen->Line()->Move();

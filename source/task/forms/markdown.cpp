@@ -10,11 +10,13 @@
 #include "task/forms/markdown/menu.h"
 
 void Resize() {
-    Markdown m;
-    Range content = { { 2,  2 }, { 78, 20 } };
+    Point base = { 2, 2 };
+    Point size = { 78, 20 };
+    Range content = { base, size };
 
-    MainMarkdown(&m, &content);
-    FootMarkdown(&m);
-    MenuMarkdown(&m);
+    Markdown m;
+    MainPanel(&m, &content);
+    StatusBar(&m);
+    MenuPanel(&m);
     Pen::ink().Target(MAIN);
 }

@@ -1,5 +1,5 @@
-#ifndef SCREEN_MATRIX_TYPES
-#define SCREEN_MATRIX_TYPES
+#ifndef SCREEN_MATRIX_TYPES_POINT
+#define SCREEN_MATRIX_TYPES_POINT
 
 #include "common/types.h"
 

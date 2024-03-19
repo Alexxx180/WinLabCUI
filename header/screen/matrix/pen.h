@@ -5,10 +5,10 @@
 #include <vector>
 
 #include "input/typer.h"
-#include "screen/art/drawing.h"
-#include "screen/art/types/layers.h"
-#include "screen/art/controls/grid.h"
-#include "screen/art/controls/bar.h"
+#include "screen/drawing/drawing.h"
+#include "screen/drawing/types/layers.h"
+#include "screen/controls/layoutgrid.h"
+#include "screen/controls/bar.h"
 #include "screen/matrix/booker.h"
 
 class Pen {

@@ -1,13 +1,14 @@
 #include "task/forms/markdown/main/table.h"
 
+#include "common/types.h"
 #include "screen/art/types/frame.h"
 #include "screen/matrix/pen.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 #include "screen/art/controls/bar/types/corners.h"
 
-void BarMarkdown(Range* content) {
-    unsigned char margin = 3;
+void MainProgressBar(Range* content) {
+    byte margin = 3;
 
     Range size = *content;
 

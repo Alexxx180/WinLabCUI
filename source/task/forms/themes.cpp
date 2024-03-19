@@ -1,5 +1,6 @@
 ﻿#include "task/forms/themes.h"
 
+#include "common/types.h"
 #include "screen/art/types/layers.h"
 #include "screen/interaction.h"
 #include "screen/matrix/pen.h"
@@ -26,7 +27,7 @@ char Header()
 
 char Footer()
 {
-    short count = 0;
+    byte count = 0;
     Pen::ink().back->Columns.Set(count);
     Pen::ink().back->Rows.Set(count);
 

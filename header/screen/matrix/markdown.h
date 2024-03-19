@@ -9,6 +9,8 @@
 #include "screen/matrix/types/range.h"
 #include "screen/matrix/types/point.h"
 
+static const byte X = 0, Y = 1;
+
 class Markdown {
     private:
         std::vector<std::vector<Point>> m_forms;
@@ -30,9 +32,9 @@ class Markdown {
         Markdown* Origin(); 
         Markdown* Shift(byte flow, Point offset); 
         Markdown* Top(); 
-        Markdown* Bottom(); 
+        Markdown* Bot(); 
         Markdown* Pin(byte flow); 
-        Markdown* Ratio(byte flow, float relation); 
+        Markdown* Relate(byte flow, float relation); 
         Markdown* Margin(byte flow, byte margin); 
 };
 
