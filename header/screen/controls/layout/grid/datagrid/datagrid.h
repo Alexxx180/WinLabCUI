@@ -1,7 +1,7 @@
 #ifndef SCREEN_CONTROLS_LAYOUT_GRID_DATAGRID_DATAGRID
 #define SCREEN_CONTROLS_LAYOUT_GRID_DATAGRID_DATAGRID
 
-#include "screen/controls/datagrid/types/table.h"
+#include "screen/controls/layout/grid/datagrid/types/table.h"
 #include "screen/interaction/navigation.h"
 
 class DataGrid : public Navigation {

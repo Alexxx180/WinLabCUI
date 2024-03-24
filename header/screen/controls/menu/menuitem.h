@@ -1,48 +1,49 @@
-#ifndef SCREEN_ART_CONTROLS_MENU_MENUITEM
-#define SCREEN_ART_CONTROLS_MENU_MENUITEM
+#ifndef SCREEN_CONTROLS_MENU_MENUITEM
+#define SCREEN_CONTROLS_MENU_MENUITEM
 
 #include <string>
 #include <memory>
 
-#include "input/boundary.h"
+#include "input/limiting/boundary.h"
 #include "screen/matrix/pen.h"
 #include "screen/matrix/types/point.h"
-#include "screen/interaction.h"
-#include "screen/art/controls/menu/content/option.h"
-#include "screen/art/controls/menu/content/label.h"
-#include "screen/art/controls/menu/navigation.h"
-#include "screen/art/controls/menu/types/selector.h"
+#include "screen/interaction/interaction.h"
+#include "screen/interaction/navigation.h"
+#include "screen/controls/menu/field/option.h"
+#include "screen/controls/menu/field/label.h"
+#include "screen/controls/menu/types/selector.h"
 
 class MenuItem : public Navigation {
     private:
-		//std::shared_ptr<Field> m_caption(nullptr);
-		Navigation* m_caption = NULL;
+        Navigation* m_caption = NULL;
         void (*m_command)() = NULL;
-        char (MenuItem::*m_internal)() = NULL;
 
         char ValueSelection();
+        void InnerField(Navigation* parameters, char (MenuItem::*command)());
 
     protected:
+        char (MenuItem::*m_internal)() = NULL;
         Selector m_item;
         std::vector<MenuItem>* m_items = NULL;
         Boundary<short> m_limits = { 0, 0 };
 
         void Minimize();
-		void DrawItems();
-        char Expand();
+        void DrawItems();
         void SetSelection(short next);
         void Next();
         void Previous();
         char Action();
         char ExitTheMenu();
+        char Input();
 
     public:
-		Point GetPos();
+        Point GetPos();
         MenuItem& at(short item);
+        char Expand();
         char Command();
         void SetPosition(Point* position);
-		void ApplyDirection(Point* position);
-		void Index(Point position);
+        void ApplyDirection(Point* position);
+        void Index(Point position);
         MenuItem* Vertical(bool direction);
         MenuItem* SetCommand(Label* caption, void (*command)());
         MenuItem* SetItems(Label* caption);

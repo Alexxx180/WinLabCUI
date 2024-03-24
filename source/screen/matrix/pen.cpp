@@ -3,16 +3,9 @@
 #include <cstdlib>
 
 #include "common/texts/common.h"
-#include "screen/art/types/layers.h"
-
-static const Pen& Pen :: ink() {
-    static const Pen instance;
-    return instance;
-}
+#include "screen/drawing/types/layers.h"
 
 void Pen :: Reset() { system(CLEAN_COMMAND); }
-
-quoteptr Pen :: Feedback() { return &Pen::Quote; }
 
 Pen* Pen :: Redraw() {
     Reset();
@@ -46,8 +39,7 @@ Pen* Pen :: Input(Typer* field) {
     return this;
 }
 
-Pen* Pen :: Quote(std::string name) {
-    screen->Clear()->Move();
-    std::wcout << texts[name];
+Pen* Pen :: Clip(std::string name) {
+    std::wcout << texts.at(name);
     return this;
 }

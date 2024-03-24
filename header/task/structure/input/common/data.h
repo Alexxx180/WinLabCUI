@@ -1,4 +1,4 @@
-#include "input/advanced/randomizer.h"
+#include "input/processing/randomizer.h"
 
 extern Randomizer<char> randomc;
 

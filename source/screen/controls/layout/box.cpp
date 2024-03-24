@@ -1,7 +1,8 @@
-#include "screen/art/controls/layout/box.h"
+#include "screen/controls/layout/box.h"
+#include "screen/drawing/platform.h"
 
 void Box :: Line(Point* cursor,
-    void Box :: (*pins)(Point*, byte),
+    void (*pins)(Point*, byte),
     wchar_t symbol) {
     byte i = 0, count = m_vertices.size();
 
@@ -30,7 +31,7 @@ void Box :: Surround(Stapler* gun) {
     //wprintf(L"Cursor: %i, %i \n", cursor->X, cursor->Y);
 }
 
-const std::vector<byte>& Vertices() {
+const std::vector<byte>& Box :: Vertices() {
     return m_vertices;
 }
 

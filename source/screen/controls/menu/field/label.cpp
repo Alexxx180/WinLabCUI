@@ -1,8 +1,9 @@
-#include "screen/art/controls/menu/content/label.h"
+#include "screen/controls/menu/field/label.h"
 
 #include <string>
 
 #include "screen/matrix/pen.h"
+#include "screen/interaction/controller/keyboard.h"
 
 Label :: Label(std::string caption) { 
     m_caption = caption;

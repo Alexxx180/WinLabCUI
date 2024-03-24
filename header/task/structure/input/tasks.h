@@ -1,4 +1,4 @@
-#include "screen/art/controls/menu/menu.h"
+#include "screen/controls/menu/menu.h"
 
 char DetermineExit();
 void MenuLoop(Menu* menu);

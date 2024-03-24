@@ -1,8 +1,9 @@
-#include "screen/art/controls/layout/grid.h"
+#include "screen/controls/layout/grid/grid.h"
 
 #include <vector>
 
-#include "screen/art/drawing.h"
+#include "screen/drawing/drawing.h"
+#include "screen/drawing/platform.h"
 
 void Grid :: Crosses() {
     Point cursor, cells;
@@ -58,7 +59,7 @@ Grid :: Grid(Range* sizes) {
     Columns.Set(count);
 }
 
-Grid* Show() {
+Grid* Grid :: Show() {
     Stapler m_gun = { HLine, VLine };
     Rows.Lines(&m_gun);
     m_gun.Set(VLine, HLine);

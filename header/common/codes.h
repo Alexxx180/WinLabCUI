@@ -1,7 +1,9 @@
 #ifndef CODES
 #define CODES
 
-#define OK 0
-#define FAILED 1
+enum Codes {
+    OK = 0,
+    FAIL = 1
+};
 
 #endif

@@ -1,17 +1,17 @@
 #ifndef SCREEN_INTERACTION_CONTROLLER_KEYBOARD
 #define SCREEN_INTERACTION_CONTROLLER_KEYBOARD
 
-#define ENTER 13
-
-#define ESC 27
-#define PAGE_UP 73
-#define PAGE_DOWN 81
-#define END 79
-#define HOME 71
-
-#define KEY_LEFT 75
-#define KEY_UP 72
-#define KEY_RIGHT 77
-#define KEY_DOWN 80
+enum Keyboard {
+    ENTER = 13,
+    ESC = 27,
+    PAGE_UP = 73,
+    PAGE_DOWN = 81,
+    HOME = 71,
+    END = 79,
+    KEY_LEFT = 75,
+    KEY_UP = 72,
+    KEY_RIGHT = 77,
+    KEY_DOWN = 80
+}
 
 #endif

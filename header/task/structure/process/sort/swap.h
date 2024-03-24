@@ -1,5 +1,5 @@
 #include <vector>
-#include "common/types.h"
+#include "common/types/vector.h"
 
 extern Vector2s efficiency;
 

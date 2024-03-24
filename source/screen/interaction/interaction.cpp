@@ -40,6 +40,6 @@ char Select(std::vector<char> codes) {
 
 char Select(char cancel, char ok) {
     okcancel[OK] = ok;
-    okcancel[FAILED] = cancel;
+    okcancel[FAIL] = cancel;
     return Select(okcancel);
 }

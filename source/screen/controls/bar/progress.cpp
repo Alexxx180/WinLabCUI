@@ -1,8 +1,9 @@
 #include "screen/controls/bar/progress.h"
-#include "screen/art/drawing.h"
+#include "screen/drawing/drawing.h"
+#include "screen/drawing/platform.h"
 
 // Orientation independent
-void Progress :: Draw() {
+void Progress :: Display() {
     Draw(m_symbol);
 }
 
@@ -10,21 +11,21 @@ void Progress :: Clear() {
     Clean(m_width);
 }
 
-void Progress :: Fill(void (*operation)()) {
+void Progress :: Fill(void (Progress::*operation)()) {
     short i = m_placement->P1.Y;
     short size = m_placement->SumY();
 
     while (++i < size) {
         VLine(m_cursor, i);
         MoveCursor(m_cursor);
-        operation();
+        ((this)->*(operation))();
     }
 }
 
 // Orientation dependent
-void Progress :: MoveCarriage(byte position, wchar_t symbol) {
+void Progress :: MoveCarriage(byte position) {
     m_gun->progress(m_cursor, position);
-    Fill(Draw);
+    Fill(&Progress::Display);
 }
 
 short Progress :: Get() {
@@ -73,7 +74,7 @@ void Progress :: MoveProgress() {
     HLine(m_cursor, i + 1);
 
     m_width = m_placement->SumX() - i;
-    Fill(Clear);
+    Fill(&Progress::Clear);
 
     m_symbol = m_separator.Carriage;
     MoveCarriage(m_slider);

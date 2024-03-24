@@ -1,6 +1,0 @@
-#ifndef SCREEN_DRAWING_TYPES_CONSTRUCTS_OUTLINES_BORDERS
-#define SCREEN_DRAWING_TYPES_CONSTRUCTS_OUTLINES_BORDERS
-
-struct Borders { wchar_t Front, Back; };
-
-#endif

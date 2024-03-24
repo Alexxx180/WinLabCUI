@@ -5,15 +5,15 @@
 #include "screen/matrix/pen.h"
 
 class Notifier {
-private:
-    short m_server;
-    Pen::quoteptr m_signal;
+    private:
+        short m_server;
+        Pen::quoteptr m_signal;
 
-public:
-    void Notify(std::string message);
-    Notifier* Server(short server);
-    void Signal(Pen::quoteptr signal);
-    void Defaults();
+    public:
+        void Notify(std::string message);
+        void Server(short server);
+        void Signal(Pen::quoteptr signal);
+        void Defaults();
 };
 
 #endif

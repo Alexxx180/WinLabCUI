@@ -1,7 +1,8 @@
 #ifndef TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK
 #define TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK 512
 
-#include "common/types.h"
+#include "common/types/vector.h"
+#include "screen/matrix/change/liner.h"
 
 struct HoarStack {
     Vector2l part;
@@ -9,39 +10,15 @@ struct HoarStack {
     long Left[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
     long Right[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
 
-    long PivotIndex() { return (part.X + part.Y) >> 1; }
-    bool IsSmallerOneLeft() { return part.X < part.Y; }
-    bool HasQueries() { return Position != 0; }
-
-    void Init(long size) {
-        Position = 1;
-        Left[Position] = 0;
-        Right[Position] = size - 1;
-    }
-    
-    void UpdateBounds() {
-        part.X = Left[Position];
-        part.Y = Right[Position];
-        Position--;
-    }
-
-    void LeftBound(long wall, long iteration) {
-        if (wall > part.X) {
-            Position++;
-            Left[Position] = part.X;
-            Right[Position] = wall;
-        }
-        part.X = iteration;
-    }
-
-    void RightBound(long wall, long iteration) {
-        if (wall > part.Y) {
-            Position++;
-            Left[Position] = wall;
-            Right[Position] = part.Y;
-        }
-        part.Y = iteration;
-    }
+    long PivotIndex();
+    bool IsSmallerOneLeft();
+    bool HasQueries();
+    void SetBounds(Point bounds);
+    void SetBound(Liner liner, Vector2l* wall);
+    void Init(long size);
+    void UpdateBounds();
+    void LeftBound(Vector2l wall);
+    void RightBound(Vector2l wall);
 };
 
 #endif

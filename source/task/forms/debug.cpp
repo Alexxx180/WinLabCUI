@@ -8,8 +8,7 @@
 
 byte i;
 
-void initDbgVars(int argc, char **argv)
-{
+void initDbgVars(int argc, char **argv) {
     for (i = 1; i < argc; i++) setDbgVar(argv);
 }
 

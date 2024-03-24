@@ -19,14 +19,14 @@ class Progress {
         Stapler* m_gun;
 
         wchar_t m_symbol;
-        short width;
+        short m_width;
 
         // Orientation independent
-        void Draw();
+        void Display();
         void Clear();
-        void Fill(void (*operation)());
+        void Fill(void (Progress::*operation)());
         // Orientation dependent
-        void MoveCarriage(byte position, wchar_t symbol);
+        void MoveCarriage(byte position);
 
     public:
         short Get();

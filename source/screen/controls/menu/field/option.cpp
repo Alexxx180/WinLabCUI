@@ -1,10 +1,12 @@
-#include "screen/art/controls/menu/content/option.h"
+#include "screen/controls/menu/field/option.h"
 
 #include <string>
 #include <vector>
 
 #include "screen/matrix/pen.h"
-#include "screen/art/controls/menu/navigation.h"
+#include "screen/interaction/controller/groups/menu.h"
+#include "screen/interaction/controller/keyboard.h"
+#include "screen/interaction/interaction.h"
 
 Option :: Option() {}
 Option :: Option(std::vector<std::string> parameters) {
@@ -35,9 +37,7 @@ short Option :: Choice() {
 }
 
 Option* Option :: Current(short next) {
-    if (m_edges.Verify(next)) return this;
-
-	m_selection = next;
+    if (!m_edges.Verify(next)) m_selection = next;
     return this;
 }
 
@@ -47,28 +47,24 @@ Option* Option :: Values(std::vector<std::string> parameters) {
     return this;
 }
 
+char Input() {
+    return Select(menu_input.controls);
+}
+
 char Option :: Query() {
-    char code = Select(menu_input_keys);
-	//wprintf(L"Code: %i", code);
+    char code = Input();
 
     switch (code) {
-        case ENTER:
-            //wprintf(L"B: %i", m_code);
-            code = Action();
-	        //wprintf(L"A: %i", m_code);
-            break;
+        case ENTER: code = Action(); break;
         case KEY_UP:
         case KEY_LEFT:
-        	//wprintf(L"LEFT");
             Previous();
             break;
         case KEY_DOWN:
         case KEY_RIGHT:
-    	    //wprintf(L"RIGHT");
             Next();
             break;
-        default:
-            break;
+        default: break;
     }
 
     return code;

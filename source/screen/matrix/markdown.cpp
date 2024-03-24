@@ -1,12 +1,20 @@
 #include "screen/matrix/markdown.h"
-#include "screen/art/controls/grid.h"
+#include "screen/controls/layout/grid/grid.h"
 
-Markdown* Markdown :: Screen() {
-    Grid borders(&m_frame.SwapXY());
-    Booker content(m_forms);
-    Pen::ink().Append(borders, content);
+Markdown :: Markdown() {
+    m_positions[X].Set(HPoint, HLine, HRatio);
+    m_positions[Y].Set(VPoint, VLine, VRatio);
+}
+
+Markdown* Markdown :: Clear() {
     m_forms.clear();
-    return this;
+}
+
+Screen Markdown :: Screen() {
+    Screen screen;
+    screen.back(&m_frame.SwapXY());
+    screen.out(m_forms);
+    return screen;
 }
 
 Markdown* Markdown :: Form() {
@@ -33,8 +41,8 @@ Markdown* Markdown :: Origin() {
 Markdown* Markdown :: Shift(byte flow, Point offset) {
     offset.X += m_positions[flow].positions(&m_frame.P2);
     offset.Y += offset.X;
-    m_positions[flow].shift(&m_frame.P1, &offset.X);
-    m_positions[flow].shift(&m_frame.P2, &offset.Y);
+    m_positions[flow].shift(&m_frame.P1, offset.X);
+    m_positions[flow].shift(&m_frame.P2, offset.Y);
     return this;
 }
 
@@ -49,12 +57,12 @@ Markdown* Markdown :: Bot() {
 }
 
 Markdown* Markdown :: Pin(byte flow) {
-    m_positions[flow].Margin(&m_booker, &m_next);
+    m_positions[flow].Margin(&m_booker, m_next);
     return this;
 }
 
 Markdown* Markdown :: Relate(byte flow, float relation) {
-    m_positions[flow].Extend(&m_booker, &m_next);
+    m_positions[flow].Extend(&m_booker, relation);
     return this;
 }
 

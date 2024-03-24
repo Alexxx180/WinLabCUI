@@ -2,7 +2,8 @@
 
 #include <iostream>
 
-#include "screen/art/drawing.h"
+#include "screen/drawing/drawing.h"
+#include "screen/drawing/platform.h"
 
 Booker* Booker :: Field(Point space, short size) {
     space.X--;
@@ -96,6 +97,10 @@ Booker* Booker :: Up() {
     return SkipLine(m_book.Line, -1);
 }
 
+Booker* Booker :: Slide(char lines) {
+    return SkipLine(m_book.Line, lines);
+}
+
 Booker* Booker :: Line(char skip) {
     return BookMark(skip, 1);
 }
@@ -115,6 +120,6 @@ Booker* Booker :: Clear() {
     return this;
 }
 
-Booker* Decoration() {
-    return Move()->Field(&m_cursor, BasisDiff())->Move();
+Booker* Booker :: Decoration() {
+    return Move()->Field(m_cursor, BasisDiff())->Move();
 }

@@ -1,18 +1,19 @@
-#include "screen/art/controls/layout/panel.h"
+#include "screen/controls/layout/panel.h"
+#include "screen/drawing/drawing.h"
+#include "screen/drawing/platform.h"
 
-#include "screen/art/drawing.h"
+void Panel :: DrawSide(Liner* liner, Range* board, wchar_t symbol) {
+    liner->Margin(&board->P1, &board->P2);
+    MoveCursor(&board->P1);
+    Draw(symbol);
+}
 
 void Panel :: AnglePattern(Range* board, Angles symbols) {
-    Point* cursor = &board.P1;
-    Point* anchor = &board.P2;
+    Liner liner = { HPoint, HLine };
+    DrawSide(&liner, board, symbols.left);
 
-    VLine(cursor, anchor->X);
-    MoveCursor(cursor);
-    Draw(symbols.left);
-
-    HLine(cursor, anchor->Y);
-    MoveCursor(cursor);
-    Draw(symbols.right);
+    liner.Set(VPoint, VLine);
+    DrawSide(&liner, board, symbols.right);
 }
 
 void Panel :: DrawAngles() {

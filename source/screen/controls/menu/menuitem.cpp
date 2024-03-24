@@ -1,4 +1,7 @@
-#include "screen/art/controls/menu/menuitem.h"
+#include "screen/controls/menu/menuitem.h"
+#include "screen/interaction/controller/groups/menu.h"
+#include "screen/interaction/controller/keyboard.h"
+#include "screen/interaction/lifetime/internal.h"
 
 void MenuItem :: InnerField(Navigation* parameters, char (MenuItem::*command)()) {
     m_internal = command;
@@ -170,28 +173,24 @@ MenuItem* MenuItem :: Focus() {
     return this;
 }
 
-char MenuItem :: Query() {
-    char code = Select(menu_input_keys);
-	//wprintf(L"Code: %i", code);
+char Input() {
+    return Select(menu_input.controls);
+}
+
+char Option :: Query() {
+    char code = Input();
 
     switch (code) {
-        case ENTER:
-            //wprintf(L"B: %i", m_code);
-            code = Action();
-	        //wprintf(L"A: %i", m_code);
-            break;
+        case ENTER: code = Action(); break;
         case KEY_UP:
         case KEY_LEFT:
-        	//wprintf(L"LEFT");
             Previous();
             break;
         case KEY_DOWN:
         case KEY_RIGHT:
-    	    //wprintf(L"RIGHT");
             Next();
             break;
-        default:
-            break;
+        default: break;
     }
 
     return code;

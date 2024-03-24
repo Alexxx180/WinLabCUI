@@ -1,5 +1,7 @@
 #include "screen/controls/bar/bar.h"
 
+#include "screen/drawing/drawing.h"
+
 void Bar :: SetOrientation() {
     if (m_orientation) {
         m_gun.Set(VLine, HLine);
@@ -65,13 +67,13 @@ Bar* Bar :: Show() {
     return this;
 }
 
-Bar* Progress(float basis) {
+Bar* Bar :: Progress(float basis) {
     m_progress.Update(basis)->MoveProgress();
     m_percentage.Update(basis, m_progress.Get());
     return this;
 }
 
-Bar* ProgressData(float value) {
+Bar* Bar :: ProgressData(float value) {
     if (Line.Idle()) return this;
     float basis = Line.Divide(value);
     return Progress(basis);

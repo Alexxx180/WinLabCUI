@@ -1,5 +1,6 @@
 #include "screen/controls/bar/divisions.h"
-#include "screen/art/drawing.h"
+#include "screen/drawing/drawing.h"
+#include "screen/drawing/platform.h"
 
 void Divisions :: DrawBorder(byte position, wchar_t edge) {
     m_gun.pins(m_cursor, position);

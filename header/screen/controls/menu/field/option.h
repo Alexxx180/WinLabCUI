@@ -1,11 +1,11 @@
-#ifndef SCREEN_ART_CONTROLS_MENU_CONTENT_OPTION
-#define SCREEN_ART_CONTROLS_MENU_CONTENT_OPTION
+#ifndef SCREEN_CONTROLS_MENU_FIELD_OPTION
+#define SCREEN_CONTROLS_MENU_FIELD_OPTION
 
 #include <string>
 #include <vector>
 
-#include "input/boundary.h"
-#include "screen/art/controls/menu/navigation.h"
+#include "input/limiting/boundary.h"
+#include "screen/interaction/navigation.h"
 
 class Option : public Navigation {
     private:
@@ -19,6 +19,8 @@ class Option : public Navigation {
         char Action();
 
     public:
+        Option();
+        Option(std::vector<std::string> parameters);
         void Draw();
         short Choice();
         char Query();

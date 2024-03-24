@@ -7,27 +7,22 @@
 HANDLE output;
 COORD native_windows_cursor;
 
-void SwitchMode(DWORD next) {
+void SetPlatformOutput() {
+    output = GetStdHandle(STD_OUTPUT_HANDLE);
+
     DWORD dwMode;
     GetConsoleMode(output, &dwMode);
-    SetConsoleMode(output, dwMode | next);
-}
-
-
-void SetOutput() {
-    output = GetStdHandle(STD_OUTPUT_HANDLE);
-    SwitchMode(ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(output, dwMode);
 }
 
 void MoveCursor(Point* cursor) {
-    // if (cursor->X == 0 && cursor->Y == 1) wprintf(L"BAD");
     native_windows_cursor.X = cursor->X;
     native_windows_cursor.Y = cursor->Y;
-    // if (cursor->X == 0 && cursor->Y == 1) wprintf(L"GOOD");
     SetConsoleCursorPosition(output, native_windows_cursor);
 }
 
-void SetCursorShape(CursorShape shape) {
+void SetPlatformShape(CursorShape shape) {
     byte cursor = static_cast<byte>(shape);
     std::wcout << L"\x1b[" << cursor << "\x20q";
 }

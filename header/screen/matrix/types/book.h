@@ -2,6 +2,6 @@
 #define SCREEN_MATRIX_TYPES_BOOK
 
 #include "common/types.h"
-struct Book { byte Form, Line, Page, Span };
+struct Book { byte Form, Line, Page, Span; };
 
 #endif

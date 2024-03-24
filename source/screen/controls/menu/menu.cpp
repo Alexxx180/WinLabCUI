@@ -1,4 +1,5 @@
-#include "screen/art/controls/menu/menu.h"
+#include "screen/controls/menu/menu.h"
+#include "common/types.h"
 
 Menu* Menu :: Expand() {
 	DrawItems();
@@ -27,7 +28,7 @@ void Menu :: Index(Point position) {
 
 	if (m_items == NULL) return;
 
-	for (unsigned char i = 0; i < m_items->size(); i++) {
+	for (byte i = 0; i < m_items->size(); i++) {
 	    at(i).Index(position);
 		ApplyDirection(&position);
 	}

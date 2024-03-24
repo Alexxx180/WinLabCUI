@@ -1,22 +1,25 @@
 #include "task/structure/output/sort.h"
 
-#include "screen/art/types/layers.h"
-#include "screen/art/controls/data/types/page.h"
-#include "screen/art/controls/data/datagrid.h"
-#include "screen/interaction.h"
+#include "screen/types/layers.h"
+#include "screen/controls/data/grid/datagrid/types/page.h"
+#include "screen/controls/data/grid/datagrid/datagrid.h"
+#include "screen/interaction/interaction.h"
+#include "screen/interaction/controller/keyboard.h"
 #include "screen/matrix/pen.h"
 #include "task/structure/output/sort/pages.h"
 
 void OutputArraySort() {
-    unsigned char lines;
-
+    byte lines;
     DataGrid model;
 
-    Pen::ink().array.Rows.Split(0.5f);
-    Pen::ink().array.Columns.Split(0.22f);
-    Pen::ink().array.Show();
+    SelectLayer(FLOATING);
+    layer->Target(MAIN);
 
-    lines = Pen::ink().back->Columns.Rib(1);
+    back->Rows.Split(0.5f);
+    back->Columns.Split(0.22f);
+    back->Show();
+
+    lines = back->Columns.Rib(1);
     
     Page records;
     records.Relative = lines;
@@ -24,17 +27,19 @@ void OutputArraySort() {
 
     model.table.SetRecords(&records);
 
-    Pen::ink().Target(FOOT);
+    layer->Target(FOOT);
     model.OutputControls();
 
-    Pen::ink().Target(MAIN);
+    layer->Target(MAIN);
     model.PagesPrint();
 
     char (DataGrid::*query)() = &DataGrid::Query;
     Await(&model, query, ESC);
 
-    Pen::ink().Redraw();
-    Pen::ink().Target(FOOT);
-    Pen::ink().Quote("status_menu_navigation");
-    Pen::ink().Target(MENU);
+    SelectLayer(SCREEN);
+
+    layer->Redraw();
+    layer->Target(FOOT);
+    pen->Clip("status_menu_navigation");
+    layer->Target(MENU);
 }

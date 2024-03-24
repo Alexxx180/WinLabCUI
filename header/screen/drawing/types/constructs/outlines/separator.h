@@ -1,6 +1,0 @@
-#ifndef SCREEN_DRAWING_TYPES_CONSTRUCTS_OUTLINES_SEPARATOR
-#define SCREEN_DRAWING_TYPES_CONSTRUCTS_OUTLINES_SEPARATOR
-
-struct Separator { wchar_t Volume, Carriage; };
-
-#endif

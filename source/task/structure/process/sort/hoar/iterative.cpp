@@ -31,9 +31,9 @@ void QuickSortIterative(std::vector<short>& memory) {
             }
 
             if (i < middle)
-                stack.RightBound(i, j);
+                stack.RightBound({ i, j });
             else
-                stack.LeftBound(j, i);
+                stack.LeftBound({ j, i });
 
         } while (stack.IsSmallerOneLeft());
 

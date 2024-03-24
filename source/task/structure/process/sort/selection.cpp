@@ -11,13 +11,13 @@ void SelectionSort(std::vector<short>& memory) {
     for (i = 0; i < size - 1; i++) {
         int minimal = i;
 
-    	for (j = i + 1; j < size; j++) {
+        for (j = i + 1; j < size; j++) {
 
             smaller = memory[j] < memory[minimal];
 
-	    	if (Comparison(smaller)) minimal = j;
+            if (Comparison(smaller)) minimal = j;
 
-    	}
+        }
 
         SwapMemory(memory, i, minimal);
     }

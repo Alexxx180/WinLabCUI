@@ -1,5 +1,6 @@
 #include "screen/controls/bar/percentage/percentage.h"
 #include "screen/drawing/drawing.h"
+#include "screen/drawing/platform.h"
 
 void Percentage :: PercentagePosition() {
     m_gun->pins(m_cursor, m_offset);

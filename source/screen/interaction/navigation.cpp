@@ -1,4 +1,5 @@
 #include "screen/interaction/navigation.h"
+#include "screen/interaction/controller/keyboard.h"
 
 char Navigation :: Action() { return -1; }
 void Navigation :: Previous() {}

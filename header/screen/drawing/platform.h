@@ -6,7 +6,7 @@
 enum CursorShape { BLOCK = 1, UNDERSCORE = 3, BAR = 5 };
 
 void SetPlatformOutput();
-void MovePlatformCursor(Point* cursor);
+void MoveCursor(Point* cursor);
 void SetPlatformShape(CursorShape size);
 
 #endif

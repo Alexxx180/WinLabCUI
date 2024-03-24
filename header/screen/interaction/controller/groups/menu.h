@@ -1,6 +1,8 @@
-#include "screen/interaction/controller/keyboard.h"
-#include <vector>
+#ifndef SCREEN_INTERACTION_CONTROLLER_GROUPS_MENU
+#define SCREEN_INTERACTION_CONTROLLER_GROUPS_MENU
 
-static std::vector<char> menu_input_keys = {
-    ESC, ENTER, HOME, END, KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT
-};
+#include "screen/interaction/controller/group.h"
+
+extern ControllerGroup menu_input;
+
+#endif

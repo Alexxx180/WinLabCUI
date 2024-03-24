@@ -18,11 +18,11 @@ TimeMeasure TimeDiff :: Diff(std::tm* x, std::tm* y) {
 }
 
 TimeMeasure TimeDiff :: CalculateTime(void (*realization)(void)) {
-    std::tm before, after;
-    std::time_t p1 = p2 = std::time(0);
+    std::time_t p1, p2;
+    p1 = p2 = std::time(nullptr);
 
-    before = std::localtime(&p1);
+    std::tm* before = std::localtime(&p1);
     realization();
-    after = std::localtime(&p2);
+    std::tm* after = std::localtime(&p2);
     return Diff(before, after);
 }

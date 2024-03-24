@@ -3,9 +3,6 @@
 #include "common/types.h"
 #include "screen/matrix/types/point.h"
 
-// Platform system dependencies
-#include "screen/drawing/platform.h"
-
 void Draw(wchar_t character);
 void Clean(short precision);
 void Write(std::wstring* message);

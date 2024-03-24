@@ -1,6 +1,8 @@
-#include "screen/interaction/controller/keyboard.h"
-#include <vector>
+#ifndef SCREEN_INTERACTION_CONTROLLER_GROUPS_TABLE
+#define SCREEN_INTERACTION_CONTROLLER_GROUPS_TABLE
 
-static std::vector<char> table_controls = {
-    ESC, HOME, END, PAGE_UP, PAGE_DOWN
-};
+#include "screen/interaction/controller/group.h"
+
+extern ControllerGroup table_input;
+
+#endif

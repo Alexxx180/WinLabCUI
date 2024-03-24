@@ -16,10 +16,16 @@
 #include "task/structure/output/sort/pages.h"
 #include "task/structure/output/sort.h"
 
-void (*array_sort[4])(std::vector<short>&) = {
-    HoarRecursive, QuickSortIterative,
-    InsertionsSort, SelectionSort
-};
+typedef void (*invokationVector)(std::vector<short>&);
+
+invokationVector DetermineSort() {
+    void (*array_sort[4])(std::vector<short>&) = {
+        HoarRecursive, QuickSortIterative,
+        InsertionsSort, SelectionSort
+    };
+    short option = ArrayOptions().at(1).Choice();
+    return array_sort[option];
+}
 
 void StartArraySort() {
     OutputCommonHeader();
@@ -31,8 +37,8 @@ void StartArraySort() {
     original = ArrayInputLoop(size);
     sorted = original;
 
-    short option = ArrayOptions().at(1).Choice();
-    array_sort[option](sorted);
+    invokationVector array_sort = DetermineSort();
+    array_sort(sorted);
 
     OutputArraySortHead();
     OutputArraySort();
