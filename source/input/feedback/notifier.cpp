@@ -2,9 +2,9 @@
 #include "screen/drawing/types/layers.h"
 
 void Notifier :: Notify(std::string message) {
-    Pen::ink().Target(m_server);
-    (Pen::ink().*m_signal)(message);
-    //((this)->*(m_internal))()
+    layer->Target(m_server);
+    out->Move()->Clear()->Move();
+    (pen->*m_signal)(message);
 }
 
 void Notifier :: Server(short server) {
@@ -17,5 +17,5 @@ void Notifier :: Signal(Pen::quoteptr signal) {
 
 void Notifier :: Defaults() {
     Server(FOOT);
-    Signal(Pen::ink().Feedback());
+    Signal(pen->Feedback());
 }

@@ -5,10 +5,8 @@
 
 struct Percents {
     const wchar_t* Format = L"%.1f %%";
-    // Total length of 100.0 % string, including ". %"
-    byte Width;
-    // Decimal percents representation
-    ushort Count;
+    byte Width; // Total length of 100.0 % string, including ". %"
+    ushort Count; // Decimal percents representation 
     float Max;
     
     void Calculate(float max);

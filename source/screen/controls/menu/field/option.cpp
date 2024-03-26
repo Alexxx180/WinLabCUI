@@ -29,7 +29,7 @@ char Option :: Action() {
 }
 
 void Option :: Draw() {
-    Pen::ink().Quote(m_values[m_selection]);
+    pen->Clip(m_values[m_selection]);
 }
 
 short Option :: Choice() {
@@ -47,25 +47,6 @@ Option* Option :: Values(std::vector<std::string> parameters) {
     return this;
 }
 
-char Input() {
+char Option :: Input() {
     return Select(menu_input.controls);
-}
-
-char Option :: Query() {
-    char code = Input();
-
-    switch (code) {
-        case ENTER: code = Action(); break;
-        case KEY_UP:
-        case KEY_LEFT:
-            Previous();
-            break;
-        case KEY_DOWN:
-        case KEY_RIGHT:
-            Next();
-            break;
-        default: break;
-    }
-
-    return code;
 }

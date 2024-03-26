@@ -2,12 +2,12 @@
 #define SCREEN_ART_CONTROLS_BAR
 
 #include "common/types.h"
-#include "screen/drawing/types/constructs/corners.h"
+#include "screen/drawing/constructs/corners.h"
 #include "screen/controls/layout/panel.h"
 #include "screen/controls/bar/percentage/percentage.h"
 #include "screen/controls/bar/progress.h"
 #include "screen/controls/bar/divisions.h"
-#include "screen/matrix/change/stapler.h"
+#include "screen/matrix/types/change/stapler.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 

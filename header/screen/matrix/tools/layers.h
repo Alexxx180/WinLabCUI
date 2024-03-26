@@ -5,7 +5,7 @@
 
 enum Layers {
     SCREEN, FLOAT
-}
+};
 
 enum Fragments {
     MAIN, FOOT, MENU

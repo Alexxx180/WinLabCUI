@@ -2,7 +2,7 @@
 #define INPUT_FEEDBACK_NOTIFIER
 
 #include <string>
-#include "screen/matrix/pen.h"
+#include "screen/matrix/tools.h"
 
 class Notifier {
     private:

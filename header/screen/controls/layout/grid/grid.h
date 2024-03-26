@@ -4,7 +4,7 @@
 #include "common/types.h"
 #include "screen/controls/layout/box.h"
 #include "screen/controls/layout/panel.h"
-#include "screen/drawing/types/constructs/frame.h"
+#include "screen/drawing/constructs/frame.h"
 #include "screen/matrix/types/range.h"
 #include "screen/matrix/types/point.h"
 

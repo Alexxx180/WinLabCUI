@@ -19,13 +19,15 @@ class Verifier : public Typer {
 
         void Interrupt(std::string message);
 
+    protected:
+        void TypeInput();
+        bool IsVerified();
+
     public:
         Notifier status;
         const TYPE& result = m_result;
 
         Verifier();
-        bool IsVerified();
-        void TypeInput();
 
         Boundary<TYPE> *const Edges() { return &m_edges; }
         void Bounds(Boundary<TYPE>* edges) { m_edges = *edges; }

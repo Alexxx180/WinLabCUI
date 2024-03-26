@@ -6,24 +6,12 @@
 struct Range {
     Point P1, P2;
 
-    Range SwapXY() {
-        return {
-            { this->P1.X, this->P2.X },
-            { this->P1.Y, this->P2.Y }
-        };
-    }
+    Range SwapXY();
+    Range Swap();
+    Range SwapSizes();
 
-    Range Swap() { return { this->P2, this->P1 }; };
-
-    Range SwapSizes() {
-        return {
-            { this->P1.Y, this->P1.X },
-            { this->P2.Y, this->P2.X }
-        };
-    }
-
-    byte SumX() { return this->P1.X + this->P2.X; }
-    byte SumY() { return this->P1.Y + this->P2.Y; }
+    byte SumX();
+    byte SumY();
 };
 
 #endif

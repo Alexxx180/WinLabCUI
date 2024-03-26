@@ -1,9 +1,9 @@
 #ifndef SCREEN_ART_CONTROLS_LAYOUT_PANEL
 #define SCREEN_ART_CONTROLS_LAYOUT_PANEL
 
-#include "screen/drawing/types/constructs/outlines/angles.h"
+#include "screen/drawing/constructs/outlines/angles.h"
 #include "screen/matrix/types/range.h"
-#include "screen/matrix/change/liner.h"
+#include "screen/matrix/types/change/liner.h"
 
 class Panel {
     private:

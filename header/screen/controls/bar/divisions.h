@@ -2,9 +2,9 @@
 #define SCREEN_CONTROLS_BAR_DIVISIONS
 
 #include "common/types.h"
-#include "screen/drawing/types/constructs/corners.h"
-#include "screen/drawing/types/constructs/outlines/borders.h"
-#include "screen/matrix/change/stapler.h"
+#include "screen/drawing/constructs/corners.h"
+#include "screen/drawing/constructs/outlines/borders.h"
+#include "screen/matrix/types/change/stapler.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 

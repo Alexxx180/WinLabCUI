@@ -5,8 +5,8 @@
 
 #include "common/types.h"
 #include "screen/drawing/drawing.h"
-#include "screen/drawing/types/constructs/outlines/edges.h"
-#include "screen/matrix/change/stapler.h"
+#include "screen/drawing/constructs/outlines/edges.h"
+#include "screen/matrix/types/change/stapler.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 

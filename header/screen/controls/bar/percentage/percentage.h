@@ -3,7 +3,7 @@
 
 #include "common/types.h"
 #include "screen/controls/bar/percentage/percents.h"
-#include "screen/matrix/change/stapler.h"
+#include "screen/matrix/types/change/stapler.h"
 #include "screen/matrix/types/point.h"
 
 class Percentage {

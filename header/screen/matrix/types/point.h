@@ -6,12 +6,8 @@
 struct Point {
     byte X, Y;
 
-    void Swap() {
-        byte T;
-        T = X;
-        X = Y;
-        Y = T;
-    }
+    Point Swap();
+    byte Sum();
 };
 
 #endif

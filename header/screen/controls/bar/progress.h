@@ -2,8 +2,8 @@
 #define SCREEN_CONTROLS_BAR_PROGRESS
 
 #include "common/types.h"
-#include "screen/drawing/types/constructs/outlines/separator.h"
-#include "screen/matrix/change/stapler.h"
+#include "screen/drawing/constructs/outlines/separator.h"
+#include "screen/matrix/types/change/stapler.h"
 #include "screen/matrix/types/point.h"
 #include "screen/matrix/types/range.h"
 

@@ -1,14 +1,14 @@
-#ifndef SCREEN_MATRIX_CHANGE_STAPLER
-#define SCREEN_MATRIX_CHANGE_STAPLER
+#ifndef SCREEN_MATRIX_TYPES_CHANGE_STAPLER
+#define SCREEN_MATRIX_TYPES_CHANGE_STAPLER
 
 #include "common/types.h"
 #include "screen/matrix/types/point.h"
+#include "screen/matrix/types/change/invokations.h"
 
 struct Stapler {
-    void (*progress)(Point*, byte);
-    void (*pins)(Point*, byte);
+    axis_shift progress, pins;
 
-    void Set(void (*line)(Point*, byte), void (*points)(Point*, byte));
+    void Set(axis_shift line, axis_shift points);
 };
 
 #endif

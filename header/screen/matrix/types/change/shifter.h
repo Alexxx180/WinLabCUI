@@ -1,14 +1,12 @@
-#ifndef SCREEN_MATRIX_CHANGE_SHIFTER
-#define SCREEN_MATRIX_CHANGE_SHIFTER
+#ifndef SCREEN_MATRIX_TYPES_CHANGE_SHIFTER
+#define SCREEN_MATRIX_TYPES_CHANGE_SHIFTER
 
 #include "screen/matrix/change/liner.h"
 
 struct Shifter : public Liner {
-    void (*stretch)(Point*, float);
+    axis_extend stretch;
 
-    void Set(byte (*points)(Point*),
-            void (*margin)(Point*, byte),
-            void (*ratio)(Point*, float));
+    void Set(point_extract points, axis_shift margin, axis_extend ratio);
     void Extend(Point* basis, float relation);
 };
 

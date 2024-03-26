@@ -1,9 +1,6 @@
 #include "screen/matrix/change/shifter.h"
 
-void Shifter :: Set(
-    byte (*points)(Point*),
-    void (*margin)(Point*, byte),
-    void (*ratio)(Point*, float)) {
+void Shifter :: Set(point_extract points, axis_shift margin, axis_extend ratio) {
     Liner::Set(points, margin);
     stretch = ratio;
 }

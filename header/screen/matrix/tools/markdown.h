@@ -5,12 +5,12 @@
 
 #include "common/types.h"
 #include "screen/drawing/drawing.h"
-#include "screen/matrix/pen.h"
-#include "screen/matrix/booker.h"
 #include "screen/matrix/types/range.h"
 #include "screen/matrix/types/point.h"
-#include "screen/matrix/change/shifter.h"
+#include "screen/matrix/types/change/shifter.h"
 #include "screen/controls/matrix/screen.h"
+#include "screen/controls/matrix/pen.h"
+#include "screen/controls/matrix/stencil.h"
 
 static const byte X = 0, Y = 1;
 

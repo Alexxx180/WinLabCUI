@@ -1,8 +1,6 @@
 #include "screen/matrix/change/liner.h"
 
-void Liner :: Set(
-    byte (*points)(Point*),
-    void (*margin)(Point*, byte)) {
+void Liner :: Set(point_extract points, axis_shift margin) {
     positions = points;
     shift = margin;
 }

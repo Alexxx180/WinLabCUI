@@ -13,6 +13,7 @@
 #include "task/forms/menu/init.h"
 #include "task/forms/screen/markdown.h"
 #include "task/forms/screen/layers.h"
+#include "screen/matrix/tools.h"
 
 void StdLocaleSwitch() {
     _setmode(_fileno(stdout), _O_U16TEXT);
@@ -31,6 +32,7 @@ void CharacterUserInterface() {
     ScreenMarkdown();
     MenuInit();
     InitLayers();
+    SetPenInstance();
 }
 
 void SetDefaults(int argc, char** argv) {

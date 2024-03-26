@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "input/limiting/boundary.h"
-#include "screen/matrix/pen.h"
+#include "screen/matrix/tools.h"
 #include "screen/matrix/types/point.h"
 #include "screen/interaction/interaction.h"
 #include "screen/interaction/navigation.h"

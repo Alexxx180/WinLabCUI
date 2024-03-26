@@ -173,25 +173,6 @@ MenuItem* MenuItem :: Focus() {
     return this;
 }
 
-char Input() {
+char MenuItem :: Input() {
     return Select(menu_input.controls);
-}
-
-char Option :: Query() {
-    char code = Input();
-
-    switch (code) {
-        case ENTER: code = Action(); break;
-        case KEY_UP:
-        case KEY_LEFT:
-            Previous();
-            break;
-        case KEY_DOWN:
-        case KEY_RIGHT:
-            Next();
-            break;
-        default: break;
-    }
-
-    return code;
 }

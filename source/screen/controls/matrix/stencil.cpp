@@ -1,11 +1,11 @@
-#include "screen/matrix/booker.h"
+#include "screen/controls/matrix/stencil.h"
 
 #include <iostream>
 
 #include "screen/drawing/drawing.h"
 #include "screen/drawing/platform.h"
 
-Booker* Booker :: Field(Point space, short size) {
+Stencil* Stencil :: Field(Point space, short size) {
     space.X--;
     MoveCursor(&space);
     Draw(pipe_horizontal);
@@ -19,47 +19,47 @@ Booker* Booker :: Field(Point space, short size) {
     return this;
 }
 
-Point* Booker :: NextPoint(byte span) {
+Point* Stencil :: NextPoint(byte span) {
     return &m_basis.at(m_book.Form).at(span);
 }
 
-Point* Booker :: Current() {
+Point* Stencil :: Current() {
     return NextPoint(m_book.Page);
 }
 
-short Booker :: BasisDiff() {
+short Stencil :: BasisDiff() {
     byte present = Current()->X;
     byte next = NextPoint(m_book.Page + m_book.Span)->X;
     return next - present;
 }
 
-void Booker :: PagesEnd(byte pointing) {
+void Stencil :: PagesEnd(byte pointing) {
     byte limit = m_basis.at(m_book.Form).size();
     if (pointing >= limit)
         throw std::overflow_error("Span > max columns!");
 }
 
-Booker* Booker :: SkipLine(char lines, char direction) {
+Stencil* Stencil :: SkipLine(char lines, char direction) {
     m_cursor.Y += lines * direction;
     return this;
 }
 
-Booker* Booker :: BookMark(char skip, char direction) {
+Stencil* Stencil :: BookMark(char skip, char direction) {
     m_cursor.Y = Current()->Y;
     return SkipLine(m_book.Line * skip, direction);
 }
 
-const Point& Booker :: Cursor() {
+const Point& Stencil :: Cursor() {
     return m_cursor;
 }
 
-Booker :: Booker(std::vector<std::vector<Point>> basis) {
+Stencil :: Stencil(std::vector<std::vector<Point>> basis) {
     m_cursor = basis.at(0).at(0);
     m_basis = basis;
     m_book = { 0, 0, 0, 0 };
 }
 
-Booker* Booker :: Form(byte buffer) {
+Stencil* Stencil :: Form(byte buffer) {
     if (buffer >= m_basis.size())
         throw std::overflow_error("Selected form not found");
     else
@@ -67,59 +67,59 @@ Booker* Booker :: Form(byte buffer) {
     return this;
 }
 
-Booker* Booker :: Span(byte columns) {
+Stencil* Stencil :: Span(byte columns) {
     PagesEnd(m_book.Page + columns);
     m_book.Span = columns;
     return this;
 }
 
-Booker* Booker :: Page(byte column) {
+Stencil* Stencil :: Page(byte column) {
     PagesEnd(column + m_book.Span);
     m_book.Page = column;
     m_cursor.X = Current()->X;
     return this;
 }
 
-Booker* Booker :: Page() {
+Stencil* Stencil :: Page() {
     return Page(m_book.Page + 1);
 }
 
-Booker* Booker :: Size(byte padding) {
+Stencil* Stencil :: Size(byte padding) {
     m_book.Line = padding;
     return this;
 }
 
-Booker* Booker :: Line() {
+Stencil* Stencil :: Line() {
     return SkipLine(m_book.Line, 1);
 }
 
-Booker* Booker :: Up() {
+Stencil* Stencil :: Up() {
     return SkipLine(m_book.Line, -1);
 }
 
-Booker* Booker :: Slide(char lines) {
+Stencil* Stencil :: Slide(char lines) {
     return SkipLine(m_book.Line, lines);
 }
 
-Booker* Booker :: Line(char skip) {
+Stencil* Stencil :: Line(char skip) {
     return BookMark(skip, 1);
 }
 
-Booker* Booker :: Up(char skip) {
+Stencil* Stencil :: Up(char skip) {
     return BookMark(skip, -1);
 }
 
-Booker* Booker :: Move() {
+Stencil* Stencil :: Move() {
     MoveCursor(&m_cursor);
     return this;
 }
 
-Booker* Booker :: Clear() {
+Stencil* Stencil :: Clear() {
     Move();
     Clean(BasisDiff());
     return this;
 }
 
-Booker* Booker :: Decoration() {
+Stencil* Stencil :: Decoration() {
     return Move()->Field(m_cursor, BasisDiff())->Move();
 }
