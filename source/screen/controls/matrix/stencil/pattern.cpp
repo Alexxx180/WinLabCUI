@@ -1,9 +1,6 @@
 #include "screen/controls/matrix/stencil/pattern.h"
-
 #include "screen/drawing/drawing.h"
 #include "screen/drawing/platform.h"
-
-#include "screen/matrix/types/point.h"
 
 void Pattern :: SetCursor(Point* cursor) {
     m_cursor = cursor;
@@ -13,9 +10,9 @@ void Pattern :: Move() {
     MoveCursor(m_cursor);
 }
 
-void Pattern :: Clear() {
+void Pattern :: Clear(short width) {
     Move();
-    Clean(Diff());
+    Clean(width);
 }
 
 void Pattern :: Shift(short width) {

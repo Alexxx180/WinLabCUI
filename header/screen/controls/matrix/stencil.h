@@ -4,43 +4,30 @@
 #include <vector>
 
 #include "common/types.h"
-#include "screen/matrix/types/point.h"
-#include "screen/matrix/types/book.h"
+#include "screen/controls/matrix/stencil/mapper.h"
 
 class Stencil {
     private:
-        std::vector<std::vector<Point>> m_basis;
+        std::vector<Mapper> m_forms;
+        byte m_form;
 
-        std::vector<Book> m_forms;
-        byte form;
-
-        Point* NextPoint(byte span);
-        Point* Current();
-        void PagesEnd(byte limit);
-
-    protected:
-
-
-        short BasisDiff();
-        Stencil* Field(Point space, short size);
-        Stencil* SkipLine(char lines, char direction);
-        Stencil* BookMark(char skip, char direction);
+        void AssertBounds(char form);
+        Mapper& current();
 
     public:
-        const Point& Cursor();
-        Stencil(std::vector<std::vector<Point>> basis);
-        Stencil* Form(byte buffer);
+        Stencil(std::vector<Mapper> forms);
+        Stencil* Form(byte form);
         Stencil* Span(byte columns);
-        Stencil* Page(byte next);
-        Stencil* Page();
+        Stencil* Page(byte column);
+        Stencil* Flip(char direction);
         Stencil* Size(byte padding);
+        Stencil* Line(char direction);
+        Stencil* Jump(char direction);
+        Stencil* Jump();
         Stencil* Line();
-        Stencil* Up();
-        Stencil* Line(char skip);
-        Stencil* Up(char skip);
         Stencil* Move();
         Stencil* Clear();
-        Stencil* Decoration();
+        Stencil* Field();
 };
 
 #endif

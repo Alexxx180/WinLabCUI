@@ -9,8 +9,7 @@ class Ruler {
 
     public:
         void Size(byte lines);
-        byte Skip(byte current, char lines, char direction);
-        byte Skip(byte current, char direction);
-};
+        void Skip(byte& current, char lines);
+        void Jump(byte& current, char direction);
 
 #endif

@@ -1,125 +1,79 @@
 #include "screen/controls/matrix/stencil.h"
 
-#include <iostream>
-
-#include "screen/drawing/drawing.h"
-#include "screen/drawing/platform.h"
-
-Stencil* Stencil :: Field(Point space, short size) {
-    space.X--;
-    MoveCursor(&space);
-    Draw(pipe_horizontal);
-    space.Y++;
-
-    while (--size >= 0) {
-        space.X++;
-        MoveCursor(&space);
-        Draw(pipe_vertical); 
-    }
-    return this;
-}
-
-Point* Stencil :: NextPoint(byte span) {
-    return &m_basis.at(m_book.Form).at(span);
-}
-
-Point* Stencil :: Current() {
-    return NextPoint(m_book.Page);
-}
-
-short Stencil :: BasisDiff() {
-    byte present = Current()->X;
-    byte next = NextPoint(m_book.Page + m_book.Span)->X;
-    return next - present;
-}
-
-void Stencil :: PagesEnd(byte pointing) {
-    byte limit = m_basis.at(m_book.Form).size();
-    if (pointing >= limit)
-        throw std::overflow_error("Span > max columns!");
-}
-
-Stencil* Stencil :: SkipLine(char lines, char direction) {
-    m_cursor.Y += lines * direction;
-    return this;
-}
-
-Stencil* Stencil :: BookMark(char skip, char direction) {
-    m_cursor.Y = Current()->Y;
-    return SkipLine(m_book.Line * skip, direction);
-}
-
-const Point& Stencil :: Cursor() {
-    return m_cursor;
-}
-
-Stencil :: Stencil(std::vector<std::vector<Point>> basis) {
-    m_cursor = basis.at(0).at(0);
-    m_basis = basis;
-    m_book = { 0, 0, 0, 0 };
-}
-
-Stencil* Stencil :: Form(byte buffer) {
-    if (buffer >= m_basis.size())
+void Stencil :: AssertBounds(byte form) {
+    if (form >= m_forms.size())
         throw std::overflow_error("Selected form not found");
-    else
-        m_book.Form = buffer;
+}
+
+Mapper& Stencil :: current() {
+    return m_forms.at(m_form);
+}
+
+Stencil :: Stencil(std::vector<Mapper> forms) {
+    m_forms = forms;
+    m_form = 0;
+}
+
+Stencil* Stencil :: Form(byte form) {
+    AssertBounds(form);
+    m_form = form;
     return this;
 }
 
 Stencil* Stencil :: Span(byte columns) {
-    PagesEnd(m_book.Page + columns);
-    m_book.Span = columns;
+    current.Span(columns);
     return this;
 }
 
 Stencil* Stencil :: Page(byte column) {
-    PagesEnd(column + m_book.Span);
-    m_book.Page = column;
-    m_cursor.X = Current()->X;
+    current().Page(column);
     return this;
 }
 
-Stencil* Stencil :: Page() {
-    return Page(m_book.Page + 1);
+Stencil* Stencil :: Flip(char direction) {
+    current().Flip(direction);
+    return this;
 }
 
 Stencil* Stencil :: Size(byte padding) {
-    m_book.Line = padding;
+    current().ruler.Size(padding);
     return this;
 }
 
-Stencil* Stencil :: Line() {
-    return SkipLine(m_book.Line, 1);
+Stencil* Stencil :: Line(char direction) {
+    current().Anchor(direction);
+    return this;
 }
 
-Stencil* Stencil :: Up() {
-    return SkipLine(m_book.Line, -1);
+Stencil* Stencil :: Jump(char direction) {
+    current().Jump(direction);
+    return this;
 }
 
-Stencil* Stencil :: Slide(char lines) {
-    return SkipLine(m_book.Line, lines);
-}
+Stencil* Stencil :: Jump() { return Jump(-1); }
 
-Stencil* Stencil :: Line(char skip) {
-    return BookMark(skip, 1);
-}
-
-Stencil* Stencil :: Up(char skip) {
-    return BookMark(skip, -1);
-}
+Stencil* Stencil :: Line() { return Jump(1); }
 
 Stencil* Stencil :: Move() {
-    MoveCursor(&m_cursor);
+    current().pattern.Move();
     return this;
 }
 
 Stencil* Stencil :: Clear() {
-    Move();
-    Clean(BasisDiff());
+    Mapper& book = current();
+    short width = book.Diff();
+    book.pattern.Move();
+    book.pattern.Clear(width);
     return this;
 }
 
-Stencil* Stencil :: Decoration() {
-    return Move()->Field(m_cursor, BasisDiff())->Move();
+Stencil* Stencil :: Field() {
+    Mapper& book = current();
+    short width = book.Diff();
+    char offset = 1;
+    book.pattern.Shift(-offset);
+    book.pattern.Pipe();
+    book.pattern.Shift(width + offset);
+    book.pattern.Decoration(1, width);
+    return this;
 }
