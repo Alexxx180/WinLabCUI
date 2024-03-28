@@ -8,10 +8,12 @@ class Pattern {
         static const wchar_t pipe_horizontal = L'|';
         static const wchar_t pipe_vertical = L'‾';
 
+        Point* m_cursor;
+
     public:
         void SetCursor(Point* cursor);
         void Move();
-        void Clear();
+        void Clear(short width);
         void Shift(short width);
         void Decoration(char baseline, short width);
         void Pipe();

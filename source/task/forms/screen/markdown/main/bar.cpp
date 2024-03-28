@@ -6,6 +6,18 @@
 #include "screen/matrix/types/range.h"
 #include "screen/drawing/types/constructs/outlines/angles.h"
 #include "screen/drawing/types/constructs/corners.h"
+#include "screen/drawing/characters.h"
+
+Corners DefaultBar() {
+    Angles blank = { SPACE, SPACE };
+    return {
+        { UNDERSCORE, QUOTE1 },
+        { PIPE, DOT },
+        { PIPE, PIPE },
+        { UNDERSCORE, OVERSCORE },
+        blank, blank
+    };
+}
 
 void MainProgressBar(Range* content) {
     byte margin = 3;
@@ -17,13 +29,7 @@ void MainProgressBar(Range* content) {
     size.P1.Y = size.P2.Y - margin - 1;
     size.P2.Y = 2;
 
-    wchar_t pipe = 448, underscore = 818;
-    Angles blank = { 32, 32 };
-
-    Corners edges = {
-        { underscore, 39 }, { pipe, 46 }, { pipe, pipe },
-        { underscore, 8254 }, blank, blank
-    };
+    Corners edges = DefaultBar();
 
     Pen::ink().status.SetSize(&size);
     Pen::ink().status.SetSymbols(&edges);

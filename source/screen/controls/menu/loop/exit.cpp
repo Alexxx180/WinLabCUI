@@ -4,6 +4,7 @@
 
 #include "common/codes.h"
 #include "screen/interaction/interaction.h"
+#include "screen/interaction/lifetime/internal.h"
 #include "screen/interaction/controller/keyboard.h"
 #include "screen/matrix/tools.h"
 #include "screen/matrix/tools/layers.h"
@@ -14,7 +15,8 @@ char ExitMenu :: LiveLoop() {
     layer->Target(MENU);
     out->Move();
 
-    Await(&m_options, &Menu::Query, ESC);
+    char (Menu::*query)() = &Menu::Query;
+    Await(&m_options, query, ESC);
 
     layer->Target(FOOT);
     pen->Clip("status_confirm_exit");
@@ -31,8 +33,9 @@ void ExitMenu :: Capture() {
     layer->Redraw();
     layer->Target(MENU);
     out->Move();
-    options->Expand();
-    Await(this, &ExitMenu::LiveLoop, ENTER);
+    m_options.Expand();
+    char (ExitMenu::*loop)() = &ExitMenu::LiveLoop;
+    Await(this, loop, ENTER);
     ClearScreen();
     exit(OK);
 }

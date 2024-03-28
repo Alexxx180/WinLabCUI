@@ -32,7 +32,7 @@ void CharacterUserInterface() {
     ScreenMarkdown();
     MenuInit();
     InitLayers();
-    SetPenInstance();
+    InitPen();
 }
 
 void SetDefaults(int argc, char** argv) {

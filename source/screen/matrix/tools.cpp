@@ -21,7 +21,7 @@ void ClearScreen() {
 
 void SelectLayer(Layers target) {
     layer = &layers[target];
-    back = layer.back.current;
-    out = layer.out.current;
-    status = layer.status.current;
+    back = layer->back.current;
+    out = layer->out.current;
+    status = layer->status.current;
 }

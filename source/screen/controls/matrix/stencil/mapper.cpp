@@ -1,14 +1,9 @@
 #include "screen/controls/matrix/stencil/mapper.h"
 
-Mapper :: Mapper(std::vector<Point> basis) {
-    m_basis = basis;
-    m_cursor = m_basis.at(0);
-}
-
 void Mapper :: Page(Point canvas) {
-    mark = canvas.X;
-    pages = canvas.Y;
-    m_cursor.X = Merge(mark, pages);
+    m_mark = canvas.X;
+    m_pages = canvas.Y;
+    m_cursor.X = Merge(m_mark, m_pages);
 }
 
 Mapper :: Mapper(std::vector<Point> basis) {
@@ -25,18 +20,21 @@ byte Mapper :: Merge(byte current, byte repeat) {
 }
 
 Point Mapper :: Split(byte column, byte count) {
-    return { column % count, column / count };
+    return { 
+        static_cast<byte>(column % count),
+        static_cast<byte>(column / count)
+    };
 }
 
 short Mapper :: Diff() {
-    Point canvas = Split(mark + span, m_basis.size());
-    byte next = Merge(canvas.X, pages + canvas.Y);
-    byte present = m_basis.at(mark).X;
+    Point canvas = Split(m_mark + m_span, m_basis.size());
+    byte next = Merge(canvas.X, m_pages + canvas.Y);
+    byte present = m_basis.at(m_mark).X;
     return next - present;
 }
 
 void Mapper :: Span(byte columns) {
-    span = columns;
+    m_span = columns;
 }
 
 void Mapper :: Page(byte column) {
@@ -45,12 +43,14 @@ void Mapper :: Page(byte column) {
 
 void Mapper :: Flip(char direction) {
     byte count = m_basis.size();
-    byte listing = pages * count + mark;
-    Page(count, listing + direction);
+    byte listing = m_pages * count + m_mark;
+    Page({ count,
+        static_cast<byte>(listing + direction)
+    });
 }
 
 void Mapper :: Anchor(char lines) {
-    m_cursor.Y = m_basis.at(mark).Y;
+    m_cursor.Y = m_basis.at(m_mark).Y;
     ruler.Skip(m_cursor.Y, lines);
 }
 

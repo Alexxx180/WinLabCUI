@@ -20,6 +20,6 @@ Screen StatusBar(Markdown* m) {
         m->Relate(X, column * ratio);
         m->Margin(X, margin)->Page();
     }
-    return m->Form()->Screen();
+    return m->Form()->Result();
 }
 

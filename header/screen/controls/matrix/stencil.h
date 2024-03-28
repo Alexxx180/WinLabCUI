@@ -11,7 +11,7 @@ class Stencil {
         std::vector<Mapper> m_forms;
         byte m_form;
 
-        void AssertBounds(char form);
+        void AssertBounds(byte form);
         Mapper& current();
 
     public:

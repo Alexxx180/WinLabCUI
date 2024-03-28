@@ -10,5 +10,5 @@ Screen MenuPanel(Markdown* m) {
     m->Top()->Pin(X)->Margin(X, margin)->Page();
     m->Bot()->Pin(X)->Relate(X, 0.33)->Page();
     m->Bot()->Pin(X)->Margin(X, -margin)->Page();
-	return m->Form()->Screen();
+	return m->Form()->Result();
 }

@@ -5,6 +5,8 @@
 
 #include "common/types.h"
 #include "screen/matrix/types/point.h"
+#include "screen/controls/matrix/stencil/ruler.h"
+#include "screen/controls/matrix/stencil/pattern.h"
 
 class Mapper {
     private:
@@ -27,6 +29,8 @@ class Mapper {
         void Span(byte columns);
         void Page(byte column);
         void Flip(char direction);
+        void Anchor(char lines);
+        void Jump(char direction);
 };
 
 #endif

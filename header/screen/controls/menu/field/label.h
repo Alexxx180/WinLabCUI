@@ -6,12 +6,14 @@
 
 class Label : public Navigation {
     private:
-		std::string m_caption;
+        std::string m_caption;
+
+    protected:
+        char Input();
 
     public:
-		Label(std::string caption);
-		void Draw();
-        char Query();
+        Label(std::string caption);
+        void Draw();
 };
 
 #endif

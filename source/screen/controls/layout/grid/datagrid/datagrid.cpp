@@ -1,6 +1,6 @@
 #include "screen/controls/layout/grid/datagrid/datagrid.h"
 #include "screen/matrix/tools.h"
-#include "screen/drawing/types/layers.h"
+#include "screen/matrix/tools/layers.h"
 #include "screen/interaction/interaction.h"
 #include "screen/interaction/controller/groups/table.h"
 
@@ -27,7 +27,7 @@ void DataGrid :: PagesPrint() {
         table.Pages.Length();
     }
 
-    Pen::ink().Target(MAIN);
+    layer->Target(MAIN);
 }
 
 void DataGrid :: First() { table.HomePage(); }

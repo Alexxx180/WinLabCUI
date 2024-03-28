@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "common/types.h"
+
 template<typename TYPE>
 class Fragment {
     private:

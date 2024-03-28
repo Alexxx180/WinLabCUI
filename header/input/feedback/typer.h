@@ -12,7 +12,7 @@ class Typer {
         virtual ~Typer() { }
 
         void Input() {
-            screen->Decoration();
+            out->Field();
             do {
                 layer->Target(MAIN);
                 TypeInput();

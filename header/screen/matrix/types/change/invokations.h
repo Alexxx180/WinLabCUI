@@ -6,7 +6,7 @@
 
 typedef byte (*point_extract)(Point*);
 typedef void (*axis_shift)(Point*, byte);
-typedef void (*axis_extend)(Point*, byte);
+typedef void (*axis_extend)(Point*, float);
 
 byte HPoint(Point* cursor);
 byte VPoint(Point* cursor);

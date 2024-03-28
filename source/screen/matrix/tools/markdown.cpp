@@ -1,4 +1,6 @@
-#include "screen/matrix/markdown.h"
+#include "screen/matrix/tools/markdown.h"
+
+#include "screen/controls/matrix/screen.h"
 #include "screen/controls/layout/grid/grid.h"
 
 Markdown :: Markdown() {
@@ -8,17 +10,19 @@ Markdown :: Markdown() {
 
 Markdown* Markdown :: Clear() {
     m_forms.clear();
+    return this;
 }
 
-Screen Markdown :: Screen() {
+Screen Markdown :: Result() {
     Screen screen;
-    screen.back(&m_frame.SwapXY());
-    screen.out(m_forms);
+    screen.back = new Grid(&m_frame.SwapXY());
+    screen.out = new Stencil(m_forms);
     return screen;
 }
 
 Markdown* Markdown :: Form() {
-    m_forms.push_back(m_pages);
+    Mapper book(m_pages);
+    m_forms.push_back(book);
     m_pages.clear();
     return this;
 }

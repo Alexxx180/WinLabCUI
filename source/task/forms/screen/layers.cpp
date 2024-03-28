@@ -8,3 +8,7 @@ void InitLayers() {
     layer->Target(MENU);
     out->Size(1)->Span(1);
 }
+
+void InitPen() {
+    pen = Pen::ink();
+}

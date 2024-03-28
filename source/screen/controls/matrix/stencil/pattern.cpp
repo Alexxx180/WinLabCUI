@@ -16,19 +16,19 @@ void Pattern :: Clear(short width) {
 }
 
 void Pattern :: Shift(short width) {
-    m_cursor.X += width;
+    m_cursor->X += width;
 }
 
 void Pattern :: Decoration(char baseline, short width) {
-    m_cursor.Y += baseline;
+    m_cursor->Y += baseline;
 
     while (--width >= 0) {
-        m_cursor.X--;
+        m_cursor->X--;
         Move();
         Draw(pipe_horizontal); 
     }
 
-    m_cursor.Y -= baseline;
+    m_cursor->Y -= baseline;
     Move();
 }
 

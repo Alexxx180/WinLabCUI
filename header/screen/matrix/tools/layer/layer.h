@@ -3,6 +3,7 @@
 
 #include "screen/matrix/tools/layer/fragment.h"
 #include "screen/controls/matrix/screen.h"
+#include "screen/controls/bar/bar.h"
 
 struct Layer {
     Fragment<Grid> back;

@@ -12,6 +12,6 @@ enum Keyboard {
     KEY_UP = 72,
     KEY_RIGHT = 77,
     KEY_DOWN = 80
-}
+};
 
 #endif

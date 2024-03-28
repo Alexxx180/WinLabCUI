@@ -1,7 +1,7 @@
 #ifndef SCREEN_MATRIX_TYPES_CHANGE_SHIFTER
 #define SCREEN_MATRIX_TYPES_CHANGE_SHIFTER
 
-#include "screen/matrix/change/liner.h"
+#include "screen/matrix/types/change/liner.h"
 
 struct Shifter : public Liner {
     axis_extend stretch;

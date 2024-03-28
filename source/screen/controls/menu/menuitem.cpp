@@ -22,9 +22,9 @@ void MenuItem :: Minimize() {
 		Point pos = item.GetPos();
 		//wprintf(L"%i, ", size);
         //item.Focus();
-		Pen::ink().screen->Page(pos.X);
-	    Pen::ink().screen->Line(pos.Y);
-		//Pen::ink().screen->Move(); // PROBLEM HERE
+		out->Page(pos.X);
+	    out->Line(pos.Y);
+		//out->Move(); // PROBLEM HERE
 		wprintf(L"%i, %i", pos.X, pos.Y);
 		//item.Clear();
 	}
@@ -40,7 +40,6 @@ void MenuItem :: DrawItems() {
 char MenuItem :: Expand() {
     DrawItems();
     char (MenuItem::*query)() = &MenuItem::Query;
-
     Await(this, query, ESC);
     Minimize();
     Focus();
@@ -161,15 +160,15 @@ void MenuItem :: Draw() {
 }
 
 MenuItem* MenuItem :: Clear() {
-    Pen::ink().screen->Clear()->Move();
+    out->Clear()->Move();
     return this;
 }
 
 MenuItem* MenuItem :: Focus() {
     Point pos = m_item.Position;
-    Pen::ink().screen->Page(pos.X);
-    Pen::ink().screen->Line(pos.Y);
-    Pen::ink().screen->Move();
+    out->Page(pos.X);
+    out->Line(pos.Y);
+    out->Move();
     return this;
 }
 

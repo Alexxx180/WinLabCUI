@@ -10,7 +10,7 @@ class Formatter {
         Formatter* Text(TYPE argument);
 
         template<typename T, typename... Args>
-        void Texts(T t, Args... args);
+        void Text(T t, Args... args);
 };
 
 #endif

@@ -1,4 +1,4 @@
-#include "screen/matrix/change/liner.h"
+#include "screen/matrix/types/change/liner.h"
 
 void Liner :: Set(point_extract points, axis_shift margin) {
     positions = points;

@@ -1,15 +1,13 @@
 #include "screen/controls/layout/grid/datagrid/types/scroll.h"
+#include "screen/matrix/tools.h"
 #include "task/forms/debug.h"
-#include "screen/matrix/pen.h"
 
 void Scroll :: Home() { Current = Top; }
 
 void Scroll :: End() { Current = Bottom; }
 
 void Scroll :: Length() {
-    Pen::ink().Text(Current);
-    Pen::ink().Text(L" / ");
-    Pen::ink().Text(Bottom);
+    pen->Text(Current, L" / ", Bottom);
 }
 
 bool Scroll :: Down() {

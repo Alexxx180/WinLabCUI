@@ -1,10 +1,10 @@
-#ifndef SCREEN_DRAWING_TYPES_LAYERS
-#define SCREEN_DRAWING_TYPES_LAYERS
+#ifndef SCREEN_MATRIX_TOOLS_LAYERS
+#define SCREEN_MATRIX_TOOLS_LAYERS
 
 // Responsible for screen ordering
 
 enum Layers {
-    SCREEN, FLOAT
+    SCREEN, FLOATING
 };
 
 enum Fragments {

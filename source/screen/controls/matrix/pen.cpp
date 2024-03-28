@@ -1,15 +1,10 @@
-#include "screen/controls/matrix/pen/formatter.h"
+#include "screen/controls/matrix/pen.h"
 #include "common/texts/common.h"
 
 Pen :: Pen() {}
 
-static Pen* Pen :: ink() {
-    static Pen instance;
-    return &instance;
-}
-
-quoteptr Pen :: Feedback() {
-    return &Pen::Quote;
+Pen :: quoteptr Pen :: Feedback() {
+    return &Pen::Clip;
 }
 
 Pen* Pen :: Clip(std::string name) {

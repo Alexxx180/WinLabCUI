@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "screen/matrix/pen.h"
+#include "screen/matrix/tools.h"
 #include "screen/interaction/controller/keyboard.h"
 
 Label :: Label(std::string caption) { 
@@ -10,7 +10,7 @@ Label :: Label(std::string caption) {
 }
 
 void Label :: Draw() {
-    Pen::ink().Quote(m_caption);
+    pen->Clip(m_caption);
 }
 
-char Label :: Query() { return ESC; }
+char Label :: Input() { return ESC; }

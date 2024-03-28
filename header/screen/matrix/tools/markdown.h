@@ -11,12 +11,13 @@
 #include "screen/controls/matrix/screen.h"
 #include "screen/controls/matrix/pen.h"
 #include "screen/controls/matrix/stencil.h"
+#include "screen/controls/matrix/stencil/mapper.h"
 
 static const byte X = 0, Y = 1;
 
 class Markdown {
     private:
-        std::vector<std::vector<Point>> m_forms;
+        std::vector<Mapper> m_forms;
         std::vector<Point> m_pages;
         Range m_origin, m_frame;
         Point m_booker;
@@ -27,7 +28,7 @@ class Markdown {
     public:
         Markdown();
         Markdown* Clear();
-        Screen Screen();
+        Screen Result();
         Markdown* Form(); 
         Markdown* Page(); 
         Markdown* Base(Range* origin); 

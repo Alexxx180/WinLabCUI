@@ -11,5 +11,6 @@ class Ruler {
         void Size(byte lines);
         void Skip(byte& current, char lines);
         void Jump(byte& current, char direction);
+};
 
 #endif

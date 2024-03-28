@@ -5,8 +5,8 @@
 #include "screen/controls/matrix/stencil.h"
 
 struct Screen {
-    Grid back;
-    Stencil out;
+    Grid* back = NULL;
+    Stencil* out = NULL;
 };
 
 #endif

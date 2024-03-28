@@ -29,5 +29,5 @@ Screen MainPanel(Markdown* m, Range content) {
     m->Top()->Pin(X)->Margin(X, margin + 2)->Page();
     m->Bot()->Pin(X)->Relate(X, third)->Page();
     m->Bot()->Pin(X)->Margin(X, -margin - 1)->Page();
-    return m->Form()->Screen();
+    return m->Form()->Result();
 }

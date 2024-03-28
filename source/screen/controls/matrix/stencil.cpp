@@ -1,5 +1,7 @@
 #include "screen/controls/matrix/stencil.h"
 
+#include <stdexcept>
+
 void Stencil :: AssertBounds(byte form) {
     if (form >= m_forms.size())
         throw std::overflow_error("Selected form not found");
@@ -21,7 +23,7 @@ Stencil* Stencil :: Form(byte form) {
 }
 
 Stencil* Stencil :: Span(byte columns) {
-    current.Span(columns);
+    current().Span(columns);
     return this;
 }
 

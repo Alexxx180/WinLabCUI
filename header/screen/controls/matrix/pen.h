@@ -6,6 +6,7 @@
 #include "screen/controls/matrix/pen/formatter.h"
 #include "input/limiting/boundary.h"
 
+
 class Pen : public Formatter {
     protected:
         Pen();
@@ -13,7 +14,11 @@ class Pen : public Formatter {
     public:
         typedef Pen* (Pen::*quoteptr)(std::string);
 
-        static Pen* ink();
+        static Pen* Pen :: ink() {
+            static Pen instance;
+            return &instance;
+        }
+
         quoteptr Feedback();
 
         Pen* Clip(std::string name);

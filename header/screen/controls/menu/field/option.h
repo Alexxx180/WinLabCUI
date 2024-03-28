@@ -17,6 +17,7 @@ class Option : public Navigation {
         void Previous();
         void Next();
         char Action();
+        char Input();
 
     public:
         Option();
