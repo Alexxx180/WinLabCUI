@@ -1,8 +1,6 @@
 #include "task/forms/defaults/cui/markdown/floating/main.h"
 
-#include "screen/matrix/tools/markdown.h"
-
-Screen ArrayPanel(Markdown m, byte width) {
+Screen ArrayPanel(Markdown m) {
     byte margin = 1, left = 2;
     float ratio = 0.33f;
     m.Flatten(X, 4, 0.5)->Flatten(Y, 18, 0.78);

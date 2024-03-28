@@ -55,8 +55,8 @@ Bar* Bar :: SetSymbols(Corners* symbols) {
     return this;
 }
 
-Bar* Bar :: Orientation(bool vertical) {
-    m_orientation = vertical;
+Bar* Bar :: Vertical(bool orientation) {
+    m_orientation = orientation;
     return this;
 }
 

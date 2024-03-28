@@ -1,0 +1,1 @@
+void SwitchStd(uint mode);

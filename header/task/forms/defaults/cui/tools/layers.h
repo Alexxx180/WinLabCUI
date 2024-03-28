@@ -1,2 +1,1 @@
 void InitLayers();
-void InitPen();

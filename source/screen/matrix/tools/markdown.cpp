@@ -1,5 +1,6 @@
 #include "screen/matrix/tools/markdown.h"
 
+#include "screen/controls/bar/bar.h"
 #include "screen/controls/matrix/screen.h"
 #include "screen/controls/layout/grid/grid.h"
 
@@ -11,6 +12,10 @@ Markdown :: Markdown() {
 Markdown* Markdown :: Clear() {
     m_forms.clear();
     return this;
+}
+
+Bar Markdown :: ProgressBar() {
+    return progress;
 }
 
 Screen Markdown :: Result() {

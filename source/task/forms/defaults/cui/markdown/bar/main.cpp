@@ -1,37 +1,26 @@
-#include "task/forms/markdown/main/table.h"
+#include "task/forms/defaults/cui/markdown/bar/main.h"
 
-#include "common/types.h"
-#include "screen/matrix/pen.h"
-#include "screen/matrix/types/point.h"
-#include "screen/matrix/types/range.h"
-#include "screen/drawing/types/constructs/outlines/angles.h"
 #include "screen/drawing/types/constructs/corners.h"
 #include "screen/drawing/characters.h"
 
 Corners DefaultBar() {
+    Corners bar;
+    bar.Standing = { UNDERSCORE, QUOTE1 };
+    bar.Lying = { PIPE, DOT };
+
+    bar.Vertical = { PIPE, PIPE };
+    bar.Horizontal = { UNDERSCORE, OVERSCORE };
+
     Angles blank = { SPACE, SPACE };
-    return {
-        { UNDERSCORE, QUOTE1 },
-        { PIPE, DOT },
-        { PIPE, PIPE },
-        { UNDERSCORE, OVERSCORE },
-        blank, blank
-    };
+    bar.Top = blank;
+    bar.Bottom = blank;
+    return bar;
 }
 
-void MainProgressBar(Range* content) {
-    byte margin = 3;
-
-    Range size = *content;
-
-    size.P2.X -= size.P1.X - margin;
-    size.P1.X += margin;
-    size.P1.Y = size.P2.Y - margin - 1;
-    size.P2.Y = 2;
-
+Bar MainProgressBar(Markdown* m) {
     Corners edges = DefaultBar();
-
-    status.SetSize(&size);
-    Pen::ink().status.SetSymbols(&edges);
-    Pen::ink().status.Orientation(false);
+    Bar progress = m->ProgressBar(); 
+    progress.SetSymbols(&edges);
+    progress.Vertical(false);
+    return progress;
 }

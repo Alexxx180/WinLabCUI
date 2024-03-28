@@ -41,7 +41,7 @@ class Bar : public Panel {
         Bar();
         Bar* SetSize(Range* sizes);
         Bar* SetSymbols(Corners* symbols);
-        Bar* Orientation(bool vertical);
+        Bar* Vertical(bool orientation);
         Bar* Show();
         Bar* Progress(float basis);
         Bar* ProgressData(float value);

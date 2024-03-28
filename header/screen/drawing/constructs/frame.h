@@ -3,6 +3,7 @@
 
 #include "screen/drawing/constructs/outlines/edges.h"
 #include "screen/drawing/constructs/outlines/angles.h"
+#include "screen/drawing/characters.h"
 
 struct Frame {
     Edges horizontal, vertical;
@@ -11,32 +12,14 @@ struct Frame {
 };
 
 static Frame InitFormEdges() {
-	// pipes: ╠, ═, ╣
-	wchar_t pipe_faced_left = 9568;
-	wchar_t pipe_horizontal = 9552;
-	wchar_t pipe_faced_right = 9571;
-	// pipes: ╦, ║, ╩
-	wchar_t pipe_faced_down = 9574;
-	wchar_t pipe_vertical = 9553;
-	wchar_t pipe_faced_up = 9577;
-	// pipes: ╔, ╗
-	wchar_t angle_top_left = 9556;
-	wchar_t angle_top_right = 9559;
-	// pipes: ╚, ╝
-	wchar_t angle_bottom_left = 9562;
-	wchar_t angle_bottom_right = 9565;
-	// pipe: ╬
-	wchar_t cross = 9580;
-
 	Edges horizontal = { 
-		pipe_faced_left, pipe_horizontal, pipe_faced_right
+		PIPE_FACED_LEFT, PIPE_HORIZONTAL, PIPE_FACED_RIGHT
 	};
 	Edges vertical = {
-		pipe_faced_down, pipe_vertical, pipe_faced_up
+		PIPE_FACED_DOWN, PIPE_VERTICAL, PIPE_FACED_UP
 	};
-	Angles top = { angle_top_left, angle_top_right };
-	Angles bottom = { angle_bottom_left, angle_bottom_right };
-
+	Angles top = { ANGLE_TOP_LEFT, ANGLE_TOP_RIGHT };
+	Angles bottom = { ANGLE_BOTTOM_LEFT, ANGLE_BOTTOM_RIGHT };
 	return { horizontal, vertical, top, bottom, cross };
 }
 
