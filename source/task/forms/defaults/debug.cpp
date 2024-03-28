@@ -4,15 +4,14 @@
 #include <string.h>
 
 #include "common/types.h"
-#include "input/feedback/verifier.h"
 
 byte i;
 
-void initDbgVars(int argc, char **argv) {
-    for (i = 1; i < argc; i++) setDbgVar(argv);
+void InitDbgVars(int argc, char **argv) {
+    for (i = 1; i < argc; i++) SetDbgVar(argv);
 }
 
-void setDbgVar(char **argv) {
+void SetDbgVar(char **argv) {
     if (strcmp(argv[i], "-c") == 0) {
         page_character_results = true;
         return;
@@ -24,5 +23,3 @@ void setDbgVar(char **argv) {
 // Debug Variables
 bool page_character_results = false;
 int page_listing = 1;
-
-Verifier<char>* numeric = new Verifier<char>();

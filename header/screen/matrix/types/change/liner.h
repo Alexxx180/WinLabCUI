@@ -6,7 +6,7 @@
 #include "screen/matrix/types/change/invokations.h"
 
 struct Liner {
-    point_extract positions;
+    point_extract extract;
     axis_shift shift;
 
     void Set(point_extract points, axis_shift margin);

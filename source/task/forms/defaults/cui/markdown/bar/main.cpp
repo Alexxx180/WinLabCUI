@@ -31,7 +31,7 @@ void MainProgressBar(Range* content) {
 
     Corners edges = DefaultBar();
 
-    Pen::ink().status.SetSize(&size);
+    status.SetSize(&size);
     Pen::ink().status.SetSymbols(&edges);
     Pen::ink().status.Orientation(false);
 }
