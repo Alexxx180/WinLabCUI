@@ -1,6 +1,5 @@
 #include "screen/matrix/tools/markdown.h"
 
-#include "screen/controls/bar/bar.h"
 #include "screen/controls/matrix/screen.h"
 #include "screen/controls/layout/grid/grid.h"
 
@@ -15,6 +14,8 @@ Markdown* Markdown :: Clear() {
 }
 
 Bar Markdown :: ProgressBar() {
+    Bar progress;
+    progress.SetSize(&m_next);
     return progress;
 }
 
@@ -56,7 +57,7 @@ Markdown* Markdown :: Place(Shifter* pos, byte p1, byte p2) {
 Markdown* Markdown :: Shift(byte flow, byte p2, byte size) {
     Shifter* pos = &m_positions[flow];
     p2 += pos->extract(&m_next.P2);
-    return Place(m, p2, p2 + size);
+    return Place(pos, p2, p2 + size);
 }
 
 Markdown* Markdown :: Flatten(byte flow, byte margin, float ratio) {

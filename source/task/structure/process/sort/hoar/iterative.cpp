@@ -1,7 +1,5 @@
 #include "task/structure/process/sort/hoar/iterative.h"
 
-#include <vector>
-
 #include "task/structure/process/sort/hoar/types/stack.h"
 #include "task/structure/process/sort/swap.h"
 

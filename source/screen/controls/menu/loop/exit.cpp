@@ -28,6 +28,10 @@ void ExitMenu :: Set(Menu* options) {
     m_options = *options;
 }
 
+Menu& ExitMenu :: Get() {
+    return m_options;
+}
+
 void ExitMenu :: Capture() {
     ClearScreen();
     layer->Redraw();

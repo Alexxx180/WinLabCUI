@@ -8,7 +8,7 @@ Screen ArrayPanel(Markdown m) {
     m.Top(X)->Margin(X, left)->Page();
     m.Bot(X)->Relate(X, ratio)->Page();
     m.Bot(X)->Margin(X, -margin)->Page();
-    Screen result = m->Form()->Result();
+    Screen result = m.Form()->Result();
     m.Clear();
     return result;
 }

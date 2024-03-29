@@ -1,1 +1,1 @@
-void ScreenMarkdown();
+void ApplyMarkdown();

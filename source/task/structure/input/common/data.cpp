@@ -1,15 +1,18 @@
 #include "task/structure/input/common/data.h"
 
-#include "input/boundary.h"
-#include "input/advanced/randomizer.h"
+#include "task/forms/defaults/io/input.h"
 
-Boundary<char> RandomLimits() {
-    Boundary<char> limits(-99, 99);
-    return limits;
+template<typename TYPE>
+void FillArray(TYPE size, TYPE* array) {
+    while (--size >= 0) array[size] = gen_int8.Random();
 }
 
-Randomizer<char> randomc = { RandomLimits() };
+template<typename TYPE>
+void FillArrays(TYPE count, TYPE size, TYPE** arrays) {
+    while (--count >= 0) FillArray(size, arrays[count]);
+}
 
-void FillArray(char size, char* array) {
-    while (--size >= 0) array[size] = randomc.Standard();
+template<typename TYPE>
+void EmptyArray(TYPE size, TYPE* array) {
+    while (--size >= 0) array[size] = 0;
 }

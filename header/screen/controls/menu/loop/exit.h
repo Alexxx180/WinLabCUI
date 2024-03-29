@@ -10,6 +10,7 @@ class ExitMenu {
         char LiveLoop();
 
     public:
+        Menu& Get();
         void Set(Menu* options);
         void Capture();
 };

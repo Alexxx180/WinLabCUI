@@ -20,7 +20,7 @@ static Frame InitFormEdges() {
 	};
 	Angles top = { ANGLE_TOP_LEFT, ANGLE_TOP_RIGHT };
 	Angles bottom = { ANGLE_BOTTOM_LEFT, ANGLE_BOTTOM_RIGHT };
-	return { horizontal, vertical, top, bottom, cross };
+	return { horizontal, vertical, top, bottom, CROSS };
 }
 
 static Frame form_edges = InitFormEdges();

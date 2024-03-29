@@ -3,7 +3,7 @@
 
 #include "screen/matrix/types/point.h"
 
-enum CursorShape { BLOCK = 1, UNDERSCORE = 3, BAR = 5 };
+enum CursorShape { BLOCK = 1, PLATE = 3, BAR = 5 };
 
 void SetPlatformOutput();
 void MoveCursor(Point* cursor);

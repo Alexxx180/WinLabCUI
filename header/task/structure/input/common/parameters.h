@@ -1,25 +1,10 @@
 #include <string>
 #include "input/feedback/verifier.h"
-#include "screen/matrix/pen.h"
 
-extern char field;
-
-void InputParameterName(std::wstring);
-void InputParameterFeedback(std::wstring);
-
-template<class TYPE>
-void InputParameterValue(Verifier<TYPE>* limit) {
-    Pen::ink().screen->Page(field);
-    Pen::ink().Input(limit);
-}
+void NameInput(std::wstring);
+void NameInput(std::string);
+void ValueOutput(std::wstring);
+void ValueOutput(Typer* limit);
 
 template<class TYPE>
-void InputParameter(Verifier<TYPE>* limit, std::string name) {
-    std::wstring parameter = texts[name];
-
-    InputParameterName(parameter);
-    limit->Edges()->View();
-
-    InputParameterFeedback(parameter);
-    Pen::ink().Text(limit->result);
-}
+void ParamInput(Verifier<TYPE>* limit, std::string name);

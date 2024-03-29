@@ -1,4 +1,4 @@
-#include "task/forms/markdown.h"
+#include "task/forms/defaults/cui/markdown/markdown.h"
 
 #include "screen/matrix/tools.h"
 #include "screen/matrix/tools/layers.h"
@@ -8,7 +8,8 @@
 #include "task/forms/defaults/cui/markdown/screen/main.h"
 #include "task/forms/defaults/cui/markdown/screen/foot.h"
 #include "task/forms/defaults/cui/markdown/screen/menu.h"
-#include "task/forms/defaults/cui/markdown/floating/menu.h"
+#include "task/forms/defaults/cui/markdown/floating/foot.h"
+#include "task/forms/defaults/cui/markdown/floating/main.h"
 //#include "task/forms/defaults/cui/markdown/bar/main.h"
 
 void ApplyMarkdown() {

@@ -1,4 +1,4 @@
-#include "task/structure/input/menu/array.h"
+#include "task/forms/defaults/cui/screens/menu/array.h"
 
 #include <vector>
 #include <string>

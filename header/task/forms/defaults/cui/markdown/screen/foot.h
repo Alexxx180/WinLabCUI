@@ -1,3 +1,3 @@
-#include "screen/matrix/markdown.h"
+#include "screen/matrix/tools/markdown.h"
 
-void StatusBar(Markdown* m);
+Screen StatusBar(Markdown* m);

@@ -41,7 +41,7 @@ link :
 
 build : compile link
 clean :
-	$(CMD) "del $(OBJ) -Recurse"
-	$(CMD) "del $(BIN) -Recurse"
+	$(CMD) "if (Test-Path $(OBJ)) { del $(OBJ) -Recurse }"
+	$(CMD) "if (Test-Path $(BIN)) { del $(BIN) -Recurse }"
 
 rebuild : clean build

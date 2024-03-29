@@ -1,7 +1,9 @@
-﻿#include "task/forms/screens/footer.h"
+﻿#include "task/forms/defaults/cui/screens/templates/footer.h"
 
-#include "task/forms/screens/common.h"
+#include "task/forms/defaults/cui/screens/templates/common.h"
 #include "screen/interaction/interaction.h"
+#include "screen/matrix/tools.h"
+#include "screen/matrix/tools/layers.h"
 
 char Footer()
 {

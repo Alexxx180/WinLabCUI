@@ -1,3 +1,3 @@
-#include "screen/matrix/markdown.h"
+#include "screen/matrix/tools/markdown.h"
 
-void MenuPanel(Markdown* m);
+Screen MenuPanel(Markdown* m);

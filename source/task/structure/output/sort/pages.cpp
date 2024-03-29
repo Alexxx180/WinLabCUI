@@ -1,11 +1,8 @@
 #include "task/structure/output/sort/pages.h"
 
-#include <vector>
-
 #include "screen/controls/grid/datagrid/types/page.h"
-#include "screen/controls/grid/datagrid/types/table.h"
 #include "screen/controls/grid/datagrid.h"
-#include "screen/matrix/pen.h"
+#include "screen/matrix/tools.h"
 
 DataGrid model;
 std::vector<short> original, sorted;

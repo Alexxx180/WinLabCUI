@@ -1,7 +1,7 @@
 #ifndef SCREEN_CONTROLS_LAYOUT_GRID_DATAGRID_TYPES_PAGE
 #define SCREEN_CONTROLS_LAYOUT_GRID_DATAGRID_TYPES_PAGE
 
-#include "task/forms/debug.h"
+#include "common/types.h"
 
 class Page {
     private:

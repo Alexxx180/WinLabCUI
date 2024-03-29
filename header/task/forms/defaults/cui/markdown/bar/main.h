@@ -1,3 +1,4 @@
 #include "screen/matrix/tools/markdown.h"
 
-void MainProgressBar(Markdown* m);
+Corners DefaultBar();
+Bar MainProgressBar(Markdown* m);

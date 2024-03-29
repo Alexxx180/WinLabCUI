@@ -1,4 +1,4 @@
-#include "task/structure/input/menu/entrance.h"
+#include "task/forms/defaults/cui/screens/menu/main.h"
 
 #include "screen/controls/menu/loop/exit.h"
 #include "screen/controls/menu/menu.h"

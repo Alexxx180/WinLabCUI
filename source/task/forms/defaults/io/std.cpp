@@ -1,3 +1,6 @@
+#include "task/forms/defaults/io/std.h"
+
+#include <stdio.h>
 #include <io.h>
 #include <fcntl.h>
 

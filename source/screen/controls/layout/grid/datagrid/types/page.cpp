@@ -1,5 +1,5 @@
 #include "screen/controls/layout/grid/datagrid/types/page.h"
-#include "task/forms/debug.h"
+#include "task/forms/defaults/debug.h"
 
 void Page :: Set(Page* page) {
     this->Relative = page->Relative;

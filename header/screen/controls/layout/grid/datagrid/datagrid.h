@@ -6,7 +6,7 @@
 
 class DataGrid : public Navigation {
     private:
-        void (*m_update)(Table *grid) = NULL;
+        void (*m_update)(Table *grid);
 
     public:
         Table table;

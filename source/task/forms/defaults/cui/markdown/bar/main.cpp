@@ -1,6 +1,5 @@
 #include "task/forms/defaults/cui/markdown/bar/main.h"
 
-#include "screen/drawing/types/constructs/corners.h"
 #include "screen/drawing/characters.h"
 
 Corners DefaultBar() {

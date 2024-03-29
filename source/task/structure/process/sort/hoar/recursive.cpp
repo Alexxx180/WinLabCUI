@@ -1,7 +1,5 @@
 #include "task/structure/process/sort/hoar/recursive.h"
 
-#include <vector>
-
 #include "task/structure/process/sort/swap.h"
 
 void QuickSortRecursive(std::vector<short>& memory, int first, int last) {

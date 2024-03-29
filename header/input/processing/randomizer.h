@@ -1,24 +1,22 @@
-#ifndef INPUT_ADVANCED_RANDOMIZER
-#define INPUT_ADVANCED_RANDOMIZER
+#ifndef INPUT_PROCESSING_RANDOMIZER
+#define INPUT_PROCESSING_RANDOMIZER
 
-#include <cstdlib>
 #include "input/limiting/boundary.h"
 
 template <typename TYPE>
 struct Randomizer {
     Boundary<TYPE> limits;
 
-    Randomizer() { }
+    Randomizer();
+    Randomizer(Boundary<TYPE> interval);
 
-    Randomizer(Boundary<TYPE> interval) {
-        limits = interval;
-    }
+    Randomizer<TYPE> Set(Boundary<TYPE> interval);
+    long Size(TYPE start, TYPE end);
 
-    TYPE Standard() {
-        TYPE start = limits.start;
-        long size = static_cast<long>(abs(start) + limits.end + 1);
-        return rand() % size + start;
-    }
+    // Random implementations
+    TYPE Standard();
+    // Global implementation
+    TYPE Random();
 };
 
 #endif

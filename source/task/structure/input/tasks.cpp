@@ -1,8 +1,8 @@
 #include "task/structure/input/tasks.h"
 
-#include "task/structure/input/menu/entrance.h"
-#include "task/structure/input/menu/array.h"
-#include "task/structure/input/menu/extra.h"
+#include "task/forms/defaults/cui/screens/menu/main.h"
+#include "task/forms/defaults/cui/screens/menu/array.h"
+#include "task/forms/defaults/cui/screens/menu/individual.h"
 
 void ArraySort() { array_menu.Capture(); }
 void Individual() { individual_menu.Capture(); }
