@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "screen/art/controls/data/types/table.h"
+#include "screen/controls/layout/grid/datagrid/types/table.h"
 
 extern std::vector<short> original, sorted;
 

@@ -4,7 +4,7 @@
 #include "screen/controls/menu/menu.h"
 #include "screen/controls/menu/menuitem.h"
 #include "screen/controls/menu/field/label.h"
-#include "task/structure/process/second.h"
+#include "task/structure/process/individual/individual.h"
 
 ExitMenu individual_menu;
 

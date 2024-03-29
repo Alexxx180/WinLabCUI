@@ -1,3 +1,5 @@
+#include "input/processing/randomizer.h"
+
 #include <cstdlib>
 
 template <typename TYPE>

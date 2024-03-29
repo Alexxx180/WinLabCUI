@@ -10,7 +10,7 @@ struct Randomizer {
     Randomizer();
     Randomizer(Boundary<TYPE> interval);
 
-    Randomizer<TYPE> Set(Boundary<TYPE> interval);
+    Randomizer<TYPE>* Set(Boundary<TYPE> interval);
     long Size(TYPE start, TYPE end);
 
     // Random implementations

@@ -8,7 +8,7 @@
 #include "screen/controls/menu/menuitem.h"
 #include "screen/controls/menu/field/option.h"
 #include "screen/controls/menu/field/label.h"
-#include "task/structure/input/array/sorted.h"
+#include "task/structure/input/array/array.h"
 
 ExitMenu array_menu;
 

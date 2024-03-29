@@ -1,4 +1,4 @@
-#include "task/structure/input/array/original.h"
+#include "task/structure/input/array/choice/input.h"
 
 #include "common/types.h"
 #include "screen/matrix/tools.h"
@@ -10,7 +10,7 @@
 #include "task/structure/input/array/common.h"
 
 void ManualInput() { ValueInput(numeric); }
-void RandomInput() { random_char.Random(); }
+void RandomInput() { gen_int8.Random(); }
 
 invokation InputSelect() {
     invokation array_input[2] = { RandomInput, ManualInput };
@@ -19,13 +19,13 @@ invokation InputSelect() {
 
 std::vector<short> ArrayInput(short size) {
     std::vector<short> result(size);
-    Boundary<char>* limits = &gen_int8.limits;
 
-    numeric->Bounds(limits);
+    numeric->Bounds(&gen_int8.limits);
     NameInput("input_array_elements");
-    pen->Bounds(limits);
+    pen->Bounds(gen_int8.limits);
 
-    byte i = 0, perform_input = InputSelect();
+    byte i = 0;
+    invokation perform_input = InputSelect();
 
     while (i < size) {
         perform_input();

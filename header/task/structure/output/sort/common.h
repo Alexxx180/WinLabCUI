@@ -1,2 +1,1 @@
-void OutputCommonHeader();
-void OutputArraySortHead();
+void SortCommon();

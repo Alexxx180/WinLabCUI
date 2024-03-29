@@ -1,11 +1,14 @@
-#ifndef TASK_STRUCTURE_INPUT_ARRAY_CHOICE_INPUT
-#define TASK_STRUCTURE_INPUT_ARRAY_CHOICE_INPUT
+#ifndef TASK_STRUCTURE_INPUT_ARRAY_CHOICE_SORT
+#define TASK_STRUCTURE_INPUT_ARRAY_CHOICE_SORT
 
 #include <vector>
 
-typedef void (*sort_invokation)(std::vector<short>&);
+typedef void (*invokation)();
 
-invokationVector DetermineSort();
-void StartArraySort();
+void ManualInput();
+void RandomInput();
+
+invokation InputSelect();
+std::vector<short> ArrayInput(short size);
 
 #endif

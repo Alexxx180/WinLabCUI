@@ -4,7 +4,7 @@
 void NameInput(std::wstring);
 void NameInput(std::string);
 void ValueOutput(std::wstring);
-void ValueOutput(Typer* limit);
+void ValueInput(Typer* limit);
 
 template<class TYPE>
 void ParamInput(Verifier<TYPE>* limit, std::string name);

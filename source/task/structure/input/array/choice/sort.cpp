@@ -1,9 +1,11 @@
-#include "task/structure/input/array/sorted.h"
+#include "task/structure/input/array/choice/sort.h"
 
 #include "common/texts/common.h"
 #include "input/limiting/boundary.h"
 
 #include "task/forms/defaults/io/input.h"
+
+#include "task/structure/output/sort/pages.h"
 
 #include "task/structure/input/array/common.h"
 #include "task/structure/input/array/choice/input.h"
@@ -23,7 +25,9 @@ sort_invokation SortSelect() {
 void SortChoice() {
     char size = numeric->result;
 
-    numeric->Bounds(Boundary<char>(1, 20));
+    Boundary<char> limits(1, 20);
+
+    numeric->Bounds(&limits);
     original = ArrayInput(size);
 
     sort_invokation array_sort = SortSelect();
