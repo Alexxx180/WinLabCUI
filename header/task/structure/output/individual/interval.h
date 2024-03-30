@@ -1,4 +1,4 @@
 #include <string>
 
 void ElementsInterval(char N);
-void ElementsSum(std::wstring name, short max);
+void ElementsSum(char* array, short max);

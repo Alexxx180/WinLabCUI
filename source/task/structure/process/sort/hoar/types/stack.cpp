@@ -6,7 +6,8 @@ bool HoarStack :: HasQueries() { return Position != 0; }
 
 void HoarStack :: Init(long size) {
     Position = 1;
-    SetBounds({ 0, size - 1 });
+    SetBound(Left, 0);
+    SetBound(Right, size - 1);
 }
 
 void HoarStack :: UpdateBounds() {
@@ -15,26 +16,23 @@ void HoarStack :: UpdateBounds() {
     Position--;
 }
 
-void HoarStack :: SetBounds(Point bounds) {
-    Left[Position] = bounds.X;
-    Right[Position] = bounds.Y;
+void HoarStack :: SetBound(long* boundary, long current) {
+    boundary[Position] = current;
 }
 
-void HoarStack :: SetBound(Liner liner, Vector2l* wall) {
-    byte bound = liner.positions(&part);
-    if (wall > bound) {
+void HoarStack :: BoundCheck(long* axis, long* b1, long* b2, Vector2l* wall) {
+    if (wall->X > *axis) {
         Position++;
-        Point bounds = { wall->X, wall->X };
-        liner.shift(&bounds, bound);
-        SetBounds(bounds);
+        SetBound(b1, wall->X);
+        SetBound(b2, *axis);
     }
-    liner.shift(&part, wall->Y);
+    *axis = wall->Y;
 }
 
 void HoarStack :: LeftBound(Vector2l wall) {
-    SetBound({ HPoint, HLine }, &wall);
+    BoundCheck(&part.X, Right, Left, &wall);
 }
 
 void HoarStack :: RightBound(Vector2l wall) {
-    SetBound({ VPoint, VLine }, &wall);
+    BoundCheck(&part.Y, Left, Right, &wall);
 }

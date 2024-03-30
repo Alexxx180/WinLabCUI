@@ -11,12 +11,13 @@ void DataGrid :: SetView(void (*update)(Table *grid)) {
 }
 
 void DataGrid :: OutputControls() {
-    out->Span(0)->Form(1)->Page(0)->Size(1)->Line(0);
+    out->Form(1)->Page(0)->Span(0);
+    out->Line(0)->Size(1);
     table_input.Print(FOOT);
     out->Span(1);
 }
 
-void DataGrid :: PagesPrint() {
+void DataGrid :: Draw() {
     m_update(&table);
 
     layer->Target(FOOT);
@@ -44,6 +45,6 @@ char DataGrid :: Input() { return Select(table_input.controls); }
 
 char DataGrid :: Query() {
     char code = Navigation::Query();
-    PagesPrint();
+    Draw();
     return code;
 }

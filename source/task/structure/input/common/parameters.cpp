@@ -9,7 +9,7 @@ void NameInput(std::wstring name) {
 }
 
 void NameInput(std::string name) {
-    NameInput(texts[name]);
+    NameInput(texts.at(name));
 }
 
 void ValueOutput(std::wstring parameter) {
@@ -19,7 +19,7 @@ void ValueOutput(std::wstring parameter) {
 }
 
 void ValueOutput(std::string name) {
-    ValueOutput(texts[name]);
+    ValueOutput(texts.at(name));
 }
 
 void ValueInput(Typer* field) {

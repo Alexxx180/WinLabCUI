@@ -23,7 +23,7 @@ sort_invokation SortSelect() {
 }
 
 void SortChoice() {
-    char size = numeric->result;
+    short size = numeric->result;
 
     Boundary<char> limits(1, 20);
 

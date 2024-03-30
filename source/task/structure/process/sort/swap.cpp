@@ -1,7 +1,5 @@
 #include "task/structure/process/sort/swap.h"
 
-#include <vector>
-
 #include "common/types/vector.h"
 
 Vector2s efficiency;

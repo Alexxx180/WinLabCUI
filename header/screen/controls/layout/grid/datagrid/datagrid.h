@@ -8,17 +8,19 @@ class DataGrid : public Navigation {
     private:
         void (*m_update)(Table *grid);
 
+    protected:
+        char Input();
+
     public:
         Table table;
 
         void SetView(void (*update)(Table *grid));
         void OutputControls();
-        void PagesPrint();
+        void Draw();
         void First();
         void Last();
         void Climb();
         void Slide();
-        char Input();
         char Query();
 };
 

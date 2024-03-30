@@ -4,5 +4,5 @@
 
 extern std::vector<short> original, sorted;
 
-void OutputArrayRow(std::vector<short>& array, Table* table);
-void OutputArray(Table* table);
+void DrawRow(std::vector<short>& array, Table* table);
+void DrawArray(Table* table);

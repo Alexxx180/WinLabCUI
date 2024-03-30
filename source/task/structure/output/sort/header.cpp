@@ -1,6 +1,5 @@
 #include "task/structure/output/sort/header.h"
 
-#include "screen/drawing/types/layers.h"
 #include "screen/matrix/tools.h"
 
 void SortHeader() {

@@ -1,7 +1,5 @@
 #include "task/structure/process/sort/selection.h"
 
-#include <vector>
-
 #include "task/structure/process/sort/swap.h"
 
 void SelectionSort(std::vector<short>& memory) {

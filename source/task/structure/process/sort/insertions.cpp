@@ -1,7 +1,5 @@
 #include "task/structure/process/sort/insertions.h"
 
-#include <vector>
-
 #include "task/structure/process/sort/swap.h"
 
 void InsertionsSort(std::vector<short>& memory) {

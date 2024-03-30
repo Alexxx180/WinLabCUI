@@ -1,6 +1,7 @@
 #include "task/structure/output/sort/output/view/records.h"
 
-#include "screen/controls/data/grid/datagrid/types/page.h"
+#include "task/structure/output/sort/pages.h"
+#include "screen/controls/layout/grid/datagrid/types/page.h"
 #include "screen/matrix/tools.h"
 
 Page SortRecords() {

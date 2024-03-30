@@ -9,10 +9,10 @@ const char N = 10;
 const char total = 3;
 
 char A[N], B[N], C[N];
-char arrays[total][N] = { A, B, C };
+char* arrays[total] = { A, B, C };
 
 void IntervalSum() {
-    char r = 0, i = N, j;
+    char r = 0, i = N, j = total;
     short max[total];
 
     EmptyArray(total, max);
@@ -27,5 +27,5 @@ void IntervalSum() {
         if (max[r] < max[c]) r = c;
 
 	out->Line();
-    ElementsSum(name[r], max[r]);
+    ElementsSum(arrays[r], max[r]);
 }
