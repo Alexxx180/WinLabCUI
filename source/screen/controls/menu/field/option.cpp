@@ -37,7 +37,8 @@ short Option :: Choice() {
 }
 
 Option* Option :: Current(short next) {
-    if (!m_edges.Verify(next)) m_selection = next;
+    if (!m_edges.Deny(next))
+        m_selection = next;
     return this;
 }
 

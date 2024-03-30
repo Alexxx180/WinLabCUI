@@ -5,13 +5,13 @@
 #include "task/structure/output/individual/interval.h"
 #include "screen/matrix/tools.h"
 
-const char N = 10;
-const char total = 3;
-
-char A[N], B[N], C[N];
-char* arrays[total] = { A, B, C };
-
 void IntervalSum() {
+    const char N = 10;
+    const char total = 3;
+
+    char A[N], B[N], C[N];
+    char* arrays[total] = { A, B, C };
+
     char r = 0, i = N, j = total;
     short max[total];
 

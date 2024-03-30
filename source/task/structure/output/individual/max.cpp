@@ -7,8 +7,8 @@ void MaxHeader(char size, char T) {
 
     out->Jump(3)->Move();
 	pen->Clip("individual_source_data");
-	pen->Text(": N = ")->FText(no, size);
-    pen->Text(", T = ")->FText(no, T);
+	pen->Text(L": N = ")->FText(no, size);
+    pen->Text(L", T = ")->FText(no, T);
 }
 
 void MaxResult(char T) {

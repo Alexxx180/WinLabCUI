@@ -5,12 +5,12 @@
 #include "task/structure/output/individual/max.h"
 #include "screen/matrix/tools.h"
 
-const char N = 10;
-
-char A[N];
-
 void MaxElement() {
+    const char N = 10;
+    char A[N];
+
     char T = 15;
+
     MaxHeader(N, T);
     FillArray(N, A);
 

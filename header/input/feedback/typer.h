@@ -5,19 +5,22 @@
 
 class Typer {
     protected:
-        virtual void TypeInput() = 0;
-        virtual bool IsVerified() = 0;
+        bool m_verified = false;
+
+        virtual void Type() = 0;
 
     public:
-        virtual ~Typer() { }
+        const bool& IsVerified = m_verified;
+
+        virtual ~Typer() {}
 
         void Input() {
             out->Field();
             do {
                 layer->Target(MAIN);
-                TypeInput();
+                Type();
             }
-            while (!IsVerified());
+            while (!IsVerified);
         }
 };
 

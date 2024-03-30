@@ -2,6 +2,11 @@
 #define INPUT_PROCESSING_CONVERTER
 
 #include "input/limiting/buffer.h"
+
+#include <stdio.h>
+#include <conio.h>
+#include <string>
+
 #include "common/texts/errors.h"
 
 template<typename TYPE>
@@ -11,11 +16,28 @@ class Converter {
         wchar_t* m_end = NULL;
         wchar_t* m_buffer;
 
-        void MarkCharacter();
+        void MarkCharacter() {
+            fwprintf(stderr, L"\t%*c\n", (int)(m_end - m_buffer) + 1, '^');
+        }
 
     public:
-        bool HasInvalidData();
-        void SetBuffer(wchar_t buffer[ACTUAL_MAX]);
+        bool HasInvalidData() {
+            bool isInvalid = errno != 0 || *m_end != '\0';
+
+            if (isInvalid)
+            {
+                std::wstring error = errors.at("invalid_character");
+                fwprintf(stderr, L"%s\n", error.c_str());
+                fwprintf(stderr, L"\t%s\n", m_buffer);
+                MarkCharacter();
+            }
+
+            return isInvalid;
+        }
+
+        void SetBuffer(wchar_t buffer[ACTUAL_MAX]) {
+            m_buffer = buffer;
+        }
 
         template <typename TYPE>
         void Convert(TYPE* value) {}

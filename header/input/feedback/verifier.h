@@ -1,8 +1,6 @@
 #ifndef INPUT_FEEDBACK_VERIFIER
 #define INPUT_FEEDBACK_VERIFIER
 
-#include <string>
-
 #include "input/feedback/typer.h"
 #include "input/feedback/notifier.h"
 #include "input/feedback/validator.h"
@@ -13,24 +11,34 @@ class Verifier : public Typer {
     private:
         Validator<TYPE> m_input;
         Boundary<TYPE> m_edges;
-
-        bool m_verified;
         TYPE m_result;
 
-        void Interrupt(std::string message);
+        void Interrupt(std::string message) {
+            status.Notify(message)->Notify("status_forward");
+        }
+        bool Chain(bool denied, std::string error) {
+            if (denied) Interrupt(error);
+            return denied;
+        }
 
     protected:
-        void TypeInput();
-        bool IsVerified();
+        void Type() {
+            bool denied = Chain(m_input.Validate(), "status_error") ||
+                Chain(m_edges.Deny(m_result), "status_invalid_data");
+            m_verified = !denied;
+        }
 
     public:
         Notifier status;
         const TYPE& result = m_result;
+        const Boundary<TYPE>& Edges = m_edges;
 
-        Verifier();
-
-        Boundary<TYPE> *const Edges() { return &m_edges; }
-        void Bounds(Boundary<TYPE>* edges) { m_edges = *edges; }
+        Verifier() {
+            m_input.SetResult(&m_result);
+        }
+        void Bounds(Boundary<TYPE>* edges) {
+            m_edges = *edges;
+        }
 };
 
 #endif

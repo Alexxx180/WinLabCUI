@@ -10,7 +10,7 @@ class Notifier {
         Pen::quoteptr m_signal;
 
     public:
-        void Notify(std::string message);
+        Notifier* Notify(std::string message);
         void Server(short server);
         void Signal(Pen::quoteptr signal);
         void Defaults();

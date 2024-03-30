@@ -49,7 +49,7 @@ char MenuItem :: Expand() {
 
 void MenuItem :: SetSelection(short next) {
 	//wprintf(L"%i", next);
-    if (!m_limits.Verify(next)) {
+    if (!m_limits.Deny(next)) {
 		//wprintf(L"%i / %i", next, m_limits.end);
         m_item.Index = next; 
         at(next).Focus();

@@ -1,16 +1,34 @@
 #ifndef SCREEN_CONTROLS_MATRIX_PEN_FORMATTER
 #define SCREEN_CONTROLS_MATRIX_PEN_FORMATTER
 
+#include <iostream>
+#include <string>
+
 class Formatter {
+    private:
+        template <typename T>
+        void Print(const T t) {
+            std::wcout << t;
+        }
+
+        void Print(std::string t) {
+            std::cout << t;
+        }
+
     public:
         template<typename TYPE>
-        Formatter* FText(const wchar_t* format, TYPE argument);
+        Formatter* FText(const wchar_t* format, TYPE argument) {
+            wprintf(format, argument);
+            return this;
+        }
 
-        template<typename TYPE>
-        Formatter* Text(TYPE argument);
+        Formatter* Text() { return this; }
 
-        template<typename T, typename... Args>
-        void Text(T t, Args... args);
+        template <typename T, typename...args>
+        Formatter* Text(T first, args... rest) {
+            Print(first);//std::forward<T>(first));
+            return Text(rest...);//std::forward<Ts>(rest)...);
+        }
 };
 
 #endif

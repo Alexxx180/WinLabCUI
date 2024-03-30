@@ -13,10 +13,22 @@ class Fragment {
     public:
         TYPE* current;
 
-        TYPE& at(byte selection);
-        byte size();
-        void Add(TYPE* element);
-        void Target(byte selection);
+        TYPE& Fragment<TYPE> :: at(byte selection) {
+            return m_group.at(selection);
+        }
+
+        byte Fragment<TYPE> :: size() {
+            return m_group.size();
+        }
+
+        void Fragment<TYPE> :: Add(TYPE* element) {
+            m_group.push_back(*element);
+        }
+
+        void Fragment<TYPE> :: Target(byte selection) {
+            if (selection < m_group.size())
+                current = &m_group.at(selection);
+        }
 };
 
 #endif

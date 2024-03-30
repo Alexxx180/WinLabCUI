@@ -8,10 +8,14 @@ class Reader {
         wchar_t* m_buffer;
         size_t m_length;
 
-    public:
+    protected:
         bool NotReadable();
         bool IsOverflow();
         bool IsEmpty();
+
+    public:
+        bool Interrupt();
+
         void SetBuffer(wchar_t buffer[ACTUAL_MAX]);
 };
 

@@ -37,6 +37,10 @@ bool Reader :: IsEmpty() {
     return isEmpty;
 }
 
+bool Reader :: Interrupt() {
+    return NotReadable() || IsOverflow() || IsEmpty();
+}
+
 void Reader :: SetBuffer(wchar_t buffer[ACTUAL_MAX]) {
     m_buffer = buffer;
 }

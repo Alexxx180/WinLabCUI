@@ -30,6 +30,6 @@ void ValueInput(Typer* field) {
 template<class TYPE>
 void ParamInput(Verifier<TYPE>* limit, std::string name) {
     NameInput(name);
-    pen->Bounds(&limit->Edges());
+    pen->Bounds(limit->Edges);
     ValueOutput(limit->result); // name
 }
