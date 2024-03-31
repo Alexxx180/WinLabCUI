@@ -11,10 +11,10 @@ void SortTable(Page* records) {
     DataGrid model;
     model.table.SetRecords(records);
 
-    layer->Target(FOOT);
+    out->Target(FOOT);
     model.OutputControls();
 
-    layer->Target(MAIN);
+    out->Target(MAIN);
     model.Draw();
 
     char (DataGrid::*query)() = &DataGrid::Query;

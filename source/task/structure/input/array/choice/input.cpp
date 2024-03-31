@@ -22,7 +22,7 @@ std::vector<short> ArrayInput(short size) {
 
     numeric->Bounds(&gen_int8.limits);
     NameInput("input_array_elements");
-    pen->Bounds(gen_int8.limits);
+    out->Bounds(gen_int8.limits);
 
     byte i = 0;
     invokation perform_input = InputSelect();
@@ -31,8 +31,9 @@ std::vector<short> ArrayInput(short size) {
         perform_input();
         result.push_back(numeric->result);
 
-        out->Span(1)->Page(3)->Move()->Clear();
-        pen->Text(++i, L" / ", size);
+        out->Span(1)->Page(3);
+        out->Move()->Clear()->Move();
+        out->Text(++i, L" / ", size);
     }
 
     return result;

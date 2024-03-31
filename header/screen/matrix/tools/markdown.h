@@ -14,8 +14,6 @@
 #include "screen/controls/matrix/stencil.h"
 #include "screen/controls/matrix/stencil/mapper.h"
 
-static const byte X = 0, Y = 1;
-
 class Markdown {
     private:
         std::vector<Mapper> m_forms;

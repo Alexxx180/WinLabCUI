@@ -7,18 +7,18 @@
 
 char Footer()
 {
-    back->Columns.Set(0);
-    back->Rows.Set(0);
+    out->back.current->Columns.Set(0);
+    out->back.current->Rows.Set(0);
 
     ProgramMessage("program_finished");
 
-    layer->Target(FOOT);
-    out->Form(0)->Line(0);
-    pen->Clip("status_anykey");
+    out->Target(FOOT)->Form(0);
+    out->Line(0)->Move();
+    out->Clip("status_anykey");
+
     char code = Next();
     ClearScreen();
 
-    layer->Target(MAIN);
-
+    out->Target(MAIN);
     return code;
 }

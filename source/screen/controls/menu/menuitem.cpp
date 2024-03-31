@@ -22,8 +22,7 @@ void MenuItem :: Minimize() {
 		Point pos = item.GetPos();
 		//wprintf(L"%i, ", size);
         //item.Focus();
-		out->Page(pos.X);
-	    out->Line(pos.Y);
+		out->Page(pos.X)->Line(pos.Y);
 		//out->Move(); // PROBLEM HERE
 		wprintf(L"%i, %i", pos.X, pos.Y);
 		//item.Clear();

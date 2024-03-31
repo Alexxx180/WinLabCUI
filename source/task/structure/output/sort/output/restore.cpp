@@ -5,9 +5,7 @@
 
 void RestoreOutput() {
     SelectLayer(SCREEN);
-
-    layer->Redraw();
-    layer->Target(FOOT);
-    pen->Clip("status_menu_navigation");
-    layer->Target(MENU);
+    out->Redraw()->Target(FOOT)->Move();
+    out->Clip("status_menu_navigation");
+    out->Target(MENU);
 }

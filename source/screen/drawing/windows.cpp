@@ -19,6 +19,9 @@ void SetPlatformOutput() {
 void MoveCursor(Point* cursor) {
     native_windows_cursor.X = cursor->X;
     native_windows_cursor.Y = cursor->Y;
+
+    //wprintf(L"Pat 2: %i, %i", cursor->X, cursor->Y);
+
     SetConsoleCursorPosition(output, native_windows_cursor);
 }
 

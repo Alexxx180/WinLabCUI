@@ -8,15 +8,24 @@
 
 char Header()
 {
+    ///*
     ProgramMessage("program_description");
-    out->Line();
-    pen->Clip("program_author");
-    
-    layer->Target(FOOT);
-    pen->Clip("status_exit");
-    out->Span(1);
+
+    out->Line()->Move();
+    out->Clip("program_author");
+
+    out->Target(FOOT)->ShowBack()->Move();
+    out->Clip("status_exit")->Span(1);
+    //*/
+
+    /*
+    layer->Target(MAIN);
+    out->Form(0)->Page(1)->Line(0)->Size(2);
+    out->Move();
+    */
+
     char code = Select(ESC, ENTER);
 
-    layer->Target(MAIN);
+    out->Target(MAIN);
     return code;
 }

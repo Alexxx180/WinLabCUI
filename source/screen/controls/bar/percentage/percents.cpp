@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "screen/matrix/tools.h"
+#include "screen/controls/matrix/pen.h"
 
 void Percents :: Calculate(float max) {
     Max = max;
@@ -13,5 +13,5 @@ void Percents :: Calculate(float max) {
 }
 
 void Percents :: Print(float basis) {
-    pen->FText(Format, basis * Max);
+    Pen::ink().FText(Format, basis * Max);
 }

@@ -20,8 +20,8 @@ class Box {
     public:
         Edges line;
         Range bounds;
+        const std::vector<byte>& Vertices = m_vertices;
 
-        const std::vector<byte>& Vertices();
         byte Count();
         byte Rib(const byte current);
         void Lines(Stapler* gun);

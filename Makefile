@@ -6,9 +6,9 @@ SHELL := powershell.exe
 CMD=powershell -NoProfile -Command
 
 CC=cl
-CFLAGS=/nologo /EHsc /I header
+CFLAGS=/nologo /EHsc /I header /Zi
 LINK=link
-SYSTEM=CONSOLE
+LFLAGS=/nologo /SUBSYSTEM:CONSOLE /DEBUG:FULL
 
 EXE=target.exe
 
@@ -36,12 +36,11 @@ DELOBJ=del $$PSItem.FullName -Recurse
 compile : $(OFILES)
 link :
 	$(eval objects=$(shell $(LSOBJ)))
-	@$(CMD) "if (-not (Test-Path $(BIN))) { mkdir $(BIN) > $(BUILD)/$(LLOG) }"
-	$(LINK) $(objects) /nologo /OUT:$(BIN)/$(EXE) /SUBSYSTEM:$(SYSTEM)
+	$(LINK) $(objects) $(LFLAGS) /OUT:$(EXE)
 
 build : compile link
 clean :
 	$(CMD) "if (Test-Path $(OBJ)) { del $(OBJ) -Recurse }"
-	$(CMD) "if (Test-Path $(BIN)) { del $(BIN) -Recurse }"
+	$(CMD) "if (Test-Path $(EXE)) { del $(EXE) -Recurse }"
 
 rebuild : clean build

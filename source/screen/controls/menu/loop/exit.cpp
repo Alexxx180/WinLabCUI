@@ -10,16 +10,15 @@
 #include "screen/matrix/tools/layers.h"
 
 char ExitMenu :: LiveLoop() {
-    layer->Target(FOOT);
-    pen->Clip("status_menu_navigation");
-    layer->Target(MENU);
-    out->Move();
+    out->Target(FOOT)->Move();
+    out->Clip("status_menu_navigation");
+    out->Target(MENU)->Move();
 
     char (Menu::*query)() = &Menu::Query;
     Await(&m_options, query, ESC);
 
-    layer->Target(FOOT);
-    pen->Clip("status_confirm_exit");
+    out->Target(FOOT)->Move();
+    out->Clip("status_confirm_exit");
 
     return Select(ESC, ENTER);
 }
@@ -34,12 +33,12 @@ Menu& ExitMenu :: Get() {
 
 void ExitMenu :: Capture() {
     ClearScreen();
-    layer->Redraw();
-    layer->Target(MENU);
-    out->Move();
+    out->Redraw()->Target(MENU)->Move();
     m_options.Expand();
+
     char (ExitMenu::*loop)() = &ExitMenu::LiveLoop;
     Await(this, loop, ENTER);
+
     ClearScreen();
     exit(OK);
 }

@@ -5,5 +5,5 @@
 
 void ShowSorting() {
     SelectLayer(FLOATING);
-    layer->Target(MAIN);
+    out->Target(MAIN);
 }

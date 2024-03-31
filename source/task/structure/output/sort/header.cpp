@@ -3,8 +3,9 @@
 #include "screen/matrix/tools.h"
 
 void SortHeader() {
-    out->Span(1)->Form(1)->Size(2);
-    pen->Clip("output_source_array");
-    out->Line();
-    pen->Clip("output_sorted_array");
+    out->Form(1)->Size(2);
+    out->Span(1)->Move();
+    out->Clip("output_source_array");
+    out->Line()->Move();
+    out->Clip("output_sorted_array");
 }

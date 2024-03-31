@@ -2,12 +2,9 @@
 #define SCREEN_ART_CONTROLS_LAYOUT_PANEL
 
 #include "screen/drawing/constructs/outlines/angles.h"
-#include "screen/matrix/types/range.h"
-#include "screen/matrix/types/change/liner.h"
+#include "screen/matrix/types/point.h"
 
 class Panel {
-    private:
-
     protected:
         virtual byte BasePoint() = 0;
 
@@ -17,8 +14,7 @@ class Panel {
         virtual Angles TopAngles() = 0;
         virtual Angles BottomAngles() = 0;
 
-        virtual void DrawSide(Liner* liner, Range* board, wchar_t symbol);
-        virtual void AnglePattern(Range* board, Angles symbols);
+        virtual void Vertice(Point* cursor, wchar_t symbol);
         virtual void DrawAngles();
 };
 

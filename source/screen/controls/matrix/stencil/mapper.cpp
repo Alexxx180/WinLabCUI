@@ -1,10 +1,6 @@
 #include "screen/controls/matrix/stencil/mapper.h"
 
-void Mapper :: Page(Point canvas) {
-    m_mark = canvas.X;
-    m_pages = canvas.Y;
-    m_cursor.X = Merge(m_mark, m_pages);
-}
+#include "screen/drawing/platform.h"
 
 Mapper :: Mapper(std::vector<Point> basis) {
     m_basis = basis;
@@ -12,48 +8,31 @@ Mapper :: Mapper(std::vector<Point> basis) {
     pattern.SetCursor(&m_cursor);
 }
 
-byte Mapper :: Merge(byte current, byte repeat) {
-    byte last = m_basis.size() - 1;
-    byte basis = m_basis.at(current).X;
-    byte pattern = m_basis.at(last).X;
-    return basis + pattern * repeat;
-}
+short Mapper :: Diff() { return ruler.Diff(m_basis, m_book); }
 
-Point Mapper :: Split(byte column, byte count) {
-    return { 
-        static_cast<byte>(column % count),
-        static_cast<byte>(column / count)
-    };
-}
+void Mapper :: Move() { MoveCursor(&m_cursor); }
 
-short Mapper :: Diff() {
-    Point canvas = Split(m_mark + m_span, m_basis.size());
-    byte next = Merge(canvas.X, m_pages + canvas.Y);
-    byte present = m_basis.at(m_mark).X;
-    return next - present;
-}
+Point& Mapper :: at() { return m_basis.at(m_book.Mark); }
 
-void Mapper :: Span(byte columns) {
-    m_span = columns;
-}
+void Mapper :: Page() { m_cursor.X = m_book.Map(m_basis); }
+
+
+void Mapper :: Span(byte columns) { m_book.Span = columns; }
 
 void Mapper :: Page(byte column) {
-    Page(Split(m_basis.size(), column));
+    m_book.Split(column, m_basis.size());
+    Page();
 }
 
 void Mapper :: Flip(char direction) {
-    byte count = m_basis.size();
-    byte listing = m_pages * count + m_mark;
-    Page({ count,
-        static_cast<byte>(listing + direction)
-    });
+    m_book.Flip(m_basis.size(), direction);
+    Page();
 }
 
 void Mapper :: Anchor(char lines) {
-    m_cursor.Y = m_basis.at(m_mark).Y;
-    ruler.Skip(m_cursor.Y, lines);
+    m_cursor.Y = ruler.Skip(at().Y, lines);
 }
 
 void Mapper :: Jump(char direction) {
-    ruler.Jump(m_cursor.Y, direction);
+    m_cursor.Y = ruler.Jump(m_cursor.Y, direction);
 }

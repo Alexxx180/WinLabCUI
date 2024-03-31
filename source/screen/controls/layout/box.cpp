@@ -1,9 +1,7 @@
 #include "screen/controls/layout/box.h"
 #include "screen/drawing/platform.h"
 
-void Box :: Line(Point* cursor,
-    void (*pins)(Point*, byte),
-    wchar_t symbol) {
+void Box :: Line(Point* cursor, axis_shift pins, wchar_t symbol) {
     byte i = 0, count = m_vertices.size();
 
     while (i < count) {
@@ -29,10 +27,6 @@ void Box :: Surround(Stapler* gun) {
     gun->progress(&cursor, i);
     Line(&cursor, gun->pins, line.right);
     //wprintf(L"Cursor: %i, %i \n", cursor->X, cursor->Y);
-}
-
-const std::vector<byte>& Box :: Vertices() {
-    return m_vertices;
 }
 
 byte Box :: Count() {

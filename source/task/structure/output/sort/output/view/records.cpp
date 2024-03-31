@@ -5,11 +5,11 @@
 #include "screen/matrix/tools.h"
 
 Page SortRecords() {
-    back->Rows.Split(0.5f);
-    back->Columns.Split(0.22f);
-    back->Show();
+    out->back.current->Rows.Split(0.5f);
+    out->back.current->Columns.Split(0.22f);
+    out->ShowBack();
 
-    byte lines = back->Columns.Rib(1);
+    byte lines = out->back.current->Columns.Rib(1);
 
     Page records;
     records.Relative = lines;

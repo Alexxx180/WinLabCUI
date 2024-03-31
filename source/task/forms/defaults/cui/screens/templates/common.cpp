@@ -5,14 +5,14 @@
 
 void ProgramMessage(std::string description) {
     ClearScreen();
-    layer->Target(FOOT);
-    back->Show();
-    layer->Target(MAIN);
-    back->Show();
-    out->Form(0)->Page(0)->Line(0)->Size(3);
-    pen->Clip("program_header");
-    out->Line();
-    pen->Clip("program_name");
-    out->Line();
-    pen->Clip(description);
+
+    out->Target(MAIN)->ShowBack();
+    out->Form(0)->Page(0)->Size(3);
+
+    out->Line(0)->Move();
+    out->Clip("program_header");
+    out->Line()->Move();
+    out->Clip("program_name");
+    out->Line()->Move();
+    out->Clip(description);
 }

@@ -1,13 +1,28 @@
 #include "screen/controls/matrix/stencil/ruler.h"
 
+#include <stdio.h>
+
 void Ruler :: Size(byte lines) {
     m_lines = lines;
 }
 
-void Ruler :: Skip(byte& current, char lines) {
-    current = current + lines;
+byte Ruler :: Skip(byte current, char lines) {
+    return current + lines;
 }
 
-void Ruler :: Jump(byte& current, char direction) {
-    Skip(current, m_lines * direction);
+byte Ruler :: Jump(byte current, char direction) {
+    return Skip(current, m_lines * direction);
+}
+
+short Ruler :: Diff(std::vector<Point>& basis, Book next) {
+    byte old = next.Pages;
+    byte mark = next.Mark;
+
+    next.Split(basis.size());
+    next.Pages += old;
+
+    byte heading = next.Map(basis);
+    byte present = basis.at(mark).X;
+
+    return heading - present;
 }

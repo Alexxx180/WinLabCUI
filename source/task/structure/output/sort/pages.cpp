@@ -17,7 +17,7 @@ void DrawRow(char line, std::vector<short>& array, Table* table) {
         index = table->GetLines()->Absolute;
         item = array.at(index);
 
-        pen->FText(numbers, item);
+        out->FText(numbers, item);
         table->Scroll();
     }
 }

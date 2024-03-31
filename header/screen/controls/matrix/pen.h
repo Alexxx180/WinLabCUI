@@ -14,9 +14,9 @@ class Pen : public Formatter {
     public:
         typedef Pen* (Pen::*quoteptr)(std::string);
 
-        static Pen* Pen :: ink() {
+        static Pen& Pen :: ink() {
             static Pen instance;
-            return &instance;
+            return instance;
         }
 
         quoteptr Feedback() {

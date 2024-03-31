@@ -2,26 +2,24 @@
 
 #include <cstdlib>
 
-Layer layers[2];
-Layer* layer = NULL;
+const char layers_count = 2;
 
-Pen* pen = NULL;
-
-Stencil* out = NULL;
-Grid* back = NULL;
-Bar* status = NULL;
-
-void SetPenInstance() {
-    pen = Pen::ink();
-}
+Layer layers[layers_count];
+Layer* out = NULL;
 
 void ClearScreen() {
     system(CLEAN_COMMAND);
 }
 
 void SelectLayer(Layers target) {
-    layer = &layers[target];
-    back = layer->back.current;
-    out = layer->out.current;
-    status = layer->status.current;
+    out = &layers[target];
+}
+
+void RetargetLayers(Fragments target) {
+    char i = layers_count;
+    while (--i >= 0) {
+        layers[i].out.Target(target);
+        layers[i].back.Target(target);
+        layers[i].status.Target(target);
+    }
 }

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "screen/matrix/tools.h"
+#include "screen/controls/matrix/pen.h"
 #include "screen/interaction/controller/groups/menu.h"
 #include "screen/interaction/controller/keyboard.h"
 #include "screen/interaction/interaction.h"
@@ -29,7 +29,7 @@ char Option :: Action() {
 }
 
 void Option :: Draw() {
-    pen->Clip(m_values[m_selection]);
+    Pen::ink().Clip(m_values[m_selection]);
 }
 
 short Option :: Choice() {

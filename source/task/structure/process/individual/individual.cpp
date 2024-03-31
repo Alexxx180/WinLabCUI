@@ -5,13 +5,13 @@
 #include "screen/matrix/tools.h"
 
 void StartIndividual() {
-    layer->Target(MAIN);
-    out->Page(0)->Size(1)->Line(0)->Move();
-    pen->Clip("individual_arrays");
+    out->Target(MAIN);
+    out->Line(0)->Size(1);
+    out->Page(0)->Move();
+    out->Clip("individual_arrays");
 
     IntervalSum();
     MaxElement();
 
-    layer->Target(MENU);
-    out->Move();
+    out->Target(MENU)->Move();
 }

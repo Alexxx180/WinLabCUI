@@ -7,11 +7,11 @@ ControllerGroup :: ControllerGroup(std::vector<char> keys, std::map<byte, std::w
 }
 
 void ControllerGroup :: Print(byte form) {
-    layer->Target(form);
+    out->Target(form);
 
     byte line = 0, page = 0;
     byte size = controls.size();
-    byte span = back->Rows.Rib(0);
+    byte span = out->back.current->Rows.Rib(0);
 
     for (byte i = 0; i < size; i++) {
         if (line > span) {
@@ -20,12 +20,10 @@ void ControllerGroup :: Print(byte form) {
         }
 
         if (m_info.count(i) > 0) {
-            out->Line(line++);
-
             std::wstring key = m_info.at(i);
 
-            out->Move();
-            pen->Text(key);
+            out->Line(line++)->Move();
+            out->Text(key);
         }
     }
 }

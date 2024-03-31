@@ -11,26 +11,25 @@ void DataGrid :: SetView(void (*update)(Table *grid)) {
 }
 
 void DataGrid :: OutputControls() {
-    out->Form(1)->Page(0)->Span(0);
-    out->Line(0)->Size(1);
+    out->Form(1)->Page(0)->Size(1);
+    out->Line(0);
     table_input.Print(FOOT);
-    out->Span(1);
 }
 
 void DataGrid :: Draw() {
     m_update(&table);
 
-    layer->Target(FOOT);
-    out->Move()->Clear()->Move();
+    out->Target(FOOT)->Move();
+    out->Clear()->Move();
 
     if (page_character_results)
         table.Length();
     else {
-        pen->Clip("status_pages");
+        out->Clip("status_pages");
         table.Pages.Length();
     }
 
-    layer->Target(MAIN);
+    out->Target(MAIN);
 }
 
 void DataGrid :: First() { table.HomePage(); }

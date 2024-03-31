@@ -7,8 +7,8 @@
 
 void Grid :: Crosses() {
     Point cursor, cells;
-    const std::vector<byte>& y = Rows.Vertices();
-    const std::vector<byte>& x = Columns.Vertices();
+    const std::vector<byte>& y = Rows.Vertices;
+    const std::vector<byte>& x = Columns.Vertices;
 
     short r = 0, c = 0;
     cells = {
@@ -28,21 +28,19 @@ void Grid :: Crosses() {
     }
 }
 
-byte Grid :: BasePoint() {
-    return m_sizes.P1.X;
-}
+byte Grid :: BasePoint() { return m_sizes.P1.Y; }
+
 Point Grid :: TopAnchor() {
-    return { m_sizes.P2.X, m_sizes.P1.Y };
+    return { m_sizes.P1.X, m_sizes.P2.X };
 }
+
 Point Grid :: BottomAnchor() {
-    return { m_sizes.P2.Y, m_sizes.P1.X };
+    return { m_sizes.P1.Y, m_sizes.P2.Y };
 }
-Angles Grid :: TopAngles() { 
-    return form_edges.top;
-};
-Angles Grid :: BottomAngles() {
-    return form_edges.bottom;
-};
+
+Angles Grid :: TopAngles() { return form_edges.top; };
+
+Angles Grid :: BottomAngles() { return form_edges.bottom; };
 
 Grid :: Grid() {}
 
@@ -50,13 +48,12 @@ Grid :: Grid(Range* sizes) {
     m_sizes = *sizes;
     Rows.bounds = *sizes;
     Columns.bounds = sizes->Swap();
-    
+
     Rows.line = form_edges.horizontal;
     Columns.line = form_edges.vertical;
 
-    short count = 0;
-    Rows.Set(count);
-    Columns.Set(count);
+    Rows.Set(0);
+    Columns.Set(0);
 }
 
 Grid* Grid :: Show() {

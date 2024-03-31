@@ -1,5 +1,5 @@
 #include "screen/controls/layout/grid/datagrid/types/table.h"
-#include "screen/matrix/tools.h"
+#include "screen/controls/matrix/pen.h"
 
 void Table :: Update() {
     End = m_lines.Relative < m_records.Relative;
@@ -26,7 +26,7 @@ void Table :: SetLines(Page* lines) {
 }
 
 void Table :: Length() {
-    pen->Text(m_lines.Absolute, L" / ", m_records.Absolute);
+    Pen::ink().Text(m_lines.Absolute, L" / ", m_records.Absolute);
 }
 
 void Table :: HomePage() {

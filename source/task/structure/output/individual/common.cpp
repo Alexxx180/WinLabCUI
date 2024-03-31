@@ -8,10 +8,11 @@ void ArrayOutput(char size, char* array) {
 
     std::string name = NAMEOF(array);
     out->Line()->Move();
-    pen->Text(name)->Text(L" = ")->FText(no, array[0]);
+    out->Text(name, L" = ");
+    out->FText(no, array[0]);
 
     for (char i = 1; i < size; i++)
-        pen->Text(L", ")->FText(no, array[i]);
+        out->Text(L", ")->FText(no, array[i]);
 }
 
 void ArraysOutput(char count, char size, char** arrays) {

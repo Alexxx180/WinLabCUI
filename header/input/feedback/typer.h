@@ -17,7 +17,7 @@ class Typer {
         void Input() {
             out->Field();
             do {
-                layer->Target(MAIN);
+                out->Target(MAIN);
                 Type();
             }
             while (!IsVerified);

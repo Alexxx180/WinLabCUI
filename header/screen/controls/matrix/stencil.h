@@ -9,7 +9,7 @@
 class Stencil {
     private:
         std::vector<Mapper> m_forms;
-        byte m_form;
+        byte m_form = 0;
 
         void AssertBounds(byte form);
         Mapper& current();

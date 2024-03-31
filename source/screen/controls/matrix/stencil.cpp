@@ -4,7 +4,7 @@
 
 void Stencil :: AssertBounds(byte form) {
     if (form >= m_forms.size())
-        throw std::overflow_error("Selected form not found");
+        throw std::out_of_range("Selected form not found");
 }
 
 Mapper& Stencil :: current() {
@@ -57,7 +57,7 @@ Stencil* Stencil :: Jump() { return Jump(-1); }
 Stencil* Stencil :: Line() { return Jump(1); }
 
 Stencil* Stencil :: Move() {
-    current().pattern.Move();
+    current().Move();
     return this;
 }
 

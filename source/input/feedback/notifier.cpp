@@ -4,9 +4,9 @@
 #include "screen/interaction/interaction.h"
 
 Notifier* Notifier :: Notify(std::string message) {
-    layer->Target(m_server);
-    out->Move()->Clear()->Move();
-    (pen->*m_signal)(message);
+    out->Target(m_server)->Move();
+    out->Clear()->Move();
+    (Pen::ink().*m_signal)(message);
     Next();
     return this;
 }
@@ -21,5 +21,5 @@ void Notifier :: Signal(Pen::quoteptr signal) {
 
 void Notifier :: Defaults() {
     Server(FOOT);
-    Signal(pen->Feedback());
+    Signal(Pen::ink().Feedback());
 }
