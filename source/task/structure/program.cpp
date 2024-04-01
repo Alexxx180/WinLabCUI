@@ -8,8 +8,8 @@
 
 int Program() {
     char code = Header();
-    /*if (code == ENTER)
+    if (code == ENTER)
         Input();
-    code = Footer();*/
+    code = Footer();
     return OK;
 }

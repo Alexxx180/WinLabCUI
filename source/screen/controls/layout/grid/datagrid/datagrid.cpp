@@ -1,5 +1,6 @@
 #include "screen/controls/layout/grid/datagrid/datagrid.h"
 
+#include "common/codes.h"
 #include "task/forms/defaults/debug.h"
 #include "screen/matrix/tools.h"
 #include "screen/matrix/tools/layers.h"
@@ -39,6 +40,12 @@ void DataGrid :: Last() { table.EndPage(); }
 void DataGrid :: Climb() { table.Up(); }
 
 void DataGrid :: Slide() { table.Down(); }
+
+void DataGrid :: Next() {}
+
+void DataGrid :: Previous() {}
+
+char DataGrid :: Action() { return UNDEFINED; }
 
 char DataGrid :: Input() { return Select(table_input.controls); }
 

@@ -9,7 +9,15 @@ class Label : public Navigation {
         std::string m_caption;
 
     protected:
+        char Action();
         char Input();
+
+        void Climb();
+        void Slide();
+        void First();
+        void Last();
+        void Next();
+        void Previous();
 
     public:
         Label(std::string caption);

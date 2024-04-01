@@ -10,6 +10,14 @@ class DataGrid : public Navigation {
 
     protected:
         char Input();
+        char Action();
+
+        void Next();
+        void Previous();
+        void First();
+        void Last();
+        void Climb();
+        void Slide();
 
     public:
         Table table;
@@ -17,10 +25,6 @@ class DataGrid : public Navigation {
         void SetView(void (*update)(Table *grid));
         void OutputControls();
         void Draw();
-        void First();
-        void Last();
-        void Climb();
-        void Slide();
         char Query();
 };
 

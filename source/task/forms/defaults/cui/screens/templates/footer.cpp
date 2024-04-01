@@ -12,7 +12,7 @@ char Footer()
 
     ProgramMessage("program_finished");
 
-    out->Target(FOOT)->Form(0);
+    out->Target(FOOT)->ShowBack()->Form(0);
     out->Line(0)->Move();
     out->Clip("status_anykey");
 

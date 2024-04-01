@@ -11,6 +11,7 @@
 
 char ExitMenu :: LiveLoop() {
     out->Target(FOOT)->Move();
+    out->Clear()->Move();
     out->Clip("status_menu_navigation");
     out->Target(MENU)->Move();
 

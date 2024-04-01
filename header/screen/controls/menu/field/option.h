@@ -14,10 +14,15 @@ class Option : public Navigation {
         short m_selection = 0;
 
     protected:
-        void Previous();
-        void Next();
         char Action();
         char Input();
+
+        void Climb();
+        void Slide();
+        void First();
+        void Last();
+        void Next();
+        void Previous();
 
     public:
         Option();

@@ -37,6 +37,7 @@ static const std::map<std::string, std::wstring> texts = {
     { "menu_array_type_numbers", L"\u25c0 \u0427\u0438\u0441\u043b\u0430 \u25b6" },
     { "menu_array_type_strings", L"\u25c0 \u0421\u0442\u0440\u043e\u043a\u0438 \u25b6" },
     { "menu_exit", L"\u2666 \u0412\u044b\u0445\u043e\u0434" },
+    { "individual_arrays", L"\u0418\u043d\u0434\u0438\u0432\u0438\u0434\u0443\u0430\u043b\u044c\u043d\u043e\u0435 \u0437\u0430\u0434\u0430\u043d\u0438\u0435" },
 	{ "individual_source_data", L"\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435" },
 	{ "individual_arrays_name", L"\u041c\u0430\u0441\u0441\u0438\u0432" },
 	{ "individual_arrays_sum", L"\u0421\u0443\u043c\u043c\u0430 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432" },

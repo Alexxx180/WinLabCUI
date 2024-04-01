@@ -55,6 +55,17 @@ void MenuItem :: SetSelection(short next) {
     }
 }
 
+void MenuItem :: Climb() {}
+void MenuItem :: Slide() {}
+
+void MenuItem :: First() {
+    SetSelection(m_limits.start);
+}
+
+void MenuItem :: Last() {
+    SetSelection(m_limits.end);
+}
+
 void MenuItem :: Next() {
     SetSelection(m_item.Index + 1);
 }

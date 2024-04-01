@@ -30,6 +30,10 @@ class MenuItem : public Navigation {
         void Minimize();
         void DrawItems();
         void SetSelection(short next);
+        void Climb();
+        void Slide();
+        void First();
+        void Last();
         void Next();
         void Previous();
         char Action();

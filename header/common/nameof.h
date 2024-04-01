@@ -1,5 +1,7 @@
 #ifndef NAMEOF
 
-#define NAMEOF(variable) ((decltype(&variable))nullptr, #variable)
+#include <string>
+
+#define NAMEOF(variable) ((void)variable, #variable)
 
 #endif

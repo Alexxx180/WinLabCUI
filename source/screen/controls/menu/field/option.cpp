@@ -13,14 +13,23 @@ Option :: Option(std::vector<std::string> parameters) {
     Values(parameters);
 }
 
+void Option :: Climb() {}
+void Option :: Slide() {}
+
+void Option :: First() {
+    Current(m_edges.start)->Draw();
+}
+
+void Option :: Last() {
+    Current(m_edges.end)->Draw();
+}
+
 void Option :: Previous() {
-    Current(m_selection - 1);
-    Draw();
+    Current(m_selection - 1)->Draw();
 }
 
 void Option :: Next() {
-    Current(m_selection + 1);
-    Draw();
+    Current(m_selection + 1)->Draw();
 }
 
 char Option :: Action() {

@@ -1,15 +1,9 @@
 #include "screen/interaction/navigation.h"
+
+#include "common/codes.h"
 #include "screen/interaction/controller/keyboard.h"
 
-char Navigation :: Action() { return -1; }
-void Navigation :: Previous() {}
-void Navigation :: Next() {}
-void Navigation :: Climb() {}
-void Navigation :: Slide() {}
-void Navigation :: First() {}
-void Navigation :: Last() {}
-
-short Navigation :: Choice() { return Action(); }
+short Navigation :: Choice() { return UNDEFINED; }
 
 char Navigation :: Query() {
     char code = Input();
