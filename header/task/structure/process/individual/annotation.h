@@ -1,0 +1,2 @@
+void IndividualCaption();
+void IndividualCursor();

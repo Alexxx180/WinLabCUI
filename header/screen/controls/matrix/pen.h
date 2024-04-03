@@ -33,6 +33,16 @@ class Pen : public Formatter {
             Text(L"<", limits.start, L", ", limits.end, L">");
             return this;
         }
+
+        template<typename TYPE>
+        Pen* FBounds(const wchar_t* format, Boundary<TYPE>& limits) {
+            Text(L"<");
+            FText(format, limits.start);
+            Text(L", ");
+            FText(format, limits.end);
+            Text(L">");
+            return this;
+        }
 };
 
 #endif

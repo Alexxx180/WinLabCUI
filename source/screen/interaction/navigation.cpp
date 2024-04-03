@@ -1,9 +1,5 @@
 #include "screen/interaction/navigation.h"
-
-#include "common/codes.h"
 #include "screen/interaction/controller/keyboard.h"
-
-short Navigation :: Choice() { return UNDEFINED; }
 
 char Navigation :: Query() {
     char code = Input();

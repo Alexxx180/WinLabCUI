@@ -12,7 +12,7 @@ void DataGrid :: SetView(void (*update)(Table *grid)) {
 }
 
 void DataGrid :: OutputControls() {
-    out->Form(1)->Page(0)->Size(1);
+    out->Page(0)->Size(1);
     out->Line(0);
     table_input.Print(FOOT);
 }
@@ -46,6 +46,8 @@ void DataGrid :: Next() {}
 void DataGrid :: Previous() {}
 
 char DataGrid :: Action() { return UNDEFINED; }
+
+short DataGrid :: Choice() { return UNDEFINED; }
 
 char DataGrid :: Input() { return Select(table_input.controls); }
 

@@ -1,13 +1,12 @@
 #include "task/structure/output/sort/pages.h"
 
+#include "common/texts/format.h"
+#include "task/structure/shared/arrays.h"
 #include "screen/controls/layout/grid/datagrid/datagrid.h"
 #include "screen/controls/layout/grid/datagrid/types/page.h"
 #include "screen/matrix/tools.h"
 
-std::vector<short> original, sorted;
-
 void DrawRow(char line, std::vector<short>& array, Table* table) {
-    const wchar_t* numbers = L"%4i";
     uint index;
     short item;
 
@@ -17,7 +16,7 @@ void DrawRow(char line, std::vector<short>& array, Table* table) {
         index = table->GetLines()->Absolute;
         item = array.at(index);
 
-        out->FText(numbers, item);
+        out->FText(NO4, item);
         table->Scroll();
     }
 }

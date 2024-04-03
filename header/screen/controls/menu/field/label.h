@@ -22,6 +22,7 @@ class Label : public Navigation {
     public:
         Label(std::string caption);
         void Draw();
+        short Choice();
 };
 
 #endif

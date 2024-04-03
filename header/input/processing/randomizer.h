@@ -5,13 +5,12 @@
 
 template <typename TYPE>
 struct Randomizer {
-    Boundary<TYPE> limits;
+    Boundary<TYPE>* limits;
 
     Randomizer() {}
-    Randomizer(Boundary<TYPE> interval) { Set(interval); }
-
-    Randomizer<TYPE>* Set(Boundary<TYPE> interval) {
-        limits = interval;
+    Randomizer(Boundary<TYPE>& interval) { Set(interval); }
+    Randomizer<TYPE>* Set(Boundary<TYPE>& interval) {
+        limits = &interval;
         return this;
     }
 
@@ -21,8 +20,8 @@ struct Randomizer {
 
     // Random implementations
     TYPE Standard() {
-        long size = Size(limits.start, limits.end);
-        return rand() % size + limits.start;
+        long size = Size(limits->start, limits->end);
+        return rand() % size + limits->start;
     }
 
     // Global implementation

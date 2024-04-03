@@ -13,12 +13,12 @@ class Verifier : public Typer {
         Boundary<TYPE> m_edges;
         TYPE m_result;
 
+        void Binding() { m_input.SetResult(&m_result); }
         void Interrupt(std::string message) {
             status.Notify(message)->Notify("status_forward");
         }
         bool Chain(bool denied, std::string error) {
-            if (denied) Interrupt(error);
-            return denied;
+            if (denied) Interrupt(error); return denied;
         }
 
     protected:
@@ -33,11 +33,13 @@ class Verifier : public Typer {
         const TYPE& result = m_result;
         const Boundary<TYPE>& Edges = m_edges;
 
-        Verifier() {
-            m_input.SetResult(&m_result);
+        Verifier() { Binding(); }
+        Verifier(Boundary<TYPE>& edges) {
+            Binding();
+            Bounds(edges);
         }
-        void Bounds(Boundary<TYPE>* edges) {
-            m_edges = *edges;
+        void Bounds(Boundary<TYPE>& edges) {
+            m_edges = edges;
         }
 };
 

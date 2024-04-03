@@ -19,9 +19,9 @@ void ArrayMenu() {
 
     std::string caption = "menu_array_sort";
     result.SetCommand(new Label(caption), StartArraySort);
-    sort.SetField(new Option(ArraySortParams()));
-    input.SetField(new Option(ArrayInputParams()));
-    type.SetField(new Option(ArrayTypeParams()));
+    sort.SetField((new Option(ArraySortParams()))->Current(0));
+    input.SetField((new Option(ArrayInputParams()))->Current(0));
+    type.SetField((new Option(ArrayTypeParams()))->Current(0));
 
     array.SetItems(new Label("menu_array"))->Vertical(true);
     array.Add(&result)->Add(&sort)->Add(&input)->Add(&type);

@@ -1,40 +1,31 @@
 #include "task/structure/input/array/choice/input.h"
 
-#include "common/types.h"
-#include "screen/matrix/tools.h"
+#include "task/structure/shared/arrays.h"
+#include "task/structure/input/array/menu.h"
+#include "task/structure/input/array/annotation/input.h"
 
-#include "task/forms/defaults/io/input.h"
-
-#include "task/structure/input/common/data.h"
-#include "task/structure/input/common/parameters.h"
-#include "task/structure/input/array/common.h"
-
-void ManualInput() { ValueInput(numeric); }
-void RandomInput() { gen_int8.Random(); }
-
-invokation InputSelect() {
-    invokation array_input[2] = { RandomInput, ManualInput };
-    return array_input[InputOption()];
+void InputDimension() {
+    Boundary<char> length(1, 20);
+    ArrayDimension(length);
+    numeric->Bounds(length);
+    numeric->Input();
+    original.resize(numeric->result);
 }
 
-std::vector<short> ArrayInput(short size) {
-    std::vector<short> result(size);
+void InputChoice() {
+    ArrayElements(limits);
+    numeric->Bounds(limits);
 
-    numeric->Bounds(&gen_int8.limits);
-    NameInput("input_array_elements");
-    out->Bounds(gen_int8.limits);
+    short input = InputOption();
+    short size = original.size();
 
-    byte i = 0;
-    invokation perform_input = InputSelect();
+    input_type element[2] = { ValueManual, ValueRandom };
 
-    while (i < size) {
-        perform_input();
-        result.push_back(numeric->result);
-
-        out->Span(1)->Page(3);
-        out->Move()->Clear()->Move();
-        out->Text(++i, L" / ", size);
+    for (short i = 0; i < size; i++) {
+        ArrayProgress(i, size);
+        char result = element[input]();
+        original.push_back(result);
     }
 
-    return result;
+    sorted = original;
 }

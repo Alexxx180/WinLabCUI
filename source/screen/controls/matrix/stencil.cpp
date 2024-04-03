@@ -2,9 +2,10 @@
 
 #include <stdexcept>
 
+#include "screen/drawing/drawing.h"
+
 void Stencil :: AssertBounds(byte form) {
-    if (form >= m_forms.size())
-        throw std::out_of_range("Selected form not found");
+    if (form >= m_forms.size()) throw std::out_of_range("No form found");
 }
 
 Mapper& Stencil :: current() {
@@ -62,20 +63,11 @@ Stencil* Stencil :: Move() {
 }
 
 Stencil* Stencil :: Clear() {
-    Mapper& book = current();
-    short width = book.Diff();
-    book.pattern.Move();
-    book.pattern.Clear(width);
+    current().Clear();
     return this;
 }
 
 Stencil* Stencil :: Field() {
-    Mapper& book = current();
-    short width = book.Diff();
-    char offset = 1;
-    book.pattern.Shift(-offset);
-    book.pattern.Pipe();
-    book.pattern.Shift(width + offset);
-    book.pattern.Decoration(1, width);
+    current().Field();
     return this;
 }

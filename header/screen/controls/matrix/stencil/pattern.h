@@ -4,19 +4,10 @@
 #include "screen/matrix/types/point.h"
 
 class Pattern {
-    private:
-        static const wchar_t pipe_horizontal = L'|';
-        static const wchar_t pipe_vertical = L'‾';
-
-        Point* m_cursor;
-
     public:
-        void SetCursor(Point* cursor);
-        void Move();
-        void Clear(short width);
-        void Shift(short width);
-        void Decoration(char baseline, short width);
-        void Pipe();
+        void Clear(Point* cursor, short width);
+        void Decoration(Point* cursor, short width);
+        void Pipe(Point* cursor);
 };
 
 #endif

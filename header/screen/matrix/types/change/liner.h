@@ -11,6 +11,7 @@ struct Liner {
 
     void Set(point_extract points, axis_shift margin);
     void Append(Point* from, byte append);
+    void Subtract(Point* from, byte subtract);
     void Margin(Point* from, Point* to);
 };
 

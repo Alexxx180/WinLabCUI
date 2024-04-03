@@ -5,6 +5,7 @@
 
 #include "common/types.h"
 #include "screen/matrix/types/point.h"
+#include "screen/matrix/types/change/liner.h"
 #include "screen/controls/matrix/stencil/ruler.h"
 #include "screen/controls/matrix/stencil/book.h"
 #include "screen/controls/matrix/stencil/pattern.h"
@@ -26,6 +27,8 @@ class Mapper {
         Point& at();
 
         Mapper(std::vector<Point> basis);
+        void Clear();
+        void Field();
         short Diff();
         void Move();
         void Span(byte columns);

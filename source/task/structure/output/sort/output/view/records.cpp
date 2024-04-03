@@ -1,6 +1,6 @@
 #include "task/structure/output/sort/output/view/records.h"
 
-#include "task/structure/output/sort/pages.h"
+#include "task/structure/shared/arrays.h"
 #include "screen/controls/layout/grid/datagrid/types/page.h"
 #include "screen/matrix/tools.h"
 

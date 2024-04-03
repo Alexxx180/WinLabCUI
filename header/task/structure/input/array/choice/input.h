@@ -3,12 +3,11 @@
 
 #include <vector>
 
-typedef void (*invokation)();
+typedef char (*input_type)();
 
 void ManualInput();
 void RandomInput();
 
-invokation InputSelect();
 std::vector<short> ArrayInput(short size);
 
 #endif

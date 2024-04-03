@@ -3,9 +3,8 @@
 
 #include <vector>
 
-typedef void (*sort_invokation)(std::vector<short>&);
+typedef void (*sort_type)(std::vector<short>&);
 
-sort_invokation SortSelect();
 void SortChoice();
 
 #endif

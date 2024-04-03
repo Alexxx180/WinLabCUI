@@ -6,5 +6,6 @@ void SetInputVerifiers() {
     numeric->status.Defaults();
 }
 
-Verifier<char>* numeric = new Verifier<char>();
-Randomizer<char> gen_int8(Boundary<char>(-99, 99));
+Boundary<char> limits(-99, 99);
+Verifier<char>* numeric = new Verifier<char>(limits);
+Randomizer<char> gen_int8(limits);

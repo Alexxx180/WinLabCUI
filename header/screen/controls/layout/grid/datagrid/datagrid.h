@@ -25,6 +25,7 @@ class DataGrid : public Navigation {
         void SetView(void (*update)(Table *grid));
         void OutputControls();
         void Draw();
+        short Choice();
         char Query();
 };
 

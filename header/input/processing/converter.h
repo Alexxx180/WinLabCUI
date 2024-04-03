@@ -20,6 +20,10 @@ class Converter {
             fwprintf(stderr, L"\t%*c\n", (int)(m_end - m_buffer) + 1, '^');
         }
 
+        long ToLong() { return wcstol(m_buffer, &m_end, system); }
+        float ToFloat() { return wcstof(m_buffer, &m_end); }
+        double ToDouble() { return wcstod(m_buffer, &m_end); }
+
     public:
         bool HasInvalidData() {
             bool isInvalid = errno != 0 || *m_end != '\0';
@@ -43,14 +47,15 @@ class Converter {
         void Convert(TYPE* value) {}
 
         template <>
-        void Convert(short* value) {
-            *value = wcstol(m_buffer, &m_end, system);
-        }
-
+        void Convert(char* value) { *value = static_cast<char>(ToLong()); }
         template <>
-        void Convert(float* value) { 
-            *value = wcstof(m_buffer, &m_end);
-        }
+        void Convert(short* value) { *value = static_cast<short>(ToLong()); }
+        template <>
+        void Convert(long* value) { *value = ToLong(); }
+        template <>
+        void Convert(float* value) { *value = ToFloat(); }
+        template <>
+        void Convert(double* value) { *value = ToDouble(); }
 };
 
 #endif

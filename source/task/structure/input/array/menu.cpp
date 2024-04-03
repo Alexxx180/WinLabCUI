@@ -1,4 +1,4 @@
-#include "task/structure/input/array/common.h"
+#include "task/structure/input/array/menu.h"
 
 #include "task/forms/defaults/cui/screens/menu/array.h"
 #include "screen/controls/menu/menuitem.h"

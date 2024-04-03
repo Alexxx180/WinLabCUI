@@ -11,7 +11,8 @@ void MenuItem :: InnerField(Navigation* parameters, char (MenuItem::*command)())
 char MenuItem :: ValueSelection() {
     char (Navigation::*query)() = &Navigation::Query;
     Await(m_caption, query, ESC);
-	wprintf(L"SELECTED");
+    Focus();
+	//wprintf(L"SELECTED");
 	return ENTER;
 }
 
@@ -21,11 +22,11 @@ void MenuItem :: Minimize() {
 		MenuItem& item = at(size);
 		Point pos = item.GetPos();
 		//wprintf(L"%i, ", size);
-        //item.Focus();
-		out->Page(pos.X)->Line(pos.Y);
-		//out->Move(); // PROBLEM HERE
-		wprintf(L"%i, %i", pos.X, pos.Y);
-		//item.Clear();
+        item.Focus();
+		/*out->Page(pos.X)->Line(pos.Y);
+		out->Move(); // PROBLEM HERE
+		wprintf(L"%i, %i", pos.X, pos.Y);*/
+		item.Clear();
 	}
 }
 
@@ -42,7 +43,7 @@ char MenuItem :: Expand() {
     Await(this, query, ESC);
     Minimize();
     Focus();
-	wprintf(L"S");
+	//wprintf(L"S");
 	return ENTER;
 }
 

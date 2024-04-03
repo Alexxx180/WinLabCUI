@@ -16,6 +16,7 @@ void Label :: Draw() {
 
 char Label :: Input() { return UNDEFINED; }
 char Label :: Action() { return UNDEFINED; }
+short Label :: Choice() { return UNDEFINED; }
 
 void Label :: Previous() {}
 void Label :: Next() {}

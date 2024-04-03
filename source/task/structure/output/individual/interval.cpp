@@ -1,16 +1,16 @@
 #include "task/structure/output/individual/interval.h"
 
+#include "common/texts/format.h"
 #include "screen/matrix/tools.h"
 #include "task/forms/defaults/io/input.h"
 
 void ElementsInterval(char N) {
-    const wchar_t* no = L"%i";
-    char D2 = gen_int8.limits.end;
+    char D2 = limits.end;
     out->Move();
     out->Clip("individual_source_data");
-    out->Text(L": N = ")->FText(no, N);
+    out->Text(L": N = ")->FText(NO, N);
     out->Text(L", D1 = 0, D2 = ");
-    out->FText(no, D2)->Line();
+    out->FText(NO, D2)->Line();
 }
 
 void ElementsSum(std::wstring name, short max) {

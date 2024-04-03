@@ -34,7 +34,13 @@ struct Layer {
         Pen::ink().Bounds(limits);
         return this;
     }
-    
+
+    template<typename TYPE>
+    Layer* FBounds(const wchar_t* format, Boundary<TYPE>& limits) {
+        Pen::ink().FBounds(format, limits);
+        return this;
+    }
+
     template <typename...args>
     Layer* Text(args... rest) {
         Pen::ink().Text(rest...);
@@ -70,7 +76,7 @@ struct Layer {
         out.current->Form(form);
         return this;
     }
-    
+
     Layer* Move() {
         out.current->Move();
         return this;

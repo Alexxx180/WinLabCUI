@@ -15,8 +15,8 @@ class Navigation {
 
     public:
         virtual void Draw() = 0;
+        virtual short Choice() = 0;
         char Query();
-        short Choice();
 };
 
 #endif

@@ -9,6 +9,10 @@ void Liner :: Append(Point* from, byte append) {
     shift(from, extract(from) + append);
 }
 
+void Liner :: Subtract(Point* from, byte append) {
+    shift(from, extract(from) - append);
+}
+
 void Liner :: Margin(Point* from, Point* to) {
     shift(from, extract(to));
 }
