@@ -1,25 +1,25 @@
 #include "input/feedback/notifier.h"
 
+#include "input/feedback/feedback.h"
 #include "screen/matrix/tools/layers.h"
 #include "screen/interaction/interaction.h"
 
-Notifier* Notifier :: Notify(std::string message) {
-    out->Target(m_server)->Move();
-    out->Clear()->Move();
-    (Pen::ink().*m_signal)(message);
-    Next();
-    return this;
-}
-
-void Notifier :: Server(short server) {
-    m_server = server;
-}
-
-void Notifier :: Signal(Pen::quoteptr signal) {
-    m_signal = signal;
+Layer* Notifier :: Focus() {
+    return out->Target(m_status_line)->Move()->Clear()->Move();
 }
 
 void Notifier :: Defaults() {
-    Server(FOOT);
-    Signal(Pen::ink().Feedback());
+    m_status_line = FOOT;
+}
+
+void Notifier :: Interrupt(std::wstring message) {
+    Focus()->Text(message);
+    Next();
+    Focus()->Clip("status_forward");
+}
+
+bool Notifier :: Chain(Feedback* status) {
+    if (status->Denied)
+        Interrupt(status->Error);
+    return status->Denied;
 }

@@ -2,6 +2,7 @@
 #define INPUT_PROCESSING_READER
 
 #include "input/limiting/buffer.h"
+#include "input/feedback/feedback.h"
 
 class Reader {
     private:
@@ -9,13 +10,12 @@ class Reader {
         size_t m_length;
 
     protected:
-        bool NotReadable();
-        bool IsOverflow();
-        bool IsEmpty();
+        bool NotReadable(std::wstring* text);
+        bool IsOverflow(std::wstring* text);
+        bool IsEmpty(std::wstring* text);
 
     public:
-        bool Interrupt();
-
+        Feedback Interrupt();
         void SetBuffer(wchar_t buffer[ACTUAL_MAX]);
 };
 

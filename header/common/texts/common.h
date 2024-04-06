@@ -14,7 +14,6 @@ static const std::map<std::string, std::wstring> texts = {
 
     // Navigation and status messages
     { "status_error", L"\u041e\u0448\u0438\u0431\u043a\u0430 \u0432\u0432\u043e\u0434\u0430 \u0434\u0430\u043d\u043d\u044b\u0445! [Esc] \u043e\u0442\u043c\u0435\u043d\u0430" }, // Ошибка ввода данных! [Esc] отмена
-    { "status_invalid_data", L"\u0414\u0430\u043d\u043d\u044b\u0435 \u0432\u043d\u0435 \u0434\u0438\u0430\u043f\u0430\u0437\u043e\u043d\u0430! [Esc] \u043e\u0442\u043c\u0435\u043d\u0430" }, // Данные вне диапазона! [Esc] отмена
     { "status_page_home", L"[Home] \u0432 \u043d\u0430\u0447\u0430\u043b\u043e" }, // [Home] в начало
     { "status_page_up", L"[Page Up] \u0432\u0432\u0435\u0440\u0445" }, // [Page Up] вверх
     { "status_page_down", L"[Page Down] \u0432\u043d\u0438\u0437" }, // [Page Down] вниз

@@ -26,8 +26,8 @@ class Formatter {
 
         template <typename T, typename...args>
         Formatter* Text(T first, args... rest) {
-            Print(first);//std::forward<T>(first));
-            return Text(rest...);//std::forward<Ts>(rest)...);
+            Print(first);
+            return Text(rest...);
         }
 };
 

@@ -22,14 +22,16 @@ class Validator {
             m_processor.SetBuffer(m_buffer);
         }
 
-        bool Validate()
+        Feedback Validate()
         {
             // Parameters assert
             assert(m_result);
             fflush(stdout);
             // Read into buffer
-            if (m_parser.Interrupt())
-                return true;
+            {
+                Feedback input = m_parser.Interrupt();
+                if (input.Denied) return input;
+            }
             // Convert string into number
             errno = 0;
             m_processor.Convert(m_result);

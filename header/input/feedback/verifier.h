@@ -14,17 +14,11 @@ class Verifier : public Typer {
         TYPE m_result;
 
         void Binding() { m_input.SetResult(&m_result); }
-        void Interrupt(std::string message) {
-            status.Notify(message)->Notify("status_forward");
-        }
-        bool Chain(bool denied, std::string error) {
-            if (denied) Interrupt(error); return denied;
-        }
 
     protected:
         void Type() {
-            bool denied = Chain(m_input.Validate(), "status_error") ||
-                Chain(m_edges.Deny(m_result), "status_invalid_data");
+            bool denied = status.Chain(&m_input.Validate()) ||
+                status.Chain(&m_edges.Describe(m_result));
             m_verified = !denied;
         }
 
@@ -34,10 +28,12 @@ class Verifier : public Typer {
         const Boundary<TYPE>& Edges = m_edges;
 
         Verifier() { Binding(); }
+
         Verifier(Boundary<TYPE>& edges) {
             Binding();
             Bounds(edges);
         }
+
         void Bounds(Boundary<TYPE>& edges) {
             m_edges = edges;
         }

@@ -1,19 +1,20 @@
 #ifndef INPUT_FEEDBACK_NOTIFIER
 #define INPUT_FEEDBACK_NOTIFIER
 
-#include <string>
+#include "input/feedback/feedback.h"
+#include "common/types.h"
 #include "screen/matrix/tools.h"
 
 class Notifier {
     private:
-        short m_server;
-        Pen::quoteptr m_signal;
+        byte m_status_line;
+
+        Layer* Notifier :: Focus();
+        void Interrupt(std::wstring message);
 
     public:
-        Notifier* Notify(std::string message);
-        void Server(short server);
-        void Signal(Pen::quoteptr signal);
         void Defaults();
+        bool Chain(Feedback* status);
 };
 
 #endif

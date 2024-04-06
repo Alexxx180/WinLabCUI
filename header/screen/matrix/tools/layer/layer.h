@@ -5,6 +5,7 @@
 #include "screen/controls/matrix/screen.h"
 #include "screen/controls/bar/bar.h"
 #include "screen/controls/matrix/pen.h"
+#include "screen/interaction/interaction.h"
 
 struct Layer {
     Fragment<Grid> back;
@@ -45,6 +46,13 @@ struct Layer {
     Layer* Text(args... rest) {
         Pen::ink().Text(rest...);
         return this;
+    }
+
+    Layer* Typo(int position) {
+        Jump()->Move();
+        Pen::ink().Typo(position);
+        Next();
+        return Move()->Clear()->Line()->Move();
     }
     
     template<typename TYPE>

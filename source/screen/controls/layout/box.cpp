@@ -54,7 +54,6 @@ Box* Box :: Split(const float proportion) {
     m_vertices.push_back(start);
     m_vertices.push_back(middle);
     m_vertices.push_back(end);
-    Next();
     return this;
 }
 

@@ -17,7 +17,7 @@ class Typer {
         void Input() {
             out->Field();
             do {
-                out->Target(MAIN);
+                out->Target(MAIN)->Move();
                 Type();
             }
             while (!IsVerified);
