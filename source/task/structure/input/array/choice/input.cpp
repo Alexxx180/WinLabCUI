@@ -1,5 +1,6 @@
 #include "task/structure/input/array/choice/input.h"
 
+#include "task/forms/defaults/io/input.h"
 #include "task/structure/shared/arrays.h"
 #include "task/structure/input/array/menu.h"
 #include "task/structure/input/array/annotation/input.h"

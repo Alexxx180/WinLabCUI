@@ -1,5 +1,6 @@
 #include "screen/controls/layout/box.h"
 #include "screen/drawing/platform.h"
+#include "screen/interaction/interaction.h"
 
 void Box :: Line(Point* cursor, axis_shift pins, wchar_t symbol) {
     byte i = 0, count = m_vertices.size();
@@ -44,12 +45,16 @@ void Box :: Lines(Stapler* gun) {
 }
 
 Box* Box :: Split(const float proportion) {
-    float location = bounds.P2.Y * proportion;
+    byte start = bounds.P2.X;
+    byte end = bounds.P2.Y;
+    byte size = end - start;
+    float location = start + size * proportion;
     byte middle = static_cast<byte>(location);
     m_vertices.clear();
-    m_vertices.push_back(bounds.P2.X);
+    m_vertices.push_back(start);
     m_vertices.push_back(middle);
-    m_vertices.push_back(bounds.P2.Y);
+    m_vertices.push_back(end);
+    Next();
     return this;
 }
 

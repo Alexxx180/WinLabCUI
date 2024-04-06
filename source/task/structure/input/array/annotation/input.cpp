@@ -13,7 +13,8 @@ void ArrayDimension(Boundary<char>& length) {
 
 void ArrayElements(Boundary<char>& limits) {
     out->Page(0)->Line()->Move();
-    out->Clip(name)->Text(L" ")->FBounds(NO, limits);
+    out->Clip("input_array_elements");
+    out->Text(L" ")->FBounds(NO, limits);
     out->Page(1)->Span(1)->Field();
 }
 

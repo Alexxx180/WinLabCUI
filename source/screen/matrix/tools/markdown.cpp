@@ -62,8 +62,9 @@ Markdown* Markdown :: Shift(byte flow, byte p2, byte size) {
 
 Markdown* Markdown :: Flatten(byte flow, byte margin, float ratio) {
     Shifter* pos = &m_positions[flow];
+    float inverse = 1.0f - ratio;
     byte p1 = pos->extract(&m_next.P1) + margin * ratio;
-    byte p2 = pos->extract(&m_next.P2) - margin * (1.0f - ratio);
+    byte p2 = pos->extract(&m_next.P2) - margin * inverse;
     return Place(pos, p1, p2);
 }
 

@@ -8,10 +8,8 @@
 #include "screen/controls/matrix/stencil/book.h"
 
 class Ruler {
-    private:
-        byte m_lines = 0;
-
     public:
+        byte m_lines = 0;
         void Size(byte lines);
         byte Skip(byte current, char lines);
         byte Jump(byte current, char direction);

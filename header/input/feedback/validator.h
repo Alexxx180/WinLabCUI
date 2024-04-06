@@ -20,8 +20,6 @@ class Validator {
         Validator() {
             m_parser.SetBuffer(m_buffer);
             m_processor.SetBuffer(m_buffer);
-            wprintf(L"Buffers set");
-            Next();
         }
 
         bool Validate()

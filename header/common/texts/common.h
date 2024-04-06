@@ -51,7 +51,7 @@ static const std::map<std::string, std::wstring> texts = {
     { "input_array_dimension", L"\u0420\u0430\u0437\u043c\u0435\u0440\u043d\u043e\u0441\u0442\u044c" }, // Размерность
     { "input_value_edit_1", L"\u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435 '" }, // Значение '
     { "input_value_edit_2", L"' \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u043e: " }, // ' изменено: 
-    { "input_array_elements", L"\u042d\u043b\u0435\u043c\u0435\u043d\u0442\u044b \u043c\u0430\u0441\u0441\u0438\u0432\u0430" }, // Элементы массива
+    { "input_array_elements", L"\u042d\u043b\u0435\u043c\u0435\u043d\u0442\u044b" }, // Элементы
     { "input_results", L"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442" }, // Результат
     { "output_source_array", L"\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f" }, // Генерация
     { "output_sorted_array", L"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442" }, // Результат

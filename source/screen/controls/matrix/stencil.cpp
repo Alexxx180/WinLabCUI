@@ -39,7 +39,7 @@ Stencil* Stencil :: Flip(char direction) {
 }
 
 Stencil* Stencil :: Size(byte padding) {
-    current().ruler.Size(padding);
+    current().Size(padding);
     return this;
 }
 

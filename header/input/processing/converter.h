@@ -31,9 +31,10 @@ class Converter {
             if (isInvalid)
             {
                 std::wstring error = errors.at("invalid_character");
+
+                MarkCharacter();
                 fwprintf(stderr, L"%s\n", error.c_str());
                 fwprintf(stderr, L"\t%s\n", m_buffer);
-                MarkCharacter();
             }
 
             return isInvalid;

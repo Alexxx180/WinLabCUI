@@ -34,6 +34,7 @@ class Mapper {
         void Span(byte columns);
         void Page(byte column);
         void Flip(char direction);
+        void Size(byte lines);
         void Anchor(char lines);
         void Jump(char direction);
 };

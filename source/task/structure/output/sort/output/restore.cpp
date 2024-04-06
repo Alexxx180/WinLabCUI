@@ -4,8 +4,9 @@
 #include "screen/matrix/tools/layers.h"
 
 void RestoreOutput() {
-    SelectLayer(SCREEN);
-    out->Redraw()->Target(FOOT)->Move();
+    out->Redraw();
+    out->Target(FOOT);
+    out->Move();
     out->Clip("status_menu_navigation");
     out->Target(MENU);
 }

@@ -1,7 +1,5 @@
 #include "screen/controls/matrix/stencil/ruler.h"
 
-#include <stdio.h>
-
 void Ruler :: Size(byte lines) {
     m_lines = lines;
 }

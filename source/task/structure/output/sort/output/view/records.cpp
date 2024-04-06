@@ -5,8 +5,6 @@
 #include "screen/matrix/tools.h"
 
 Page SortRecords() {
-    out->back.current->Rows.Split(0.5f);
-    out->back.current->Columns.Split(0.22f);
     out->ShowBack();
 
     byte lines = out->back.current->Columns.Rib(1);

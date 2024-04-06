@@ -27,8 +27,12 @@ void Mapper :: Flip(char direction) {
     m_book.Flip(m_basis.size(), direction); Page();
 }
 
+void Mapper :: Size(byte padding) {
+    ruler.Size(padding);
+}
+
 void Mapper :: Anchor(char lines) {
-    m_cursor.Y = ruler.Skip(at().Y, lines);
+    m_cursor.Y = ruler.Jump(at().Y, lines);
 }
 
 void Mapper :: Jump(char direction) {
