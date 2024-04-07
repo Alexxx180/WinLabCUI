@@ -6,22 +6,24 @@
 
 class Table {
     private:
-        Page m_lines, m_records;
+        bool m_end;
+        uint m_line = 0;
+        Scroll m_pages;
 
     public:
-        Scroll Pages;
-        bool End, Over;
+        const bool& End = m_end;
+        const bool& IsTop = m_pages.IsTop;
+        const bool& IsBottom = m_pages.IsBottom;
 
-        void Update();
         void Scroll();
-        void SetRecords(Page* records);
-        Page* GetLines();
-        void SetLines(Page* lines);
-        void Length();
-        void HomePage();
-        void EndPage();
+        void Set(const Page& records);
+        void Progress();
+        void Home();
+        void End();
         void Down();
         void Up();
 };
+
+typedef void (Table::*listing)();
 
 #endif

@@ -9,6 +9,9 @@ Mapper :: Mapper(std::vector<Point> basis) {
     m_cursor = m_basis.at(0);
 }
 
+short Mapper :: Columns() { return m_basis.size(); }
+
+
 short Mapper :: Diff() { return ruler.Diff(m_basis, m_book); }
 
 void Mapper :: Move() { MoveCursor(&m_cursor); }
@@ -20,11 +23,11 @@ void Mapper :: Page() { m_cursor.X = m_book.Map(m_basis); }
 void Mapper :: Span(byte columns) { m_book.Span = columns; }
 
 void Mapper :: Page(byte column) {
-    m_book.Split(column, m_basis.size()); Page();
+    m_book.Split(column, Columns()); Page();
 }
 
 void Mapper :: Flip(char direction) {
-    m_book.Flip(m_basis.size(), direction); Page();
+    m_book.Flip(Columns(), direction); Page();
 }
 
 void Mapper :: Size(byte padding) {

@@ -5,17 +5,15 @@
 #include <string>
 #include <map>
 
-#include "common/types.h"
-
 class ControllerGroup {
     private:
-        std::map<byte, std::wstring> m_info;
+        std::map<char, std::wstring> m_info;
 
     public:
         std::vector<char> controls;
 
-        ControllerGroup(std::vector<char> keys, std::map<byte, std::wstring> info);
-        void Print(byte form);
+        ControllerGroup(std::vector<char> keys, std::map<char, std::wstring> info);
+        void Print();
 };
 
 #endif

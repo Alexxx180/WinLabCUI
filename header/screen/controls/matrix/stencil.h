@@ -16,6 +16,7 @@ class Stencil {
 
     public:
         Stencil(std::vector<Mapper> forms);
+        short Columns();
         Stencil* Form(byte form);
         Stencil* Span(byte columns);
         Stencil* Page(byte column);

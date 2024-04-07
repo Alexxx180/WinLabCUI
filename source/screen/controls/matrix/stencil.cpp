@@ -12,6 +12,10 @@ Mapper& Stencil :: current() {
     return m_forms.at(m_form);
 }
 
+short Stencil :: Columns() {
+    return current().Columns();
+}
+
 Stencil :: Stencil(std::vector<Mapper> forms) {
     m_forms = forms;
     m_form = 0;

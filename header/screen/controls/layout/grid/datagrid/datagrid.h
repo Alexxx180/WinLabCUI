@@ -26,7 +26,6 @@ class DataGrid : public Navigation {
         void OutputControls();
         void Draw();
         short Choice();
-        char Query();
 };
 
 #endif

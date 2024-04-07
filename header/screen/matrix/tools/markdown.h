@@ -26,6 +26,8 @@ class Markdown {
         Markdown* Place(Shifter* pos, byte p1, byte p2);
 
     public:
+        const Point& Cursor = m_current;
+
         Markdown();
         Markdown* Clear();
         Bar ProgressBar();

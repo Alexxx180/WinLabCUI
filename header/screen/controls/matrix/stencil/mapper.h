@@ -29,6 +29,7 @@ class Mapper {
         Mapper(std::vector<Point> basis);
         void Clear();
         void Field();
+        short Columns();
         short Diff();
         void Move();
         void Span(byte columns);

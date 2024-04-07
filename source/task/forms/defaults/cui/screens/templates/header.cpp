@@ -8,7 +8,6 @@
 
 char Header()
 {
-    ///*
     ProgramMessage("program_description");
 
     out->Line()->Move();
@@ -16,13 +15,6 @@ char Header()
 
     out->Target(FOOT)->ShowBack()->Move();
     out->Clip("status_exit")->Span(1);
-    //*/
-
-    /*
-    layer->Target(MAIN);
-    out->Form(0)->Page(1)->Line(0)->Size(2);
-    out->Move();
-    */
 
     char code = Select(ESC, ENTER);
 

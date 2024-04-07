@@ -3,26 +3,38 @@
 #include "screen/controls/matrix/pen.h"
 #include "task/forms/defaults/debug.h"
 
-void Scroll :: Home() { Current = Top; }
+void Set(const Page& page) {
+    m_page.Set(page);
+    m_bottom = page.Split();
+}
 
-void Scroll :: End() { Current = Bottom; }
+void Update(long next) {
+    m_current = next;
+    m_records = m_current * m_page.Relative;
+}
+
+void Scroll :: Home() { Update(Top); }
+
+void Scroll :: End() { Update(m_bottom - First); }
+
+void Scroll :: Count() {
+    Pen::ink().Clip("status_pages");
+    Pen::ink().Text(First + m_current, L" / ", m_bottom);
+}
 
 void Scroll :: Length() {
-    Pen::ink().Text(Current, L" / ", Bottom);
+    Pen::ink().Text(m_records, L" / ", m_page.Absolute);
 }
 
-bool Scroll :: Down() {
-    bool wall = Current + page_listing > Bottom;
-
-    if (wall) Home(); else Current += page_listing;
-
-    return wall;
+void Scroll :: Down() {
+    long last = m_bottom - First;
+    long next = m_current + page_listing;
+    m_isBottom = next > last;
+    Update(m_isBottom ? last : next);
 }
 
-bool Scroll :: Up() {
-    bool wall = Current - page_listing < Top;
-        
-    if (wall) End(); else Current -= page_listing;
-    
-    return wall;
+void Scroll :: Up() {
+    long next = m_current - page_listing;
+    m_isTop = next < Top;
+    Update(m_isTop ? Top : next);
 }

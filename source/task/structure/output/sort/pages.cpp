@@ -6,25 +6,19 @@
 #include "screen/controls/layout/grid/datagrid/types/page.h"
 #include "screen/matrix/tools.h"
 
-void DrawRow(char line, std::vector<short>& array, Table* table) {
-    uint index;
+void DrawRow(char line, std::vector<short>& array, Table& table) {
     short item;
-
     out->Line(line);
 
-    while (table->Over && table->End) {
-        index = table->GetLines()->Absolute;
-        item = array.at(index);
-
+    table.Anchor();
+    while (table.End) {
+        item = array.at(table.Record);
         out->FText(NO4, item);
-        table->Scroll();
+        table.Scroll();
     }
 }
 
-void DrawArray(Table* table) {
-    Page backup = *(table->GetLines());
-
+void DrawArray(Table& table) {
     DrawRow(0, original, table);
-    table->SetLines(&backup);
     DrawRow(1, sorted, table);
 }

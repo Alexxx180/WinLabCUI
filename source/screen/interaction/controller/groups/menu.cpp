@@ -5,7 +5,7 @@ std::vector<char> MenuControls() {
     return { ESC, ENTER, HOME, END, KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT };
 }
 
-std::map<byte, std::wstring> MenuInfo() {
+std::map<char, std::wstring> MenuInfo() {
     return {
         { HOME, L"[Home] \u0432 \u043d\u0430\u0447\u0430\u043b\u043e" },
         { END, L"[End] \u0432 \u043a\u043e\u043d\u0435\u0446" },

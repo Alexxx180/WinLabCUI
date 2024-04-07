@@ -8,8 +8,5 @@ void InitLayers() {
     SelectLayer(SCREEN);
 
     out->Target(MENU);
-    if (out == NULL)
-        wprintf(L"Asdkjadkjasdka");
-
     out->Size(1)->Span(1);
 }

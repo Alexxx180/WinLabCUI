@@ -1,18 +1,33 @@
 #ifndef SCREEN_CONTROLS_LAYOUT_GRID_DATAGRID_TYPES_SCROLL
 #define SCREEN_CONTROLS_LAYOUT_GRID_DATAGRID_TYPES_SCROLL
 
-#include "common/types.h"
+#include "screen/controls/layout/grid/datagrid/types/page.h"
 
-struct Scroll {
-    const byte Top = 1;
+class Scroll {
+    private:
+        const byte Top = 0, First = 1;
 
-    int Current, Bottom;
+        bool m_isTop = true, m_isBottom = false;
+        uint m_current = 0, m_bottom = 0, m_records = 0;
+        Page m_page;
 
-    void Home();
-    void End();
-    void Length();
-    bool Down();
-    bool Up();
+        void Update(long next);
+
+    public:
+        const bool& IsTop = m_isTop;
+        const bool& IsBottom = m_isBottom;
+        const uint& Records = m_records;
+        const Page& Enumeration = m_page;
+
+        void Set(const Page& records);
+
+        void Length();
+        void Count();
+
+        void Home();
+        void End();
+        bool Down();
+        bool Up();
 };
 
 #endif

@@ -12,47 +12,36 @@ void DataGrid :: SetView(void (*update)(Table *grid)) {
 }
 
 void DataGrid :: OutputControls() {
-    out->Page(0)->Size(1);
-    out->Line(0);
-    table_input.Print(FOOT);
+    out->Page(0)->Size(1)->Line(0);
+    table_input.Print();
 }
 
 void DataGrid :: Draw() {
     m_update(&table);
-
-    out->Target(FOOT)->Move();
-    out->Clear()->Move();
-
-    if (page_character_results)
-        table.Length();
-    else {
-        out->Clip("status_pages");
-        table.Pages.Length();
-    }
-
+    out->Target(FOOT);
+    out->Move()->Clear()->Move();
+    table.Progress();
     out->Target(MAIN);
 }
 
-void DataGrid :: First() { table.HomePage(); }
-
-void DataGrid :: Last() { table.EndPage(); }
-
-void DataGrid :: Climb() { table.Up(); }
-
-void DataGrid :: Slide() { table.Down(); }
-
 void DataGrid :: Next() {}
-
 void DataGrid :: Previous() {}
-
 char DataGrid :: Action() { return UNDEFINED; }
-
 short DataGrid :: Choice() { return UNDEFINED; }
 
-char DataGrid :: Input() { return Select(table_input.controls); }
-
-char DataGrid :: Query() {
-    char code = Navigation::Query();
-    Draw();
-    return code;
+void DataGrid :: List(bool wall, listing pages) {
+    if (!wall) { 
+        (table.*pages)();
+        Draw();
+    }
 }
+
+void DataGrid :: First() { List(table.IsTop, &Table::Home); }
+
+void DataGrid :: Last() { List(table.IsBottom, &Table::End); }
+
+void DataGrid :: Climb() { List(table.IsTop, &Table::Up); }
+
+void DataGrid :: Slide() { List(table.IsBottom, &Table::Down); }
+
+char DataGrid :: Input() { return Select(table_input.controls); }

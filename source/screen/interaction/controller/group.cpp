@@ -1,29 +1,30 @@
 #include "screen/interaction/controller/group.h"
 #include "screen/matrix/tools.h"
 
-ControllerGroup :: ControllerGroup(std::vector<char> keys, std::map<byte, std::wstring> info) {
+ControllerGroup :: ControllerGroup(std::vector<char> keys, std::map<char, std::wstring> info) {
     controls = keys;
     m_info = info;
 }
 
-void ControllerGroup :: Print(byte form) {
-    out->Target(form);
+void ControllerGroup :: Print() {
+    byte span = out->back.current->Rows.Rib(0) - 2;
+    byte line = 0, page = out->out.current->Columns();
 
-    byte line = 0, page = 0;
-    byte size = controls.size();
-    byte span = out->back.current->Rows.Rib(0);
+    out->Page(--page)->Size(1)->Line(line);
 
-    for (byte i = 0; i < size; i++) {
-        if (line > span) {
-            out->Page(++page);
+    char i = controls.size();
+
+    while (--i >= 0) {
+        if (line >= span) {
+            out->Page(--page);
             line = 0;
         }
 
-        if (m_info.count(i) > 0) {
-            std::wstring key = m_info.at(i);
+        char key = controls.at(i);
 
-            out->Line(line++)->Move();
-            out->Text(key);
+        if (m_info.count(key) > 0) {
+            std::wstring info = m_info.at(key);
+            out->Line(line++)->Move()->Text(info);
         }
     }
 }
