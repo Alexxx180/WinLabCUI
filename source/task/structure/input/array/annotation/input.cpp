@@ -19,6 +19,7 @@ void ArrayElements(Boundary<char>& limits) {
 }
 
 void ArrayProgress(short at, short size) {
+    out->Clear()->Move();
     out->Page(3)->Move();
     out->Clear()->Move();
     out->Text(at, L" / ", size);

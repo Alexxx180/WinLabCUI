@@ -7,6 +7,7 @@
 #include "task/structure/output/sort/header.h"
 #include "task/structure/output/sort/output/output.h"
 #include "task/structure/output/sort/output/restore.h"
+#include "task/structure/output/sort/output/clear.h"
 #include "screen/matrix/tools.h"
 
 void StartArraySort() {
@@ -14,6 +15,7 @@ void StartArraySort() {
     InputDimension();
     InputChoice();
     SortChoice();
+    ClearStatus();
     SelectLayer(FLOATING);
     SortHeader();
     SortOutput();

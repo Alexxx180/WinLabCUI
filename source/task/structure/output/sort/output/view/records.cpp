@@ -6,11 +6,8 @@
 
 Page SortRecords() {
     out->ShowBack();
-
-    byte lines = out->back.current->Columns.Rib(1);
-
     Page records;
-    records.Relative = lines;
+    records.Relative = 10;
     records.Absolute = original.size();
     return records;
 }

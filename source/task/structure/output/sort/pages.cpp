@@ -8,10 +8,11 @@
 
 void DrawRow(char line, std::vector<short>& array, Table& table) {
     short item;
-    out->Line(line);
+
+    out->Line(line)->Move()->Clear()->Move();
 
     table.Anchor();
-    while (table.End) {
+    while (!table.IsEnd) {
         item = array.at(table.Record);
         out->FText(NO4, item);
         table.Scroll();

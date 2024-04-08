@@ -6,15 +6,19 @@
 
 class Table {
     private:
-        bool m_end;
-        uint m_line = 0;
+        bool m_end = false;
+        uint m_record = 0;
         Scroll m_pages;
 
+        void Update(uint next);
+
     public:
-        const bool& End = m_end;
+        const uint& Record = m_record;
+        const bool& IsEnd = m_end;
         const bool& IsTop = m_pages.IsTop;
         const bool& IsBottom = m_pages.IsBottom;
 
+        void Anchor();
         void Scroll();
         void Set(const Page& records);
         void Progress();

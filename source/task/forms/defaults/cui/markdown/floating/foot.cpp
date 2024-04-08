@@ -3,7 +3,7 @@
 #include "screen/interaction/interaction.h"
 
 Screen TableControls(Markdown* m) {
-    byte margin = 3, columns = 2;
+    byte margin = 3, columns = 3;
     float ratio = 0.33f;
     m->Top()->Margin(Y, 1)->Margin(X, margin)->Page();
 

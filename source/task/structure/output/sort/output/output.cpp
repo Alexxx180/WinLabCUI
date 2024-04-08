@@ -4,5 +4,5 @@
 #include "task/structure/output/sort/output/view/table.h"
 
 void SortOutput() {
-    SortTable(&SortRecords());
+    SortTable(SortRecords());
 }

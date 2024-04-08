@@ -6,7 +6,7 @@
 
 class DataGrid : public Navigation {
     private:
-        void (*m_update)(Table *grid);
+        void (*m_update)(Table& grid);
 
     protected:
         char Input();
@@ -18,12 +18,14 @@ class DataGrid : public Navigation {
         void Last();
         void Climb();
         void Slide();
+        void List(bool wall, listing pages);
 
     public:
         Table table;
 
-        void SetView(void (*update)(Table *grid));
+        void SetView(void (*update)(Table& grid));
         void OutputControls();
+        void ClearControls();
         void Draw();
         short Choice();
 };

@@ -8,7 +8,7 @@ ControllerGroup :: ControllerGroup(std::vector<char> keys, std::map<char, std::w
 
 void ControllerGroup :: Print() {
     byte span = out->back.current->Rows.Rib(0) - 2;
-    byte line = 0, page = out->out.current->Columns();
+    byte line = 0, page = out->out.current->Columns() - 1;
 
     out->Page(--page)->Size(1)->Line(line);
 
@@ -27,4 +27,12 @@ void ControllerGroup :: Print() {
             out->Line(line++)->Move()->Text(info);
         }
     }
+}
+
+void ControllerGroup :: Clear() {
+    byte span = out->out.current->Columns();
+    char line = out->back.current->Rows.Rib(0) - 2;
+
+    out->Page(0)->Span(span)->Size(1);
+    while (--line >= 0) out->Line(line)->Move()->Clear();
 }

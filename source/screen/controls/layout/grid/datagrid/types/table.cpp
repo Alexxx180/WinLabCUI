@@ -1,21 +1,29 @@
 #include "screen/controls/layout/grid/datagrid/types/table.h"
+#include "task/forms/defaults/debug.h"
 
-void Table :: Scroll() {
-    m_end = ++m_record < Pages.Enumeration.Relative;
+void Table :: Update(uint next) {
+    m_record = next;
+    m_end = m_record >= m_pages.Enumeration.Absolute || 
+        m_record - m_pages.Records >= m_pages.Enumeration.Relative;
 }
 
-void Table :: Set(const Page& records) { Pages.Set(records); }
+void Table :: Scroll() { Update(m_record + 1); }
+
+void Table :: Anchor() { Update(m_pages.Records); }
+
+void Table :: Set(const Page& records) { m_pages.Set(records); }
 
 void Table :: Progress() {
-    if (page_character_results) Pages.Length(); else Pages.Count();
+    if (page_character_results)
+        m_pages.Length();
+    else
+        m_pages.Count();
 }
 
-void Table :: Anchor() { m_record = Pages.Records; }
+void Table :: Home() { m_pages.Home(); }
 
-void Table :: Home() { Pages.Home(); }
+void Table :: End() { m_pages.End(); }
 
-void Table :: End() { Pages.End(); }
+void Table :: Down() { m_pages.Down(); }
 
-void Table :: Down() { Pages.Down(); }
-
-void Table :: Up() { Pages.Up(); }
+void Table :: Up() { m_pages.Up(); }

@@ -8,20 +8,23 @@
 #include "screen/matrix/tools/layers.h"
 #include "task/structure/output/sort/pages.h"
 
-void SortTable(Page* records) {
+void SortTable(const Page& records) {
     DataGrid model;
-    model.table.SetRecords(records);
+    model.table.Set(records);
 
     model.SetView(&DrawArray);
 
     out->Target(FOOT);
-    out->Line(1)->Page(0)->Size(1)->Span(3);
-    out->Move()->Clear()->Move()->Span(1);
+    out->Page(0)->Line(1)->Size(1)->Span(1);
     model.OutputControls();
+    out->Page(0)->Line(1)->Move();
 
     out->Target(MAIN)->Page(1)->Line(0)->Move();
     model.Draw();
 
     char (DataGrid::*query)() = &DataGrid::Query;
     Await(&model, query, ESC);
+
+    out->Target(FOOT);
+    model.ClearControls();
 }

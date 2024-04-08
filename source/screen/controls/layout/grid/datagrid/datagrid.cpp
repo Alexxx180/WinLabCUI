@@ -7,17 +7,15 @@
 #include "screen/interaction/interaction.h"
 #include "screen/interaction/controller/groups/table.h"
 
-void DataGrid :: SetView(void (*update)(Table *grid)) {
+void DataGrid :: SetView(void (*update)(Table& grid)) {
     m_update = update;
 }
 
-void DataGrid :: OutputControls() {
-    out->Page(0)->Size(1)->Line(0);
-    table_input.Print();
-}
+void DataGrid :: OutputControls() { table_input.Print(); }
+void DataGrid :: ClearControls() { table_input.Clear(); }
 
 void DataGrid :: Draw() {
-    m_update(&table);
+    m_update(table);
     out->Target(FOOT);
     out->Move()->Clear()->Move();
     table.Progress();

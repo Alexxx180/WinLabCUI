@@ -14,6 +14,7 @@ class ControllerGroup {
 
         ControllerGroup(std::vector<char> keys, std::map<char, std::wstring> info);
         void Print();
+        void Clear();
 };
 
 #endif

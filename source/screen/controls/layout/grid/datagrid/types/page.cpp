@@ -5,9 +5,9 @@ void Page :: Set(const Page& clone) {
     Absolute = clone.Absolute;
 }
 
-int Page :: Split() {
-    int start = Absolute % Relative;
-    int end = Absolute / Relative;
+uint Page :: Split() {
+    uint start = Absolute % Relative;
+    uint end = Absolute / Relative;
     if (start != 0) end += 1;
     return end;
 }

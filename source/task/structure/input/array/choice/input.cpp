@@ -25,8 +25,9 @@ void InputChoice() {
     for (short i = 0; i < size; i++) {
         ArrayProgress(i, size);
         char result = element[input]();
-        original.push_back(result);
+        original[i] = result;
     }
+    ArrayProgress(size, size);
 
     sorted = original;
 }

@@ -8,7 +8,7 @@ struct Page {
     uint Absolute = 0;
 
     void Set(const Page& clone);
-    int Split();
+    uint Split();
 };
 
 #endif

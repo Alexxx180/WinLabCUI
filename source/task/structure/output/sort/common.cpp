@@ -4,7 +4,8 @@
 #include "screen/matrix/tools/layers.h"
 
 void SortCommon() {
-    out->Target(FOOT)->Move()->Clip("status_forward");
+    out->Target(FOOT)->Move()->Clear()->Move();
+    out->Clip("status_forward");
 
     out->Target(MAIN);
     out->Form(0)->Page(0)->Size(2)->Line(0);
