@@ -14,7 +14,7 @@ void SortChoice() {
         InsertionsSort,
         SelectionSort,
         HoarRecursive,
-        QuickSortIterative
+        HoarIterative
     };
 
     array[sort](sorted);

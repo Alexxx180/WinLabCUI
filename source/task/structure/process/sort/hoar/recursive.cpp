@@ -1,6 +1,9 @@
 #include "task/structure/process/sort/hoar/recursive.h"
 
+#include "task/structure/process/sort/utils/efficiency.h"
+
 void QuickSortRecursive(std::vector<short>& memory, HoarMilestone& stone) {
+    int first = stone.Left, last = stone.Right;
     stone.Sort(memory);
 
     if (Comparison(stone.Left < last)) {

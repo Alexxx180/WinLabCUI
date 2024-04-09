@@ -1,3 +1,3 @@
 #include <vector>
 
-void QuickSortIterative(std::vector<short>& memory);
+void HoarIterative(std::vector<short>& memory);

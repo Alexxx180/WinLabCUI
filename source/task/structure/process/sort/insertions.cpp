@@ -5,18 +5,21 @@
 void InsertionsSort(std::vector<short>& memory) {
     ResetStats();
 
-    short i, j, floater, size;
+    short i, j, size;
+    short floater;
 
     size = memory.size();
 
-    for (i = 1; Comparison(i < size); i++) {
+    for (i = 0; Comparison(i < size); i++) {
         floater = memory[i];
-        j = i;
+        j = i - 1;
 
-        while (Comparison(j >= 0 && memory[j] < floater)) {
+        while (Comparison(j >= 0 && memory[j] > floater)) {
             memory[j + 1] = memory[j];
-            memory[j--] = floater;
-            Permutation();
+            j--;
+            permutations++;
         }
+
+        memory[j + 1] = floater;
     }
 }

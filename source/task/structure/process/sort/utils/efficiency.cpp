@@ -7,10 +7,6 @@ void ResetStats() {
     comparisons = 0;
 }
 
-void Permutation() {
-    permutations++;
-}
-
 bool Comparison(bool condition) {
     comparisons++;
     return condition;

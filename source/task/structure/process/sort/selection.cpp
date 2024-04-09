@@ -21,6 +21,6 @@ void SelectionSort(std::vector<short>& memory) {
         }
 
         SwapMemory(memory, i, minimal);
-        Permutation();
+        permutations++;
     }
 }
