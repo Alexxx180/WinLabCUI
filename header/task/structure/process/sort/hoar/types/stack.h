@@ -9,6 +9,7 @@ struct HoarStack {
     long Left[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
     long Right[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
 
+    HoarStack();
     long PivotIndex();
     bool IsSmallerOneLeft();
     bool HasQueries();

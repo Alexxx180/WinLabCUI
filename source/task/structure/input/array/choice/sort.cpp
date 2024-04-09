@@ -11,10 +11,10 @@ void SortChoice() {
     char sort = SortOption();
 
     sort_type array[4] = {
-        HoarRecursive,
-        QuickSortIterative,
         InsertionsSort,
-        SelectionSort
+        SelectionSort,
+        HoarRecursive,
+        QuickSortIterative
     };
 
     array[sort](sorted);

@@ -1,14 +1,14 @@
 #include "task/structure/process/sort/hoar/types/stack.h"
 
-long HoarStack :: PivotIndex() { return (part.X + part.Y) >> 1; }
-bool HoarStack :: IsSmallerOneLeft() { return part.X < part.Y; }
-bool HoarStack :: HasQueries() { return Position != 0; }
-
-void HoarStack :: Init(long size) {
+HoarStack(long size) {
     Position = 1;
     SetBound(Left, 0);
     SetBound(Right, size - 1);
 }
+
+long HoarStack :: PivotIndex() { return (part.X + part.Y) >> 1; }
+bool HoarStack :: IsSmallerOneLeft() { return part.X < part.Y; }
+bool HoarStack :: HasQueries() { return Position != 0; }
 
 void HoarStack :: UpdateBounds() {
     part.X = Left[Position];

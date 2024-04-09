@@ -20,7 +20,7 @@ void InputChoice() {
     short input = InputOption();
     short size = original.size();
 
-    input_type element[2] = { ValueManual, ValueRandom };
+    input_type element[2] = { ValueRandom, ValueManual };
 
     for (short i = 0; i < size; i++) {
         ArrayProgress(i, size);

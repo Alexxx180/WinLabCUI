@@ -11,11 +11,9 @@ void DrawRow(char line, std::vector<short>& array, Table& table) {
 
     out->Line(line)->Move()->Clear()->Move();
 
-    table.Anchor();
-    while (!table.IsEnd) {
+    for (table.Anchor(); !table.IsEnd; table.Scroll()) {
         item = array.at(table.Record);
         out->FText(NO4, item);
-        table.Scroll();
     }
 }
 
