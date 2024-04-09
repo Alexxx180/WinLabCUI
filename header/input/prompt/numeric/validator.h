@@ -3,9 +3,9 @@
 
 #include <assert.h>
 
-#include "input/processing/converter.h"
-#include "input/processing/reader.h"
-#include "input/limiting/buffer.h"
+#include "input/feedback/processing/converter.h"
+#include "input/feedback/processing/reader.h"
+#include "input/feedback/limiting/buffer.h"
 #include "screen/interaction/interaction.h"
 
 template<typename TYPE>

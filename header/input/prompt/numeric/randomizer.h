@@ -1,7 +1,7 @@
 #ifndef INPUT_PROCESSING_RANDOMIZER
 #define INPUT_PROCESSING_RANDOMIZER
 
-#include "input/limiting/boundary.h"
+#include "input/feedback/limiting/boundary.h"
 
 template <typename TYPE>
 struct Randomizer {

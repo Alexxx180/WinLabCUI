@@ -6,6 +6,9 @@
 struct Feedback {
     bool Denied;
     std::wstring Error;
+
+    Feedback() {}
+    Feedback(bool denied) { Denied = denied; }
 };
 
 #endif

@@ -30,14 +30,3 @@ void ArrayProgress(short at, short size) {
     out->Page(1)->Move();
     out->Clear()->Move();
 }
-
-char ValueManual() {
-    numeric->Input();
-    return numeric->result;
-}
-
-char ValueRandom() {
-    char value = gen_int8.Random();
-    out->FText(NO, value);
-    return value;
-}

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <conio.h>
 
-#include "input/limiting/buffer.h"
+#include "input/feedback/limiting/buffer.h"
 #include "input/feedback/feedback.h"
 #include "common/texts/errors.h"
 

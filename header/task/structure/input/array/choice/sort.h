@@ -1,10 +1,25 @@
 #ifndef TASK_STRUCTURE_INPUT_ARRAY_CHOICE_SORT
 #define TASK_STRUCTURE_INPUT_ARRAY_CHOICE_SORT
 
-#include <vector>
+#include "task/structure/shared/arrays.h"
+#include "task/structure/input/array/menu.h"
+#include "task/structure/process/sort/insertions.h"
+#include "task/structure/process/sort/selection.h"
+#include "task/structure/process/sort/hoar/iterative.h"
+#include "task/structure/process/sort/hoar/recursive.h"
 
-typedef void (*sort_type)(std::vector<short>&);
+template<typename TYPE>
+void SortChoice(std::vector<TYPE>& sorted) {
+    char sort = SortOption();
+    
+    void (*array)(std::vector<TYPE>&)[4] = {
+        InsertionsSort,
+        SelectionSort,
+        HoarRecursive,
+        HoarIterative
+    };
 
-void SortChoice();
+    array[sort](sorted);
+}
 
 #endif

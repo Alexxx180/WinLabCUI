@@ -1,3 +1,6 @@
-#include <vector>
+#include "task/structure/shared/array.h"
 
-extern std::vector<short> original, sorted;
+#include <string>
+
+extern SharedArray<short> anumbers;
+extern SharedArray<std::string> astrings;

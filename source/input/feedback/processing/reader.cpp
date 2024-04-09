@@ -1,4 +1,4 @@
-#include "input/processing/reader.h"
+#include "input/feedback/processing/reader.h"
 
 #include <stdio.h>
 #include <conio.h>
@@ -21,10 +21,7 @@ bool Reader :: IsOverflow(std::wstring* text) {
         // Avoid extra input
         wscanf_s(L"%*[^\n]");
         wscanf_s(L"%*c");
-
-        std::string max = std::to_string(MAX_BUFFER);
-        std::wstring number(max.begin(), max.end());
-        *text = errors.at("overflow") + number;
+        *text = errors.at("overflow") + MaxBufferNumber();
     }
     return isOverflow;
 }

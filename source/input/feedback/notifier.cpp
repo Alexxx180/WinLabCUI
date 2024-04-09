@@ -1,15 +1,15 @@
-#include "input/feedback/notifier.h"
+#include "input/feedback/feedback/notifier.h"
 
 #include "input/feedback/feedback.h"
 #include "screen/matrix/tools/layers.h"
 #include "screen/interaction/interaction.h"
 
-Layer* Notifier :: Focus() {
-    return out->Target(m_status_line)->Move()->Clear()->Move();
+Notifier :: Notifier() {
+    m_status_line = FOOT;
 }
 
-void Notifier :: Defaults() {
-    m_status_line = FOOT;
+Layer* Notifier :: Focus() {
+    return out->Target(m_status_line)->Move()->Clear()->Move();
 }
 
 void Notifier :: Interrupt(std::wstring message) {

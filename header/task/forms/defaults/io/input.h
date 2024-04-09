@@ -1,8 +1,10 @@
-#include "input/feedback/verifier.h"
-#include "input/processing/randomizer.h"
+#include "input/prompt/string.h"
+#include "input/prompt/numeric/verifier.h"
+#include "input/prompt/numeric/randomizer.h"
 
 void SetInputVerifiers();
 
 extern Boundary<char> limits;
+extern StringInput* prompts;
 extern Verifier<char>* numeric;
 extern Randomizer<char> gen_int8;

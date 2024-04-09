@@ -1,8 +1,8 @@
 #ifndef INPUT_FEEDBACK_NOTIFIER
 #define INPUT_FEEDBACK_NOTIFIER
 
-#include "input/feedback/feedback.h"
 #include "common/types.h"
+#include "input/feedback/feedback.h"
 #include "screen/matrix/tools.h"
 
 class Notifier {
@@ -13,7 +13,7 @@ class Notifier {
         void Interrupt(std::wstring message);
 
     public:
-        void Defaults();
+        Notifier();
         bool Chain(Feedback* status);
 };
 

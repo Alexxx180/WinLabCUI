@@ -3,3 +3,4 @@
 MenuItem& ArrayOptions();
 char SortOption();
 char InputOption();
+char TypeOption();

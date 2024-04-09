@@ -3,8 +3,8 @@
 
 #include "input/feedback/typer.h"
 #include "input/feedback/notifier.h"
-#include "input/feedback/validator.h"
-#include "input/limiting/boundary.h"
+#include "input/feedback/limiting/boundary.h"
+#include "input/prompt/numeric/validator.h"
 
 template<class TYPE>
 class Verifier : public Typer {

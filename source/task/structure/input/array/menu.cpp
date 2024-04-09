@@ -14,3 +14,7 @@ char SortOption() {
 char InputOption() {
     return ArrayOptions().at(2).Choice();
 }
+
+char TypeOption() {
+    return ArrayOptions().at(3).Choice();
+}

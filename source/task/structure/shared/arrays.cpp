@@ -1,3 +1,4 @@
 #include "task/structure/shared/arrays.h"
 
-std::vector<short> original, sorted;
+SharedArray<short> anumbers;
+SharedArray<std::string> astrings;

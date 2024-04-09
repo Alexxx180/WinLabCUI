@@ -31,5 +31,5 @@ template<class TYPE>
 void ParamInput(Verifier<TYPE>* limit, std::string name) {
     NameInput(name);
     out->Bounds(limit->Edges);
-    ValueOutput(limit->result); // name
+    ValueOutput(limit->result);
 }
