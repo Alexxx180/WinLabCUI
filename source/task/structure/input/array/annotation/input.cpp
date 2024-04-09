@@ -9,7 +9,10 @@ void ArrayDimension(Boundary<char>& length) {
     out->Clip("input_array_dimension");
     out->Text(L" ")->FBounds(NO, length);
     out->Page(1)->Span(1);
-    out->Move()->Clear()->Move();
+}
+
+void ClearDimension() {
+    out->Jump()->Move()->Clear()->Line()->Move();
 }
 
 void ArrayElements(Boundary<char>& limits) {

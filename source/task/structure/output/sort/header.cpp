@@ -4,6 +4,7 @@
 #include "task/structure/process/sort/utils/efficiency.h"
 
 void SortHeader() {
+    out->Target(MAIN);
     out->Page(0)->Span(2)->Size(2);
     out->Line(0)->Move()->Clip("output_source_array");
     out->Line(1)->Move()->Clip("output_sorted_array");

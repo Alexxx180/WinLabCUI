@@ -11,6 +11,7 @@ void InputDimension() {
     numeric->Bounds(length);
     numeric->Input();
     original.resize(numeric->result);
+    ClearDimension();
 }
 
 void InputChoice() {

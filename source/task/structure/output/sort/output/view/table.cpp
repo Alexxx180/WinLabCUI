@@ -25,6 +25,9 @@ void SortTable(const Page& records) {
     char (DataGrid::*query)() = &DataGrid::Query;
     Await(&model, query, ESC);
 
+    out->Page(0)->Line(3)->Span(3);
+    out->Move()->Clear()->Line(0)->Move();
+
     out->Target(FOOT);
     model.ClearControls();
 }
