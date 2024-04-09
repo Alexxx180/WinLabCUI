@@ -8,7 +8,8 @@ void ArrayDimension(Boundary<char>& length) {
     out->Line()->Move();
     out->Clip("input_array_dimension");
     out->Text(L" ")->FBounds(NO, length);
-    out->Page(1)->Span(1)->Move();
+    out->Page(1)->Span(1);
+    out->Move()->Clear()->Move();
 }
 
 void ArrayElements(Boundary<char>& limits) {

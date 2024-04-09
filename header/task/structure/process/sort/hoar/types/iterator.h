@@ -5,7 +5,7 @@
 
 #include "task/structure/process/sort/hoar/types/stack.h"
 
-class HoarStack {
+class HoarIterator {
     private:
         HoarStack m_left, m_right;
         long m_position;

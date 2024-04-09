@@ -33,7 +33,7 @@ void HoarIterator :: Shift(HoarStack& bigger,
     if (Comparison(current > lesser.Index)) {
         m_position++;
         bigger.Stack[m_position] = current;
-        lesser.Update(m_position)
+        lesser.Update(m_position);
     }
     lesser.Index = reserve;
 }

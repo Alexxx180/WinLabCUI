@@ -33,8 +33,7 @@ void HoarMilestone :: Sort(std::vector<short>& memory) {
         Equalization(memory);
         if (HasDistance()) {
             Swap(memory);
-            Left++;
-            Right--;
+            Left++; Right--;
         }
     } while (HasDistance());
 }

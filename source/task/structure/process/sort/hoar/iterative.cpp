@@ -3,6 +3,6 @@
 #include "task/structure/process/sort/hoar/types/iterator.h"
 
 void HoarIterative(std::vector<short>& memory) {
-    HoarIterator iterator(memory.size() - 1);
+    HoarIterator iterator(memory.size());
     iterator.Sort(memory);
 }

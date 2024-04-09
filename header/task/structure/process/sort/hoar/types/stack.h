@@ -5,9 +5,7 @@ struct HoarStack {
     long Index;
     long Stack[TASK_STRUCTURE_PROCESS_SORT_HOAR_TYPES_STACK];
 
-    void Update(long position) {
-        Index = Stack[position];
-    }
+    void Update(long position);
 };
 
 #endif
