@@ -3,7 +3,6 @@
 
 #include "screen/controls/layout/grid/datagrid/types/table.h"
 
-template<typename TYPE>
 struct SharedPainter {
     virtual void Draw(Table& table) = 0;
     virtual void Output() = 0;

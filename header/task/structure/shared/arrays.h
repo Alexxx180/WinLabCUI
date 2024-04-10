@@ -3,4 +3,4 @@
 #include <string>
 
 extern SharedArray<short> anumbers;
-extern SharedArray<std::string> astrings;
+extern SharedArray<std::wstring> astrings;

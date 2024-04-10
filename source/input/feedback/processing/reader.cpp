@@ -21,7 +21,7 @@ bool Reader :: IsOverflow(std::wstring* text) {
         // Avoid extra input
         wscanf_s(L"%*[^\n]");
         wscanf_s(L"%*c");
-        *text = errors.at("overflow") + MaxBufferNumber();
+        *text = errors.at("overflow") + SMAX_BUFFER;
     }
     return isOverflow;
 }
@@ -37,8 +37,10 @@ bool Reader :: IsEmpty(std::wstring* text) {
 
 Feedback Reader :: Interrupt() {
     std::wstring text = L"OK";
-    bool denied = NotReadable(&text) || IsOverflow(&text) || IsEmpty(&text);
-    return { denied, text };
+
+    Feedback input(NotReadable(&text) || IsOverflow(&text) || IsEmpty(&text));
+    input.Error = text;
+    return input;
 }
 
 void Reader :: SetBuffer(wchar_t buffer[ACTUAL_MAX]) {

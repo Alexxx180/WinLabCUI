@@ -4,24 +4,29 @@
 #include <string>
 #include <iostream>
 
-#include "task/forms/defaults/io/input.h"
+#include "input/feedback/limiting/buffer.h"
+#include "input/feedback/feedback.h"
+#include "input/feedback/notifier.h"
+#include "input/feedback/typer.h"
 
 class StringPrompt : public Typer {
     private:
         std::wstring m_result;
 
         Feedback Overflow() {
-            std::cin >> m_result;
+            std::wcin >> m_result;
 
             Feedback input(m_result.size() > MAX_BUFFER);
             if (input.Denied)
-                input.Error = errors.at("overflow") + MaxBufferNumber();
+                input.Error = errors.at("overflow") + SMAX_BUFFER;
 
             return input;
         }
 
         Feedback Empty() {
-            return { m_result.empty(), errors.at("empty_string") };
+            Feedback input(m_result.empty());
+            input.Error = errors.at("empty_string");
+            return input;
         }
 
     public:
@@ -32,6 +37,6 @@ class StringPrompt : public Typer {
             bool denied = status.Chain(&Overflow()) || status.Chain(&Empty());
             m_verified = !denied;
         }
-}
+};
 
 #endif

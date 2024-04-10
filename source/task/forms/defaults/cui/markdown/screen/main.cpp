@@ -1,6 +1,6 @@
 #include "task/forms/defaults/cui/markdown/screen/main.h"
 
-#include "input/limiting/buffer.h"
+#include "input/feedback/limiting/buffer.h"
 
 Screen MainPanel(Markdown* m, Range content) {
     byte margin = 3;

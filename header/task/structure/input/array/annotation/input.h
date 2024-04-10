@@ -1,4 +1,4 @@
-#include "input/limiting/boundary.h"
+#include "input/feedback/limiting/boundary.h"
 
 void ArrayDimension(Boundary<char>& length);
 void ClearDimension();

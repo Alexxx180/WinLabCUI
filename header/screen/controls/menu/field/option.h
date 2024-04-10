@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "input/limiting/boundary.h"
+#include "input/feedback/limiting/boundary.h"
 #include "screen/interaction/navigation.h"
 
 class Option : public Navigation {

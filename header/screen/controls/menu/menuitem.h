@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-#include "input/limiting/boundary.h"
+#include "input/feedback/limiting/boundary.h"
 #include "screen/matrix/tools.h"
 #include "screen/matrix/types/point.h"
 #include "screen/interaction/interaction.h"

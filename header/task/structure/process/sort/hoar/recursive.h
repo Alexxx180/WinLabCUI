@@ -7,7 +7,7 @@
 #include "task/structure/process/sort/utils/efficiency.h"
 
 template<typename TYPE>
-void QuickSortRecursive(std::vector<TYPE>& memory, HoarMilestone& stone) {
+void QuickSortRecursive(std::vector<TYPE>& memory, HoarMilestone<TYPE>& stone) {
     int first = stone.Left, last = stone.Right;
     stone.Sort(memory);
 
@@ -24,7 +24,7 @@ void QuickSortRecursive(std::vector<TYPE>& memory, HoarMilestone& stone) {
 
 template<typename TYPE>
 void HoarRecursive(std::vector<TYPE>& memory) {
-    HoarMilestone stone(0, memory.size() - 1);
+    HoarMilestone<TYPE> stone(0, memory.size() - 1);
     QuickSortRecursive(memory, stone);
 }
 

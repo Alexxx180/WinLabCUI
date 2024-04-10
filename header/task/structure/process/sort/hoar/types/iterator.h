@@ -49,9 +49,9 @@ class HoarIterator {
         }
 
         template<typename TYPE>
-        void Iteration(std::vector<short>& memory,
+        void Iteration(std::vector<TYPE>& memory,
             const int& middle, int& left, int& right) {
-            short pivot = memory[middle];
+            TYPE pivot = memory[middle];
             do {
                 while (Comparison(memory[left] < pivot)) left++;
                 while (Comparison(memory[right] > pivot)) right--;
@@ -64,7 +64,7 @@ class HoarIterator {
         }
 
         template<typename TYPE>
-        void Pivots(std::vector<short>& memory) {
+        void Pivots(std::vector<TYPE>& memory) {
             int left, right;
             do {
                 const int middle = GetMiddle();
@@ -86,7 +86,7 @@ class HoarIterator {
         }
 
         template<typename TYPE>
-        void Sort(std::vector<short>& memory) {
+        void Sort(std::vector<TYPE>& memory) {
             do {
                 Update();
                 Pivots(memory);

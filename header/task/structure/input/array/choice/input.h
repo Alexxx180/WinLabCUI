@@ -1,9 +1,10 @@
 #ifndef TASK_STRUCTURE_INPUT_ARRAY_CHOICE_INPUT
 #define TASK_STRUCTURE_INPUT_ARRAY_CHOICE_INPUT
 
-#include "task/forms/defaults/io/input.h"
+#include "task/structure/shared/array.h"
 #include "task/structure/input/array/menu.h"
 #include "task/structure/input/array/annotation/input.h"
+#include "task/structure/input/array/annotation/value.h"
 
 template<typename TYPE>
 void InputDimension(std::vector<TYPE>& original) {
@@ -16,24 +17,23 @@ void InputDimension(std::vector<TYPE>& original) {
 }
 
 template<typename TYPE>
-void InputChoice(std::vector<TYPE>& original) {
+void InputChoice(SharedArray<TYPE>& array) {
     ArrayElements(limits);
     numeric->Bounds(limits);
 
     short input = InputOption();
-    short size = original.size();
+    short size = array.original.size();
 
-    void (*element)(std::vector<TYPE>&, char)[2] = {
+    void (*element[2])(std::vector<TYPE>&, char) = {
         ValueRandom, ValueManual
     };
 
     for (short i = 0; i < size; i++) {
         ArrayProgress(i, size);
-        element[input](original, i);
+        element[input](array.original, i);
     }
     ArrayProgress(size, size);
-
-    sorted = original;
+    array.Duplicate();
 }
 
 #endif

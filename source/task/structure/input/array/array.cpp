@@ -8,17 +8,22 @@
 #include "task/structure/output/sort/output/clear.h"
 #include "task/structure/input/array/menu.h"
 #include "screen/matrix/tools/layers.h"
+#include "screen/interaction/interaction.h"
 
 void StartArraySort() {
     SortCommon();
 
-    ArrayDefine(TypeOption() ? astrings : anumbers);
+    if (TypeOption())
+        ArrayDefine(astrings);
+    else
+        ArrayDefine(anumbers);
 
     ClearStatus();
     SelectLayer(FLOATING);
 
     SortHeader();
-    painter.Output();
+
+    painter->Output();
 
     SelectLayer(SCREEN);
     RestoreOutput();

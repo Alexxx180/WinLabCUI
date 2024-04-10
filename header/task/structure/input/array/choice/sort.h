@@ -12,7 +12,7 @@ template<typename TYPE>
 void SortChoice(std::vector<TYPE>& sorted) {
     char sort = SortOption();
     
-    void (*array)(std::vector<TYPE>&)[4] = {
+    void (*array[4])(std::vector<TYPE>&) = {
         InsertionsSort,
         SelectionSort,
         HoarRecursive,

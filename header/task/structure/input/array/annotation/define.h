@@ -3,10 +3,9 @@
 #include "task/structure/input/array/choice/sort.h"
 
 template<typename TYPE>
-void ArrayDefine(SharedArray<TYPE> array) {
+void ArrayDefine(SharedArray<TYPE>& array) {
     InputDimension(array.original);
-    InputChoice(array.original);
+    InputChoice(array);
     SortChoice(array.sorted);
-    
     painter = &array;
 }

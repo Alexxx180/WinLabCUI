@@ -1,20 +1,9 @@
-#ifndef INPUT_LIMITING_BUFFER
-#define INPUT_LIMITING_BUFFER
-
-#include <string>
-
-#include "common/types.h"
-#include "input/feedback/limiting/boundary.h"
-
+#ifndef MAX_BUFFER
 #define MAX_BUFFER 5
+
+#include "input/feedback/limiting/stringify.h"
+
 static constexpr byte ACTUAL_MAX = MAX_BUFFER + 2;
-
-static Boundary<int> result_limits(0, 536870911);
-
-std::wstring MaxBufferNumber() {
-    std::string max = std::to_string(MAX_BUFFER);
-    std::wstring number(max.begin(), max.end());
-    return number;
-}
+static std::wstring SMAX_BUFFER = Stringify(MAX_BUFFER);
 
 #endif

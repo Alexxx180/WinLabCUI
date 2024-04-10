@@ -2,7 +2,9 @@
 #define TASK_STRUCTURE_SHARED_ARRAY
 
 #include <vector>
+#include <string>
 
+#include "common/texts/format.h"
 #include "screen/controls/layout/grid/datagrid/datagrid.h"
 #include "screen/matrix/tools.h"
 #include "screen/interaction/interaction.h"
@@ -13,19 +15,29 @@
 template<typename TYPE>
 class SharedArray : public SharedPainter {
     private:
-        void DrawRow(char line, std::vector<TYPE>& array, Table& table) {
-            short item;
+        void DrawCell(char parameter) {
+            out->FText(NO4, parameter);
+        }
 
+        void DrawCell(std::wstring parameter) {
+            out->Text(parameter, L" ");
+        }
+
+        void DrawRow(char line, std::vector<TYPE>& array, Table& table) {
             out->Line(line)->Move()->Clear()->Move();
 
             for (table.Anchor(); !table.IsEnd; table.Scroll()) {
-                item = array.at(table.Record);
-                out->Text(item);
+                TYPE item = array.at(table.Record);
+                DrawCell(item);
             }
         }
 
     public:
         std::vector<TYPE> original, sorted;
+
+        void Duplicate() {
+            sorted = original;
+        }
 
         void Draw(Table& table) {
             DrawRow(0, original, table);
@@ -42,6 +54,7 @@ class SharedArray : public SharedPainter {
             out->ShowBack();
             out->Target(FOOT);
             out->Page(0)->Line(1)->Size(1)->Span(1);
+
             model.OutputControls();
             out->Page(0)->Line(1)->Move();
 

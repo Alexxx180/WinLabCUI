@@ -3,7 +3,7 @@
 
 #include "common/texts/common.h"
 #include "screen/controls/matrix/pen/formatter.h"
-#include "input/limiting/boundary.h"
+#include "input/feedback/limiting/boundary.h"
 
 class Pen : public Formatter {
     protected:

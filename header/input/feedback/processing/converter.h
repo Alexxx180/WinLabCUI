@@ -21,13 +21,12 @@ class Converter {
 
     public:
         Feedback HasInvalidData() {
-            std::wstring text = L"OK";
-            bool isInvalid = errno != 0 || *m_end != '\0';
-            if (isInvalid) {
-                text = errors.at("invalid_character");
+            Feedback data(errno != 0 || *m_end != '\0');
+            if (data.Denied) {
+                data.Error = errors.at("invalid_character");
                 out->Typo((int)(m_end - m_buffer) + 1);
             }
-            return { isInvalid, text };
+            return data;
         }
         void SetBuffer(wchar_t buffer[ACTUAL_MAX]) { m_buffer = buffer; }
         template <typename TYPE>
