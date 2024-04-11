@@ -30,22 +30,33 @@ class HoarIterator {
             m_position--;
         }
 
-        void Shift(HoarStack& bigger,
-            HoarStack& lesser, const int& current, const int& reserve) {
-            if (Comparison(current > lesser.Index)) {
-                m_position++;
-                bigger.Stack[m_position] = current;
-                lesser.Update(m_position);
-            }
-            lesser.Index = reserve;
+        bool IsBigger(const int& left, long& right) {
+            return Comparison(left > right);
         }
 
-        void Arrange(const int& middle,
-            const int& left, const int& right) {
+        bool IsLesser(const int& left, long& right) {
+            return Comparison(left < right);
+        }
+
+        void Shift(
+            bool (HoarIterator::*condition)(const int&, long&),
+            HoarStack& left, HoarStack& right,
+            const int& current, const int& reserve) {
+
+            if ((this->*(condition))(current, right.Index)) {
+                m_position++;
+                left.Stack[m_position] = current;
+                right.Update(m_position);
+            }
+            right.Index = reserve;
+
+        }
+
+        void Arrange(const int& middle, const int& left, const int& right) {
             if (left < middle)
-                Shift(m_left, m_right, left, right);
+                Shift(&HoarIterator::IsLesser, m_left, m_right, left, right);
             else
-                Shift(m_right, m_left, right, left);
+                Shift(&HoarIterator::IsBigger, m_right, m_left, right, left);
         }
 
         template<typename TYPE>
@@ -77,7 +88,6 @@ class HoarIterator {
         }
 
     public:
-
         HoarIterator(long size) {
             ResetStats();
             m_position = 1;
