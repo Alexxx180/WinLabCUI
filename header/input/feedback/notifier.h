@@ -1,29 +1,20 @@
 #ifndef INPUT_FEEDBACK_NOTIFIER
 #define INPUT_FEEDBACK_NOTIFIER
 
-#include <string>
-#include "output/format/pen.h"
+#include "common/types.h"
+#include "input/feedback/feedback.h"
+#include "screen/matrix/tools.h"
 
 class Notifier {
-private:
-    short m_server;
-    Pen* (Pen::*m_signal)(std::string) = NULL;
+    private:
+        byte m_status_line;
 
-public:
-    void Notify(std::string message) {
-        Pen::ink().Target(m_server);
-        (Pen::ink().*m_signal)(message);
-    }
+        Layer* Notifier :: Focus();
+        void Interrupt(std::wstring message);
 
-    Notifier* Server(short server) {
-        m_server = server;
-        return this;
-    }
-
-    Notifier* Signal(Pen* (Pen::*signal)(std::string)) {
-        m_signal = signal;
-        return this;
-    }
+    public:
+        Notifier();
+        bool Chain(Feedback* status);
 };
 
 #endif

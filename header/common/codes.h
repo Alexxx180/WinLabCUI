@@ -1,7 +1,10 @@
-#ifndef OK
-#define OK 0
-#endif
+#ifndef CODES
+#define CODES
 
-#ifndef FAILED
-#define FAILED 1
+enum Codes {
+    UNDEFINED = -1,
+    OK = 0,
+    FAIL = 1
+};
+
 #endif

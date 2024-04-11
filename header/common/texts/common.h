@@ -4,65 +4,65 @@
 #include <string>
 #include <map>
 
-static std::map<std::string, std::wstring> texts = {
-    { "program_header", L"\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430" },
-    { "program_name", L"\u0420\u0430\u0441\u0447\u0435\u0442 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0439 \u0444\u0443\u043d\u043a\u0446\u0438\u0438 \u0434\u0432\u0443\u0445 \u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445" },
-    { "program_description", L"\u0426\u0438\u043a\u043b\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0432\u044b\u0447\u0438\u0441\u043b\u0435\u043d\u0438\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f Z \u043f\u043e \u0444\u0443\u043d\u043a\u0446\u0438\u0438" },
-    { "program_finished", L"\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u043b\u0430\u0020\u0441\u0432\u043e\u044e\u0020\u0440\u0430\u0431\u043e\u0442\u0443" },
-    { "program_author", L"\u0412\u044b\u043f\u043e\u043b\u043d\u0438\u043b\u0020\u0441\u0442\u0443\u0434\u0435\u043d\u0442\u0020\u0433\u0440\u0443\u043f\u043f\u044b\u0020\u0032\u0030\u0039\u0032\u0437\u0443\u002c\u0020\u0422\u0430\u0442\u0430\u0440\u0438\u043d\u0446\u0435\u0432\u0020\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440" },
-    { "input_header", L"\u0412\u0432\u0435\u0434\u0438\u0442\u0435" },
-    { "input_message", L"\u0417\u043d\u0430\u0447\u0435\u043d\u0438\u044f\u0020\u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 Hx, X\u043d\u0430\u0447, X\u043a\u043e\u043d, Hy, Y\u043d\u0430\u0447, Y\u043a\u043e\u043d" },
-    { "input_count", L"\u0420\u0430\u0441\u0447\u0435\u0442 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0430 \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0439" },
-    { "input_results_overflow", L"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442 \u0432\u044b\u0445\u043e\u0434\u0438\u0442 \u0437\u0430 \u0440\u0430\u043c\u043a\u0438 \u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u043e\u0433\u043e \u0434\u0438\u0430\u043f\u0430\u0437\u043e\u043d\u0430" },
-    { "input_x_step", L"\u0428\u0430\u0433 Hx" },
-    { "input_x_start", L"\u0421\u0442\u0430\u0440\u0442 X\u043d\u0430\u0447" },
-    { "input_x_end", L"\u0424\u0438\u043d\u0438\u0448 X\u043a\u043e\u043d" },
-    { "input_y_step", L"\u0428\u0430\u0433 Hy" },
-    { "input_y_start", L"\u0421\u0442\u0430\u0440\u0442 Y\u043d\u0430\u0447" },
-    { "input_y_end", L"\u0424\u0438\u043d\u0438\u0448 Y\u043a\u043e\u043d" },
-    { "input_assert", L"\u002d\u002d\u002d\u002d\u002d\u003e\u0020\u0412\u044b\u0020\u0432\u0432\u0435\u043b\u0438\u003a %i\n" },
-    { "status_exit_esc", L"ESC - \u0432\u044b\u0445\u043e\u0434" },
-    { "status_page_home", L"Home - \u0432 \u043d\u0430\u0447\u0430\u043b\u043e" },
-    { "status_page_up", L"Page Up - \u0432\u0432\u0435\u0440\u0445" },
-    { "status_page_down", L"Page Down - \u0432\u043d\u0438\u0437" },
-    { "status_page_end", L"End - \u0432 \u043a\u043e\u043d\u0435\u0446" },
-    { "status_pages", L"\u0412\u044b\u0432\u043e\u0434: " },
-    { "status_error", L"\u041e\u0448\u0438\u0431\u043a\u0430\u0020\u0432\u0432\u043e\u0434\u0430\u0020\u0434\u0430\u043d\u043d\u044b\u0445\u0021 ESC - \u043e\u0442\u043c\u0435\u043d\u0430" },
-    { "status_invalid_data", L"\u0414\u0430\u043d\u043d\u044b\u0435\u0020\u0432\u043d\u0435\u0020\u0434\u0438\u0430\u043f\u0430\u0437\u043e\u043d\u0430! ESC - \u043e\u0442\u043c\u0435\u043d\u0430" },
-    { "status_forward", L"\u0045\u004e\u0054\u0045\u0052\u0020\u002d\u0020\u0434\u0430\u043b\u0435\u0435" },
-    { "status_repeat", L"\u0045\u0053\u0043\u0020\u002d\u0020\u043f\u043e\u0432\u0442\u043e\u0440\u002c\u0020\u0045\u004e\u0054\u0045\u0052\u0020\u002d\u0020\u0434\u0430\u043b\u0435\u0435" },
-    { "status_invalid_boundary", L"\u041a\u043e\u043d\u0435\u0446\u0020\u043d\u0435\u0020\u0434\u043e\u0441\u0442\u0438\u0436\u0438\u043c! ESC - \u043e\u0442\u043c\u0435\u043d\u0430" },
-    { "status_invalid_step", L"\u0428\u0430\u0433\u0020\u043d\u0435\u0020\u043c\u043e\u0436\u0435\u0442\u0020\u0431\u044b\u0442\u044c\u0020\u043c\u0435\u043d\u044c\u0448\u0435\u0020\u0030! ESC - \u043e\u0442\u043c\u0435\u043d\u0430" },
-    { "status_exit", L"\u0045\u0053\u0043\u0020\u002d\u0020\u0432\u044b\u0445\u043e\u0434\u002c\u0020\u0045\u004e\u0054\u0045\u0052\u0020\u002d\u0020\u0434\u0430\u043b\u0435\u0435" },
-    { "status_anykey", L"\u041d\u0430\u0436\u043c\u0438\u0442\u0435\u0020\u043b\u044e\u0431\u0443\u044e\u0020\u043a\u043b\u0430\u0432\u0438\u0448\u0443" },
-    { "answer_1", L"\u0428\u043a\u0430\u0444" },
-    { "answer_2", L" \u043f\u0440\u043e\u0439\u0434\u0435\u0442\u0020\u0432\u0020\u0434\u0432\u0435\u0440\u044c\u0020\u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0438\u0438" },
-    { "misc_negation", L" \u043d\u0435" }
-};
+static const std::map<std::string, std::wstring> texts = {
+    // Program description
+    { "program_header", L"\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430" }, // Программа
+    { "program_name", L"\u0421\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0430 \u043c\u0430\u0441\u0441\u0438\u0432\u043e\u0432 \u0438 \u043e\u0446\u0435\u043d\u043a\u0430 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438" }, // Сортировка массивов и оценка производительности
+    { "program_description", L"\u0421\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0438: \u043f\u0440\u044f\u043c\u043e\u0433\u043e \u0432\u044b\u0431\u043e\u0440\u0430, \u0432\u0441\u0442\u0430\u0432\u043a\u0430\u043c\u0438, \u0425\u043e\u0430\u0440\u0430, \u0441 \u0440\u0435\u043a\u0443\u0440\u0441\u0438\u0435\u0439 \u0438 \u0431\u0435\u0437" }, // Сортировки: прямого выбора, вставками, Хоара, с рекурсией и без
+    { "program_finished", L"\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u043b\u0430 \u0441\u0432\u043e\u044e \u0440\u0430\u0431\u043e\u0442\u0443" }, // Завершила свою работу
+    { "program_author", L"\u0412\u044b\u043f\u043e\u043b\u043d\u0438\u043b \u0441\u0442\u0443\u0434\u0435\u043d\u0442 \u0433\u0440\u0443\u043f\u043f\u044b \u0032\u0030\u0039\u0032\u0437\u0443\u002c \u0422\u0430\u0442\u0430\u0440\u0438\u043d\u0446\u0435\u0432 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440" }, // Выполнил студент группы 2092зу, Татаринцев Александр
 
-/*= {
-    { "program_header", L"Программа" },
-    { "program_name", L"Проходимость шкафа" },
-    { "program_description", L"Пройдет ли прямоугольный шкаф в дверь лаборатории" },
-    { "program_finished", L"Завершила свою работу" },
-    { "input_header_1", L"Введите" },
-    { "input_header_2", L"Введены" },
-    { "input_message", L"координаты приземления [0..3000]" },
-    { "input_argument_1", L"по оси OX - " },
-    { "input_argument_2", L"по оси ОY - " },
-    { "input_argument_3", L"радиус площадки [0.1..10.0] - " },
-    { "input_assert", L"-----> Вы ввели: %lf\n" },
-    { "status_error", L"Ошибка ввода данных! ESC - отмена\n" },
-    { "status_forward", L"ENTER - далее" },
-    { "status_repeat", L"ESC - повтор, ENTER - далее" },
-    { "status_exit", L"ESC - выход, ENTER - далее" },
-    { "status_anykey", L"Нажмите любую клавишу" },
-    { "error_overflow", L"Ошибка: не вводите больше символов чем %d.\n" },
-    { "error_empty", L"Ошибка: введена пустая строка.\n" },
-    { "error_char", L"Ошибка: некорректный символ.\n" },
-    { "answer_1", L"Шкаф" },
-    { "answer_2", L" пройдет в дверь лаборатории" },
-    { "misc_negation", L" не" }
-};*/
+    // Navigation and status messages
+    { "status_error", L"\u041e\u0448\u0438\u0431\u043a\u0430 \u0432\u0432\u043e\u0434\u0430 \u0434\u0430\u043d\u043d\u044b\u0445! [Esc] \u043e\u0442\u043c\u0435\u043d\u0430" }, // Ошибка ввода данных! [Esc] отмена
+    { "status_page_home", L"[Home] \u0432 \u043d\u0430\u0447\u0430\u043b\u043e" }, // [Home] в начало
+    { "status_page_up", L"[Page Up] \u0432\u0432\u0435\u0440\u0445" }, // [Page Up] вверх
+    { "status_page_down", L"[Page Down] \u0432\u043d\u0438\u0437" }, // [Page Down] вниз
+    { "status_page_end", L"[End] \u0432 \u043a\u043e\u043d\u0435\u0446" }, // [End] в конец
+    { "status_pages", L"\u0412\u044b\u0432\u043e\u0434: " }, // Вывод: 
+    { "status_forward", L"[Enter] \u0434\u0430\u043b\u0435\u0435" }, // [Enter] далее
+    { "status_repeat", L"[Esc] \u043f\u043e\u0432\u0442\u043e\u0440  [Enter] \u0434\u0430\u043b\u0435\u0435" }, // [Esc] повтор  [Enter] далее
+    { "status_exit", L"[Esc] \u043e\u0431\u0440\u0430\u0442\u043d\u043e  [Enter] \u0434\u0430\u043b\u0435\u0435" }, // [Esc] обратно  [Enter] далее
+    { "status_anykey", L"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043b\u044e\u0431\u0443\u044e \u043a\u043b\u0430\u0432\u0438\u0448\u0443" }, // Нажмите любую клавишу
+    { "status_menu_navigation", L"[\u2190\u2195\u2192] \u043c\u0435\u043d\u044e  [Esc] \u043e\u0431\u0440\u0430\u0442\u043d\u043e  [Enter] \u0432\u044b\u0431\u043e\u0440" }, // [←↕→] меню  [Esc] обратно  [Enter] выбор
+    { "status_confirm_exit", L"\u0423\u0432\u0435\u0440\u0435\u043d\u044b \u0447\u0442\u043e \u0445\u043e\u0442\u0438\u0442\u0435 \u0432\u044b\u0439\u0442\u0438? [Enter] \u0414\u0430  [Esc] \u041d\u0435\u0442" }, // L"Уверены что хотите выйти? [Enter] Да  [Esc] Нет
+
+    // Menu options
+    { "menu_header", L"\u25b6 \u041c\u0435\u043d\u044e" }, // ▶ Меню
+    { "menu_array_sort", L"\u2666 \u0421\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0430" }, // ♦ Сортировка
+    { "menu_individual", L"\u2666 \u0417\u0430\u0434\u0430\u043d\u0438\u0435" }, // ♦ Задание
+    { "menu_array", L"\u25b6 \u041c\u0430\u0441\u0441\u0438\u0432" }, // ▶ Массив
+    { "menu_calculate", L"\u2666 \u0412\u044b\u0447\u0438\u0441\u043b\u0438\u0442\u044c" }, // ♦ Вычислить
+    { "menu_sort_array_hoar", L"\u25c0 \u0425\u043e\u0430\u0440\u002c \u0440\u0435\u043a\u0443\u0440\u0441\u0438\u044f \u25b6" }, // ◀ Хоар, рекурсия ▶
+    { "menu_sort_array_hoar_no_recursion", L"\u25c0 \u0425\u043e\u0430\u0440\u002c \u0441\u0442\u0435\u043a \u25b6" }, // ◀ Хоар, стек ▶
+    { "menu_sort_array_insertions", L"\u25c0 \u0412\u0441\u0442\u0430\u0432\u043a\u0430\u043c\u0438 \u25b6" }, // ◀ Вставками ▶
+    { "menu_sort_array_selection", L"\u25c0 \u041f\u0440\u044f\u043c\u043e\u0439 \u0432\u044b\u0431\u043e\u0440 \u25b6" }, // ◀ Прямой выбор ▶
+    { "menu_array_generation", L"\u0412\u0432\u043e\u0434 \u0434\u0430\u043d\u043d\u044b\u0445" }, // Ввод данных
+    { "menu_array_generation_random", L"\u25c0 \u0421\u043b\u0443\u0447\u0430\u0439\u043d\u044b\u0439 \u25b6" }, // ◀ Случайный ▶
+    { "menu_array_generation_manual", L"\u25c0 \u0412\u0440\u0443\u0447\u043d\u0443\u044e \u25b6" }, // ◀ Вручную ▶
+    { "menu_array_type", L"\u0422\u0438\u043f \u0434\u0430\u043d\u043d\u044b\u0445" }, // Тип данных
+    { "menu_array_type_numbers", L"\u25c0 \u0427\u0438\u0441\u043b\u0430 \u25b6" }, // ◀ Числа ▶
+    { "menu_array_type_strings", L"\u25c0 \u0421\u0442\u0440\u043e\u043a\u0438 \u25b6" }, // ◀ Строки ▶
+    { "menu_exit", L"\u2666 \u0412\u044b\u0445\u043e\u0434" }, // ♦ Выход
+
+    // Task: array sort
+    { "input_header", L"\u0412\u0432\u0435\u0434\u0438\u0442\u0435" }, // Введите
+    { "input_operation", L"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u044e \u0438\u0437 \u043c\u0435\u043d\u044e '\u041c\u0430\u0441\u0441\u0438\u0432'" }, // Выберите операцию из меню 'Массив'
+    { "input_array_dimension", L"\u0420\u0430\u0437\u043c\u0435\u0440\u043d\u043e\u0441\u0442\u044c" }, // Размерность
+    { "input_value_edit_1", L"\u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435 '" }, // Значение '
+    { "input_value_edit_2", L"' \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u043e: " }, // ' изменено: 
+    { "input_array_elements", L"\u042d\u043b\u0435\u043c\u0435\u043d\u0442\u044b" }, // Элементы
+    { "sort_permutations", L"\u041f\u0435\u0440\u0435\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438" }, // Перестановки
+    { "sort_comparisons", L"\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f" }, // Сравнения
+    { "input_results", L"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442" }, // Результат
+    { "output_source_array", L"\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f" }, // Генерация
+    { "output_sorted_array", L"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442" }, // Результат
+
+    // Task: individual
+    { "individual_arrays", L"\u0418\u043d\u0434\u0438\u0432\u0438\u0434\u0443\u0430\u043b\u044c\u043d\u043e\u0435 \u0437\u0430\u0434\u0430\u043d\u0438\u0435" }, // Индивидуальное задание
+    { "individual_source_data", L"\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435" }, // Исходные данные
+    { "individual_arrays_name", L"\u041c\u0430\u0441\u0441\u0438\u0432" }, // Массив
+    { "individual_arrays_sum", L"\u0421\u0443\u043c\u043c\u0430 \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432" }, // Сумма элементов
+    { "individual_max_element", L"\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442" }, // Максимальный элемент
+};
 
 #endif
