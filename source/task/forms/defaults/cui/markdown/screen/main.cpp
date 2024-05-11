@@ -4,15 +4,11 @@
 
 Screen MainPanel(Markdown* m, Range content) {
     byte margin = 3;
-    float ratio = 0.5f;
     m->Base(&content)->Origin();
     m->Top(Y)->Margin(Y, margin);
     m->Top(X)->Margin(X, margin)->Page();
-    m->Bot(X)->Relate(X, ratio)->Margin(X, -MAX_BUFFER)->Page();
-    m->Bot(X)->Relate(X, ratio)->Page();
-    m->Bot(X)->Relate(X, ratio)->Margin(X, margin)->Page();
-    m->Bot(X)->Margin(X, -MAX_BUFFER - margin)->Page();
-    m->Bot(X)->Margin(X, -margin)->Page();
+    m->Bot(X)->Relate(X, 0.2)->Page();
+    m->Bot(X)->Relate(X, 0.5)->Page();
     Screen result = m->Form()->Result();
     m->Clear();
     return result;
