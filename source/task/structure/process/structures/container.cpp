@@ -8,8 +8,8 @@ bool Container :: IsEmpty() {
 }
 
 void Container :: Randomized() {
-    for (m_size = 0; m_size < m_max; m_size++)
-        Append(gen_int8.Random());
+    m_size = 0;
+    while (m_size < m_max) Append(gen_int8.Random());
 }
 
 char Container :: Search(char element) {
@@ -21,9 +21,16 @@ char Container :: Search(char element) {
 void Container :: Reset() {
     m_size = 0;
     RemoveAll();
+    Show();
 }
 
-void Queue :: Show() {
+char Container :: Input() {
+    out->Flip(1);
+    numeric->Input();
+    out->Flip(-1);
+}
+
+void Container :: Show() {
     SelectLayer(FLOATING);
     out->Target(MAIN)->Line(0);
 
@@ -35,10 +42,10 @@ void Queue :: Show() {
         out->Line(i++)->Move()->Clear()-Move();
 }
 
-void Queue :: ToFirst() {
+void Container :: ToFirst() {
     out->Target(MAIN)->Line(0)->Move();
 }
 
-void Queue :: ToLast() {
+void Container :: ToLast() {
     out->Target(MAIN)->Line(m_size - 1)->Move();
 }

@@ -1,17 +1,18 @@
 #include "task/structure/process/structures/queue.h"
-#include "common/codes.h"
-#include "input/"
+#include "screen/interaction/interaction.h"
 
-char m_helper[10];
-std::queue<char> m_real;
+// Reverse order according FIFO
+char Queue :: at(char position) {
+    return m_helper[m_max - position - 1];
+}
 
 bool Queue :: Exists(char position, char element) {
     return m_helper[position] == element;
 }
 
 void Queue :: Append(char element) {
-    m_helper[m_size] = element;
-    m_real.push(element)   
+    m_helper[m_size++] = element;
+    m_real.push(element);
 }
 
 void Queue :: RemoveAll() {
@@ -19,16 +20,9 @@ void Queue :: RemoveAll() {
 }
 
 void Queue :: Remove() {
-    Peek();
-    Show();
-}
-
-char at(char position) {
-    return m_helper[position];
-}
-
-char Queue :: Peek() {
-    char element = m_real.pop();
+    m_real.pop();
     ToLast();
-    return element;
+    m_size--;
+    Next();
+    Show();
 }
