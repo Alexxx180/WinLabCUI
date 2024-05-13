@@ -91,6 +91,13 @@ Markdown* Markdown :: Relate(byte flow, float relation) {
     return this;
 }
 
+Markdown* Markdown :: Split(byte flow, float ratio) {
+    byte count = (1 - ratio) / ratio
+    for (byte i = 1; i < count; i++)
+        Bot(flow)->Relate(flow, ratio * i)->Page();
+    return this;
+}
+
 Markdown* Markdown :: Margin(byte flow, byte margin) {
     m_positions[flow].Append(&m_current, margin);
     return this;

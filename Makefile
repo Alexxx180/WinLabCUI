@@ -6,7 +6,7 @@ SHELL := powershell.exe
 CMD=powershell -NoProfile -Command
 
 CC=cl
-CFLAGS=/nologo /EHsc /I header /Zi
+CFLAGS=/nologo /EHsc /I header
 LINK=link
 LFLAGS=/nologo /SUBSYSTEM:CONSOLE /DEBUG:FULL
 
