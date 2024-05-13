@@ -50,7 +50,8 @@ void List :: Remove() {
 }
 
 short List :: Medium() {
-    short result = 
-    for (char i = 0; i < m_size; i++ 
-
+    short result = 0;
+    char i = m_size;
+    while (--i >= 0) result += at(i);
+    return result;
 }

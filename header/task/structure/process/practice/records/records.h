@@ -1,6 +1,9 @@
 #ifndef TASK_STRUCTURE_PROCESS_PRACTICE_RECORDS
 #define TASK_STRUCTURE_PROCESS_PRACTICE_RECORDS
 
+#include "task/structure/process/practice/records/record.h"
+#include <vector>
+
 class Records {
     private:
         const char week = 7;

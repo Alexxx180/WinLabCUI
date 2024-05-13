@@ -1,4 +1,4 @@
-#include "task/structure/process/practice/files/text/binary.h"
+#include "task/structure/process/practice/files/binary.h"
 #include "task/structure/process/practice/files/text/read.h"
 #include "task/structure/process/practice/files/handlers.h"
 #include "common/codes.h"

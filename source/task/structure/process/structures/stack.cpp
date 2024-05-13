@@ -30,3 +30,14 @@ void Stack :: RemoveOne() {
     Next();
     Show();
 }
+
+char Stack :: Minimal() {
+    char i = m_size;
+    char min = m_helper[i - 1];
+
+    while (--i >= 0)
+        if (m_helper[i] < min)
+            min = m_helper[i];
+
+    return min;
+}

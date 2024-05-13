@@ -26,3 +26,29 @@ void Queue :: Remove() {
     Next();
     Show();
 }
+
+void Queue :: FromTwo() {
+    m_size = 0;
+    RemoveAll();
+
+    const char size = 2;
+    std::queue initial[2];
+    for (char j = size, i = 0; i < 5; i++, j = size)
+        while (j-- > 0) initial[j].push(numeric.Random());
+
+    std::set<char> unique;
+    for (char j = size, i = 0; i < 5; i++, j = size)
+        while (j-- > 0) {
+            char element = initial[j].pop();
+            if (unique.find(element) != unique.end())
+                unique.insert(element);
+        }
+    
+    std::set<char>::iterator element = unique.begin;
+    while (element != unique.end()) {
+        m_real.push(element);
+        element++;
+    }
+
+    Show();
+}
