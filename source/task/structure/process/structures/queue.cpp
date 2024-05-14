@@ -1,7 +1,6 @@
 #include "task/structure/process/structures/queue.h"
 #include "screen/interaction/interaction.h"
 
-// Reverse order according FIFO
 char Queue :: at(char position) {
     return m_helper[m_max - position - 1];
 }
@@ -24,15 +23,13 @@ void Queue :: Remove() {
     ToLast();
     m_size--;
     Next();
-    Show();
 }
 
 void Queue :: FromTwo() {
-    m_size = 0;
-    RemoveAll();
+    Reset();
 
     const char size = 2;
-    std::queue initial[2];
+    std::queue<char> initial[2];
     for (char j = size, i = 0; i < 5; i++, j = size)
         while (j-- > 0) initial[j].push(numeric.Random());
 
@@ -45,10 +42,5 @@ void Queue :: FromTwo() {
         }
     
     std::set<char>::iterator element = unique.begin;
-    while (element != unique.end()) {
-        m_real.push(element);
-        element++;
-    }
-
-    Show();
+    while (element != unique.end()) m_real.push(element++);
 }

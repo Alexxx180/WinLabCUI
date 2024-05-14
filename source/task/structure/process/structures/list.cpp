@@ -5,6 +5,20 @@ void List :: Description() {
     // Queue full info
 }
 
+void List :: Ordered() {
+    Reset();
+    char min = 0, value;
+    while (m_size < m_max) {
+        value = Random();
+        if (value < at(min)) {
+            min = m_size;
+            InsertTo(min, value)
+        } else {
+            Append(value);
+        }
+    }
+}
+
 char List :: at(char position) {
     return m_real.at(position);
 }
@@ -14,26 +28,16 @@ bool List :: Exists(char position, char element) {
 }
 
 void List :: Append(char element) {
-    m_real[m_size++] = element;
-}
-
-void List :: Insert(std::vector<char>::iterator pos, char element) {
-    m_real.insert(pos, element);
-    m_size++;
-}
-
-void List :: InsertFirst(char element) {
-    m_real.insert(m_real.begin(), element);
-}
-
-void List :: InsertLast(char element) {
     m_real.push_back(element);
     m_size++;
 }
 
-void List :: InsertTo(char element) {
-    // INPUT
-    char position = 0;
+void List :: Insert(char position, char element) {
+    m_real.insert(m_real.begin() + position, element);
+    m_size++;
+}
+
+void List :: InsertTo(char position, char element) {
     Insert(m_real.begin() + position, element);
 }
 
@@ -41,12 +45,9 @@ void List :: RemoveAll() {
     m_real.clear();
 }
 
-void List :: Remove() {
-    m_real.erase(m_real.end() - 1);
+void List :: Remove(char index) {
+    m_real.erase(m_real.begin() + index);
     m_size--;
-    ToLast();
-    Next();
-    Show();
 }
 
 short List :: Medium() {

@@ -3,31 +3,31 @@
 #include "screen/matrix/tools.h"
 #include "common/codes.h"
 
-bool Container :: IsEmpty() {
-    return m_size == 0;
-}
+bool Container :: IsEmpty() { return m_size == 0; }
+bool Container :: HasSpace() { return m_size < m_max; }
 
 void Container :: Randomized() {
-    m_size = 0;
-    while (m_size < m_max) Append(gen_int8.Random());
+    Reset();
+    while (m_size++ < m_max) Append(Random());
 }
 
 char Container :: Search(char element) {
-    for (char i = 0; i < m_size; i++) 
-        if (Exists(i, element)) return i;
+    for (char i = 0; i < m_size; i++) if (Exists(i, element)) return i;
     return UNDEFINED;
 }
 
 void Container :: Reset() {
     m_size = 0;
     RemoveAll();
-    Show();
 }
 
+char Container :: Random() { return gen[bytes].Random(); }
+
 char Container :: Input() {
-    out->Flip(1);
-    numeric->Input();
-    out->Flip(-1);
+    out->Flip(1)->Move();
+    char value = numeric->Input();
+    out->Flip(-1)->Move();
+    return value;
 }
 
 void Container :: Show() {
@@ -38,14 +38,13 @@ void Container :: Show() {
     while (i < m_size)
         out->Line(i)->Move()->FText(L"%i. ", i)->FText(L"%i", at(i++));
 
-    while (i < m_max)
-        out->Line(i++)->Move()->Clear()-Move();
+    while (i < m_max) out->Line(i++)->Move()->Clear()-Move();
 }
 
-void Container :: ToFirst() {
-    out->Target(MAIN)->Line(0)->Move();
+void Container :: ToIndex(char index) {
+    out->Target(MAIN)->Line(index)->Move();
 }
 
-void Container :: ToLast() {
-    out->Target(MAIN)->Line(m_size - 1)->Move();
-}
+void Container :: ToFirst() { ToIndex(0); }
+
+void Container :: ToLast() { ToIndex(m_size - 1); }

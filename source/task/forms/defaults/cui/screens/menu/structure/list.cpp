@@ -6,14 +6,16 @@
 #include "screen/controls/menu/field/label.h"
 #include "task/structure/process/individual/individual.h"
 
-ExitMenu individual_menu;
+ExitMenu list_menu;
 
-void IndividualMenu() {
+void ListMenu() {
     Menu context;
     MenuItem result, exit;
+    MenuItem l[4];
 
     std::string caption = "menu_calculate";
     result.SetCommand(new Label(caption), StartIndividual);
+    l[0].SetCommand(new Label(), );
 
     exit.SetExit(new Label("menu_exit"));
 
