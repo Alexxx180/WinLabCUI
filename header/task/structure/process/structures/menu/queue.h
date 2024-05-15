@@ -1,0 +1,9 @@
+void Random();
+void FromTwo();
+char Search();
+void JumpToSearch();
+void Append();
+void ToFirst();
+void ToLast();
+void Remove();
+void Reset();

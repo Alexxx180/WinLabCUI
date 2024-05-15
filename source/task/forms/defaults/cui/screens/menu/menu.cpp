@@ -1,11 +1,13 @@
 #include "task/forms/defaults/cui/screens/menu/menu.h"
 
 #include "task/forms/defaults/cui/screens/menu/main.h"
-#include "task/forms/defaults/cui/screens/menu/array.h"
-#include "task/forms/defaults/cui/screens/menu/individual.h"
+#include "task/forms/defaults/cui/screens/menu/structure/list.h"
+#include "task/forms/defaults/cui/screens/menu/structure/queue.h"
+#include "task/forms/defaults/cui/screens/menu/structure/stack.h"
 
 void MenuInit() {
     MainMenu();
-    ArrayMenu();
-    IndividualMenu();
+    ListMenu()
+    QueueMenu();
+    StackMenu();
 }

@@ -1,6 +1,5 @@
 #include "task/forms/defaults/cui/screens/menu/main.h"
 
-#include "screen/controls/menu/loop/exit.h"
 #include "screen/controls/menu/menu.h"
 #include "screen/controls/menu/menuitem.h"
 #include "screen/controls/menu/field/label.h"

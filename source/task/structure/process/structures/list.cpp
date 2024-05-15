@@ -1,10 +1,6 @@
 #include "task/structure/process/structures/queue.h"
 #include "screen/interaction/interaction.h"
 
-void List :: Description() {
-    // Queue full info
-}
-
 void List :: Ordered() {
     Reset();
     char min = 0, value;

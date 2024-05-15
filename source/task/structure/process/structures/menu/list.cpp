@@ -1,3 +1,5 @@
+#include "task/structure/process/structures/list.h"
+#include "task/structure/process/structures/menu/list.h"
 
 List model;
 
@@ -9,15 +11,23 @@ char Search() { return model.Search(model.Input()); }
 
 void JumpToSearch() { model.ToIndex(Search()); }
 
+void Medium() {
+    if (model.IsEmpty()) {
+        out->Flip(1)->Move()->Text(model.Medium());
+        Next();
+        out->Clear()->Flip(-1)->Move();
+    }
+}
+
 void InsertFirst() {
-    if (!model.HasSpace()) {
+    if (model.HasSpace()) {
         model.Insert(0, model.Random());
         model.Show();
     }
 }
 
 void InsertLast() {
-    if (!model.HasSpace()) {
+    if (model.HasSpace()) {
         model.Append(model.Random());
         model.Show();
     }

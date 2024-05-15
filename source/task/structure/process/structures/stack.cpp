@@ -1,11 +1,6 @@
 #include "task/structure/process/structures/stack.h"
 #include "screen/interaction/interaction.h"
 
-void Stack :: Description() {
-    // Queue full info
-}
-
-// Order according LIFO
 char Stack :: at(char position) {
     return m_helper[position];
 }
@@ -33,11 +28,9 @@ void Stack :: RemoveOne() {
 
 char Stack :: Minimal() {
     char i = m_size;
-    char min = m_helper[i - 1];
+    char min = i - 1;
 
-    while (--i >= 0)
-        if (m_helper[i] < min)
-            min = m_helper[i];
+    while (--i >= 0) if (m_helper[i] < m_helper[min]) min = i;
 
     return min;
 }

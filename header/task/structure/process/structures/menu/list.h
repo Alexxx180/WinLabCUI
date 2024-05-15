@@ -1,0 +1,14 @@
+void Random();
+void Order();
+char Search();
+void JumpToSearch();
+void InsertFirst();
+void InsertLast();
+void InsertTo(char offset);
+void InsertBefore();
+void InsertAfter();
+void Remove(char index);
+void RemoveAt();
+void RemoveFirst();
+void RemoveLast();
+void Reset();
