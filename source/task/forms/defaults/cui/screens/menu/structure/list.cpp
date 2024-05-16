@@ -11,5 +11,6 @@ void ListMenu() {
     MenuItem task[3];
     task[0] = FillMenu();
     task[1] = OperationsMenu();
-    list_menu.Set(CommonMenu(task));
+    Menu context = CommonMenu(task);
+    list_menu.Set(&context);
 }

@@ -2,4 +2,4 @@
 
 extern ExitMenu stack_menu;
 
-void ListMenu();
+void StackMenu();

@@ -23,7 +23,7 @@ class Container {
         void ToIndex(char index);
         void ToFirst();
         void ToLast();
-        void RemoveAll() = 0;
+        virtual void RemoveAll() = 0;
 };
 
 #endif

@@ -7,7 +7,7 @@
 
 void MenuInit() {
     MainMenu();
-    ListMenu()
+    ListMenu();
     QueueMenu();
     StackMenu();
 }

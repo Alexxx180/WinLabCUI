@@ -2,4 +2,4 @@
 
 extern ExitMenu queue_menu;
 
-void ListMenu();
+void QueueMenu();

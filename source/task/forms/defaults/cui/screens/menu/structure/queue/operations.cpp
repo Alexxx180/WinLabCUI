@@ -12,6 +12,6 @@ MenuItem OperationsMenu() {
     o[2].SetCommand(new Label("menu_operations_delete"), Remove);
 
     operations.SetItems(new Label("menu_operations"));
-    for (char i = 0; i < 3; i++) operations.Add(o[i]);
+    for (char i = 0; i < 3; i++) operations.Add(&o[i]);
     return operations;
 }

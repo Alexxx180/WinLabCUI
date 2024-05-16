@@ -1,4 +1,4 @@
-void Random();
+void Randomized();
 void Order();
 char Search();
 void JumpToSearch();

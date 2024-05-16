@@ -92,7 +92,7 @@ Markdown* Markdown :: Relate(byte flow, float relation) {
 }
 
 Markdown* Markdown :: Split(byte flow, float ratio) {
-    byte count = (1 - ratio) / ratio
+    byte count = (1 - ratio) / ratio;
     for (byte i = 1; i < count; i++)
         Bot(flow)->Relate(flow, ratio * i)->Page();
     return this;

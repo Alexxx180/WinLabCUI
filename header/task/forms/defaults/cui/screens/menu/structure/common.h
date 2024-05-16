@@ -1,3 +1,4 @@
+#include "screen/controls/menu/menu.h"
 #include "screen/controls/menu/menuitem.h"
 
-void CommonMenu(MenuItem& task[3]);
+Menu CommonMenu(MenuItem* task);

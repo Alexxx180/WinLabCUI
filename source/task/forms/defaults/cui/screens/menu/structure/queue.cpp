@@ -7,7 +7,7 @@
 
 ExitMenu queue_menu;
 
-void ListMenu() {
+void QueueMenu() {
     MenuItem task[3];
     task[0] = FillMenu();
     task[1] = OperationsMenu();

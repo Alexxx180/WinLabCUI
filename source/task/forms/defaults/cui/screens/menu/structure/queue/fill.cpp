@@ -5,11 +5,11 @@
 
 MenuItem FillMenu() {
     MenuItem queue, q[3];
-    q[0].SetCommand(new Label("menu_operations_randomized"), Randomized);
+    q[0].SetCommand(new Label("menu_fill_randomized"), Randomized);
     q[1].SetCommand(new Label("menu_queue_from_two"), FromTwo);
-    q[2].SetCommand(new Label("menu_operations_reset"), Reset);
+    q[2].SetCommand(new Label("menu_fill_reset"), Reset);
 
     queue.SetItems(new Label("menu_queue"));
-    for (char i = 0; i < 3; i++) queue.Add(q[i]);
+    for (char i = 0; i < 3; i++) queue.Add(&q[i]);
     return queue;
 }

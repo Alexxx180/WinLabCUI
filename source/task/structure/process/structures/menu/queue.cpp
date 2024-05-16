@@ -3,7 +3,7 @@
 
 Queue model;
 
-void Random() { model.Randomized(); }
+void Randomized() { model.Randomized(); }
 
 void FromTwo() { model.FromTwo(); }
 

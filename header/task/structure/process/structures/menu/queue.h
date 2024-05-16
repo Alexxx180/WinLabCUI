@@ -1,4 +1,4 @@
-void Random();
+void Randomized();
 void FromTwo();
 char Search();
 void JumpToSearch();

@@ -30,7 +30,7 @@ DELOBJ=del $$PSItem.FullName -Recurse
 %.obj : %.cpp
 	$(eval folder=$(subst $(SRC),$(OBJ),$(@D)))
 	$(eval result=$(folder)/$(@F))
-	@$(CMD) "if (-not (Test-Path $(folder))) { mkdir $(folder) > $(BUILD)/$(CLOG) }"
+	@$(CMD) "if (-not (Test-Path $(folder))) { mkdir $(folder) }"
 	@$(CC) $(CFLAGS) /Fo$(result) /c $<
 
 compile : $(OFILES)

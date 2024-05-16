@@ -7,7 +7,7 @@
 
 ExitMenu stack_menu;
 
-void ListMenu() {
+void StackMenu() {
     MenuItem task[3];
     task[0] = FillMenu();
     task[1] = OperationsMenu();

@@ -1,4 +1,4 @@
-void Random();
+void Randomized();
 void Minimal();
 char Search();
 void JumpToSearch();

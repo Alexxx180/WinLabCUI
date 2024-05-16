@@ -1,4 +1,6 @@
 #include "screen/controls/menu/menuitem.h"
+#include <vector>
+#include <string>
 
-MenuItem[2] FilesMenu();
-MenuItem[2] RecordsMenu();
+MenuItem RecordsMenu();
+std::vector<std::string> RecordsWeek();

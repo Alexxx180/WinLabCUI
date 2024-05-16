@@ -18,6 +18,7 @@ class Queue : public Container {
         void ShowFirst();
         void ShowLast();
         void Peek();
+        void RemoveAll();
 };
 
 #endif

@@ -12,6 +12,6 @@ MenuItem OperationsMenu() {
     o[3].SetCommand(new Label("menu_stack_minimal"), Minimal);
 
     operations.SetItems(new Label("menu_operations"));
-    for (char i = 0; i < 4; i++) operations.Add(o[i]);
+    for (char i = 0; i < 4; i++) operations.Add(&o[i]);
     return operations;
 }

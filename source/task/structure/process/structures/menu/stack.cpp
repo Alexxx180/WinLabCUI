@@ -3,7 +3,7 @@
 
 Stack model;
 
-void Random() { model.Randomized(); }
+void Randomized() { model.Randomized(); }
 
 void Minimal() {
     if (!model.IsEmpty()) model.ToIndex(model.Minimal());

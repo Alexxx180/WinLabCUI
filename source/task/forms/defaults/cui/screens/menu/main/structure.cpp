@@ -1,5 +1,4 @@
-
-#include "task/forms/defaults/cui/screens/menu/main.h"
+#include "task/forms/defaults/cui/screens/menu/main/structure.h"
 
 #include "screen/controls/menu/menuitem.h"
 #include "screen/controls/menu/field/label.h"
@@ -14,7 +13,7 @@ MenuItem StructureMenu() {
     s[2].SetCommand(new Label("menu_structure_stack"), StackStart);
 
     structs.SetItems(new Label("menu_structure"))->Vertical(true);
-    for (i = 0; i < 3; i++) structs.Add(s[i]);
+    for (char i = 0; i < 3; i++) structs.Add(&s[i]);
 
     return structs;
 }

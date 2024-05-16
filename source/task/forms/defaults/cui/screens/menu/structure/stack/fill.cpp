@@ -9,6 +9,6 @@ MenuItem FillMenu() {
     q[1].SetCommand(new Label("menu_operations_reset"), Reset);
 
     stack.SetItems(new Label("menu_stack"));
-    for (char i = 0; i < 2; i++) stack.Add(q[i]);
+    for (char i = 0; i < 2; i++) stack.Add(&q[i]);
     return stack;
 }
