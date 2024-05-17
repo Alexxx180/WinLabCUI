@@ -4,10 +4,9 @@
 #include "common/types.h"
 
 class Container {
-    private:
+    protected:
         char m_size = 0;
         const byte m_max = 10;
-        const byte bytes = 8;
 
     public:
         const char& size = m_size;
@@ -23,6 +22,9 @@ class Container {
         void ToIndex(char index);
         void ToFirst();
         void ToLast();
+        virtual char at(char position) = 0;
+        virtual void Append(char element) = 0;
+        virtual bool Exists(char position, char element) = 0;
         virtual void RemoveAll() = 0;
 };
 

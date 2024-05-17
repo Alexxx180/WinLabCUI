@@ -1,19 +1,20 @@
 #include "task/structure/process/practice/strings.h"
+#include "screen/matrix/tools.h"
 
 const std::wstring text = L"Example of (original) string";
 
 std::wstring Replace() {
     size_t start = text.find(L"(");
     size_t end = text.find(L")");
-    return text.replace(start, end - start, L"");
+    std::wstring replaced = text;
+    replaced.replace(start, end - start, L"");
+    return replaced;
 }
 
-std::wstring[2] RandomSortedWords() {
+void RandomSortedWords(std::wstring* words) {
     Boundary<char> latin(97, 25);
     Boundary<char> count(1, 8);
     char i = 2;
-
-    std::wstring words[2] = { L"", L"" };
 
     while (i-- > 0) {
         char length = rand() % count.end + count.start;
@@ -28,8 +29,6 @@ std::wstring[2] RandomSortedWords() {
         words[1] = words[0];
         words[0] = holder;
     }
-
-    return words;
 }
 
 void ShowStrings() {
@@ -37,7 +36,8 @@ void ShowStrings() {
     out->Target(MAIN)->Page(0)->Line(0);
     out->Text(text)->Line()->Text(Replace())->Line();
     Next();
-    std::wstring words[2] = RandomSortedWords();
+    std::wstring words[2] = { L"", L"" };
+    RandomSortedWords(words);
     out->Clip("strings_sorted_words");
     for (char i = 0; i < 2; i++)
         out->Text(words[i])->Line();

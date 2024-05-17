@@ -10,15 +10,19 @@ class Queue : public Container {
         std::queue<char> m_real;
 
     public:
-        bool IsEmpty();
         void Generate();
+        void FromTwo();
         void Reset();
-        void Search();
+        void JumpToSearch();
         void Show();
         void ShowFirst();
         void ShowLast();
         void Peek();
+        char at(char position);
+        void Append(char element);
+        bool Exists(char position, char element);
         void RemoveAll();
+        void Remove();
 };
 
 #endif

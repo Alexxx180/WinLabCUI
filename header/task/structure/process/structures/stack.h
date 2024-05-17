@@ -10,12 +10,13 @@ class Stack : public Container {
         std::stack<char> m_real;
 
     public:
-        char at(char position);
-        bool Exists(char position, char element);
-        void Append(char element);
-        void RemoveAll();
-        void RemoveOne();
         char Minimal();
+        void JumpToSearch();
+        char at(char position);
+        void Append(char element);
+        bool Exists(char position, char element);
+        void RemoveAll();
+        void Remove();
 };
 
 #endif

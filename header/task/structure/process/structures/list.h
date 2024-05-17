@@ -10,14 +10,15 @@ class List : public Container {
 
     public:
         void Ordered();
-        char at(char position);
-        bool Exists(char position, char element);
-        void Append(char element);
         void Insert(char position, char element);
         void InsertTo(char position, char element);
-        void RemoveAll();
         void Remove(char index);
+        void JumpToSearch();
         short Medium();
+        char at(char position);
+        void Append(char element);
+        bool Exists(char position, char element);
+        void RemoveAll();
 };
 
 #endif

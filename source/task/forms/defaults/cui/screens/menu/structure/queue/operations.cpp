@@ -3,7 +3,6 @@
 #include "screen/controls/menu/field/label.h"
 #include "task/structure/process/structures/menu/queue.h"
 #include "task/forms/defaults/cui/screens/menu/structure/queue/operations/view.h"
-#include "task/forms/defaults/cui/screens/menu/structure/queue/operations/delete.h"
 
 MenuItem OperationsMenu() {
     MenuItem operations, o[3];

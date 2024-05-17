@@ -1,5 +1,5 @@
 #include <string>
 
 std::wstring Replace();
-std::wstring* RandomSortedWords();
+void RandomSortedWords(std::wstring* words);
 void ShowStrings();

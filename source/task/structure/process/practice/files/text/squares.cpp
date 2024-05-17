@@ -9,11 +9,12 @@
 
 char Write(const std::wstring& line) {
     char code = UNDEFINED;
+    std::ofstream file;
     try {
         long number;
         std::wstring word;
-        std::ofstream file("demo/output/squares.txt");
-        std::stringstream words(line);
+        std::wstringstream words(line);
+        file.open("demo/output/squares.txt");
         while (words >> word && TryCastLong(word, &number))
             file << pow(number, 2) << L' ';
         file.close();

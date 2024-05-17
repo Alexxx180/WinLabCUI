@@ -3,16 +3,18 @@
 #include "common/codes.h"
 #include <fstream>
 #include <string>
-#include <iosfwd>
+#include <iostream>
 
 void TextSearch() {
     unsigned long i = 0;
+    std::wifstream file;
     try {
         std::wstring line;
-        std::ifstream file("demo/input/numbers.txt");
-        while (std::getline(infile, line))
-            if (line.find("{keyword}") < line.size())
+        file.open("demo/input/numbers.txt");
+        while (std::getline(file, line))
+            if (line.find(L"{keyword}") < line.size())
                 std::wcout << ++i << L". " << line;
+        file.close();
     }
     catch (const std::ios_base::failure& error) {
         Error("read_failure", error);

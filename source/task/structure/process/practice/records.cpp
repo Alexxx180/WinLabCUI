@@ -19,7 +19,7 @@ Record model[28] = {
     { 0, 124, 823, 222,  444 }, { 0,   5, 998, 233,  472 },
     { 1, 839, 784, 894,  239 }, { 0, 128, 398, 679,  132 },
     { 2, 302, 101, 442, 4891 }, { 0, 132, 281,  83,  543 }
-}
+};
 
 std::vector<Record> DemandOverProposal(char day) {
     std::vector<Record> target;
@@ -32,7 +32,7 @@ std::vector<Record> DemandOverProposal(char day) {
 }
 
 void ShowRecords() {
-    char day = WeeklyOption();
+    char day = WeekOption();
     out->Target(MAIN)->Page(0)->Line(0);
     out->Clip("records_weekly");
     std::vector<Record> records = DemandOverProposal(day);

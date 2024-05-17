@@ -10,15 +10,16 @@
 
 char BinaryWrite(const std::wstring& line) {
     char code = UNDEFINED;
+    std::ofstream file;
     try {
         long number;
         size_t bytes = sizeof(long);
 
-        std::wstring word;
         std::vector<long> negative;
-        std::ofstream file("demo/output/binary.bin", std::ios::binary);
-        std::stringstream words(line);
+        std::wstring word;
+        std::wstringstream words(line);
 
+        file.open("demo/output/binary.bin", std::ios::binary);
         while (words >> word && TryCastLong(word, &number))
             if (number > 0)
                 file.write((char*) &number, bytes);

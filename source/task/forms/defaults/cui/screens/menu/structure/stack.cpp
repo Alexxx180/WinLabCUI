@@ -11,5 +11,6 @@ void StackMenu() {
     MenuItem task[3];
     task[0] = FillMenu();
     task[1] = OperationsMenu();
-    stack_menu.Set(CommonMenu(task));
+    Menu context = CommonMenu(task);
+    stack_menu.Set(&context);
 }

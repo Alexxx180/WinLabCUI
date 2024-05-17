@@ -18,7 +18,7 @@ void Stack :: RemoveAll() {
     std::stack<char>().swap(m_real);
 }
 
-void Stack :: RemoveOne() {
+void Stack :: Remove() {
     m_real.pop();
     ToLast();
     m_size--;
@@ -27,10 +27,7 @@ void Stack :: RemoveOne() {
 }
 
 char Stack :: Minimal() {
-    char i = m_size;
-    char min = i - 1;
-
+    char i = m_size, min = m_size - 1;
     while (--i >= 0) if (m_helper[i] < m_helper[min]) min = i;
-
     return min;
 }

@@ -11,5 +11,6 @@ void QueueMenu() {
     MenuItem task[3];
     task[0] = FillMenu();
     task[1] = OperationsMenu();
-    queue_menu.Set(CommonMenu(task));
+    Menu context = CommonMenu(task);
+    queue_menu.Set(&context);
 }

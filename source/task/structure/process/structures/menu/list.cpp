@@ -1,5 +1,7 @@
 #include "task/structure/process/structures/list.h"
 #include "task/structure/process/structures/menu/list.h"
+#include "screen/matrix/tools.h"
+#include "common/codes.h"
 
 List model;
 
@@ -40,13 +42,14 @@ void InsertTo(char offset) {
     if (position != UNDEFINED) {
         char value = model.Random();
         char next = position + offset;
-        if (offset < 0)
+        if (offset < 0) {
             next = next < 0 ? position : next;
             model.InsertTo(next, value);
-        else if (next < model.size)
+        } else if (next < model.size) {
             model.InsertTo(next, value);
-        else
+        } else {
             model.Append(value);
+        }
         model.Show();
     }
 }

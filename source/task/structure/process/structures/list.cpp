@@ -1,4 +1,4 @@
-#include "task/structure/process/structures/queue.h"
+#include "task/structure/process/structures/list.h"
 #include "screen/interaction/interaction.h"
 
 void List :: Ordered() {
@@ -8,16 +8,14 @@ void List :: Ordered() {
         value = Random();
         if (value < at(min)) {
             min = m_size;
-            InsertTo(min, value)
+            InsertTo(min, value);
         } else {
             Append(value);
         }
     }
 }
 
-char List :: at(char position) {
-    return m_real.at(position);
-}
+char List :: at(char position) { return m_real.at(position); }
 
 bool List :: Exists(char position, char element) {
     return at(position) == element;
@@ -34,12 +32,10 @@ void List :: Insert(char position, char element) {
 }
 
 void List :: InsertTo(char position, char element) {
-    Insert(m_real.begin() + position, element);
+    Insert(position, element);
 }
 
-void List :: RemoveAll() {
-    m_real.clear();
-}
+void List :: RemoveAll() { m_real.clear(); }
 
 void List :: Remove(char index) {
     m_real.erase(m_real.begin() + index);

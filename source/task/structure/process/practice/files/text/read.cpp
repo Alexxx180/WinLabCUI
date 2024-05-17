@@ -7,8 +7,9 @@
 
 char Head(std::wstring& line) {
     char code = UNDEFINED;
+    std::wifstream file;
     try {
-        std::ifstream file("demo/input/numbers.txt");
+        file.open("demo/input/numbers.txt");
         if (file.good()) std::getline(file, line);
         file.close();
         code = OK;

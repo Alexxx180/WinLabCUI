@@ -1,7 +1,7 @@
-#include "task/form/defaults/cui/screens/templates/queue.h"
+#include "task/forms/defaults/cui/screens/templates/list.h"
 #include "screen/matrix/tools.h"
 
-void ListInfo() {
+void QueueInfo() {
     out->Target(MAIN)->Page(0)->Line(0)->Size(2);
     out->Move()->Clip("work_demo")->Line();
     out->Move()->Clip("view")->Page(1);

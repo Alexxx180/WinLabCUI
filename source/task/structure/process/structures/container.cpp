@@ -1,7 +1,9 @@
-#include "task/structure/process/structures/queue.h"
+#include "task/structure/process/structures/container.h"
 #include "task/forms/defaults/io/input.h"
 #include "screen/matrix/tools.h"
 #include "common/codes.h"
+
+char Container :: Random() { return gen8.Random(); }
 
 bool Container :: IsEmpty() { return m_size == 0; }
 bool Container :: HasSpace() { return m_size < m_max; }
@@ -21,11 +23,10 @@ void Container :: Reset() {
     RemoveAll();
 }
 
-char Container :: Random() { return gen[bytes].Random(); }
-
 char Container :: Input() {
     out->Flip(1)->Move();
-    char value = numeric->Input();
+    numeric->Input();
+    char value = numeric->result;
     out->Flip(-1)->Move();
     return value;
 }
@@ -38,7 +39,7 @@ void Container :: Show() {
     while (i < m_size)
         out->Line(i)->Move()->FText(L"%i. ", i)->FText(L"%i", at(i++));
 
-    while (i < m_max) out->Line(i++)->Move()->Clear()-Move();
+    while (i < m_max) out->Line(i++)->Move()->Clear()->Move();
 }
 
 void Container :: ToIndex(char index) {

@@ -1,1 +1,1 @@
-void ListInfo();
+void StackInfo();
