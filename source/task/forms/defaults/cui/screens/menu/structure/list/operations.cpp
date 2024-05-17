@@ -5,11 +5,11 @@
 #include "task/forms/defaults/cui/screens/menu/structure/list/operations/add.h"
 #include "task/forms/defaults/cui/screens/menu/structure/list/operations/delete.h"
 
-MenuItem OperationsMenu() {
+MenuItem ListOperationsMenu() {
     MenuItem operations, o[3];
-    o[0].SetCommand(new Label("menu_operations_search"), JumpToSearch);
-    o[1] = AddMenu();
-    o[2] = DeleteMenu();
+    o[0].SetCommand(new Label("menu_operations_search"), ListJumpToSearch);
+    o[1] = ListAddMenu();
+    o[2] = ListDeleteMenu();
 
     operations.SetItems(new Label("menu_operations"));
     for (char i = 0; i < 3; i++) operations.Add(&o[i]);

@@ -9,8 +9,8 @@ ExitMenu queue_menu;
 
 void QueueMenu() {
     MenuItem task[3];
-    task[0] = FillMenu();
-    task[1] = OperationsMenu();
+    task[0] = QueueFillMenu();
+    task[1] = QueueOperationsMenu();
     Menu context = CommonMenu(task);
     queue_menu.Set(&context);
 }

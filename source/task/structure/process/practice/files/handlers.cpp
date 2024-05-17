@@ -8,7 +8,7 @@ void Error(std::string operation, const std::ios_base::failure& error) {
     out->Target(MENU)->Move();
 }
 
-inline bool TryCastLong(const std::wstring& s, long* value)
+bool TryCastLong(const std::wstring& s, long* value)
 {
     if (s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false;
 

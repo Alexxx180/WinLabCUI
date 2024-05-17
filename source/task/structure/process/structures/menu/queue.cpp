@@ -3,24 +3,24 @@
 
 Queue model;
 
-void Randomized() { model.Randomized(); }
+void QueueRandomized() { model.Randomized(); }
 
-void FromTwo() { model.FromTwo(); }
+void QueueFromTwo() { model.FromTwo(); }
 
-char Search() { return model.Search(model.Input()); }
+char QueueSearch() { return model.Search(model.Input()); }
 
-void JumpToSearch() { model.ToIndex(Search()); }
+void QueueJumpToSearch() { model.ToIndex(QueueSearch()); }
 
-void Append() {
+void QueueAppend() {
     if (model.HasSpace()) model.Append(model.Random());
 }
 
-void ToFirst() { model.ToFirst(); }
-void ToLast() { model.ToLast(); }
+void QueueToFirst() { model.ToFirst(); }
+void QueueToLast() { model.ToLast(); }
 
-void Remove() { if (!model.IsEmpty()) model.Remove(); }
+void QueueRemove() { if (!model.IsEmpty()) model.Remove(); }
 
-void Reset() {
+void QueueReset() {
     model.Reset();
     model.Show();
 }

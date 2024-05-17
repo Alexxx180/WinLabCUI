@@ -9,8 +9,8 @@ ExitMenu stack_menu;
 
 void StackMenu() {
     MenuItem task[3];
-    task[0] = FillMenu();
-    task[1] = OperationsMenu();
+    task[0] = StackFillMenu();
+    task[1] = StackOperationsMenu();
     Menu context = CommonMenu(task);
     stack_menu.Set(&context);
 }

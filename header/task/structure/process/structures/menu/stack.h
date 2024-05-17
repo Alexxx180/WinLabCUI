@@ -1,8 +1,8 @@
-void Randomized();
-void Minimal();
-char Search();
-void JumpToSearch();
-void Append();
-void ToLast();
-void Remove();
-void Reset();
+void StackRandomized();
+void StackMinimal();
+char StackSearch();
+void StackJumpToSearch();
+void StackAppend();
+void StackToLast();
+void StackRemove();
+void StackReset();

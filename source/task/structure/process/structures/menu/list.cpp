@@ -5,15 +5,15 @@
 
 List model;
 
-void Randomized() { model.Randomized(); }
+void ListRandomized() { model.Randomized(); }
 
-void Order() { model.Ordered(); }
+void ListOrder() { model.Ordered(); }
 
-char Search() { return model.Search(model.Input()); }
+char ListSearch() { return model.Search(model.Input()); }
 
-void JumpToSearch() { model.ToIndex(Search()); }
+void ListJumpToSearch() { model.ToIndex(ListSearch()); }
 
-void Medium() {
+void ListMedium() {
     if (model.IsEmpty()) {
         out->Flip(1)->Move()->Text(model.Medium());
         Next();
@@ -21,24 +21,24 @@ void Medium() {
     }
 }
 
-void InsertFirst() {
+void ListInsertFirst() {
     if (model.HasSpace()) {
         model.Insert(0, model.Random());
         model.Show();
     }
 }
 
-void InsertLast() {
+void ListInsertLast() {
     if (model.HasSpace()) {
         model.Append(model.Random());
         model.Show();
     }
 }
 
-void InsertTo(char offset) {
+void ListInsertTo(char offset) {
     if (!model.HasSpace()) return;
 
-    char position = Search();
+    char position = ListSearch();
     if (position != UNDEFINED) {
         char value = model.Random();
         char next = position + offset;
@@ -54,23 +54,23 @@ void InsertTo(char offset) {
     }
 }
 
-void InsertBefore() { InsertTo(-1); }
-void InsertAfter() { InsertTo(1); }
+void ListInsertBefore() { ListInsertTo(-1); }
+void ListInsertAfter() { ListInsertTo(1); }
 
-void Remove(char index) {
+void ListRemove(char index) {
     if (index != UNDEFINED) {
         model.Remove(index);
         model.Show();
     }
 }
 
-void RemoveAt() { if (!model.IsEmpty()) Remove(Search()); }
+void ListRemoveAt() { if (!model.IsEmpty()) ListRemove(ListSearch()); }
 
-void RemoveFirst() { if (!model.IsEmpty()) Remove(0); }
+void ListRemoveFirst() { if (!model.IsEmpty()) ListRemove(0); }
 
-void RemoveLast() { if (!model.IsEmpty()) Remove(model.size - 1); }
+void ListRemoveLast() { if (!model.IsEmpty()) ListRemove(model.size - 1); }
 
-void Reset() {
+void ListReset() {
     model.Reset();
     model.Show();
 }

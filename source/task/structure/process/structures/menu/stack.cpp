@@ -3,25 +3,25 @@
 
 Stack model;
 
-void Randomized() { model.Randomized(); }
+void StackRandomized() { model.Randomized(); }
 
-void Minimal() {
+void StackMinimal() {
     if (!model.IsEmpty()) model.ToIndex(model.Minimal());
 }
 
-char Search() { return model.Search(model.Input()); }
+char StackSearch() { return model.Search(model.Input()); }
 
-void JumpToSearch() { model.ToIndex(Search()); }
+void StackJumpToSearch() { model.ToIndex(StackSearch()); }
 
-void Append() {
+void StackAppend() {
     if (model.HasSpace()) model.Append(model.Random());
 }
 
-void ToLast() { model.ToLast(); }
+void StackToLast() { model.ToLast(); }
 
-void Remove() { if (!model.IsEmpty()) model.Remove(); }
+void StackRemove() { if (!model.IsEmpty()) model.Remove(); }
 
-void Reset() {
+void StackReset() {
     model.Reset();
     model.Show();
 }
