@@ -65,7 +65,7 @@ static const std::map<std::string, std::wstring> texts = {
     { "menu_structure_list", L"\u2666 \u0421\u043f\u0438\u0441\u043e\u043a" }, // ♦ Список
     { "menu_structure_queue", L"\u2666 \u041e\u0447\u0435\u0440\u0435\u0434\u044c" }, // ♦ Очередь
     { "menu_structure_stack", L"\u2666 \u0421\u0442\u0435\u043a" }, // ♦ Стек
-    { "menu_stack_minimum", L"\u2666 \u041c\u0438\u043d\u0438\u043c\u0443\u043c" }, // ♦ Минимум
+    { "menu_stack_minimal", L"\u2666 \u041c\u0438\u043d\u0438\u043c\u0443\u043c" }, // ♦ Минимум
     { "menu_task_split", L"\u2666 \u0420\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0438\u0435" }, // ♦ Разделение
     { "menu_practice", L"\u25b6 \u041f\u0440\u0430\u043a\u0442\u0438\u043a\u0430" }, // ▶ Практика
     { "menu_practice_string", L"\u2666 \u0421\u0442\u0440\u043e\u043a\u0438" }, // ♦ Строки

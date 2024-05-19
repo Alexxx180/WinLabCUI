@@ -122,7 +122,7 @@ void MenuItem :: Index(Point position) {
 
 MenuItem* MenuItem :: Vertical(bool direction) {
     if (direction)
-        m_item.Direction = { 0, 1 };
+        m_item.Direction = { 0, 2 };
     else
         m_item.Direction = { 1, 0 };
     return this;

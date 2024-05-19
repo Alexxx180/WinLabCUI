@@ -22,8 +22,6 @@ void Stack :: Remove() {
     m_real.pop();
     ToLast();
     m_size--;
-    Next();
-    Show();
 }
 
 char Stack :: Minimal() {

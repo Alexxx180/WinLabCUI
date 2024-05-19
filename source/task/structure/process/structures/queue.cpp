@@ -1,13 +1,14 @@
 #include "task/structure/process/structures/queue.h"
 #include "screen/interaction/interaction.h"
 #include <set>
+#include <iostream>
 
 char Queue :: at(char position) {
     return m_helper[m_max - position - 1];
 }
 
 bool Queue :: Exists(char position, char element) {
-    return m_helper[position] == element;
+    return at(position) == element; // m_helper[position]
 }
 
 void Queue :: Append(char element) {
@@ -23,7 +24,6 @@ void Queue :: Remove() {
     m_real.pop();
     ToLast();
     m_size--;
-    Next();
 }
 
 void Queue :: FromTwo() {
@@ -39,13 +39,12 @@ void Queue :: FromTwo() {
         while (j-- > 0) {
             char element = initial[j].front();
             initial[j].pop();
-            if (unique.find(element) != unique.end())
-                unique.insert(element);
+            unique.insert(element);
         }
     
     std::set<char>::iterator element = unique.begin();
     while (element != unique.end()) {
-        m_real.push(*element);
+        Append(*element);
         element++;
     }
 }
