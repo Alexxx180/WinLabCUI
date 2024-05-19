@@ -15,6 +15,7 @@ static const std::map<std::string, std::wstring> texts = {
     { "program_author", L"\u0410\u0432\u0442\u043e\u0440: \u0422\u0430\u0442\u0430\u0440\u0438\u043d\u0446\u0435\u0432 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440" }, // Автор: Татаринцев Александр
 
     // Common text
+    { "last_input", L"- Last Input (LI" },
     { "first_input", L"- First Input (FI" },
     { "first_output", L"- First Output FO)" },
     { "max_elements", L"\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0432 \u0440\u0430\u043c\u043a\u0430\u0445 \u0434\u0435\u043c\u043e: 10" }, // Максимальное количество элементов в рамках демо: 10

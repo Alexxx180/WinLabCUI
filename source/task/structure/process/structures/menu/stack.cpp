@@ -5,6 +5,7 @@
 Stack model;
 
 void StackRandomized() { 
+    StackInfo();
     model.Randomized();
     model.Show();
 }
