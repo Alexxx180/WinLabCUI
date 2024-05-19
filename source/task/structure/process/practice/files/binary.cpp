@@ -19,15 +19,18 @@ char BinaryWrite(const std::wstring& line) {
         std::wstring word;
         std::wstringstream words(line);
 
-        file.open("demo/output/binary.bin", std::ios::binary);
+        file.open("demo/output/binary.txt");
+        //file.open("demo/output/binary.bin", std::ios::binary);
         while (words >> word && TryCastLong(word, &number))
             if (number > 0)
-                file.write((char*) &number, bytes);
+                file << number << std::endl;
+                //file.write((char*) &number, bytes);
             else
                 negative.push_back(number);
 
         long i = negative.size();
-        while (--i >= 0) file.write((char*) &negative[i], bytes);
+        while (--i >= 0) //file.write((char*) &negative[i], bytes);
+            file << negative[i] << std::endl;
 
         file.close();
         code = OK;

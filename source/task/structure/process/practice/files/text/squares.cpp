@@ -15,8 +15,10 @@ char Write(const std::wstring& line) {
         std::wstring word;
         std::wstringstream words(line);
         file.open("demo/output/squares.txt");
-        while (words >> word && TryCastLong(word, &number))
-            file << pow(number, 2) << L' ';
+        while (words >> word && TryCastLong(word, &number)) {
+            file << pow(number, 2);
+            file << std::endl;
+        }
         file.close();
         code = OK;
     }

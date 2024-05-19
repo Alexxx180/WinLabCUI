@@ -8,9 +8,9 @@
 MenuItem FilesMenu() {
     MenuItem files, f[2];
     f[0] = TextFilesMenu();
-    f[1].SetCommand(new Label("menu_practice_files_binary"), Binary);
+    f[1].SetCommand(new Label("menu_practice_file_binary"), Binary);
 
-    files.SetItems(new Label("menu_practice_files"));
+    files.SetItems(new Label("menu_practice_file"));
     for (char i = 0; i < 2; i++) files.Add(&f[i]);
     return files;
 }

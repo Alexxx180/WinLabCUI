@@ -8,7 +8,7 @@
 
 MenuItem PracticeMenu() {
     MenuItem practice, p[3];
-    p[0].SetCommand(new Label("menu_practice_strings"), ShowStrings);
+    p[0].SetCommand(new Label("menu_practice_string"), ShowStrings);
     p[1] = RecordsMenu();
     p[2] = FilesMenu();
 

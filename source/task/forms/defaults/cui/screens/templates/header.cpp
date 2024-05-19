@@ -10,7 +10,7 @@ char Header()
     ClearScreen();
 
     out->Target(MAIN)->ShowBack();
-    out->Form(0)->Page(0)->Size(3);
+    out->Form(0)->Page(0)->Size(2);
 
     out->Line(0)->Move();
     out->Clip("program_header");

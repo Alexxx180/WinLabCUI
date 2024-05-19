@@ -11,7 +11,7 @@ MenuItem ListOperationsMenu() {
     o[1] = ListAddMenu();
     o[2] = ListDeleteMenu();
 
-    operations.SetItems(new Label("menu_operations"));
+    operations.SetItems(new Label("menu_operations"))->Vertical(true);
     for (char i = 0; i < 3; i++) operations.Add(&o[i]);
     return operations;
 }

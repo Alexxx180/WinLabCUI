@@ -21,25 +21,31 @@ Record model[28] = {
     { 2, 302, 101, 442, 4891 }, { 0, 132, 281,  83,  543 }
 };
 
-std::vector<Record> DemandOverProposal(char day) {
-    std::vector<Record> target;
+void OutputRecord(const Record& r) {
+    const wchar_t* no = L"%5i";
+    out->FText(no, r.type);
+    out->FText(no, r.demand);
+    out->FText(no, r.proposal);
+    out->FText(no, r.today);
+    out->FText(no, r.yesterday);
+    out->Line()->Move();
+}
+
+void DemandOverProposal(char day) {
     while (day < month) {
         if (model[day].IsDemandBigger())
-            target.push_back(model[day]);
+            OutputRecord(model[day]);
         day += week;
     }
-    return target;
 }
 
 void ShowRecords() {
     char day = WeekOption();
-    out->Target(MAIN)->Page(0)->Line(0);
-    out->Clip("records_weekly");
-    std::vector<Record> records = DemandOverProposal(day);
-    for (char i = 0; i < month; i++) {
-        const Record& r = records[i];
-        out->Text(r.type, L" ", r.demand, L" ", r.proposal, L" ");
-        out->Text(r.today, L" ", r.yesterday);
-        out->Line();
-    }
+    out->Target(MAIN)->Page(0)->Span(2);
+    for (char i = 1; i < 5; i++)
+        out->Line(i)->Move()->Clear()->Move();
+
+    out->Line(0)->Move()->Clip("records_weekly")->Line()->Move();
+    DemandOverProposal(day);
+    out->Target(MENU)->Move();
 }

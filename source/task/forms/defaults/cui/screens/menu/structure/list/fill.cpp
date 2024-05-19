@@ -10,7 +10,7 @@ MenuItem ListFillMenu() {
     l[1].SetCommand(new Label("menu_fill_randomized"), ListRandomized);
     l[2].SetCommand(new Label("menu_fill_reset"), ListReset);
 
-    list.SetItems(new Label("menu_list"));
+    list.SetItems(new Label("menu_list"))->Vertical(true);
     for (char i = 0; i < 3; i++) list.Add(&l[i]);
 
     return list;

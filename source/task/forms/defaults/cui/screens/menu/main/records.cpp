@@ -11,7 +11,7 @@ MenuItem RecordsMenu() {
     week[0].SetField((new Option(RecordsWeek()))->Current(0));
     week[1].SetCommand(new Label("menu_practice_structure_filter"), ShowRecords);
 
-    records.SetItems(new Label("menu_practice_file"));
+    records.SetItems(new Label("menu_practice_structure"));
     for (char i = 0; i < 2; i++) records.Add(&week[i]);
     return records;
 }

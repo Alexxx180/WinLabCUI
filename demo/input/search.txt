@@ -1,0 +1,6 @@
+There is a couple of
+examples to work with {keyword}.
+As you can see the {keyword}
+tend to be used in various
+markdown systems that contain
+{keyword} format string.

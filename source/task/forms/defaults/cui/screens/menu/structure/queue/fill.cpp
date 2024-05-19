@@ -9,7 +9,7 @@ MenuItem QueueFillMenu() {
     q[1].SetCommand(new Label("menu_queue_from_two"), QueueFromTwo);
     q[2].SetCommand(new Label("menu_fill_reset"), QueueReset);
 
-    queue.SetItems(new Label("menu_queue"));
+    queue.SetItems(new Label("menu_queue"))->Vertical(true);
     for (char i = 0; i < 3; i++) queue.Add(&q[i]);
     return queue;
 }

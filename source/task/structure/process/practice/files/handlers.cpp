@@ -1,9 +1,12 @@
 #include "task/structure/process/practice/files/handlers.h"
 
 #include "screen/matrix/tools.h"
+#include "common/texts/errors.h"
 
 void Error(std::string operation, const std::ios_base::failure& error) {
-    out->Target(FOOT)->Jump()->Move()->Clip(operation)->Line()->Move();
+    std::wstring text = errors.at(operation);
+    out->Target(FOOT)->Jump()->Move();
+    out->Text(text)->Line()->Move();
     std::cerr << error.what();
     out->Target(MENU)->Move();
 }

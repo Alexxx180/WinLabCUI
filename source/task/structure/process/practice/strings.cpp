@@ -5,7 +5,7 @@ const std::wstring text = L"Example of (original) string";
 
 std::wstring Replace() {
     size_t start = text.find(L"(");
-    size_t end = text.find(L")");
+    size_t end = text.find(L")") + 1;
     std::wstring replaced = text;
     replaced.replace(start, end - start, L"");
     return replaced;
@@ -32,14 +32,19 @@ void RandomSortedWords(std::wstring* words) {
 }
 
 void ShowStrings() {
+    out->Target(MAIN)->Page(0)->Line(0)->Move();
     out->Clip("strings_replacement");
-    out->Target(MAIN)->Page(0)->Line(0);
-    out->Text(text)->Line()->Text(Replace())->Line();
+    out->Line()->Move();
+    out->Clip("strings_replacement_original");
+    out->Text(text)->Line()->Move();
+    out->Clip("strings_replacement_result");
+    out->Text(Replace())->Line()->Move();
     Next();
     std::wstring words[2] = { L"", L"" };
     RandomSortedWords(words);
-    out->Clip("strings_sorted_words");
+    out->Clip("strings_sorted_words")->Line()->Move();
     for (char i = 0; i < 2; i++)
-        out->Text(words[i])->Line();
+        out->Text(i + 1, L". ", words[i])->Line()->Move();
     Next();
+    out->Target(MENU)->Move();
 }

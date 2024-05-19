@@ -6,5 +6,5 @@ MenuItem& RecordOptions() {
 }
 
 char WeekOption() {
-    return RecordOptions().at(1).Choice();
+    return RecordOptions().at(0).Choice();
 }

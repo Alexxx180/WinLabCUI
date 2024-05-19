@@ -10,7 +10,7 @@ MenuItem QueueOperationsMenu() {
     o[1].SetCommand(new Label("menu_operations_add"), QueueAppend);
     o[2].SetCommand(new Label("menu_operations_delete"), QueueRemove);
 
-    operations.SetItems(new Label("menu_operations"));
+    operations.SetItems(new Label("menu_operations"))->Vertical(true);
     for (char i = 0; i < 3; i++) operations.Add(&o[i]);
     return operations;
 }

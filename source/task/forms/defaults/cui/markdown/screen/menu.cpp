@@ -5,7 +5,7 @@ Screen MenuPanel(Markdown* m) {
     m->Shift(Y, offset, size);
     m->Top(Y)->Margin(Y, offset);
     m->Top(X)->Margin(X, margin)->Page();
-    m->Split(X, 0.2);
+    m->Split(X, 0.25);
     m->Bot(X)->Margin(X, -margin)->Page();
     Screen result = m->Form()->Result();
     m->Clear();
