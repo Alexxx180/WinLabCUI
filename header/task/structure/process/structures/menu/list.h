@@ -1,0 +1,14 @@
+void ListRandomized();
+void ListOrder();
+char ListSearch();
+void ListJumpToSearch();
+void ListInsertFirst();
+void ListInsertLast();
+void ListInsertTo(char offset);
+void ListInsertBefore();
+void ListInsertAfter();
+void ListRemove(char index);
+void ListRemoveAt();
+void ListRemoveFirst();
+void ListRemoveLast();
+void ListReset();

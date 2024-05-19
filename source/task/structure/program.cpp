@@ -2,14 +2,15 @@
 
 #include "common/codes.h"
 #include "screen/interaction/controller/keyboard.h"
-#include "task/forms/defaults/cui/screens/templates/footer.h"
 #include "task/forms/defaults/cui/screens/templates/header.h"
 #include "task/structure/input/tasks.h"
+#include "screen/matrix/tools.h"
 
 int Program() {
-    char code = Header();
-    if (code == ENTER)
+    if (Header() == ENTER)
         Input();
-    code = Footer();
+    else
+        ClearScreen();
+
     return OK;
 }

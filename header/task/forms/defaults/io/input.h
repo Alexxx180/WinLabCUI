@@ -7,4 +7,4 @@ void SetInputVerifiers();
 extern Boundary<char> limits;
 extern StringPrompt* prompts;
 extern Verifier<char>* numeric;
-extern Randomizer<char> gen_int8;
+extern Randomizer<char> gen8;

@@ -16,8 +16,9 @@ class Typer {
 
         void Input() {
             out->Field();
+            byte context = out->TargetLayer;
             do {
-                out->Target(MAIN)->Move();
+                out->Target(context)->Move();
                 Type();
             }
             while (!IsVerified);

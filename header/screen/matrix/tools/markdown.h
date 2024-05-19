@@ -43,6 +43,7 @@ class Markdown {
         Markdown* Top(byte flow);
         Markdown* Bot(byte flow);
         Markdown* Relate(byte flow, float relation);
+        Markdown* Split(byte flow, float ratio);
         Markdown* Margin(byte flow, byte margin);
 };
 

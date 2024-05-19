@@ -11,6 +11,7 @@ struct Layer {
     Fragment<Grid> back;
     Fragment<Stencil> out;
     Fragment<Bar> status;
+    byte TargetLayer;
 
     void Add(Screen* screen) {
         back.Add(screen->back);
@@ -18,6 +19,7 @@ struct Layer {
     }
 
     Layer* Target(byte current) {
+        TargetLayer = current;
         back.Target(current);
         out.Target(current);
         status.Target(current);

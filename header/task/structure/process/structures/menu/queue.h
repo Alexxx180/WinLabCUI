@@ -1,0 +1,9 @@
+void QueueRandomized();
+void QueueFromTwo();
+char QueueSearch();
+void QueueJumpToSearch();
+void QueueAppend();
+void QueueToFirst();
+void QueueToLast();
+void QueueRemove();
+void QueueReset();

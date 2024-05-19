@@ -6,7 +6,7 @@ SHELL := powershell.exe
 CMD=powershell -NoProfile -Command
 
 CC=cl
-CFLAGS=/nologo /EHsc /I header /Zi
+CFLAGS=/nologo /EHsc /I header
 LINK=link
 LFLAGS=/nologo /SUBSYSTEM:CONSOLE /DEBUG:FULL
 
@@ -30,7 +30,7 @@ DELOBJ=del $$PSItem.FullName -Recurse
 %.obj : %.cpp
 	$(eval folder=$(subst $(SRC),$(OBJ),$(@D)))
 	$(eval result=$(folder)/$(@F))
-	@$(CMD) "if (-not (Test-Path $(folder))) { mkdir $(folder) > $(BUILD)/$(CLOG) }"
+	@$(CMD) "if (-not (Test-Path $(folder))) { mkdir $(folder) }"
 	@$(CC) $(CFLAGS) /Fo$(result) /c $<
 
 compile : $(OFILES)
