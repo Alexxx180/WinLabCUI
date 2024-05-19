@@ -4,7 +4,7 @@ Screen ArrayPanel(Markdown m) {
     byte margin = 1, left = 2;
     float ratio = 0.33f;
 
-    m.Flatten(X, 4, 0.5)->Flatten(Y, 14, 0.78);
+    m.Flatten(X, 4, 0.5)->Flatten(Y, 8, 0.75);
     m.Top(Y)->Margin(Y, margin);
     m.Top(X)->Margin(X, left)->Page();
     m.Bot(X)->Relate(X, ratio)->Page();

@@ -2,12 +2,21 @@
 #include "task/structure/process/structures/menu/list.h"
 #include "screen/matrix/tools.h"
 #include "common/codes.h"
+#include "task/forms/defaults/cui/screens/templates/list.h"
 
 List model;
 
-void ListRandomized() { model.Randomized(); }
+void ListRandomized() {
+    ListInfo();
+    model.Randomized();
+    model.Show();
+}
 
-void ListOrder() { model.Ordered(); }
+void ListOrder() {
+    ListInfo();
+    model.Ordered();
+    model.Show();
+}
 
 char ListSearch() { return model.Search(model.Input()); }
 
@@ -54,7 +63,7 @@ void ListInsertTo(char offset) {
     }
 }
 
-void ListInsertBefore() { ListInsertTo(-1); }
+void ListInsertBefore() { ListInsertTo(0); }
 void ListInsertAfter() { ListInsertTo(1); }
 
 void ListRemove(char index) {

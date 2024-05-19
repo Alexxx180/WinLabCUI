@@ -9,19 +9,12 @@
 #include "task/forms/defaults/cui/screens/templates/queue.h"
 #include "task/forms/defaults/cui/screens/templates/stack.h"
 
+#include "screen/interaction/interaction.h"
+
 void Input() { main_menu.Capture(); }
 
-void QueueStart() {
-    QueueInfo();
-    queue_menu.Capture();
-}
+void QueueStart() { queue_menu.Capture(); }
 
-void StackStart() {
-    StackInfo();
-    stack_menu.Capture();
-}
+void StackStart() { stack_menu.Capture(); }
 
-void ListStart() {
-    ListInfo();
-    list_menu.Capture();
-}
+void ListStart() { list_menu.Capture(); }

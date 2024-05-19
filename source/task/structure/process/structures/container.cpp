@@ -2,6 +2,7 @@
 #include "task/forms/defaults/io/input.h"
 #include "screen/matrix/tools.h"
 #include "common/codes.h"
+#include "screen/interaction/interaction.h"
 
 char Container :: Random() { return gen8.Random(); }
 
@@ -10,7 +11,7 @@ bool Container :: HasSpace() { return m_size < m_max; }
 
 void Container :: Randomized() {
     Reset();
-    while (m_size++ < m_max) Append(Random());
+    while (m_size < m_max) Append(Random());
 }
 
 char Container :: Search(char element) {
@@ -24,7 +25,7 @@ void Container :: Reset() {
 }
 
 char Container :: Input() {
-    out->Flip(1)->Move();
+    out->Flip(1)->Move()->Clear()->Move();
     numeric->Input();
     char value = numeric->result;
     out->Flip(-1)->Move();
@@ -33,17 +34,29 @@ char Container :: Input() {
 
 void Container :: Show() {
     SelectLayer(FLOATING);
-    out->Target(MAIN)->Line(0);
+    out->Target(MAIN)->Line(0)->Size(1)->Span(1);
 
-    char i = 0;
-    while (i < m_size)
-        out->Line(i)->Move()->FText(L"%i. ", i)->FText(L"%i", at(i++));
+    char i = -1;
+    while (++i < m_size) {
+        out->Line(i)->Move()->Clear()->Move();
+        out->Text(+i, L". ", +at(i));
+    }
 
-    while (i < m_max) out->Line(i++)->Move()->Clear()->Move();
+    while (i < m_max)
+        out->Line(i++)->Move()->Clear()->Move();
+
+    SelectLayer(SCREEN);
+    out->Target(MENU)->Move();
 }
 
 void Container :: ToIndex(char index) {
-    out->Target(MAIN)->Line(index)->Move();
+    if (index != -1) {
+        SelectLayer(FLOATING);
+        out->Target(MAIN)->Line(index)->Move();
+        Next();
+        SelectLayer(SCREEN);
+        out->Target(MENU)->Move();
+    }
 }
 
 void Container :: ToFirst() { ToIndex(0); }

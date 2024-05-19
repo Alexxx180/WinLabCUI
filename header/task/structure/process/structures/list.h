@@ -7,6 +7,10 @@
 class List : public Container {
     private:
         std::vector<char> m_real;
+        typedef bool (*is)(char left, char right);
+
+        char Change(is dir, char value, char middle, char correction);
+        void DirectionalSort(char value);
 
     public:
         void Ordered();

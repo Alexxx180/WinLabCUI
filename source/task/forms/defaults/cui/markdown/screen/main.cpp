@@ -7,8 +7,8 @@ Screen MainPanel(Markdown* m, Range content) {
     m->Base(&content)->Origin();
     m->Top(Y)->Margin(Y, margin);
     m->Top(X)->Margin(X, margin)->Page();
-    m->Bot(X)->Relate(X, 0.2)->Page();
-    m->Bot(X)->Relate(X, 0.5)->Page();
+    m->Bot(X)->Relate(X, 0.35)->Page();
+    m->Bot(X)->Relate(X, 0.8)->Page();
     Screen result = m->Form()->Result();
     m->Clear();
     return result;

@@ -12,30 +12,25 @@ char MenuItem :: ValueSelection() {
     char (Navigation::*query)() = &Navigation::Query;
     Await(m_caption, query, ESC);
     Focus();
-	//wprintf(L"SELECTED");
-	return ENTER;
+    return ENTER;
 }
 
 void MenuItem :: Minimize() {
     short size = m_items->size();
     while (--size >= 0) {
-		MenuItem& item = at(size);
-		Point pos = item.GetPos();
-		//wprintf(L"%i, ", size);
+        MenuItem& item = at(size);
+        Point pos = item.GetPos();
         item.Focus();
-		/*out->Page(pos.X)->Line(pos.Y);
-		out->Move(); // PROBLEM HERE
-		wprintf(L"%i, %i", pos.X, pos.Y);*/
-		item.Clear();
-	}
+        item.Clear();
+    }
 }
 
 void MenuItem :: DrawItems() {
     short size = m_items->size();
-	while(--size >= 0)
+    while(--size >= 0)
         at(size).Focus()->Draw();
-		at(0).Focus();
-	}
+    at(0).Focus();
+}
 
 char MenuItem :: Expand() {
     DrawItems();
@@ -43,14 +38,11 @@ char MenuItem :: Expand() {
     Await(this, query, ESC);
     Minimize();
     Focus();
-	//wprintf(L"S");
-	return ENTER;
+    return ENTER;
 }
 
 void MenuItem :: SetSelection(short next) {
-	//wprintf(L"%i", next);
     if (!m_limits.Deny(next)) {
-		//wprintf(L"%i / %i", next, m_limits.end);
         m_item.Index = next; 
         at(next).Focus();
     }
@@ -96,14 +88,14 @@ short MenuItem :: Choice() {
 }
 
 char MenuItem :: Command() {
-	char code;
+    char code;
     if (m_command != NULL) {
         m_command();
-		code = ENTER;
-	} else {
+        code = ENTER;
+    } else {
         code = ((this)->*(m_internal))();
-	}
-	return code;
+    }
+    return code;
 }
 
 void MenuItem :: SetPosition(Point* position) {
@@ -111,21 +103,21 @@ void MenuItem :: SetPosition(Point* position) {
 }
 
 void MenuItem :: ApplyDirection(Point* position) {
-	position->X += m_item.Direction.X;
-	position->Y += m_item.Direction.Y;
+    position->X += m_item.Direction.X;
+    position->Y += m_item.Direction.Y;
 }
 
 void MenuItem :: Index(Point position) {
-	SetPosition(&position);
-	ApplyDirection(&position);
-	m_item.Index = 0;
+    SetPosition(&position);
+    ApplyDirection(&position);
+    m_item.Index = 0;
 
-	if (m_items == NULL) return;
+    if (m_items == NULL) return;
 
-	for (unsigned char i = 0; i < m_items->size(); i++) {
+    for (unsigned char i = 0; i < m_items->size(); i++) {
         at(i).Index(position);
-		position.Y += 1;
-	}
+        position.Y += 2;
+    }
 }
 
 MenuItem* MenuItem :: Vertical(bool direction) {
@@ -165,9 +157,7 @@ MenuItem* MenuItem :: SetField(Navigation* parameters) {
 }
 
 void MenuItem :: Draw() {
-	//Point pos = m_item.Position;
-	//wprintf(L"D: %i, %i", pos.X, pos.Y);
-	m_caption->Draw();
+    m_caption->Draw();
 }
 
 MenuItem* MenuItem :: Clear() {

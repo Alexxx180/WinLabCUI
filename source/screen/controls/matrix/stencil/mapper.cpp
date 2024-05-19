@@ -49,12 +49,12 @@ void Mapper :: Clear() {
 }
 
 void Mapper :: Field() {
-    short width = Diff() + 1;
-    char baseline = 1;
+    short width = Diff();
+    char border = 1, baseline = 1;
 
-    m_cursor.X -= width;
+    m_cursor.X -= border;
     pattern.Pipe(&m_cursor);
-    m_cursor.X += width;
+    m_cursor.X += border;
     m_cursor.Y += baseline;
     pattern.Decoration(&m_cursor, width);
     m_cursor.Y -= baseline;
